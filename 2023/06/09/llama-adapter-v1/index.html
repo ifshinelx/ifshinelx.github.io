@@ -125,7 +125,7 @@
         <div class="post-toc-wrap sidebar-panel">
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-following-models"><span class="nav-number">1.1.</span> <span class="nav-text">Instruction-Following Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#large-vision-language-models"><span class="nav-number">1.2.</span> <span class="nav-text">Large Vision-Language Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameter-efficient-fine-tuningpeft"><span class="nav-number">1.3.</span> <span class="nav-text">Parameter-Efficient
 Fine-Tuning(PEFT)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#learnable-adaption-prompts"><span class="nav-number">2.1.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zero-init-attention"><span class="nav-number">2.2.</span> <span class="nav-text">Zero-init Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-modal-reasoning"><span class="nav-number">2.3.</span> <span class="nav-text">Multi-modal Reasoning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instruction-following-evaluation"><span class="nav-number">3.</span> <span class="nav-text">Instruction-following
-Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-modal-evaluation"><span class="nav-number">4.</span> <span class="nav-text">Multi-modal Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-implementation"><span class="nav-number">6.</span> <span class="nav-text">Code Implementation</span></a></li></ol></div>
+Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-modal-evaluation"><span class="nav-number">4.</span> <span class="nav-text">Multi-modal Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-implementation"><span class="nav-number">6.</span> <span class="nav-text">Code Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#params"><span class="nav-number">6.1.</span> <span class="nav-text">Params</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataset"><span class="nav-number">6.2.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#learnable-adaption-prompts-1"><span class="nav-number">6.3.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -255,7 +255,7 @@ Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" h
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-12 14:23:21" itemprop="dateModified" datetime="2023-06-12T14:23:21+08:00">2023-06-12</time>
+      <time title="Modified: 2023-06-13 09:24:42" itemprop="dateModified" datetime="2023-06-13T09:24:42+08:00">2023-06-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,14 +289,14 @@ Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" h
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.1k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>4 mins.</span>
+      <span>7 mins.</span>
     </span>
 </div>
 
@@ -354,10 +354,6 @@ instructional signals of different modalities into the adaption
 prompts</li>
 </ul></li>
 <li>What are training hours of multi-modal variant?</li>
-<li>What is the initialization of learnable adaption prompts?
-<ul>
-<li>randomly initialized?</li>
-</ul></li>
 <li>In zero-init attention, if we exchange the order between
 "projection" and "repeat", how will the param num, training time and
 final performance change?</li>
@@ -433,6 +429,10 @@ trainable rank decomposition matrices into each layer</li>
 involves inserting lightweight trainable modules into each layer of
 pre-trained models</li>
 </ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png" />
+<a target="_blank" rel="noopener" href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A
+Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
 <h2 id="method">Method</h2>
 <p><em>4 characteristics of LLaMA-Adapter:</em></p>
 <ol type="1">
@@ -588,6 +588,48 @@ prompts</li>
 <li>leverage CoT to boost LLaMA-Adapter</li>
 </ul>
 <h2 id="code-implementation">Code Implementation</h2>
+<h3 id="params">Params</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">accum_iter: 1. Accumulate gradient iterations (for increasing the effective batch size under memory constraints)</span><br><span class="line">batch_size: 4(per GPU). effective_batch_size = batch_size * accum_iter * gpu_num</span><br><span class="line">epoch: 5</span><br><span class="line">adapter_layer: 30. the num of adapter layer L</span><br><span class="line">adapter_len: 10. the adapter length K</span><br><span class="line">max_seq_len: 512. specifies the maximum number of input tokens. token num &gt;= word num.</span><br><span class="line">max_batch_size: 32.</span><br><span class="line">dim: 4096.</span><br><span class="line">n_heads: 32.</span><br><span class="line">n_layers: 32.</span><br><span class="line">weight_decay: 0.02.</span><br><span class="line">blr: 9e-3. base learning rate.</span><br><span class="line">lr: learning_rate(absolute lr), lr = blr * total_batch_size / 256</span><br><span class="line">min_lr: 0.0. lower lr bound for cyclic schedulers that hit 0</span><br><span class="line">warmup_epochs: 2.</span><br><span class="line">seed: 0.</span><br></pre></td></tr></table></figure>
+<p>Why we need max_seq_len? For absolute position embedding(e.g., BERT,
+Roberta, BART), it uses the index of each token to calculate and its
+length is limited(max_seq_len). When the input token length exceeds
+max_seq_len, <strong>"index error"</strong> will be caused. For other
+position embedding methods(e.g., XLNet, T5), they have no limit of input
+token length. But longer input token length brings <strong>heavier
+memory burden</strong>, which may not necessarily lead to better
+performance.</p>
+<p>LLaMA uses Rotary Position Embedding: <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627536105">分析 |
+ROPE的不同实现：llama&amp;palm</a>, <a
+target="_blank" rel="noopener" href="http://t.csdn.cn/U3RXo">blog 2.3 RoPE旋转位置编码</a></p>
+<h3 id="dataset">Dataset</h3>
+<p>It seems that the val set is a sub set of the train set.(data_path is
+same) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstructionDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_path, model_path, max_seq_len, partition=<span class="string">&quot;train&quot;</span></span>):</span><br><span class="line">        self.ann = json.load(<span class="built_in">open</span>(data_path))</span><br><span class="line">        <span class="keyword">if</span> partition == <span class="string">&quot;train&quot;</span>:</span><br><span class="line">            self.ann = self.ann</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.ann = self.ann[:<span class="number">200</span>]</span><br></pre></td></tr></table></figure></p>
+<h3 id="learnable-adaption-prompts-1">Learnable Adaption Prompts</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module): <span class="comment"># Decoder</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, params: ModelArgs</span>):</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># randomly initialise the adaption prompts</span></span><br><span class="line">        <span class="comment"># github.com/OpenGVLab/LLaMA-Adapter/issues/9#issuecomment-1501705647</span></span><br><span class="line">        self.adapter_query = nn.Embedding(params.adapter_len * params.adapter_layer, params.dim)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, examples, labels</span>):</span><br><span class="line">        _bsz, seqlen = examples.shape</span><br><span class="line">        ...</span><br><span class="line">        mask = torch.full((<span class="number">1</span>, <span class="number">1</span>, seqlen, seqlen), <span class="built_in">float</span>(<span class="string">&quot;-inf&quot;</span>), device=h.device)</span><br><span class="line">        mask = torch.triu(mask, diagonal=<span class="number">0</span> + <span class="number">1</span>).type_as(h) <span class="comment"># Upper triangular matrix, and diagonal val is 0</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[: -<span class="number">1</span> * self.adapter_layer]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line">        adapter_index = <span class="number">0</span></span><br><span class="line">        <span class="comment"># adapter.shape: (30, 1, 10, 4096)</span></span><br><span class="line">        adapter = self.adapter_query.weight.reshape(-<span class="number">1</span>, self.adapter_len, <span class="number">4096</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[-<span class="number">1</span> * self.adapter_layer :]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask, adapter[adapter_index].half())</span><br><span class="line">            adapter_index = adapter_index + <span class="number">1</span></span><br><span class="line">        output = self.output(self.norm(h))</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>linear projection: queries <span
+class="math inline">\(Q_l=Linear_q(t_l)\)</span>, keys <span
+class="math inline">\(K_l=Linear_k([P_l;T_l;t_l])\)</span>, values <span
+class="math inline">\(V_l=Linear_v([P_l;T_l;t_l])\)</span></li>
+<li>attention scores: <span
+class="math inline">\(S_l=\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}\)</span></li>
+<li>reformulation: <span class="math inline">\(S_l=[S_l^K;S_l^{M+1}]^T,
+S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times
+1}\)</span></li>
+<li>softmax operation: <span
+class="math inline">\(S_l^g=[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T\)</span></li>
+<li>output of the attention layer: <span
+class="math inline">\(t_l^o=Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times
+C}\)</span></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Attention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, args: ModelArgs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># zero-init attention</span></span><br><span class="line">        self.gate = torch.nn.Parameter(torch.zeros(<span class="number">1</span>, self.n_local_heads, <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor, start_pos: <span class="built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="type">Optional</span>[torch.Tensor], adapter=<span class="literal">None</span></span>):</span><br><span class="line">        bsz, seqlen, _ = x.shape</span><br><span class="line">        <span class="comment"># 1. three Linears for x</span></span><br><span class="line">        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)</span><br><span class="line">        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        <span class="comment"># 2. add position info via Rotary Position Embedding</span></span><br><span class="line">        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            adapter_len = adapter.shape[<span class="number">1</span>] <span class="comment"># adapter.shape: (1, 10, 4096)</span></span><br><span class="line">            <span class="comment"># linear projection</span></span><br><span class="line">            <span class="comment"># adapter_k.shape: (bsz, adapter_len, self.n_local_heads, self.head_dim)</span></span><br><span class="line">            adapter_k = self.wk(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            adapter_v = self.wv(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            xk = torch.cat([adapter_k, xk], dim=<span class="number">1</span>)</span><br><span class="line">            xv = torch.cat([adapter_v, xv], dim=<span class="number">1</span>)</span><br><span class="line">            extra_mask = torch.zeros(<span class="number">1</span>, <span class="number">1</span>, seqlen, adapter_len).to(mask)</span><br><span class="line">            mask = torch.cat([extra_mask, mask], dim=-<span class="number">1</span>) <span class="comment"># (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        keys = xk</span><br><span class="line">        values = xv</span><br><span class="line"></span><br><span class="line">        xq = xq.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        keys = keys.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        values = values.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment"># 3. attention scores</span></span><br><span class="line">        scores = torch.matmul(xq, keys.transpose(<span class="number">2</span>, <span class="number">3</span>)) / math.sqrt(self.head_dim)</span><br><span class="line">        <span class="comment"># for decoder type, mask is needed to avoid using the information in the future.</span></span><br><span class="line">        <span class="comment"># the predictions for position i can depend only on the known outputs at positions less than i</span></span><br><span class="line">        <span class="comment"># mask.shape: (1, 1, seqlen, )</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = scores + mask  <span class="comment"># (bsz, n_local_heads, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="comment"># 4. softmax</span></span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = torch.cat(</span><br><span class="line">                [</span><br><span class="line">                    <span class="comment"># zero-init attention</span></span><br><span class="line">                    self.gate.tanh().half() * F.softmax(scores[:, :, :, :adapter_len].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                    F.softmax(scores[:, :, :, adapter_len:].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                ],</span><br><span class="line">                dim=-<span class="number">1</span>,</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            scores = F.softmax(scores.<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq)</span><br><span class="line">        output = torch.matmul(scores, values)  <span class="comment"># (bs, n_local_heads, slen, head_dim)</span></span><br><span class="line">        output = output.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(bsz, seqlen, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.wo(output)</span><br></pre></td></tr></table></figure>
+<p>(images below are from <a
+target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io/illustrated-gpt2/</a>)
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png" /><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png" /><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png" /></p>
 
     </div>
 
@@ -669,9 +711,9 @@ prompts</li>
     </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-line"></i>
+      <i class="far fa-file-word"></i>
     </span>
-    <span title="Word count total">2k</span>
+    <span title="Word count total">3k</span>
   </span>
 
 </div>
