@@ -13,6 +13,110 @@ src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
 ]]></content>
   </entry>
   <entry>
+    <title>Hexo Usage</title>
+    <url>/2023/06/08/hexo-usage/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
+href="https://hexo.io/docs/">documentation</a> for more info. If you get
+any problems when using Hexo, you can find the answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask for help on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
+default OS in this post.</p>
+<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
+<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
+<p>Use <a
+href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
+as an example. More info: <a href="https://theme-next.js.org/docs">Theme
+Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
+href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="deploy-to-github">Deploy to Github</h2>
+<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
+cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
+"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
+minutes for the github page to refresh) For the first deployment, you
+need to click <a
+href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
+<span id="more"></span>
+<h2 id="personalization">Personalization</h2>
+<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
+<h3 id="next-theme-settings-basic"><a
+href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
+Settings Basic</a></h3>
+<p>root_dir/themes/next/_config.yml add "little star.jpg" to
+root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
+Equations</a>, <a
+href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
+<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
+<a
+href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
+<h3 id="sidebar"><a
+href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
+code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
+add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="footer"><a
+href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
+the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="posts"><a
+href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
+<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
+plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="custom-pagestags-categories-home"><a
+href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
+Pages(Tags, Categories, Home)</a></h3>
+<p><a
+href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
+of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
+<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="search-services"><a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
+Services()</a></h3>
+<p>Details of Algolia Search are in <a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
+<a
+href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
+href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
+Systems(Isso)</a></h3>
+<p>Click <a
+href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
+to install python3.8. You can find more versions <a
+href="https://www.python.org/downloads/windows/">here</a>. Download
+<em>sqlite-dll-win64-x64-3420000.zip</em> and
+<em>sqlite-tools-win32-x86</em> from <a
+href="https://www.sqlite.org/download.html">the official website</a>.
+Create "SQlite_root_dir" and move all files from the two zips to
+"SQlite_root_dir". Add "SQlite_root_dir" to the environment variable
+"Path". <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
+<h3 id="waiting...-statistics-and-analyticsumami">[Waiting...] <a
+href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
+and Analytics(Umami)</a></h3>
+<p><a href="http://t.csdn.cn/OCEnG">MySQL</a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>software</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention</title>
     <url>/2023/06/09/llama-adapter-v1/</url>
     <content><![CDATA[<p><img
@@ -21,11 +125,8 @@ alt="authors" />Paper: <a
 href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2303.16199.pdf</a></p>
 <p>Code: <a
 href="https://github.com/ZrrSkywalker/LLaMA-Adapter">https://github.com/ZrrSkywalker/LLaMA-Adapter</a></p>
-<p>More Info:</p>
-<p><a
-href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Lighting
-AI | understanding-llama-adapters</a></p>
-<p><a href="https://github.com/Lightning-AI/lit-parrot">Lighting AI |
+<p>More Info: <a
+href="https://github.com/Lightning-AI/lit-parrot">Lighting AI |
 Lit-Parrot: lightweight update of llama</a></p>
 <p><strong><em>When reading this note, you can think about the following
 questions:</em></strong></p>
@@ -33,6 +134,7 @@ questions:</em></strong></p>
 <li>What is learnable adaption prompts?</li>
 <li>What is zero-init attention?</li>
 <li>How to extend LLaMA-Adapter to multi-modal input?</li>
+<li>the advantage of instruction-tuning?</li>
 <li>Instruction-Following VL Models?</li>
 <li>LLaMA-Adapter displays instruction-following and multi-modal
 capabilities respectively, without showing multi-modal
@@ -48,80 +150,6 @@ prompts</li>
 final performance change?</li>
 </ol>
 <hr />
-<h2 id="related-work">Related Work</h2>
-<h3 id="instruction-following-models">Instruction-Following Models</h3>
-<p>Instruction-following capabilities: understand user intentions and
-follow instructions accurately.</p>
-<p>Closed-source restriction and high training costs imped
-instruction-following models' development.</p>
-<p>But LLaMA-Adapter is computation-efficient and achieves high
-performance.</p>
-<p><em>Language Modality:</em></p>
-<ul>
-<li><a href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces
-an instruction tuning method</li>
-<li><a href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a
-web-based GUI for creating and managing natural language prompt</li>
-<li><a
-href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>:
-an benchmark of instructions on 1,616 NLP tasks</li>
-<li><a href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>:
-RLHF, significant performance improvements</li>
-<li><strong><a
-href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>:
-data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
-</ul>
-<p><em>Multi-modality:</em></p>
-<ul>
-<li><a href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>: a
-benchmark for robotics instruction following</li>
-<li><a href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>: a modular
-method for robotics instruction following</li>
-</ul>
-<h3 id="large-vision-language-models">Large Vision-Language Models</h3>
-<p>Recently, some researchers adopt pre-trained unimodal models as
-initialization and only train the newly introduced parameters. They use
-mapping networks or cross-attention layers to connect two
-modalities.</p>
-<p>As a new method, LLaMA-Adapter also belongs to this line of work.</p>
-<ul>
-<li><a href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>:
-fine-tunes an image encoder to transform visual tokens into LLM’s soft
-prompts</li>
-<li><a href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes
-pretrained image encoder to speed up CLIP training</li>
-<li><a href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes
-a mapping network to connect the pre-trained image encoder with
-LLMs</li>
-<li><a href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a
-href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a
-href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce
-customized adapters upon CLIP for 2D and 3D few-shot learning</li>
-<li><a href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts
-several cross-attention layers to inject visual knowledge into LLMs</li>
-<li><a href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects
-pre-trained image encoders and LLMs with a Q-Former</li>
-</ul>
-<h3 id="parameter-efficient-fine-tuningpeft">Parameter-Efficient
-Fine-Tuning(PEFT)</h3>
-<p><a href="https://github.com/huggingface/peft">PEFT</a> does not
-update all model parameters.</p>
-<p>With zero-init attention(stablity improvement) and unified
-multi-modal tuning(unimodal to multi-modal), LLaMA-Adapter is distinct
-from existing PEFT methods.</p>
-<ul>
-<li><a href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>:
-appends prefixes to autoregressive LMs</li>
-<li><a href="https://arxiv.org/pdf/2106.09685.pdf">LoRA</a>: introduces
-trainable rank decomposition matrices into each layer</li>
-<li><a href="https://arxiv.org/pdf/1902.00751.pdf">Adapters</a>:
-involves inserting lightweight trainable modules into each layer of
-pre-trained models</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png" />
-<a href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A
-Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
 <h2 id="method">Method</h2>
 <p><em>4 characteristics of LLaMA-Adapter:</em></p>
 <ol type="1">
@@ -129,10 +157,13 @@ Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
 <li>1 Hour: 8 A100 GPUs, three times faster than Alpaca</li>
 <li>Plug with Expertise: insert their respective adapters and endow
 LLaMA with different expert knowledge</li>
-<li>Multi-modal: simply add images tokens into adaption prompts <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg"
-alt="LLaMA-Adapter&#39;s 4 characteristics and details" /></li>
+<li>Multi-modal: simply add images tokens into adaption prompts</li>
 </ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg"
+alt="LLaMA-Adapter&#39;s 4 characteristics and details" /> <strong>The
+idea of LLaMA-Adapter is model-agnostic and can be applied to other
+LLMs.</strong></p>
 <h3 id="learnable-adaption-prompts">Learnable Adaption Prompts</h3>
 <ul>
 <li><span class="math inline">\(K\)</span>: prompt length for each
@@ -319,6 +350,221 @@ href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io/illustrate
 src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png" /><img
 src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png" /><img
 src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png" /></p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="parameter-efficient-fine-tuningpeft">Parameter-Efficient
+Fine-Tuning(PEFT)</h3>
+<p><img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-flowchart-1536x535.png"
+alt="Three conventional approaches of finetuing" /> <a
+href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Three
+conventional approaches of finetuing.(the pre-trained model is not too
+large)</a> They are all compatible with encoder and decoder style. When
+finetune generative models, we work with and build on the embeddings
+they create instead of the generated output texts. But in-context
+learning only applies to decoder style. <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-performance-1024x377.png"
+alt="traininig efficiency and modeling performance" /></p>
+<p><a href="https://github.com/huggingface/peft">PEFT</a> does not
+update all model parameters. It is needed when we want to get a similar
+modeling quality as finetuning II on LLMs. (e.g., Prompt-Tuning,
+Adapter, LoRA)</p>
+<p>Prompt-Tuning: vary the input prompt to achieve better modeling
+results. (e.g., Hard/Soft Prompt-Tuning, Prefix-Tuning)</p>
+<p>Hard Prompt-Tuning: directly change the discrete input tokens, which
+are not differentiable: <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/hard-prompting-1024x214.png" /></p>
+<p>Soft Prompt-Tuning: concatenates the embeddings of the input tokens
+with a trainable tensor that can be optimized via backpropagation.</p>
+<p><a href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>: add
+a trainable tensor to each transformer block instead of only the input
+embeddings, as in Soft Prompt-Tuning: <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/prefix-tuning-1536x907.png" /></p>
+<p><a href="https://arxiv.org/pdf/1902.00751.pdf">Adapter</a>: adds
+adapter layers in two places. The hidden dim in each adapter layer is
+low(e.g., 1024--&gt;24, params 1024×24+24×1024=49,512 &lt;
+1024×1024=1,048,576). <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/adapter-outline-1024x548.png" /></p>
+<p><a
+href="https://lightning.ai/pages/community/tutorial/lora-llm/">LoRA</a>:
+introduces trainable rank decomposition matrices into each layer: <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-13.jpg" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png" />
+<a href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A
+Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
+<p>LLaMA-Adapter is distinct from regular Prefix-Tuning: 1. L topmost
+layer(not all) 2. zero-init attention(stablity improvement) 3. unified
+multi-modal tuning(unimodal to multi-modal) <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/popular-methods-1024x282.png" />
+<img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/llama-adapter-1447x1536.png" /></p>
+<h3 id="instruction-following-models">Instruction-Following Models</h3>
+<p>Instruction-following capabilities: understand user intentions and
+follow instructions accurately.</p>
+<p>Closed-source restriction and high training costs imped
+instruction-following models' development.</p>
+<p>But LLaMA-Adapter is computation-efficient and achieves high
+performance.</p>
+<p><em>Language Modality:</em></p>
+<ul>
+<li><a href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces
+an instruction tuning method</li>
+<li><a href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a
+web-based GUI for creating and managing natural language prompt</li>
+<li><a
+href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>:
+an benchmark of instructions on 1,616 NLP tasks</li>
+<li><a href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>:
+RLHF, significant performance improvements</li>
+<li><strong><a
+href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>:
+data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
+</ul>
+<p><em>Multi-modality:</em></p>
+<p>Robot</p>
+<ul>
+<li>2020/03/31 <a
+href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>: a benchmark for
+robotics instruction following</li>
+<li>2022/03/16 <a href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>:
+a modular method for robotics instruction following</li>
+</ul>
+<p>Video</p>
+<ul>
+<li>2023/05/10 <a href="https://arxiv.org/pdf/2305.06355.pdf">VideoChat:
+Chat-Centric Video Understanding</a>: (1) integrates video foundation
+models and large language models via a learnable neural interface; (2)
+propose a video-centric instruction dataset based on WebVid-10M; (3)
+spatiotemporal reasoning, event localization, and causal relationship
+inference</li>
+<li>2023/06/08 <a
+href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT: Towards
+Detailed Video Understanding via Large Vision and Language Models</a>:
+(1) merges a video-adapted visual encoder with a LLM; (2) introduce a
+new dataset of 100,000 video-instruction pairs; (3) develop a
+quantitative evaluation framework for video-based dialogue models; (4)
+understanding and generating detailed conversations about videos</li>
+<li>2023/06/12 <a
+href="https://arxiv.org/pdf/2306.02858.pdf">Video-LLaMA An
+Instruction-tuned Audio-Visual Language Model for Video
+Understanding</a>: (1) propose a Video Q-former for temporal info; (2)
+propose an Audio Q-former based on ImageBind for audio-visual
+signals</li>
+</ul>
+<p>Image(Model)</p>
+<ul>
+<li>2023/04/27 <a
+href="https://arxiv.org/pdf/2302.14045v1.pdf">Kosmos-1</a>, <a
+href="https://arxiv.org/pdf/2304.10592.pdf">MiniGPT4</a>, <a
+href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a>, <a
+href="https://arxiv.org/pdf/2304.14178.pdf">mPLUG-Owl</a> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-14.jpg" /></li>
+<li>2023/05/05 <a href="https://arxiv.org/pdf/2305.03726.pdf">Otter: A
+Multi-Modal Model with In-Context Instruction Tuning</a></li>
+<li>2023/05/11 <a
+href="https://arxiv.org/pdf/2305.06500.pdf">InstructBLIP: Towards
+General-purpose Vision-Language Models with Instruction Tuning</a>: (1)
+gather a wide variety of 26 publicly available datasets, transform them
+into instruction tuning format; (2) instruction-aware visual feature
+extraction method</li>
+<li>2023/05/22 <a href="https://arxiv.org/pdf/2305.04160.pdf">X-LLM:
+Bootstrapping Advanced Large Language Models by Treating
+Multi-Modalities as Foreign Languages</a>: propose X2L interface to
+convert other modality(image, speech, video) into foreign language via 3
+training stages</li>
+<li>2023/05/24 <a href="https://arxiv.org/pdf/2305.15023.pdf">Cheap and
+Quick: Efficient Vision-Language Instruction Tuning for Large Language
+Models</a>: (1) Mixture-of-Modality Adaptation(MMA); (2) a routing
+algorithm for MMA, which enables an automatic shift between single- and
+multi-modal instructions; (3) MMA+LLaMA=LaVIN(efficient), 1.4 training
+hours with 3.8M trainable params</li>
+<li>2023/05/25 <a href="https://arxiv.org/pdf/2305.16355.pdf">PandaGPT:
+One Model To Instruction-Follow Them All</a>: (1) visual and auditory
+instruction-following capabilities(detailed image description
+generation, writing stories inspired by videos, answering questions
+about audios); (2) combines the multimodal encoders from ImageBind and
+the large language models from Vicuna; (3) displays emergent, i.e.
+zero-shot, cross-modal behaviors for data other than image and text
+(e.g., video, audio, depth, thermal, and IMU)</li>
+<li>2023/05/25 <a
+href="https://arxiv.org/pdf/2305.16103.pdf">ChatBridge: Bridging
+Modalities with Large Language Model as a Language Catalyst</a>: (1)
+show that only language-paired two-modality data is sufficient to
+connect all modalities; (2) propose a new multi-modal instruction tuning
+dataset MULTIS, which covers a wide range of 16 multimodal tasks of
+text, image, video, and audio modalities; (3) a two-stage training,
+firstly aligns each modality with language, secondly aligns model with
+user intent</li>
+<li>2023/05/30 <a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools:
+Teaching Large Language Model to Use Tools via Self-instruction</a>: (1)
+enable open-source LLMs to use multimodal tools; (2) generates an
+instruction-following dataset by prompting an advanced teacher with
+various multi-modal contexts; (3) provide a benchmark to evaluate the
+ability of LLMs to use tools</li>
+<li>2023/06/02 <a href="https://arxiv.org/pdf/2305.05662.pdf">InternGPT:
+Solving Vision-Centric Tasks by Interacting with ChatGPT Beyond
+Language</a>: integrates chatbots with non-verbal instructions(e.g.,
+point movements like gestures and cursors), which requires fine-grained
+control, editing, and generation of visual content</li>
+<li>2023/06/13 <a
+href="https://arxiv.org/pdf/2305.04790.pdf">MultiModal-GPT: A Vision and
+Language Model for Dialogue with Humans</a>: (1) capable of generating
+detailed captions, counting specific objects, and addressing general
+inquiries posed by users; (2) OpenFlamingo+LoRA; (3) construct
+multi-modal instruction templates; (4) also employ language-only
+instruction-following data for dialogue performance improvement</li>
+</ul>
+<p>Image(Dataset)</p>
+<ul>
+<li>2023/06/08 <a href="https://arxiv.org/pdf/2306.05425.pdf">MIMIC-IT:
+Multi-Modal In-Context Instruction Tuning</a>: (1) 2.8 million
+multimodal instruction-response pairs; (2) 8 languages; (3) contains
+videos</li>
+<li>2023/06/08 <a href="https://arxiv.org/pdf/2306.04387.pdf">M3IT: A
+Large-Scale Dataset towards Multi-Modal Multilingual Instruction
+Tuning</a>: (1) comprises 40 carefully curated datasets, including 2.4
+million instances and 400 manually written task instructions, which
+surpasses previous datasets regarding task coverage; (2) 80 languages;
+(3) Ying-VLM model</li>
+<li>2023/06/10 <a
+href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct: Improving
+Multi-Modal Zero-Shot Learning via Instruction Tuning</a>: (1) a
+multimodal instruction tuning benchmark dataset that consists of 62
+multimodal tasks; (2) a new evaluation metric, Sensitivity, to evaluate
+how sensitive the model is to the variety of instructions</li>
+<li>2023/06/11 <a href="https://arxiv.org/pdf/2306.06687.pdf">LAMM:
+Language-Assisted Multi-Modal Instruction-Tuning Dataset, Framework, and
+Benchmark</a>: (1) extend MLLMs to point clouds; (2) LAMM-Dataset and
+LAMM-Benchmark for 2D image and 3D point cloud understanding</li>
+</ul>
+<hr />
+<ul>
+<li><strong>LLaMA-Adapter v2</strong></li>
+</ul>
+<h3 id="large-vision-language-models">Large Vision-Language Models</h3>
+<p>Recently, some researchers adopt pre-trained unimodal models as
+initialization and only train the newly introduced parameters. They use
+mapping networks or cross-attention layers to connect two
+modalities.</p>
+<p>As a new method, LLaMA-Adapter also belongs to this line of work.</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>:
+fine-tunes an image encoder to transform visual tokens into LLM’s soft
+prompts</li>
+<li><a href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes
+pretrained image encoder to speed up CLIP training</li>
+<li><a href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes
+a mapping network to connect the pre-trained image encoder with
+LLMs</li>
+<li><a href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a
+href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a
+href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce
+customized adapters upon CLIP for 2D and 3D few-shot learning</li>
+<li><a href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts
+several cross-attention layers to inject visual knowledge into LLMs</li>
+<li><a href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects
+pre-trained image encoders and LLMs with a Q-Former</li>
+</ul>
 ]]></content>
       <categories>
         <category>paper</category>
@@ -328,114 +574,11 @@ src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-1
       <tags>
         <tag>LLaMA</tag>
         <tag>Adapter</tag>
+        <tag>Prefix-Tuning</tag>
         <tag>Multi-modal</tag>
         <tag>LLM</tag>
         <tag>Instruction-Following</tag>
         <tag>PEFT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Usage</title>
-    <url>/2023/06/08/hexo-usage/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
-href="https://hexo.io/docs/">documentation</a> for more info. If you get
-any problems when using Hexo, you can find the answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask for help on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
-default OS in this post.</p>
-<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
-<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
-<p>Use <a
-href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
-as an example. More info: <a href="https://theme-next.js.org/docs">Theme
-Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
-href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="deploy-to-github">Deploy to Github</h2>
-<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
-cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
-"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
-minutes for the github page to refresh) For the first deployment, you
-need to click <a
-href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
-<span id="more"></span>
-<h2 id="personalization">Personalization</h2>
-<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
-<h3 id="next-theme-settings-basic"><a
-href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
-Settings Basic</a></h3>
-<p>root_dir/themes/next/_config.yml add "little star.jpg" to
-root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
-Equations</a>, <a
-href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
-<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
-<a
-href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
-<h3 id="sidebar"><a
-href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
-code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
-add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="footer"><a
-href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
-the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="posts"><a
-href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
-<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
-plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="custom-pagestags-categories-home"><a
-href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
-Pages(Tags, Categories, Home)</a></h3>
-<p><a
-href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
-of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
-<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="search-services"><a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
-Services()</a></h3>
-<p>Details of Algolia Search are in <a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
-<a
-href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Isso)</a></h3>
-<p>Click <a
-href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
-to install python3.8. You can find more versions <a
-href="https://www.python.org/downloads/windows/">here</a>. Download
-<em>sqlite-dll-win64-x64-3420000.zip</em> and
-<em>sqlite-tools-win32-x86</em> from <a
-href="https://www.sqlite.org/download.html">the official website</a>.
-Create "SQlite_root_dir" and move all files from the two zips to
-"SQlite_root_dir". Add "SQlite_root_dir" to the environment variable
-"Path". <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-statistics-and-analyticsumami">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
-and Analytics(Umami)</a></h3>
-<p><a href="http://t.csdn.cn/OCEnG">MySQL</a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>software</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>

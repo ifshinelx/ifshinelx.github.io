@@ -2720,3 +2720,7 @@ li.recent_posts_li {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+li.recent_posts_li:hover a {
+  color: #fc6423;
+  border-bottom-color: #fc6423;
+}
