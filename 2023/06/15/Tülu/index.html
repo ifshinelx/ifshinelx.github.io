@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/little%20star.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/little%20star.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ifshinelx.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"QRVCI4B1JK","apiKey":"683b41d81744270ced12c4596c915a0e","indexName":"hexo_index","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://ifshinelx.github.io/2023/06/15/T%C3%BClu/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://ifshinelx.github.io/2023/06/15/T%C3%BClu/","path":"2023/06/15/Tülu/","title":"[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources | XinLiu's Homepage, Welcome!</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XinLiu's Homepage, Welcome!</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-tuning"><span class="nav-number">1.1.</span> <span class="nav-text">Instruction Tuning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation-method"><span class="nav-number">1.2.</span> <span class="nav-text">Evaluation Method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#training-models-with-various-datasets"><span class="nav-number">2.</span> <span class="nav-text">Training Models with
+Various Datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#datasets-and-format-unity"><span class="nav-number">2.1.</span> <span class="nav-text">Datasets and Format Unity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#models-training"><span class="nav-number">2.2.</span> <span class="nav-text">Models Training</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#waiting...evaluation-setup"><span class="nav-number">3.</span> <span class="nav-text">[Waiting...]Evaluation Setup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#facets-of-evaluation"><span class="nav-number">3.1.</span> <span class="nav-text">Facets of Evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model-based-evaluation-using-gpt-4"><span class="nav-number">3.2.</span> <span class="nav-text">Model-Based Evaluation using
+GPT-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#human-evaluation"><span class="nav-number">3.3.</span> <span class="nav-text">Human Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#results"><span class="nav-number">4.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis-of-instruction-tuning-datasets-and-base-models"><span class="nav-number">4.1.</span> <span class="nav-text">Analysis of
+Instruction Tuning Datasets and Base Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pushing-the-limits-of-open-models"><span class="nav-number">4.2.</span> <span class="nav-text">Pushing the Limits of Open
+Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model-basedhuman-evaluation-results-for-open-ended-generation"><span class="nav-number">4.3.</span> <span class="nav-text">Model-Based&#x2F;Human
+Evaluation Results for Open-ended Generation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xin Liu"
+      src="/images/little%20star.jpg">
+  <p class="site-author-name" itemprop="name">Xin Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ifshinelx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ifshinelx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ifshine_lx@163.com" title="E-Mail → mailto:ifshine_lx@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <!-- modify icon to fire by szw -->
+      <i class="fa fa-history fa-" aria-hidden="true"></i>
+      Recent Posts
+    </div>
+    <ul class="links-of-blogroll-list" style="padding: 0px 12px;">
+      
+      
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/15/T%C3%BClu/" title="[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources" target="_blank">06-15 [Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/15/2022-machine-learning-specialization/" title="[Waiting...]2022 Machine Learning Specialization" target="_blank">06-15 [Waiting...]2022 Machine Learning Specialization </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/09/llama-adapter-v1/" title="LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention" target="_blank">06-09 LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/08/hexo-usage/" title="[Waiting...]Hexo Usage" target="_blank">06-08 [Waiting...]Hexo Usage </a>
+          </li>
+        
+      
+        
+      
+    </ul>
+  </div>
+
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/06/15/T%C3%BClu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/little%20star.jpg">
+      <meta itemprop="name" content="Xin Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources | XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-06-15 15:03:00" itemprop="dateCreated datePublished" datetime="2023-06-15T15:03:00+08:00">2023-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-06-18 21:21:06" itemprop="dateModified" datetime="2023-06-18T21:21:06+08:00">2023-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/" itemprop="url" rel="index"><span itemprop="name">2023</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/06/" itemprop="url" rel="index"><span itemprop="name">06</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>830</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>3 mins.</span>
+    </span>
+</div>
+
+        </div>
+          <div class="post-tags" style="margin-top: 5px;">
+              <a href="/tags/Evaluation/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Evaluation</a>
+              <a href="/tags/Instruction-Following/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Instruction-Following</a>
+              <a href="/tags/LLM/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> LLM</a>
+          </div>
+          <script type="text/javascript">
+              var tagsall=document.getElementsByClassName("post-tags")
+              for (var i = tagsall.length - 1; i >= 0; i--){
+                  var tags=tagsall[i].getElementsByTagName("a");
+                  for (var j = tags.length - 1; j >= 0; j--) {
+                      var r=Math.floor(Math.random()*75+200);
+                      var g=Math.floor(Math.random()*75+200);
+                      var b=Math.floor(Math.random()*75+200);
+                      tags[j].style.background = "rgb("+r+","+g+","+b+")";
+                  }
+              }                        
+            </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-1.jpg"
+alt="authors" />Paper: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.04751.pdf">https://arxiv.org/pdf/2306.04751.pdf</a></p>
+<p>Code: <a
+target="_blank" rel="noopener" href="https://github.com/allenai/open-instruct">https://github.com/allenai/open-instruct</a></p>
+<blockquote>
+<p>Evaluation for instruction-tuned models remains inconsistent and
+difficult. Therefore, this work covers extensive evaluations on a large
+range of models and datasets.</p>
+</blockquote>
+<p><strong><em>When reading this note, you can think about the following
+questions:</em></strong></p>
+<ol type="1">
+<li>What instruction datasets, pretrained models and <strong>evaluation
+metrics</strong> are used?</li>
+<li>What are the evaluation results?</li>
+</ol>
+<h2 id="background">Background</h2>
+<h3 id="instruction-tuning">Instruction Tuning</h3>
+<p><strong>Definition</strong>: finetuning pretrained LMs to better
+understand and respond to various human requests that are expressed in
+natural language.</p>
+<p><strong>Advantages</strong>: (1) zero-shot generalization to new
+tasks; (2) non-experts can use natural language to interact with
+LLMs.</p>
+<blockquote>
+<p>The most popular programming language in the future will be
+English.</p>
+</blockquote>
+<p><strong>Training Paradigms</strong>: (1) supervised
+learning(demonstrations); (2) reinforcement learning (feedback data)</p>
+<p><strong>Key Components</strong>: (1) pretrained LMs; (2) instruction
+datasets(diversity, task num)</p>
+<h3 id="evaluation-method">Evaluation Method</h3>
+<p><strong>Benchmark-based evaluation</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.09110">HELM</a>, <a
+target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.5371628">LM Evaluation Harness</a>:
+suitable for various NLP models</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.11416.pdf">Flan-T5 work</a>:
+focus on factuality and reasoning abilities</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.08774">GPT-4</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.10403">PaLM v2</a>: proprietary models
+with comprehensive evaluations</li>
+</ul>
+<p><strong>Open-ended instruction-following ability
+evaluation</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.14387">Alpaca Farm</a>: leverage
+other models as annotators for judging model generations</li>
+<li><a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-05-03-arena/">Chatbot
+Arena</a>: leverage humans</li>
+</ul>
+<p>This work involves traditional benchmarks, model-based evaluation,
+and human-based evaluation.</p>
+<h2 id="training-models-with-various-datasets">Training Models with
+Various Datasets</h2>
+<h3 id="datasets-and-format-unity">Datasets and Format Unity</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-2.png" />
+<strong>Datasets</strong>: Only CoT and Code-Alpaca are built for
+specific skills. <a
+target="_blank" rel="noopener" href="https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset">ShareGPT</a>
+is a collection of user interactions with various chat systems publicly
+shared.</p>
+<p><strong>Human data mixture</strong>: FLAN V2, CoT, Dolly, Open
+Assistant 1</p>
+<p><strong>Human+GPT data mixture</strong>: Human data mixture +
+GPT4-Alpaca, Code-Alpaca, ShareGPT</p>
+<p><strong>Format Unity</strong>: It aims at representing arbitrary
+rounds as one sentence.</p>
+<ul>
+<li><span class="math inline">\(N\)</span>: instance num in a
+dataset</li>
+<li><span class="math inline">\(i\)</span>: round num in each
+example</li>
+<li><span class="math inline">\(\{(x_1^j, y_1^j,x_2^j, y_2^j,...,x_i^j,
+y_i^j)\}_{j=1}^N\)</span>: an instruction dataset</li>
+</ul>
+<h3 id="models-training">Models Training</h3>
+<ul>
+<li><span class="math inline">\(X:\{(x_1^j,
+x_2^j,...,x_i^j)\}_{j=1}^N\)</span></li>
+<li><span class="math inline">\(Y:\{(y_1^j,
+y_2^j,...,y_i^j)\}_{j=1}^N\)</span></li>
+<li><span class="math inline">\(t_n\)</span>: the <span
+class="math inline">\(n\)</span>-th input token(belonging to X or
+Y)</li>
+<li>loss function <span class="math inline">\(L=-\sum\limits_n \log
+p_{\theta}(t_n|t_{&lt;n})\times\left\{\begin{array}{}1 &amp; if\space
+t_n\in Y \\ 0 &amp; otherwise\end{array}\right.\)</span></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># hyperparams</span><br><span class="line">max_seq_len: 1024 for 30B and 65B, 2048 for others</span><br><span class="line">epoch: 2</span><br><span class="line">learning rate: 1e-5 for 30B and 65B, 2e-5 for others. (linear decay and linear warmup only used for 3% of total steps)</span><br></pre></td></tr></table></figure>
+<p><strong>Tülu</strong>: a suite of 7B to 65B LLaMA models
+fully-instruction-tuned on Human+GPT data mixture.</p>
+<h2 id="waiting...evaluation-setup">[Waiting...]Evaluation Setup</h2>
+<h3 id="facets-of-evaluation">Facets of Evaluation</h3>
+<p>Appendix C for details.</p>
+<p><strong>(1) Specific model capabilities</strong>:</p>
+<ul>
+<li>Factual knowledge: <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2009.03300">MMLU</a></li>
+<li>Reasoning: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2110.14168">GSM</a> for
+mathematical reasoning capabilities; <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.09261">BBH</a> for general reasoning
+capabilities. Subsample GSM and BBH to a reasonable size to improve the
+efficiency of doing CoT reasoning</li>
+<li>Multilinguality: <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2003.05002">TyDiQA</a> for multilingual
+QA</li>
+<li>Coding: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.03374">Codex-Eval</a>
+for abilities of generating functionally correct programs from
+docstrings</li>
+</ul>
+<p><strong>(2) Open-ended instruction following</strong>: model-based
+evaluation and human evaluation</p>
+<h3 id="model-based-evaluation-using-gpt-4">Model-Based Evaluation using
+GPT-4</h3>
+<ul>
+<li>adopt the model-based approach introduced in <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.14387">AlpacaFarm</a> with a test set
+of 805 instructions</li>
+<li>use its simulated GPT-4 annotator to compare the testing model with
+Davinci-003</li>
+<li>max output token length is extended from 300 to 2048, in order to
+avoid cut-off generations</li>
+</ul>
+<h3 id="human-evaluation">Human Evaluation</h3>
+<ul>
+<li>332 instructions from <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.10560">Self-Instruct</a> and <a
+target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> evaluation
+set</li>
+<li>interface for human judgements about: (1) Indivisual acceptability
+(2) Pairwise preference</li>
+</ul>
+<h2 id="results">Results</h2>
+<blockquote>
+<p>The best model in any given evaluation reaches on average 83% of
+ChatGPT performance, and 68% of GPT-4 performance.</p>
+</blockquote>
+<h3
+id="analysis-of-instruction-tuning-datasets-and-base-models">Analysis of
+Instruction Tuning Datasets and Base Models</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-3.jpg" />
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-4.jpg" />
+"1.4T" means <span class="math inline">\(1.4\times 10^{12}\)</span>
+tokens are used to train the model. "180B" means <span
+class="math inline">\(180\times 10^{9}\)</span></p>
+<ul>
+<li>There is not a single best instruction tuning dataset across all
+tasks</li>
+<li>Combining datasets results in the best overall performance on the
+benchmark tasks</li>
+<li>Base model quality is extremely important for downstream
+performance</li>
+</ul>
+<h3 id="pushing-the-limits-of-open-models">Pushing the Limits of Open
+Models</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-5.jpg" /></p>
+<ul>
+<li>Instrcution tuning brings large benefits on top of LLaMA models at
+all sizes</li>
+<li>Smaller models benefit most from instruction tuning</li>
+<li>TÜLU still lags behind SOTA proprietary models</li>
+</ul>
+<h3
+id="model-basedhuman-evaluation-results-for-open-ended-generation">Model-Based/Human
+Evaluation Results for Open-ended Generation</h3>
+<p><strong>Model-Based Evaluation</strong> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-6.jpg" /></p>
+<ul>
+<li>Models trained on mixtures based on traditional NLP datasets perform
+poorly</li>
+<li>Datasets that encourage long, diverse generations perform best</li>
+<li>ShareGPT performs best</li>
+</ul>
+<blockquote>
+<p>The judge model(has bias) may not always reveal the testing model
+deficiencies.</p>
+</blockquote>
+<p><strong>Human Evaluation</strong> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-7.jpg" /></p>
+<ul>
+<li>Human evaluation results largely correlate with the AlpacaFarm and
+benchmark-based evaluation</li>
+<li>Making use of distilled datasets provides a large performance
+boost</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p><strong><em>Future Work</em></strong></p>
+<ul>
+<li>explore instruction-tuning methods that use reinforcement
+learning</li>
+<li>explore more recent strong base models and other instruction
+datasets</li>
+<li>design more versatile model(generality)
+<ul>
+<li>better dataset mixing</li>
+<li>instruction-tuning modular models (e.g., <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/1701.06538">mixture-of-experts</a>)</li>
+</ul></li>
+</ul>
+<p><strong><em>Limitations</em></strong></p>
+<ul>
+<li>Small proportions of data may contain personally identifying
+details, but this work does not remove them, which may produce toxic or
+harmful generations.</li>
+<li>Not include evaluations of multi-turn dialogue and summarization
+abilities</li>
+</ul>
+<p><strong><em>Broader Impact</em></strong></p>
+<p>Training and releasing large instruction-tuned models need sufficient
+testing to limit potential harm.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Xin Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ifshinelx.github.io/2023/06/15/T%C3%BClu/" title="[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources">https://ifshinelx.github.io/2023/06/15/Tülu/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/15/2022-machine-learning-specialization/" rel="prev" title="[Waiting...]2022 Machine Learning Specialization">
+                  <i class="fa fa-chevron-left"></i> [Waiting...]2022 Machine Learning Specialization
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xin Liu</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="far fa-file-word"></i>
+    </span>
+    <span title="Word count total">5k</span>
+  </span>
+
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.17.1/algoliasearch-lite.umd.js" integrity="sha256-F7emIId74fYoGrHzsnu3iClRHIbBMhMCbxDoA1cfMAY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.56.1/instantsearch.production.min.js" integrity="sha256-lz9C+x8+6w2rh56x5TrH5iYmE4Js2FiJS5h0tuMz7hQ=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"user-name/repo-name","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
