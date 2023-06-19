@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Home</title>
+    <url>/2023/06/08/home/</url>
+    <content><![CDATA[<p>I am currently a master student at <a href="https://www.ecnu.edu.cn/">ECNU</a>. My recent research interest mainly focuses on multi-modal learning (especially combined with LLMs). You can <a href="mailto:ifshine_lx@163.com">email</a> me for further communication.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>[Waiting...]2022 Machine Learning Specialization</title>
     <url>/2023/06/15/2022-machine-learning-specialization/</url>
     <content><![CDATA[<blockquote>
-<p><em>Definition of Machine Learning(informal)</em>: Field of study
-that gives computers the ability to learn without being explicitly
-programmed. [1959, Arthur Samuel]</p>
+<p><em>Definition of Machine Learning(informal)</em>: Field of study that gives computers the ability to learn without being explicitly programmed. [1959, Arthur Samuel]</p>
 </blockquote>
 <ul>
-<li>Main Course Content
-<ul>
+<li>Main Course Content<ul>
 <li><strong>Supervised Learning</strong></li>
 <li>Unsupervised Learning</li>
-</ul></li>
-<li>Others
-<ul>
+</ul>
+</li>
+<li>Others<ul>
 <li>Reinforcement Learning</li>
 <li>Practical advice for applying learning algorithms</li>
-</ul></li>
 </ul>
-<h1
-id="supervised-machine-learning-regression-and-classification">Supervised
-Machine Learning: Regression and Classification</h1>
-<h2 id="linear-regression">Linear Regression</h2>
-<h2 id="logistic-regression">Logistic Regression</h2>
-<h2 id="gradient-descent">Gradient Descent</h2>
-<!-- ## Machine Learning Overview
+</li>
+</ul>
+<h1 id="Supervised-Machine-Learning-Regression-and-Classification"><a href="#Supervised-Machine-Learning-Regression-and-Classification" class="headerlink" title="Supervised Machine Learning: Regression and Classification"></a>Supervised Machine Learning: Regression and Classification</h1><h2 id="Linear-Regression"><a href="#Linear-Regression" class="headerlink" title="Linear Regression"></a>Linear Regression</h2><h2 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h2><h2 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><!-- ## Machine Learning Overview
 ## Linear Regression with One Variable
 ## Training Linear Regression
 ## Linear Regression with Multiple Variables
@@ -35,11 +34,7 @@ Machine Learning: Regression and Classification</h1>
 ## Cost Function
 ## Gradient Descent
 ## Regularization to Reduce Overfitting -->
-<h1 id="advanced-learning-algorithm">Advanced Learning Algorithm</h1>
-<h2 id="neural-networks">Neural Networks</h2>
-<h2 id="decision-trees">Decision Trees</h2>
-<h2 id="advice-for-ml">Advice for ML</h2>
-<!-- ## Neural Networks Intuition
+<h1 id="Advanced-Learning-Algorithm"><a href="#Advanced-Learning-Algorithm" class="headerlink" title="Advanced Learning Algorithm"></a>Advanced Learning Algorithm</h1><h2 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h2><h2 id="Decision-Trees"><a href="#Decision-Trees" class="headerlink" title="Decision Trees"></a>Decision Trees</h2><h2 id="Advice-for-ML"><a href="#Advice-for-ML" class="headerlink" title="Advice for ML"></a>Advice for ML</h2><!-- ## Neural Networks Intuition
 ## Neural Network Model
 ## TensorFlow Implementation
 ## Neural Network Implementation in Python
@@ -56,23 +51,14 @@ Machine Learning: Regression and Classification</h1>
 ## Decision Trees
 ## Decision Tree Learning
 ## Tree Ensembles -->
-<h1
-id="unsupervised-learning-recommender-systems-and-reinforcement-learning">Unsupervised
-Learning: Recommender Systems and Reinforcement Learning</h1>
-<h2 id="clustering">Clustering</h2>
-<h2 id="anomaly-detection">Anomaly Detection</h2>
-<h2 id="collaborative-filtering">Collaborative Filtering</h2>
-<h2 id="content-based-filtering">Content-based Filtering</h2>
-<h2 id="reinforcement-learning">Reinforcement Learning</h2>
-<!-- ## Clustering
+<h1 id="Unsupervised-Learning-Recommender-Systems-and-Reinforcement-Learning"><a href="#Unsupervised-Learning-Recommender-Systems-and-Reinforcement-Learning" class="headerlink" title="Unsupervised Learning: Recommender Systems and Reinforcement Learning"></a>Unsupervised Learning: Recommender Systems and Reinforcement Learning</h1><h2 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h2><h2 id="Anomaly-Detection"><a href="#Anomaly-Detection" class="headerlink" title="Anomaly Detection"></a>Anomaly Detection</h2><h2 id="Collaborative-Filtering"><a href="#Collaborative-Filtering" class="headerlink" title="Collaborative Filtering"></a>Collaborative Filtering</h2><h2 id="Content-based-Filtering"><a href="#Content-based-Filtering" class="headerlink" title="Content-based Filtering"></a>Content-based Filtering</h2><h2 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h2><!-- ## Clustering
 ## Anomaly Detection
 ## Recommender System
 ## Recommender Systems Implementation
 ## Content-based Filtering
 ## Reinforcement Learning
 ## State-action Value Function
-## Continuous State Spaces -->
-]]></content>
+## Continuous State Spaces -->]]></content>
       <categories>
         <category>Online Course</category>
         <category>Andrew Ng</category>
@@ -82,226 +68,138 @@ Learning: Recommender Systems and Reinforcement Learning</h1>
       </tags>
   </entry>
   <entry>
-    <title>[Waiting...]How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources</title>
+    <title>How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources</title>
     <url>/2023/06/15/T%C3%BClu/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-1.jpg"
-alt="authors" />Paper: <a
-href="https://arxiv.org/pdf/2306.04751.pdf">https://arxiv.org/pdf/2306.04751.pdf</a></p>
-<p>Code: <a
-href="https://github.com/allenai/open-instruct">https://github.com/allenai/open-instruct</a></p>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-1.jpg" alt="authors">Paper: <a href="https://arxiv.org/pdf/2306.04751.pdf">https://arxiv.org/pdf/2306.04751.pdf</a></p>
+<p>Code: <a href="https://github.com/allenai/open-instruct">https://github.com/allenai/open-instruct</a></p>
 <blockquote>
-<p>Evaluation for instruction-tuned models remains inconsistent and
-difficult. Therefore, this work covers extensive evaluations on a large
-range of models and datasets.</p>
+<p>Evaluation for instruction-tuned models remains inconsistent and difficult. Therefore, this work covers extensive evaluations on a large range of models and datasets.</p>
 </blockquote>
-<p><strong><em>When reading this note, you can think about the following
-questions:</em></strong></p>
-<ol type="1">
-<li>What instruction datasets, pretrained models and <strong>evaluation
-metrics</strong> are used?</li>
+<p><em><strong>When reading this note, you can think about the following questions:</strong></em></p>
+<ol>
+<li>What instruction datasets, pretrained models and <strong>evaluation metrics</strong> are used?</li>
 <li>What are the evaluation results?</li>
 </ol>
-<h2 id="background">Background</h2>
-<h3 id="instruction-tuning">Instruction Tuning</h3>
-<p><strong>Definition</strong>: finetuning pretrained LMs to better
-understand and respond to various human requests that are expressed in
-natural language.</p>
-<p><strong>Advantages</strong>: (1) zero-shot generalization to new
-tasks; (2) non-experts can use natural language to interact with
-LLMs.</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h3 id="Instruction-Tuning"><a href="#Instruction-Tuning" class="headerlink" title="Instruction Tuning"></a>Instruction Tuning</h3><p><strong>Definition</strong>: finetuning pretrained LMs to better understand and respond to various human requests that are expressed in natural language.</p>
+<p><strong>Advantages</strong>: (1) zero-shot generalization to new tasks; (2) non-experts can use natural language to interact with LLMs.</p>
 <blockquote>
-<p>The most popular programming language in the future will be
-English.</p>
+<p>The most popular programming language in the future will be English.</p>
 </blockquote>
-<p><strong>Training Paradigms</strong>: (1) supervised
-learning(demonstrations); (2) reinforcement learning (feedback data)</p>
-<p><strong>Key Components</strong>: (1) pretrained LMs; (2) instruction
-datasets(diversity, task num)</p>
-<h3 id="evaluation-method">Evaluation Method</h3>
-<p><strong>Benchmark-based evaluation</strong></p>
+<p><strong>Training Paradigms</strong>: (1) supervised learning(demonstrations); (2) reinforcement learning (feedback data)</p>
+<p><strong>Key Components</strong>: (1) pretrained LMs; (2) instruction datasets(diversity, task num)</p>
+<h3 id="Evaluation-Method"><a href="#Evaluation-Method" class="headerlink" title="Evaluation Method"></a>Evaluation Method</h3><p><strong>Benchmark-based evaluation</strong></p>
 <ul>
-<li><a href="https://arxiv.org/abs/2211.09110">HELM</a>, <a
-href="https://doi.org/10.5281/zenodo.5371628">LM Evaluation Harness</a>:
-suitable for various NLP models</li>
-<li><a href="https://arxiv.org/pdf/2210.11416.pdf">Flan-T5 work</a>:
-focus on factuality and reasoning abilities</li>
-<li><a href="https://arxiv.org/abs/2303.08774">GPT-4</a>, <a
-href="https://arxiv.org/abs/2305.10403">PaLM v2</a>: proprietary models
-with comprehensive evaluations</li>
+<li><a href="https://arxiv.org/abs/2211.09110">HELM</a>, <a href="https://doi.org/10.5281/zenodo.5371628">LM Evaluation Harness</a>: suitable for various NLP models</li>
+<li><a href="https://arxiv.org/pdf/2210.11416.pdf">Flan-T5 work</a>: focus on factuality and reasoning abilities</li>
+<li><a href="https://arxiv.org/abs/2303.08774">GPT-4</a>, <a href="https://arxiv.org/abs/2305.10403">PaLM v2</a>: proprietary models with comprehensive evaluations</li>
 </ul>
-<p><strong>Open-ended instruction-following ability
-evaluation</strong></p>
+<p><strong>Open-ended instruction-following ability evaluation</strong></p>
 <ul>
-<li><a href="https://arxiv.org/abs/2305.14387">Alpaca Farm</a>: leverage
-other models as annotators for judging model generations</li>
-<li><a href="https://lmsys.org/blog/2023-05-03-arena/">Chatbot
-Arena</a>: leverage humans</li>
+<li><a href="https://arxiv.org/abs/2305.14387">Alpaca Farm</a>: leverage other models as annotators for judging model generations</li>
+<li><a href="https://lmsys.org/blog/2023-05-03-arena/">Chatbot Arena</a>: leverage humans</li>
 </ul>
-<p>This work involves traditional benchmarks, model-based evaluation,
-and human-based evaluation.</p>
-<h2 id="training-models-with-various-datasets">Training Models with
-Various Datasets</h2>
-<h3 id="datasets-and-format-unity">Datasets and Format Unity</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-2.png" />
-<strong>Datasets</strong>: Only CoT and Code-Alpaca are built for
-specific skills. <a
-href="https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset">ShareGPT</a>
-is a collection of user interactions with various chat systems publicly
-shared.</p>
-<p><strong>Human data mixture</strong>: FLAN V2, CoT, Dolly, Open
-Assistant 1</p>
-<p><strong>Human+GPT data mixture</strong>: Human data mixture +
-GPT4-Alpaca, Code-Alpaca, ShareGPT</p>
-<p><strong>Format Unity</strong>: It aims at representing arbitrary
-rounds as one sentence.</p>
+<p>This work involves traditional benchmarks, model-based evaluation, and human-based evaluation.</p>
+<h2 id="Training-Models-with-Various-Datasets"><a href="#Training-Models-with-Various-Datasets" class="headerlink" title="Training Models with Various Datasets"></a>Training Models with Various Datasets</h2><h3 id="Datasets-and-Format-Unity"><a href="#Datasets-and-Format-Unity" class="headerlink" title="Datasets and Format Unity"></a>Datasets and Format Unity</h3><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-2.png"> <strong>Datasets</strong>: Only CoT and Code-Alpaca are built for specific skills. <a href="https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset">ShareGPT</a> is a collection of user interactions with various chat systems publicly shared.</p>
+<p><strong>Human data mixture</strong>: FLAN V2, CoT, Dolly, Open Assistant 1</p>
+<p><strong>Human+GPT data mixture</strong>: Human data mixture + GPT4-Alpaca, Code-Alpaca, ShareGPT</p>
+<p><strong>Format Unity</strong>: It aims at representing arbitrary rounds as one sentence.</p>
 <ul>
-<li><span class="math inline">\(N\)</span>: instance num in a
-dataset</li>
-<li><span class="math inline">\(i\)</span>: round num in each
-example</li>
-<li><span class="math inline">\(\{(x_1^j, y_1^j,x_2^j, y_2^j,...,x_i^j,
-y_i^j)\}_{j=1}^N\)</span>: an instruction dataset</li>
+<li>$N$: instance num in a dataset</li>
+<li>$i$: round num in each example</li>
+<li>${(x_1^j, y_1^j,x_2^j, y_2^j,…,x_i^j, y_i^j)}_{j&#x3D;1}^N$: an instruction dataset</li>
 </ul>
-<h3 id="models-training">Models Training</h3>
-<ul>
-<li><span class="math inline">\(X:\{(x_1^j,
-x_2^j,...,x_i^j)\}_{j=1}^N\)</span></li>
-<li><span class="math inline">\(Y:\{(y_1^j,
-y_2^j,...,y_i^j)\}_{j=1}^N\)</span></li>
-<li><span class="math inline">\(t_n\)</span>: the <span
-class="math inline">\(n\)</span>-th input token(belonging to X or
-Y)</li>
-<li>loss function <span class="math inline">\(L=-\sum\limits_n \log
-p_{\theta}(t_n|t_{&lt;n})\times\left\{\begin{array}{}1 &amp; if\space
-t_n\in Y \\ 0 &amp; otherwise\end{array}\right.\)</span></li>
+<h3 id="Models-Training"><a href="#Models-Training" class="headerlink" title="Models Training"></a>Models Training</h3><ul>
+<li>$X:{(x_1^j, x_2^j,…,x_i^j)}_{j&#x3D;1}^N$</li>
+<li>$Y:{(y_1^j, y_2^j,…,y_i^j)}_{j&#x3D;1}^N$</li>
+<li>$t_n$: the $n$-th input token(belonging to X or Y)</li>
+<li>loss function $L&#x3D;-\sum\limits_n \log p_{\theta}(t_n|t_{&lt;n})\times\left{\begin{array}{}1 &amp; if\space t_n\in Y \ 0 &amp; otherwise\end{array}\right.$</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hyperparams</span><br><span class="line">max_seq_len: 1024 for 30B and 65B, 2048 for others</span><br><span class="line">epoch: 2</span><br><span class="line">learning rate: 1e-5 for 30B and 65B, 2e-5 for others. (linear decay and linear warmup only used for 3% of total steps)</span><br></pre></td></tr></table></figure>
-<p><strong>Tülu</strong>: a suite of 7B to 65B LLaMA models
-fully-instruction-tuned on Human+GPT data mixture.</p>
-<h2 id="waiting...evaluation-setup">[Waiting...]Evaluation Setup</h2>
-<h3 id="facets-of-evaluation">Facets of Evaluation</h3>
-<p>Appendix C for details.</p>
-<p><strong>(1) Specific model capabilities</strong>:</p>
+
+<p><strong>Tülu</strong>: a suite of 7B to 65B LLaMA models fully-instruction-tuned on Human+GPT data mixture.</p>
+<h2 id="Evaluation-Setup"><a href="#Evaluation-Setup" class="headerlink" title="Evaluation Setup"></a>Evaluation Setup</h2><p>Load models using <strong><a href="https://arxiv.org/pdf/2208.07339.pdf">8-bit mode</a></strong> provided in the Huggingface Transformers library.</p>
+<p>When doing generation, we use greedy decoding and a max length of 512 tokens, unless otherwise specified.</p>
+<h3 id="Facets-of-Evaluation"><a href="#Facets-of-Evaluation" class="headerlink" title="Facets of Evaluation"></a>Facets of Evaluation</h3><p><strong>(1) Specific model capabilities</strong>: </p>
 <ul>
-<li>Factual knowledge: <a
-href="https://arxiv.org/abs/2009.03300">MMLU</a></li>
-<li>Reasoning: <a href="https://arxiv.org/abs/2110.14168">GSM</a> for
-mathematical reasoning capabilities; <a
-href="https://arxiv.org/abs/2210.09261">BBH</a> for general reasoning
-capabilities. Subsample GSM and BBH to a reasonable size to improve the
-efficiency of doing CoT reasoning</li>
-<li>Multilinguality: <a
-href="https://arxiv.org/abs/2003.05002">TyDiQA</a> for multilingual
-QA</li>
-<li>Coding: <a href="https://arxiv.org/abs/2107.03374">Codex-Eval</a>
-for abilities of generating functionally correct programs from
-docstrings</li>
+<li><strong>Factual knowledge</strong>: <a href="https://arxiv.org/abs/2009.03300">MMLU</a>. [<a href="https://github.com/hendrycks/test">Its official evaluation scripts and prompts</a>]. Modify it to allow for batch processing. We evaluate using 0 and 5 few-shot examples, following the original setup of MMLU.</li>
+<li><strong>Reasoning</strong>. We evaluate with and without chain-of-thought (CoT vs Direct). Subsample GSM and BBH to a reasonable size to improve the efficiency of doing CoT reasoning.<ul>
+<li><a href="https://arxiv.org/abs/2110.14168">GSM</a>(test split) for mathematical reasoning capabilities(8-shot). Because all answers in GSM are numbers, we extract the last number in the model response as the final answer. Sampled 200 from the 1319 examples.</li>
+<li><a href="https://arxiv.org/abs/2210.09261">BBH</a> for general reasoning capabilities(3-shot). For the CoT setup, we extract the first word after the phrase ‘So the answer is’, or the entire response if there is no such substring present.</li>
 </ul>
-<p><strong>(2) Open-ended instruction following</strong>: model-based
-evaluation and human evaluation</p>
-<h3 id="model-based-evaluation-using-gpt-4">Model-Based Evaluation using
-GPT-4</h3>
+</li>
+<li><strong>Multilinguality</strong>: <a href="https://arxiv.org/abs/2003.05002">TyDiQA</a> for multilingual QA. Follow <a href="https://arxiv.org/pdf/2305.10403.pdf">PaLM 2</a>‘s setup. We use the gold-passage setup where one passage containing the reference answer is given.</li>
+<li><strong>Coding</strong>: <a href="https://arxiv.org/abs/2107.03374">Codex-Eval(HumanEval)</a> for abilities of generating functionally correct programs from docstrings. Following the original paper, we compute unbiased estimates of pass@k to measure the functional correctness of models’ outputs. We report both pass@1 and pass@10. The pass@1 results were obtained by sampling with a temperature of 0.1 and the pass@10 results with a temperature of 0.8.</li>
+</ul>
+<p><strong>(2) Open-ended instruction following</strong>: model-based evaluation and human evaluation</p>
+<h3 id="Model-Based-Evaluation-using-GPT-4"><a href="#Model-Based-Evaluation-using-GPT-4" class="headerlink" title="Model-Based Evaluation using GPT-4"></a>Model-Based Evaluation using GPT-4</h3><p><strong>Dataset</strong>: Use a test set of 805 instructions.</p>
+<p><strong>Code</strong>: Adopt <a href="https://arxiv.org/abs/2305.14387">AlpacaFarm</a>‘s code, but slightly alter prompts to fit our message format.</p>
+<p><strong>A GPT-4 annotator(‘greedy_gpt4’)</strong>: Compare the testing model with Davinci-003.</p>
+<p><strong>Win-rate</strong>: The percentage of model generations that GPT-4 reports as being preferred over the generations from Davinci-003.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Hyperparameters</span><br><span class="line">temperature: 0</span><br><span class="line">batch: 5 (reduce it if the 5 examples exceed the 8192 token context window limit)</span><br><span class="line">max_output_token_len: extended from 300 to 2048 (in order to avoid cut-off generations)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Human-Evaluation"><a href="#Human-Evaluation" class="headerlink" title="Human Evaluation"></a>Human Evaluation</h3><p>The model information is anonymized and their outputs are put in random order.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-8.jpg"></p>
+<p><strong>Use 332 instructions</strong>: 252 from <a href="https://arxiv.org/abs/2212.10560">Self-Instruct</a> and 80 from <a href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> evaluation set.</p>
+<p><strong>Compare 3 pairs of models</strong>: (1) TÜLU 65B vs ChatGPT (2) TÜLU 65B vs TÜLU 7B (3) TÜLU 65B vs a 65B LLaMA model trained on the Human data mixture.</p>
+<p><strong>Interface for human judgements</strong>:</p>
 <ul>
-<li>adopt the model-based approach introduced in <a
-href="https://arxiv.org/abs/2305.14387">AlpacaFarm</a> with a test set
-of 805 instructions</li>
-<li>use its simulated GPT-4 annotator to compare the testing model with
-Davinci-003</li>
-<li>max output token length is extended from 300 to 2048, in order to
-avoid cut-off generations</li>
+<li><strong>Indivisual acceptability</strong>: “yes”&#x2F;“no”, a 2-way decision. For “yes”, if and only if the response answered the request in the query, had no significant errors, and did not have repetitive information.</li>
+<li><strong>Pairwise preference</strong>: “A is clearly better”&#x2F;“A is slightly better”&#x2F;“Tie”&#x2F;“B is slightly better”&#x2F;“B is clearly better”, a 5-way decision, select which one is more helpful.</li>
 </ul>
-<h3 id="human-evaluation">Human Evaluation</h3>
+<p><strong>Recruited 18 expert annotators</strong>, which are researchers at AI2 or students at UW for the annotation. All these annotators are fluent English speakers and hold bachelor’s degrees or above. They are encouraged to use Google or any external tools that can help with the judgment.</p>
+<p><strong>Inter-Annotator Agreement</strong>:</p>
 <ul>
-<li>332 instructions from <a
-href="https://arxiv.org/abs/2212.10560">Self-Instruct</a> and <a
-href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> evaluation
-set</li>
-<li>interface for human judgements about: (1) Indivisual acceptability
-(2) Pairwise preference</li>
+<li>We measure the agreement of our annotators on a subset of <strong>119 examples</strong> (63 instances randomly sampled from the ChatGPT3 vs TÜLU 65B comparison, and 59 instances randomly sampled from the TÜLU 65B vs TÜLU 7B comparison).</li>
+<li><strong>Indivisual acceptability</strong>: an agreement of 0.84.</li>
+<li><strong>Pairwise preference</strong>: an agreement of 0.72. Following <a href="https://arxiv.org/pdf/2305.11206.pdf">Lima</a>, we report a tie-discounted accuracy, which assigns one point if both annotators agreed, half a point if either annotator (but not both) labeled a tie, and zero point otherwise. We also merged “clearly better” and “slightly better” together, so our final options will be simply comparing which of A and B is better, or a tie.</li>
 </ul>
-<h2 id="results">Results</h2>
-<blockquote>
-<p>The best model in any given evaluation reaches on average 83% of
-ChatGPT performance, and 68% of GPT-4 performance.</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><blockquote>
+<p>The best model in any given evaluation reaches on average 83% of ChatGPT performance, and 68% of GPT-4 performance.</p>
 </blockquote>
-<h3
-id="analysis-of-instruction-tuning-datasets-and-base-models">Analysis of
-Instruction Tuning Datasets and Base Models</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-3.jpg" />
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-4.jpg" />
-"1.4T" means <span class="math inline">\(1.4\times 10^{12}\)</span>
-tokens are used to train the model. "180B" means <span
-class="math inline">\(180\times 10^{9}\)</span></p>
+<h3 id="Analysis-of-Instruction-Tuning-Datasets-and-Base-Models"><a href="#Analysis-of-Instruction-Tuning-Datasets-and-Base-Models" class="headerlink" title="Analysis of Instruction Tuning Datasets and Base Models"></a>Analysis of Instruction Tuning Datasets and Base Models</h3><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-3.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-4.jpg"> “1.4T” means $1.4\times 10^{12}$ tokens are used to train the model. “180B” means $180\times 10^{9}$</p>
 <ul>
-<li>There is not a single best instruction tuning dataset across all
-tasks</li>
-<li>Combining datasets results in the best overall performance on the
-benchmark tasks</li>
-<li>Base model quality is extremely important for downstream
-performance</li>
+<li>There is not a single best instruction tuning dataset across all tasks</li>
+<li>Combining datasets results in the best overall performance on the benchmark tasks</li>
+<li>Base model quality is extremely important for downstream performance</li>
 </ul>
-<h3 id="pushing-the-limits-of-open-models">Pushing the Limits of Open
-Models</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-5.jpg" /></p>
+<h3 id="Pushing-the-Limits-of-Open-Models"><a href="#Pushing-the-Limits-of-Open-Models" class="headerlink" title="Pushing the Limits of Open Models"></a>Pushing the Limits of Open Models</h3><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-5.jpg"></p>
 <ul>
-<li>Instrcution tuning brings large benefits on top of LLaMA models at
-all sizes</li>
+<li>Instrcution tuning brings large benefits on top of LLaMA models at all sizes</li>
 <li>Smaller models benefit most from instruction tuning</li>
 <li>TÜLU still lags behind SOTA proprietary models</li>
 </ul>
-<h3
-id="model-basedhuman-evaluation-results-for-open-ended-generation">Model-Based/Human
-Evaluation Results for Open-ended Generation</h3>
-<p><strong>Model-Based Evaluation</strong> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-6.jpg" /></p>
+<h3 id="Model-Based-x2F-Human-Evaluation-Results-for-Open-ended-Generation"><a href="#Model-Based-x2F-Human-Evaluation-Results-for-Open-ended-Generation" class="headerlink" title="Model-Based&#x2F;Human Evaluation Results for Open-ended Generation"></a>Model-Based&#x2F;Human Evaluation Results for Open-ended Generation</h3><p><strong>Model-Based Evaluation</strong><br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-6.jpg"></p>
 <ul>
-<li>Models trained on mixtures based on traditional NLP datasets perform
-poorly</li>
+<li>Models trained on mixtures based on traditional NLP datasets perform poorly</li>
 <li>Datasets that encourage long, diverse generations perform best</li>
 <li>ShareGPT performs best</li>
 </ul>
 <blockquote>
-<p>The judge model(has bias) may not always reveal the testing model
-deficiencies.</p>
+<p>The judge model(has bias) may not always reveal the testing model deficiencies.</p>
 </blockquote>
-<p><strong>Human Evaluation</strong> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-7.jpg" /></p>
+<p><strong>Human Evaluation</strong><br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-7.jpg"></p>
 <ul>
-<li>Human evaluation results largely correlate with the AlpacaFarm and
-benchmark-based evaluation</li>
-<li>Making use of distilled datasets provides a large performance
-boost</li>
+<li>Human evaluation results largely correlate with the AlpacaFarm and benchmark-based evaluation</li>
+<li>Making use of distilled datasets provides a large performance boost</li>
 </ul>
-<h2 id="conclusion">Conclusion</h2>
-<p><strong><em>Future Work</em></strong></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p><em><strong>Future Work</strong></em></p>
 <ul>
-<li>explore instruction-tuning methods that use reinforcement
-learning</li>
-<li>explore more recent strong base models and other instruction
-datasets</li>
-<li>design more versatile model(generality)
-<ul>
+<li>explore instruction-tuning methods that use reinforcement learning</li>
+<li>explore more recent strong base models and other instruction datasets</li>
+<li>design more versatile model(generality)<ul>
 <li>better dataset mixing</li>
-<li>instruction-tuning modular models (e.g., <a
-href="https://arxiv.org/abs/1701.06538">mixture-of-experts</a>)</li>
-</ul></li>
+<li>instruction-tuning modular models (e.g., <a href="https://arxiv.org/abs/1701.06538">mixture-of-experts</a>)</li>
 </ul>
-<p><strong><em>Limitations</em></strong></p>
+</li>
+<li>improve the reliability and scalability of human evaluation for instruction-following models</li>
+</ul>
+<p><em><strong>Limitations</strong></em></p>
 <ul>
-<li>Small proportions of data may contain personally identifying
-details, but this work does not remove them, which may produce toxic or
-harmful generations.</li>
-<li>Not include evaluations of multi-turn dialogue and summarization
-abilities</li>
+<li>Small proportions of data may contain personally identifying details, but this work does not remove them, which may produce toxic or harmful generations.</li>
+<li>Not include evaluations of multi-turn dialogue and summarization abilities</li>
 </ul>
-<p><strong><em>Broader Impact</em></strong></p>
-<p>Training and releasing large instruction-tuned models need sufficient
-testing to limit potential harm.</p>
+<p><em><strong>Broader Impact</strong></em></p>
+<p>Training and releasing large instruction-tuned models need sufficient testing to limit potential harm.</p>
 ]]></content>
       <categories>
         <category>Paper</category>
@@ -317,99 +215,78 @@ testing to limit potential harm.</p>
   <entry>
     <title>[Waiting...]Hexo Usage</title>
     <url>/2023/06/08/hexo-usage/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
-href="https://hexo.io/docs/">documentation</a> for more info. If you get
-any problems when using Hexo, you can find the answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask for help on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
-default OS in this post.</p>
-<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
-<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
-<p>Use <a
-href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
-as an example. More info: <a href="https://theme-next.js.org/docs">Theme
-Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
-href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask for help on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the default OS in this post.</p>
+<h2 id="Hexo-Install-6-3-0"><a href="#Hexo-Install-6-3-0" class="headerlink" title="Hexo Install(6.3.0)"></a>Hexo Install(6.3.0)</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
+<h2 id="Next-Theme-8-17-0"><a href="#Next-Theme-8-17-0" class="headerlink" title="Next Theme(8.17.0)"></a>Next Theme(8.17.0)</h2><p>Use <a href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a> as an example. More info: <a href="https://theme-next.js.org/docs">Theme Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="deploy-to-github">Deploy to Github</h2>
-<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
-cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
-"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
-minutes for the github page to refresh) For the first deployment, you
-need to click <a
-href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
+
+<h2 id="Deploy-to-Github"><a href="#Deploy-to-Github" class="headerlink" title="Deploy to Github"></a>Deploy to Github</h2><p>add “.gitignore” file to blog root dir:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure>
+<p>open cmd, then cd blog root dir (win10)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure>
+<p>open root_dir&#x2F;_config.yml, modify “deploy”</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>deploy (After the cmd execution, it takes several minutes for the github page to refresh)<br>For the first deployment, you need to click <a href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
-<h2 id="personalization">Personalization</h2>
-<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
-<h3 id="next-theme-settings-basic"><a
-href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
-Settings Basic</a></h3>
-<p>root_dir/themes/next/_config.yml add "little star.jpg" to
-root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
-Equations</a>, <a
-href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
-<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
-<a
-href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
-<h3 id="sidebar"><a
-href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
-code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
-add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="footer"><a
-href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
-the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="posts"><a
-href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
-<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
-plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="custom-pagestags-categories-home"><a
-href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
-Pages(Tags, Categories, Home)</a></h3>
-<p><a
-href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
-of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
-<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="search-services"><a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
-Services()</a></h3>
-<p>Details of Algolia Search are in <a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
-<a
-href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Isso)</a></h3>
-<p>Click <a
-href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
-to install python3.8. You can find more versions <a
-href="https://www.python.org/downloads/windows/">here</a>. Download
-<em>sqlite-dll-win64-x64-3420000.zip</em> and
-<em>sqlite-tools-win32-x86</em> from <a
-href="https://www.sqlite.org/download.html">the official website</a>.
-Create "SQlite_root_dir" and move all files from the two zips to
-"SQlite_root_dir". Add "SQlite_root_dir" to the environment variable
-"Path". <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-statistics-and-analyticsumami">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
-and Analytics(Umami)</a></h3>
-<p><a href="http://t.csdn.cn/OCEnG">MySQL</a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
+
+<h2 id="Personalization"><a href="#Personalization" class="headerlink" title="Personalization"></a>Personalization</h2><h3 id="Hexo-Basic-Info-config-yml"><a href="#Hexo-Basic-Info-config-yml" class="headerlink" title="Hexo Basic Info(_config.yml)"></a>Hexo Basic Info(_config.yml)</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="NexT-Theme-Settings-Basic"><a href="#NexT-Theme-Settings-Basic" class="headerlink" title="NexT Theme Settings Basic"></a><a href="https://theme-next.js.org/docs/theme-settings/">NexT Theme Settings Basic</a></h3><p>root_dir&#x2F;themes&#x2F;next&#x2F;_config.yml<br>add “little star.jpg” to root_dir&#x2F;themes&#x2F;next&#x2F;source&#x2F;images&#x2F;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure>
+<p>More Info: <a href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math Equations</a>, <a href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>, <a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>, <a href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
+<h3 id="Sidebar"><a href="#Sidebar" class="headerlink" title="Sidebar"></a><a href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3><p>NexT config file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure>
+<p>In root_dir&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_partials&#x2F;sidebar&#x2F;site-overview.njk, add the code block:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>In root_dir&#x2F;themes&#x2F;next&#x2F;source&#x2F;css&#x2F;main.styl, add the code block in the file end.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a><a href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3><p>NexT config file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+<p>In root_dir&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_partials&#x2F;footer.njk, delete the code block:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>In root_dir&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_partials&#x2F;footer.njk, add the code block:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Posts"><a href="#Posts" class="headerlink" title="Posts"></a><a href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3><p>a <strong>Read More</strong> button in a post: </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+<p>a plug-in</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>NexT config file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="Custom-Pages-Tags-Categories-Home"><a href="#Custom-Pages-Tags-Categories-Home" class="headerlink" title="Custom Pages(Tags, Categories, Home)"></a><a href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom Pages(Tags, Categories, Home)</a></h3><p><a href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo’s Docs of Categories &amp; Tags</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+<p>NexT config file</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure>
+
+<p>root_dir&#x2F;source&#x2F;tags&#x2F;index.md</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>root_dir&#x2F;source&#x2F;categories&#x2F;index.md</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>tag color setting</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Home Page</strong>: root_dir&#x2F;themes&#x2F;next&#x2F;layout&#x2F;index.njk:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Search-Services"><a href="#Search-Services" class="headerlink" title="Search Services()"></a><a href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search Services()</a></h3><p>Details of Algolia Search are in <a href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.<br><a href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+<p>Hexo config:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure>
+<p>Next config:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+
+<h3 id="Waiting…-Comment-Systems-Isso"><a href="#Waiting…-Comment-Systems-Isso" class="headerlink" title="[Waiting…] Comment Systems(Isso)"></a>[Waiting…] <a href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment Systems(Isso)</a></h3><p>Click <a href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a> to install python3.8. You can find more versions <a href="https://www.python.org/downloads/windows/">here</a>.<br>Download <em>sqlite-dll-win64-x64-3420000.zip</em> and <em>sqlite-tools-win32-x86</em> from <a href="https://www.sqlite.org/download.html">the official website</a>. Create “SQlite_root_dir” and move all files from the two zips to “SQlite_root_dir”. Add “SQlite_root_dir” to the environment variable “Path”.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure>
+
+<h3 id="Waiting…-Statistics-and-Analytics-Umami"><a href="#Waiting…-Statistics-and-Analytics-Umami" class="headerlink" title="[Waiting…] Statistics and Analytics(Umami)"></a>[Waiting…] <a href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics and Analytics(Umami)</a></h3><p><a href="http://t.csdn.cn/OCEnG">MySQL</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Software</category>
@@ -419,509 +296,180 @@ and Analytics(Umami)</a></h3>
       </tags>
   </entry>
   <entry>
-    <title>Home</title>
-    <url>/2023/06/08/home/</url>
-    <content><![CDATA[<p>I am currently a master student at <a
-href="https://www.ecnu.edu.cn/">ECNU</a>. My recent research interest
-mainly focuses on multi-modal learning (especially combined with LLMs).
-You can <a href="mailto:ifshine_lx@163.com">email</a> me for further
-communication.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
-]]></content>
-  </entry>
-  <entry>
     <title>LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention</title>
     <url>/2023/06/09/llama-adapter-v1/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-1.jpg"
-alt="authors" />Paper: <a
-href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2303.16199.pdf</a></p>
-<p>Code: <a
-href="https://github.com/ZrrSkywalker/LLaMA-Adapter">https://github.com/ZrrSkywalker/LLaMA-Adapter</a></p>
-<p>More Info: <a
-href="https://github.com/Lightning-AI/lit-parrot">Lighting AI |
-Lit-Parrot: lightweight update of llama</a></p>
-<p><strong><em>When reading this note, you can think about the following
-questions:</em></strong></p>
-<ol type="1">
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-1.jpg" alt="authors">Paper: <a href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2303.16199.pdf</a></p>
+<p>Code: <a href="https://github.com/ZrrSkywalker/LLaMA-Adapter">https://github.com/ZrrSkywalker/LLaMA-Adapter</a></p>
+<p>More Info: <a href="https://github.com/Lightning-AI/lit-parrot">Lighting AI | Lit-Parrot: lightweight update of llama</a></p>
+<p><em><strong>When reading this note, you can think about the following questions:</strong></em></p>
+<ol>
 <li>What is learnable adaption prompts?</li>
 <li>What is zero-init attention?</li>
 <li>How to extend LLaMA-Adapter to multi-modal input?</li>
 </ol>
-<hr />
-<h2 id="method">Method</h2>
-<p><em>4 characteristics of LLaMA-Adapter:</em></p>
-<ol type="1">
+<hr>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><em>4 characteristics of LLaMA-Adapter:</em></p>
+<ol>
 <li>1.2M Parameters</li>
 <li>1 Hour: 8 A100 GPUs, three times faster than Alpaca</li>
-<li>Plug with Expertise: insert their respective adapters and endow
-LLaMA with different expert knowledge</li>
+<li>Plug with Expertise: insert their respective adapters and endow LLaMA with different expert knowledge</li>
 <li>Multi-modal: simply add images tokens into adaption prompts</li>
 </ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg"
-alt="LLaMA-Adapter&#39;s 4 characteristics and details" /> <strong>The
-idea of LLaMA-Adapter is model-agnostic and can be applied to other
-LLMs.</strong></p>
-<h3 id="learnable-adaption-prompts">Learnable Adaption Prompts</h3>
-<ul>
-<li><span class="math inline">\(K\)</span>: prompt length for each
-layer</li>
-<li><span class="math inline">\(C\)</span>: feature dim of
-transformer</li>
-<li><span class="math inline">\(N\)</span>: total transformer layer num
-of LLaMA</li>
-<li><strong><span class="math inline">\(\{ P_l \}_{l=1}^{L}\)</span>
-(<span class="math inline">\(P_l\in\mathbb{R}^{K\times C}\)</span>) :
-learnable adaption prompts</strong> for topmost <span
-class="math inline">\(L (L\le N)\)</span> transformer layers with
-higher-level semantic representations</li>
-<li><span class="math inline">\(T_l\in\mathbb{R}^{M\times C}\)</span>:
-<span class="math inline">\(M\)</span>-length word tokens in <span
-class="math inline">\(l\)</span>-th inserted layer</li>
-<li><span class="math inline">\([P_l;\space
-T_l]\in\mathbb{R}^{(K+M)\times C}\)</span>: concatenate <span
-class="math inline">\(P_l\)</span> and <span
-class="math inline">\(T_l\)</span>, the learned <strong>instruction
-knowledge</strong> in <span class="math inline">\(P_l\)</span> guides
-<span class="math inline">\(T_l\)</span> to generate contextual
-responses</li>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg" alt="LLaMA-Adapter&#39;s 4 characteristics and details"> <strong>The idea of LLaMA-Adapter is model-agnostic and can be applied to other LLMs.</strong></p>
+<h3 id="Learnable-Adaption-Prompts"><a href="#Learnable-Adaption-Prompts" class="headerlink" title="Learnable Adaption Prompts"></a>Learnable Adaption Prompts</h3><ul>
+<li>$K$: prompt length for each layer</li>
+<li>$C$: feature dim of transformer</li>
+<li>$N$: total transformer layer num of LLaMA</li>
+<li><strong>${ P_l }_{l&#x3D;1}^{L}$ ($P_l\in\mathbb{R}^{K\times C}$) : learnable adaption prompts</strong> for topmost $L (L\le N)$ transformer layers with higher-level semantic representations</li>
+<li>$T_l\in\mathbb{R}^{M\times C}$: $M$-length word tokens in $l$-th inserted layer</li>
+<li>$[P_l;\space T_l]\in\mathbb{R}^{(K+M)\times C}$: concatenate $P_l$ and $T_l$, the learned <strong>instruction knowledge</strong> in $P_l$ guides $T_l$ to generate contextual responses</li>
 </ul>
-<h3 id="zero-init-attention">Zero-init Attention</h3>
-<p>If the adaption prompts are randomly initialized, they will bring
-noise to the word tokens and damage original knowledge in LLaMA at the
-early training stage, which harms stablity and effectiveness.</p>
-<p><em><span class="math inline">\(t_l\in\mathbb{R}^{1\times
-C}\)</span>: generate the (M+1)-th word <span
-class="math inline">\(t_l\)</span> on top of <span
-class="math inline">\([P_l;\space T_l]\)</span></em> at the <span
-class="math inline">\(l\)</span>-th inserted layer</p>
-<ol type="1">
-<li>linear projection: queries <span
-class="math inline">\(Q_l=Linear_q(t_l)\)</span>, keys <span
-class="math inline">\(K_l=Linear_k([P_l;T_l;t_l])\)</span>, values <span
-class="math inline">\(V_l=Linear_v([P_l;T_l;t_l])\)</span></li>
-<li>attention scores: <span
-class="math inline">\(S_l=\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}\)</span>,
-records the feature similarities between <span
-class="math inline">\(t_l\)</span> and all <span
-class="math inline">\(K+M+1\)</span> tokens</li>
-<li>reformulation: <span class="math inline">\(S_l=[S_l^K;S_l^{M+1}]^T,
-S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times
-1}\)</span>
-<ul>
-<li><span class="math inline">\(S_l^K\)</span> represents how much
-information the <span class="math inline">\(P_l\)</span> contribute to
-<span class="math inline">\(t_l\)</span>, which probably causes noise in
-the early training stage</li>
-</ul></li>
-<li>softmax operation: <span
-class="math inline">\(S_l^g=[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T\)</span>
-<ul>
-<li><span class="math inline">\(g_l\)</span> is a learnable gating
-factor initialized by zero, adaptively controls the importance of <span
-class="math inline">\(S_l^K\)</span></li>
-<li>in practice, each head of attention has an independent <span
-class="math inline">\(g_l\)</span></li>
-</ul></li>
-<li>output of the attention layer: <span
-class="math inline">\(t_l^o=Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times
-C}\)</span></li>
+<h3 id="Zero-init-Attention"><a href="#Zero-init-Attention" class="headerlink" title="Zero-init Attention"></a>Zero-init Attention</h3><p>If the adaption prompts are randomly initialized, they will bring noise to the word tokens and damage original knowledge in LLaMA at the early training stage, which harms stablity and effectiveness.</p>
+<p><em>$t_l\in\mathbb{R}^{1\times C}$: generate the (M+1)-th word $t_l$ on top of $[P_l;\space T_l]$</em> at the $l$-th inserted layer</p>
+<ol>
+<li>linear projection: queries $Q_l&#x3D;Linear_q(t_l)$, keys $K_l&#x3D;Linear_k([P_l;T_l;t_l])$, values $V_l&#x3D;Linear_v([P_l;T_l;t_l])$</li>
+<li>attention scores: $S_l&#x3D;\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}$, records the feature similarities between $t_l$ and all $K+M+1$ tokens</li>
+<li>reformulation: $S_l&#x3D;[S_l^K;S_l^{M+1}]^T, S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times 1}$<ul>
+<li>$S_l^K$ represents how much information the $P_l$ contribute to $t_l$, which probably causes noise in the early training stage</li>
+</ul>
+</li>
+<li>softmax operation: $S_l^g&#x3D;[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T$<ul>
+<li>$g_l$ is a learnable gating factor initialized by zero, adaptively controls the importance of $S_l^K$</li>
+<li>in practice, each head of attention has an independent $g_l$</li>
+</ul>
+</li>
+<li>output of the attention layer: $t_l^o&#x3D;Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times C}$</li>
 </ol>
-<h3 id="multi-modal-reasoning">Multi-modal Reasoning</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-3.jpg" />
-Task textual input for ScienceQA: question + textual context + options.
-(We utilize "Generate caption for this image" as the textual instruction
-input for LLaMA-Adapter)</p>
-<ol type="1">
-<li>multi-scale global visual features: <span
-class="math inline">\(\{I_m\}_{m=1}^{M},I_m\in\mathbb{R}^{1\times
-C_m}\)</span>, <span class="math inline">\(M\)</span> is the scale num
-<ul>
+<h3 id="Multi-modal-Reasoning"><a href="#Multi-modal-Reasoning" class="headerlink" title="Multi-modal Reasoning"></a>Multi-modal Reasoning</h3><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-3.jpg"> Task textual input for ScienceQA: question + textual context + options. (We utilize “Generate caption for this image” as the textual instruction input for LLaMA-Adapter)</p>
+<ol>
+<li>multi-scale global visual features: ${I_m}_{m&#x3D;1}^{M},I_m\in\mathbb{R}^{1\times C_m}$, $M$ is the scale num<ul>
 <li>from pre-trained CLIP</li>
-</ul></li>
-<li>overall image token: <span
-class="math inline">\(I_p=Projection\Big(Concat\left(\{I_m\}_{m=1}^M\right)\Big)\in\mathbb{R}^{1\times
-C}\)</span>
-<ul>
+</ul>
+</li>
+<li>overall image token: $I_p&#x3D;Projection\Big(Concat\left({I_m}_{m&#x3D;1}^M\right)\Big)\in\mathbb{R}^{1\times C}$<ul>
 <li>concatenate along the channel dim</li>
-<li>utilize cascaded MLPs as the learnable projection network with 0.6M
-parameters</li>
-</ul></li>
-<li>repeat <span class="math inline">\(I_p\)</span> for <span
-class="math inline">\(K\)</span> times</li>
-<li>multi-modal prompt: <span
-class="math inline">\(P_l^v=P_l+Repeat(I_p)\in\mathbb{R}^{K\times
-C}\)</span></li>
+<li>utilize cascaded MLPs as the learnable projection network with 0.6M parameters</li>
+</ul>
+</li>
+<li>repeat $I_p$ for $K$ times</li>
+<li>multi-modal prompt: $P_l^v&#x3D;P_l+Repeat(I_p)\in\mathbb{R}^{K\times C}$</li>
 </ol>
-<p><strong>Future work: using pre-trained modal-specific encoders, we
-can integrate instructional signals of different modalities into the
-adaption prompts</strong></p>
-<h3
-id="zero-initialized-attention-for-other-large-models">Zero-initialized
-Attention for other Large Models</h3>
-<p>In addition to instruction-following models, our zero-initialized
-attention can be generalized to other vision and language models for
-parameter-efficient fine-tuning.</p>
-<p><strong>Vision Model</strong>. We insert the adaption prompts as
-prefix into the topmost L transformer layers in the pre-trained <a
-href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a>, and modify the
-attention operations to be zero-initialized at all inserted layers.</p>
-<p><strong>Language Model</strong>. We evaluate our fine-tuning efficacy
-on <a href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa</a>, and
-implement the zero-initialized attention on top of <a
-href="https://arxiv.org/pdf/2110.07602.pdf">P-tuning v2</a>, a prompt
-tuning method for efficiently adapting large language models. Likewise,
-we only enable the prompt tokens in P-tuning v2 and our zero gating
-factors to be learnable during fine-tuning.</p>
-<p><strong>Vision-Language Model</strong>. In detail, we adopt CLIP with
-a ViT-B/16 as the visual encoder and a 12-layer transformer as the
-textual encoder. We freeze the entire CLIP and insert the adaption
-prompts with zero-initialized attention into CLIP’s visual encoder.</p>
-<h2 id="experiment">Experiment</h2>
-<h3 id="instruction-following-evaluation">Instruction-following
-Evaluation</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">epochs: 5</span><br><span class="line">warmup epochs: 2</span><br><span class="line">batch size: 64</span><br><span class="line">learning rate: 0.009</span><br><span class="line">weight decay: 0.02</span><br><span class="line"># LLaMA-7B</span><br><span class="line">N: 32</span><br><span class="line">K: 10</span><br><span class="line">L: 30</span><br></pre></td></tr></table></figure>
-<p><strong>Generation Stage Decoding Method</strong>: top-p sampling
-with a temperature 0.1 and a top-p = 0.75</p>
-<p><strong>Dataset</strong>: Alpaca-52K self-instruct data.
-LLaMA-Adapter paper wrongly denotes as Alphaca-52K</p>
-<p><strong>Evaluation Metric</strong>: (1) quantitative evaluation, ask
-GPT-4 to assess the response quality on 80 questions(Since we observed
-that GPT-4 has a preference to give higher scores to the first response
-in comparison, we also switch the position of two responses, resulting
-in a total of 160 evaluation items.); (2) simply show some response
-examples</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-15.jpg" /></p>
-<p>Comparison of Instruction-Following Capability, LLaMA-Adapter is
-comparable to Alpaca with fully fine-tuned 7B parameters <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-4.jpg"
-alt="Comparison of Instruction-Following Capability" /></p>
-<p>Comparison with Instruct LLaMA (LLaMA-I, LLaMA-65B fine-tuned on
-large-scale instructional data), LLaMA-Adapter can be further enhanced
-with larger LLaMA, larger data, larger learnable parameters <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-5.jpg"
-alt="Comparison with Instruct LLaMA (LLaMA-I)" /></p>
-<h3 id="multi-modal-evaluation">Multi-modal Evaluation</h3>
-<p><strong>Generation Stage Decoding Method</strong>: greedy search</p>
-<p>Other hyperparameters are the same as instruction-following
-LLaMA-Adapter.</p>
+<p><strong>Future work: using pre-trained modal-specific encoders, we can integrate instructional signals of different modalities into the adaption prompts</strong></p>
+<h3 id="Zero-initialized-Attention-for-other-Large-Models"><a href="#Zero-initialized-Attention-for-other-Large-Models" class="headerlink" title="Zero-initialized Attention for other Large Models"></a>Zero-initialized Attention for other Large Models</h3><p>In addition to instruction-following models, our zero-initialized attention can be generalized to other vision and language models for parameter-efficient fine-tuning.</p>
+<p><strong>Vision Model</strong>. We insert the adaption prompts as prefix into the topmost L transformer layers in the pre-trained <a href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a>, and modify the attention operations to be zero-initialized at all inserted layers.</p>
+<p><strong>Language Model</strong>. We evaluate our fine-tuning efficacy on <a href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa</a>, and implement the zero-initialized attention on top of <a href="https://arxiv.org/pdf/2110.07602.pdf">P-tuning v2</a>, a prompt tuning method for efficiently adapting large language models. Likewise, we only enable the prompt tokens in P-tuning v2 and our zero gating factors to be learnable during fine-tuning.</p>
+<p><strong>Vision-Language Model</strong>. In detail, we adopt CLIP with a ViT-B&#x2F;16 as the visual encoder and a 12-layer transformer as the textual encoder. We freeze the entire CLIP and insert the adaption prompts with zero-initialized attention into CLIP’s visual encoder.</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Instruction-following-Evaluation"><a href="#Instruction-following-Evaluation" class="headerlink" title="Instruction-following Evaluation"></a>Instruction-following Evaluation</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">epochs: 5</span><br><span class="line">warmup epochs: 2</span><br><span class="line">batch size: 64</span><br><span class="line">learning rate: 0.009</span><br><span class="line">weight decay: 0.02</span><br><span class="line"># LLaMA-7B</span><br><span class="line">N: 32</span><br><span class="line">K: 10</span><br><span class="line">L: 30</span><br></pre></td></tr></table></figure>
+
+<p><strong>Generation Stage Decoding Method</strong>: top-p sampling with a temperature 0.1 and a top-p &#x3D; 0.75</p>
+<p><strong>Dataset</strong>: Alpaca-52K self-instruct data. LLaMA-Adapter paper wrongly denotes as Alphaca-52K</p>
+<p><strong>Evaluation Metric</strong>: (1) quantitative evaluation, ask GPT-4 to assess the response quality on 80 questions(Since we observed that GPT-4 has a preference to give higher scores to the first response in comparison, we also switch the position of two responses, resulting in a total of 160 evaluation items.); (2) simply show some response examples</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-15.jpg"></p>
+<p>Comparison of Instruction-Following Capability, LLaMA-Adapter is comparable to Alpaca with fully fine-tuned 7B parameters<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-4.jpg" alt="Comparison of Instruction-Following Capability"></p>
+<p>Comparison with Instruct LLaMA (LLaMA-I, LLaMA-65B fine-tuned on large-scale instructional data), LLaMA-Adapter can be further enhanced with larger LLaMA, larger data, larger learnable parameters<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-5.jpg" alt="Comparison with Instruct LLaMA (LLaMA-I)"></p>
+<h3 id="Multi-modal-Evaluation"><a href="#Multi-modal-Evaluation" class="headerlink" title="Multi-modal Evaluation"></a>Multi-modal Evaluation</h3><p><strong>Generation Stage Decoding Method</strong>: greedy search</p>
+<p>Other hyperparameters are the same as instruction-following LLaMA-Adapter.</p>
 <p><strong>Dataset</strong>: ScienceQA, COCO Caption</p>
-<p><strong>Result on ScienceQA</strong>: MM-CoT relies on the complex
-two-stage inference. <strong>Future Work: leverage CoT to boost
-LLaMA-Adapter.</strong> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-7.jpg"
-alt="ScienceQA" /></p>
-<p><strong>Result on COCO Caption</strong>: Both BLIP and BLIP-2 adopt a
-costly pre-training stage on additional datasets for superior
-performance. In contrast, our LLaMA-Adapter only requires COCO
-Catption’s training set of 0.6M data and attains better accuracy than
-ClipCap. <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-16.jpg" /></p>
-<h3 id="ablation-study">Ablation Study</h3>
-<p>(ScienceQA for example)</p>
-<p>Result: table 6 shows robustness to over-fitting on the small
-dataset. Even if LLaMA-Adapter has over-fitted the fine-tuning data(val
-loss), the val acc is still increasing. <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-8.jpg"
-alt="Ablation Study" /></p>
-<h3
-id="zero-initialized-attention-for-other-large-models-1">Zero-initialized
-Attention for other Large Models</h3>
-<p><strong>Vision Model——ViT</strong>: Image classification.(Table 7,
-Table 9)</p>
-<p><strong>Language Model——RoBERTa</strong>: (1) Extractive question
-answering(Table 8), Exact Match (EM) and F1 scores on the dev set are
-reported. (2) NER and SRL.(Table 10)</p>
-<p><strong>Vision-Language Model——CLIP</strong>: The model is trained
-only on the base classes in a few-shot setting and evaluated on both
-base and novel categories.(Table 11)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-17.jpg" />
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-18.jpg" />
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-19.jpg" />
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-20.jpg" /></p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Future direction:</p>
+<p><strong>Result on ScienceQA</strong>: MM-CoT relies on the complex two-stage inference. <strong>Future Work: leverage CoT to boost LLaMA-Adapter.</strong><br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-7.jpg" alt="ScienceQA"></p>
+<p><strong>Result on COCO Caption</strong>: Both BLIP and BLIP-2 adopt a costly pre-training stage on additional datasets for superior performance. In contrast, our LLaMA-Adapter only requires COCO Catption’s training set of 0.6M data and attains better accuracy than ClipCap. <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-16.jpg"></p>
+<h3 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h3><p>(ScienceQA for example)</p>
+<p>Result: table 6 shows robustness to over-fitting on the small dataset. Even if LLaMA-Adapter has over-fitted the fine-tuning data(val loss), the val acc is still increasing.<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-8.jpg" alt="Ablation Study"></p>
+<h3 id="Zero-initialized-Attention-for-other-Large-Models-1"><a href="#Zero-initialized-Attention-for-other-Large-Models-1" class="headerlink" title="Zero-initialized Attention for other Large Models"></a>Zero-initialized Attention for other Large Models</h3><p><strong>Vision Model——ViT</strong>: Image classification.(Table 7, Table 9)</p>
+<p><strong>Language Model——RoBERTa</strong>: (1) Extractive question answering(Table 8), Exact Match (EM) and F1 scores on the dev set are reported. (2) NER and SRL.(Table 10)</p>
+<p><strong>Vision-Language Model——CLIP</strong>: The model is trained only on the base classes in a few-shot setting and evaluated on both base and novel categories.(Table 11)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-17.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-18.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-19.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-20.jpg"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Future direction: </p>
 <ul>
-<li>wider multi-modal inputs(audio, video, point clouds)
-<ul>
-<li>using pre-trained modal-specific encoders, we can integrate
-instructional signals of different modalities into the adaption
-prompts</li>
-</ul></li>
+<li>wider multi-modal inputs(audio, video, point clouds)<ul>
+<li>using pre-trained modal-specific encoders, we can integrate instructional signals of different modalities into the adaption prompts</li>
+</ul>
+</li>
 <li>larger LLaMA(33B, 65B)</li>
 <li>other LLMs</li>
-<li>diverse benchmarks(VQA v2, OK-VQA, TVQA, DocVQA)
-<ul>
+<li>diverse benchmarks(VQA v2, OK-VQA, TVQA, DocVQA)<ul>
 <li>ScienceQA is only an understanding task</li>
-</ul></li>
+</ul>
+</li>
 <li>leverage CoT to boost LLaMA-Adapter</li>
 </ul>
-<h2 id="code-implementation">Code Implementation</h2>
-<h3 id="params">Params</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">accum_iter: 1. Accumulate gradient iterations (for increasing the effective batch size under memory constraints)</span><br><span class="line">batch_size: 4(per GPU). effective_batch_size = batch_size * accum_iter * gpu_num</span><br><span class="line">epoch: 5</span><br><span class="line">adapter_layer: 30. the num of adapter layer L</span><br><span class="line">adapter_len: 10. the adapter length K</span><br><span class="line">max_seq_len: 512. specifies the maximum number of input tokens. token num &gt;= word num.</span><br><span class="line">max_batch_size: 32.</span><br><span class="line">dim: 4096.</span><br><span class="line">n_heads: 32.</span><br><span class="line">n_layers: 32.</span><br><span class="line">weight_decay: 0.02.</span><br><span class="line">blr: 9e-3. base learning rate.</span><br><span class="line">lr: learning_rate(absolute lr), lr = blr * total_batch_size / 256</span><br><span class="line">min_lr: 0.0. lower lr bound for cyclic schedulers that hit 0</span><br><span class="line">warmup_epochs: 2.</span><br><span class="line">seed: 0.</span><br></pre></td></tr></table></figure>
-<p>Why we need max_seq_len? For absolute position embedding(e.g., BERT,
-Roberta, BART), it uses the index of each token to calculate and its
-length is limited(max_seq_len). When the input token length exceeds
-max_seq_len, <strong>"index error"</strong> will be caused. For other
-position embedding methods(e.g., XLNet, T5), they have no limit of input
-token length. But longer input token length brings <strong>heavier
-memory burden</strong>, which may not necessarily lead to better
-performance.</p>
-<p>LLaMA uses Rotary Position Embedding: <a
-href="https://zhuanlan.zhihu.com/p/627536105">分析 |
-ROPE的不同实现：llama&amp;palm</a>, <a
-href="http://t.csdn.cn/U3RXo">blog 2.3 RoPE旋转位置编码</a></p>
-<h3 id="dataset">Dataset</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstructionDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_path, model_path, max_seq_len, partition=<span class="string">&quot;train&quot;</span></span>):</span><br><span class="line">        self.ann = json.load(<span class="built_in">open</span>(data_path))</span><br><span class="line">        <span class="keyword">if</span> partition == <span class="string">&quot;train&quot;</span>:</span><br><span class="line">            self.ann = self.ann</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># It seems that the val set is a sub set of the train set.(data_path is same)</span></span><br><span class="line">            self.ann = self.ann[:<span class="number">200</span>]</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        ann = self.ann[index]</span><br><span class="line">        <span class="keyword">if</span> ann.get(<span class="string">&quot;input&quot;</span>, <span class="string">&quot;&quot;</span>) == <span class="string">&quot;&quot;</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_no_input&quot;</span>].format_map(ann)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_input&quot;</span>].format_map(ann)</span><br><span class="line">        example = prompt + ann[<span class="string">&quot;output&quot;</span>]</span><br><span class="line">        example = torch.tensor(self.tokenizer1.encode(example, bos=<span class="literal">True</span>, eos=<span class="literal">True</span>), dtype=torch.int64)</span><br><span class="line">        padding = self.max_words - example.shape[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># prompt = Propmt(template, ann[&#x27;instruction&#x27;], ann[&#x27;input&#x27;])</span></span><br><span class="line">        <span class="comment"># max_seq_len refers to tokenizer([prompt, ann[&#x27;output&#x27;]]).length, not tokenizer(prompt).length</span></span><br><span class="line">        <span class="keyword">if</span> padding &gt; <span class="number">0</span>:</span><br><span class="line">            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">elif</span> padding &lt; <span class="number">0</span>:</span><br><span class="line">            example = example[: self.max_words]</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-<h3 id="learnable-adaption-prompts-1">Learnable Adaption Prompts</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module): <span class="comment"># Decoder</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, params: ModelArgs</span>):</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># randomly initialise the adaption prompts</span></span><br><span class="line">        <span class="comment"># github.com/OpenGVLab/LLaMA-Adapter/issues/9#issuecomment-1501705647</span></span><br><span class="line">        self.adapter_query = nn.Embedding(params.adapter_len * params.adapter_layer, params.dim)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, examples, labels</span>):</span><br><span class="line">        _bsz, seqlen = examples.shape</span><br><span class="line">        ...</span><br><span class="line">        mask = torch.full((<span class="number">1</span>, <span class="number">1</span>, seqlen, seqlen), <span class="built_in">float</span>(<span class="string">&quot;-inf&quot;</span>), device=h.device)</span><br><span class="line">        mask = torch.triu(mask, diagonal=<span class="number">0</span> + <span class="number">1</span>).type_as(h) <span class="comment"># Upper triangular matrix, and diagonal val is 0</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[: -<span class="number">1</span> * self.adapter_layer]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line">        adapter_index = <span class="number">0</span></span><br><span class="line">        <span class="comment"># adapter.shape: (30, 1, 10, 4096)</span></span><br><span class="line">        adapter = self.adapter_query.weight.reshape(-<span class="number">1</span>, self.adapter_len, <span class="number">4096</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[-<span class="number">1</span> * self.adapter_layer :]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask, adapter[adapter_index].half())</span><br><span class="line">            adapter_index = adapter_index + <span class="number">1</span></span><br><span class="line">        output = self.output(self.norm(h))</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<h2 id="Code-Implementation"><a href="#Code-Implementation" class="headerlink" title="Code Implementation"></a>Code Implementation</h2><h3 id="Params"><a href="#Params" class="headerlink" title="Params"></a>Params</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">accum_iter: 1. Accumulate gradient iterations (for increasing the effective batch size under memory constraints)</span><br><span class="line">batch_size: 4(per GPU). effective_batch_size = batch_size * accum_iter * gpu_num</span><br><span class="line">epoch: 5</span><br><span class="line">adapter_layer: 30. the num of adapter layer L</span><br><span class="line">adapter_len: 10. the adapter length K</span><br><span class="line">max_seq_len: 512. specifies the maximum number of input tokens. token num &gt;= word num.</span><br><span class="line">max_batch_size: 32.</span><br><span class="line">dim: 4096.</span><br><span class="line">n_heads: 32.</span><br><span class="line">n_layers: 32.</span><br><span class="line">weight_decay: 0.02.</span><br><span class="line">blr: 9e-3. base learning rate.</span><br><span class="line">lr: learning_rate(absolute lr), lr = blr * total_batch_size / 256</span><br><span class="line">min_lr: 0.0. lower lr bound for cyclic schedulers that hit 0</span><br><span class="line">warmup_epochs: 2.</span><br><span class="line">seed: 0.</span><br></pre></td></tr></table></figure>
+
+<p>Why we need max_seq_len? For absolute position embedding(e.g., BERT, Roberta, BART), it uses the index of each token to calculate and its length is limited(max_seq_len). When the input token length exceeds max_seq_len, <strong>“index error”</strong> will be caused. For other position embedding methods(e.g., XLNet, T5), they have no limit of input token length. But longer input token length brings <strong>heavier memory burden</strong>, which may not necessarily lead to better performance.</p>
+<p>LLaMA uses Rotary Position Embedding: <a href="https://zhuanlan.zhihu.com/p/627536105">分析 | ROPE的不同实现：llama&amp;palm</a>, <a href="http://t.csdn.cn/U3RXo">blog 2.3 RoPE旋转位置编码</a></p>
+<h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstructionDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_path, model_path, max_seq_len, partition=<span class="string">&quot;train&quot;</span></span>):</span><br><span class="line">        self.ann = json.load(<span class="built_in">open</span>(data_path))</span><br><span class="line">        <span class="keyword">if</span> partition == <span class="string">&quot;train&quot;</span>:</span><br><span class="line">            self.ann = self.ann</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># It seems that the val set is a sub set of the train set.(data_path is same)</span></span><br><span class="line">            self.ann = self.ann[:<span class="number">200</span>]</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        ann = self.ann[index]</span><br><span class="line">        <span class="keyword">if</span> ann.get(<span class="string">&quot;input&quot;</span>, <span class="string">&quot;&quot;</span>) == <span class="string">&quot;&quot;</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_no_input&quot;</span>].format_map(ann)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_input&quot;</span>].format_map(ann)</span><br><span class="line">        example = prompt + ann[<span class="string">&quot;output&quot;</span>]</span><br><span class="line">        example = torch.tensor(self.tokenizer1.encode(example, bos=<span class="literal">True</span>, eos=<span class="literal">True</span>), dtype=torch.int64)</span><br><span class="line">        padding = self.max_words - example.shape[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># prompt = Propmt(template, ann[&#x27;instruction&#x27;], ann[&#x27;input&#x27;])</span></span><br><span class="line">        <span class="comment"># max_seq_len refers to tokenizer([prompt, ann[&#x27;output&#x27;]]).length, not tokenizer(prompt).length</span></span><br><span class="line">        <span class="keyword">if</span> padding &gt; <span class="number">0</span>:</span><br><span class="line">            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">elif</span> padding &lt; <span class="number">0</span>:</span><br><span class="line">            example = example[: self.max_words]</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="Learnable-Adaption-Prompts-1"><a href="#Learnable-Adaption-Prompts-1" class="headerlink" title="Learnable Adaption Prompts"></a>Learnable Adaption Prompts</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module): <span class="comment"># Decoder</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, params: ModelArgs</span>):</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># randomly initialise the adaption prompts</span></span><br><span class="line">        <span class="comment"># github.com/OpenGVLab/LLaMA-Adapter/issues/9#issuecomment-1501705647</span></span><br><span class="line">        self.adapter_query = nn.Embedding(params.adapter_len * params.adapter_layer, params.dim)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, examples, labels</span>):</span><br><span class="line">        _bsz, seqlen = examples.shape</span><br><span class="line">        ...</span><br><span class="line">        mask = torch.full((<span class="number">1</span>, <span class="number">1</span>, seqlen, seqlen), <span class="built_in">float</span>(<span class="string">&quot;-inf&quot;</span>), device=h.device)</span><br><span class="line">        mask = torch.triu(mask, diagonal=<span class="number">0</span> + <span class="number">1</span>).type_as(h) <span class="comment"># Upper triangular matrix, and diagonal val is 0</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[: -<span class="number">1</span> * self.adapter_layer]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line">        adapter_index = <span class="number">0</span></span><br><span class="line">        <span class="comment"># adapter.shape: (30, 1, 10, 4096)</span></span><br><span class="line">        adapter = self.adapter_query.weight.reshape(-<span class="number">1</span>, self.adapter_len, <span class="number">4096</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[-<span class="number">1</span> * self.adapter_layer :]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask, adapter[adapter_index].half())</span><br><span class="line">            adapter_index = adapter_index + <span class="number">1</span></span><br><span class="line">        output = self.output(self.norm(h))</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
 <ul>
-<li>linear projection: queries <span
-class="math inline">\(Q_l=Linear_q(t_l)\)</span>, keys <span
-class="math inline">\(K_l=Linear_k([P_l;T_l;t_l])\)</span>, values <span
-class="math inline">\(V_l=Linear_v([P_l;T_l;t_l])\)</span></li>
-<li>attention scores: <span
-class="math inline">\(S_l=\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}\)</span></li>
-<li>reformulation: <span class="math inline">\(S_l=[S_l^K;S_l^{M+1}]^T,
-S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times
-1}\)</span></li>
-<li>softmax operation: <span
-class="math inline">\(S_l^g=[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T\)</span></li>
-<li>output of the attention layer: <span
-class="math inline">\(t_l^o=Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times
-C}\)</span></li>
+<li>linear projection: queries $Q_l&#x3D;Linear_q(t_l)$, keys $K_l&#x3D;Linear_k([P_l;T_l;t_l])$, values $V_l&#x3D;Linear_v([P_l;T_l;t_l])$</li>
+<li>attention scores: $S_l&#x3D;\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}$</li>
+<li>reformulation: $S_l&#x3D;[S_l^K;S_l^{M+1}]^T, S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times 1}$</li>
+<li>softmax operation: $S_l^g&#x3D;[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T$</li>
+<li>output of the attention layer: $t_l^o&#x3D;Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times C}$</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Attention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, args: ModelArgs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># zero-init attention</span></span><br><span class="line">        self.gate = torch.nn.Parameter(torch.zeros(<span class="number">1</span>, self.n_local_heads, <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor, start_pos: <span class="built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="type">Optional</span>[torch.Tensor], adapter=<span class="literal">None</span></span>):</span><br><span class="line">        bsz, seqlen, _ = x.shape</span><br><span class="line">        <span class="comment"># 1. three Linears for x</span></span><br><span class="line">        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)</span><br><span class="line">        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        <span class="comment"># 2. add position info via Rotary Position Embedding</span></span><br><span class="line">        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            adapter_len = adapter.shape[<span class="number">1</span>] <span class="comment"># adapter.shape: (1, 10, 4096)</span></span><br><span class="line">            <span class="comment"># linear projection</span></span><br><span class="line">            <span class="comment"># adapter_k.shape: (bsz, adapter_len, self.n_local_heads, self.head_dim)</span></span><br><span class="line">            adapter_k = self.wk(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            adapter_v = self.wv(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            xk = torch.cat([adapter_k, xk], dim=<span class="number">1</span>)</span><br><span class="line">            xv = torch.cat([adapter_v, xv], dim=<span class="number">1</span>)</span><br><span class="line">            extra_mask = torch.zeros(<span class="number">1</span>, <span class="number">1</span>, seqlen, adapter_len).to(mask)</span><br><span class="line">            mask = torch.cat([extra_mask, mask], dim=-<span class="number">1</span>) <span class="comment"># (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        keys = xk</span><br><span class="line">        values = xv</span><br><span class="line"></span><br><span class="line">        xq = xq.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        keys = keys.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        values = values.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment"># 3. attention scores</span></span><br><span class="line">        scores = torch.matmul(xq, keys.transpose(<span class="number">2</span>, <span class="number">3</span>)) / math.sqrt(self.head_dim)</span><br><span class="line">        <span class="comment"># for decoder type, mask is needed to avoid using the information in the future.</span></span><br><span class="line">        <span class="comment"># the predictions for position i can depend only on the known outputs at positions less than i</span></span><br><span class="line">        <span class="comment"># mask.shape: (1, 1, seqlen, )</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = scores + mask  <span class="comment"># (bsz, n_local_heads, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="comment"># 4. softmax</span></span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = torch.cat(</span><br><span class="line">                [</span><br><span class="line">                    <span class="comment"># zero-init attention</span></span><br><span class="line">                    self.gate.tanh().half() * F.softmax(scores[:, :, :, :adapter_len].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                    F.softmax(scores[:, :, :, adapter_len:].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                ],</span><br><span class="line">                dim=-<span class="number">1</span>,</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            scores = F.softmax(scores.<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq)</span><br><span class="line">        output = torch.matmul(scores, values)  <span class="comment"># (bs, n_local_heads, slen, head_dim)</span></span><br><span class="line">        output = output.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(bsz, seqlen, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.wo(output)</span><br></pre></td></tr></table></figure>
-<p>(images below are from <a
-href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io/illustrated-gpt2/</a>)
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png" /><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png" /><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png" /></p>
-<h2 id="related-work">Related Work</h2>
-<h3 id="parameter-efficient-fine-tuningpeft">Parameter-Efficient
-Fine-Tuning(PEFT)</h3>
-<p><img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-flowchart-1536x535.png"
-alt="Three conventional approaches of finetuing" /> <a
-href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Three
-conventional approaches of finetuing.(the pre-trained model is not too
-large)</a> They are all compatible with encoder and decoder style. When
-finetune generative models, we work with and build on the embeddings
-they create instead of the generated output texts. But in-context
-learning only applies to decoder style. <img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-performance-1024x377.png"
-alt="traininig efficiency and modeling performance" /></p>
-<p><a href="https://github.com/huggingface/peft">PEFT</a> methods freeze
-most parameters of pre-trained models, and can still exhibit comparable
-capabilities on downstream tasks. It is needed when we want to get a
-similar modeling quality as finetuning II on LLMs. (e.g., Prompt-Tuning,
-Adapter, LoRA)</p>
-<p>Prompt tuning appends a collection of trainable prompt tokens to
-pre-trained large models, which are inserted either to the input
-embeddings only, or to all of the intermediate layers. (e.g., Hard/Soft
-Prompt-Tuning, Prefix-Tuning)</p>
-<p>Hard Prompt-Tuning: directly change the discrete input tokens, which
-are not differentiable: <img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/hard-prompting-1024x214.png" /></p>
-<p>Soft Prompt-Tuning: concatenates the embeddings of the input tokens
-with a trainable tensor that can be optimized via backpropagation.</p>
-<p><a href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>: add
-a trainable tensor to each transformer block instead of only the input
-embeddings, as in Soft Prompt-Tuning: <img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/prefix-tuning-1536x907.png" /></p>
-<p><a href="https://arxiv.org/pdf/1902.00751.pdf">Adapter</a>: adds
-adapter layers in two places. The hidden dim in each adapter layer is
-low(e.g., 1024--&gt;24, params 1024×24+24×1024=49,512 &lt;
-1024×1024=1,048,576). <img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/adapter-outline-1024x548.png" /></p>
-<p><a
-href="https://lightning.ai/pages/community/tutorial/lora-llm/">LoRA</a>:
-introduces trainable rank decomposition matrices into each network
-weights: <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-13.jpg" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png" />
-<a href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A
-Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
-<p>LLaMA-Adapter is distinct from regular Prefix-Tuning: 1. L topmost
-layer(not all) 2. zero-init attention(stablity improvement) 3. unified
-multi-modal tuning(unimodal to multi-modal) <img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/popular-methods-1024x282.png" />
-<img
-src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/llama-adapter-1447x1536.png" /></p>
-<h3 id="instruction-following-models">Instruction-Following Models</h3>
-<p>Instruction-following capabilities: understand user intentions and
-follow instructions accurately.</p>
-<p>Closed-source restriction and high training costs imped
-instruction-following models' development.</p>
-<p>Compared to a concurrent work <a
-href="https://github.com/tloen/alpaca-lora">Alpaca-LoRA</a>, our
-approach further reduces the computational demands, and can be
-generalized to follow visual instructions for multi-modal reasoning.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Attention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, args: ModelArgs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># zero-init attention</span></span><br><span class="line">        self.gate = torch.nn.Parameter(torch.zeros(<span class="number">1</span>, self.n_local_heads, <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor, start_pos: <span class="built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="type">Optional</span>[torch.Tensor], adapter=<span class="literal">None</span></span>):</span><br><span class="line">        bsz, seqlen, _ = x.shape</span><br><span class="line">        <span class="comment"># 1. three Linears for x</span></span><br><span class="line">        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)</span><br><span class="line">        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        <span class="comment"># 2. add position info via Rotary Position Embedding</span></span><br><span class="line">        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            adapter_len = adapter.shape[<span class="number">1</span>] <span class="comment"># adapter.shape: (1, 10, 4096)</span></span><br><span class="line">            <span class="comment"># linear projection</span></span><br><span class="line">            <span class="comment"># adapter_k.shape: (bsz, adapter_len, self.n_local_heads, self.head_dim)</span></span><br><span class="line">            adapter_k = self.wk(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            adapter_v = self.wv(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            xk = torch.cat([adapter_k, xk], dim=<span class="number">1</span>)</span><br><span class="line">            xv = torch.cat([adapter_v, xv], dim=<span class="number">1</span>)</span><br><span class="line">            extra_mask = torch.zeros(<span class="number">1</span>, <span class="number">1</span>, seqlen, adapter_len).to(mask)</span><br><span class="line">            mask = torch.cat([extra_mask, mask], dim=-<span class="number">1</span>) <span class="comment"># (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        keys = xk</span><br><span class="line">        values = xv</span><br><span class="line"></span><br><span class="line">        xq = xq.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        keys = keys.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        values = values.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment"># 3. attention scores</span></span><br><span class="line">        scores = torch.matmul(xq, keys.transpose(<span class="number">2</span>, <span class="number">3</span>)) / math.sqrt(self.head_dim)</span><br><span class="line">        <span class="comment"># for decoder type, mask is needed to avoid using the information in the future.</span></span><br><span class="line">        <span class="comment"># the predictions for position i can depend only on the known outputs at positions less than i</span></span><br><span class="line">        <span class="comment"># mask.shape: (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = scores + mask  <span class="comment"># (bsz, n_local_heads, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="comment"># 4. softmax</span></span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = torch.cat(</span><br><span class="line">                [</span><br><span class="line">                    <span class="comment"># zero-init attention</span></span><br><span class="line">                    self.gate.tanh().half() * F.softmax(scores[:, :, :, :adapter_len].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                    F.softmax(scores[:, :, :, adapter_len:].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                ],</span><br><span class="line">                dim=-<span class="number">1</span>,</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            scores = F.softmax(scores.<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq)</span><br><span class="line">        output = torch.matmul(scores, values)  <span class="comment"># (bs, n_local_heads, slen, head_dim)</span></span><br><span class="line">        output = output.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(bsz, seqlen, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.wo(output)</span><br></pre></td></tr></table></figure>
+<p>(images below are from <a href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io&#x2F;illustrated-gpt2&#x2F;</a>)<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png"><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png"><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png"></p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Parameter-Efficient-Fine-Tuning-PEFT"><a href="#Parameter-Efficient-Fine-Tuning-PEFT" class="headerlink" title="Parameter-Efficient Fine-Tuning(PEFT)"></a>Parameter-Efficient Fine-Tuning(PEFT)</h3><p><img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-flowchart-1536x535.png" alt="Three conventional approaches of finetuing"> <a href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Three conventional approaches of finetuing.(the pre-trained model is not too large)</a> They are all compatible with encoder and decoder style. When finetune generative models, we work with and build on the embeddings they create instead of the generated output texts. But in-context learning only applies to decoder style. <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-performance-1024x377.png" alt="traininig efficiency and modeling performance"></p>
+<p><a href="https://github.com/huggingface/peft">PEFT</a> methods freeze most parameters of pre-trained models, and can still exhibit comparable capabilities on downstream tasks. It is needed when we want to get a similar modeling quality as finetuning II on LLMs. (e.g., Prompt-Tuning, Adapter, LoRA)</p>
+<p>Prompt tuning appends a collection of trainable prompt tokens to pre-trained large models, which are inserted either to the input embeddings only, or to all of the intermediate layers. (e.g., Hard&#x2F;Soft Prompt-Tuning, Prefix-Tuning)</p>
+<p>Hard Prompt-Tuning: directly change the discrete input tokens, which are not differentiable: <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/hard-prompting-1024x214.png"></p>
+<p>Soft Prompt-Tuning: concatenates the embeddings of the input tokens with a trainable tensor that can be optimized via backpropagation.</p>
+<p><a href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>: add a trainable tensor to each transformer block instead of only the input embeddings, as in Soft Prompt-Tuning: <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/prefix-tuning-1536x907.png"></p>
+<p><a href="https://arxiv.org/pdf/1902.00751.pdf">Adapter</a>: adds adapter layers in two places. The hidden dim in each adapter layer is low(e.g., 1024–&gt;24, params 1024×24+24×1024&#x3D;49,512 &lt; 1024×1024&#x3D;1,048,576). <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/adapter-outline-1024x548.png"></p>
+<p><a href="https://lightning.ai/pages/community/tutorial/lora-llm/">LoRA</a>: introduces trainable rank decomposition matrices into each network weights: <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-13.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png"> <a href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
+<p>LLaMA-Adapter is distinct from regular Prefix-Tuning: 1. L topmost layer(not all) 2. zero-init attention(stablity improvement) 3. unified multi-modal tuning(unimodal to multi-modal) <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/popular-methods-1024x282.png"> <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/llama-adapter-1447x1536.png"></p>
+<h3 id="Instruction-Following-Models"><a href="#Instruction-Following-Models" class="headerlink" title="Instruction-Following Models"></a>Instruction-Following Models</h3><p>Instruction-following capabilities: understand user intentions and follow instructions accurately.</p>
+<p>Closed-source restriction and high training costs imped instruction-following models’ development.</p>
+<p>Compared to a concurrent work <a href="https://github.com/tloen/alpaca-lora">Alpaca-LoRA</a>, our approach further reduces the computational demands, and can be generalized to follow visual instructions for multi-modal reasoning.</p>
 <p><em>Language Modality:</em></p>
 <ul>
-<li><a href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces
-an instruction tuning method</li>
-<li><a href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a
-web-based GUI for creating and managing natural language prompt</li>
-<li><a
-href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>:
-an benchmark of instructions on 1,616 NLP tasks</li>
-<li><a href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>:
-RLHF, significant performance improvements</li>
-<li><strong><a
-href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>:
-data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
+<li><a href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces an instruction tuning method</li>
+<li><a href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a web-based GUI for creating and managing natural language prompt</li>
+<li><a href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>: an benchmark of instructions on 1,616 NLP tasks</li>
+<li><a href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>: RLHF, significant performance improvements</li>
+<li><strong><a href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>: data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
 </ul>
 <p><em>Multi-modality:</em></p>
 <p>Robot</p>
 <ul>
-<li>2020/03/31 <a
-href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>: a benchmark for
-robotics instruction following</li>
-<li>2022/03/16 <a href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>:
-a modular method for robotics instruction following</li>
+<li>2020&#x2F;03&#x2F;31 <a href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>:  a benchmark for robotics instruction following</li>
+<li>2022&#x2F;03&#x2F;16 <a href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>: a modular method for robotics instruction following</li>
 </ul>
 <p>Video</p>
 <ul>
-<li>2023/05/10 <a href="https://arxiv.org/pdf/2305.06355.pdf">VideoChat:
-Chat-Centric Video Understanding</a>: (1) integrates video foundation
-models and large language models via a learnable neural interface; (2)
-propose a video-centric instruction dataset based on WebVid-10M; (3)
-spatiotemporal reasoning, event localization, and causal relationship
-inference</li>
-<li>2023/06/08 <a
-href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT: Towards
-Detailed Video Understanding via Large Vision and Language Models</a>:
-(1) merges a video-adapted visual encoder with a LLM; (2) introduce a
-new dataset of 100,000 video-instruction pairs; (3) develop a
-quantitative evaluation framework for video-based dialogue models; (4)
-understanding and generating detailed conversations about videos</li>
-<li>2023/06/12 <a
-href="https://arxiv.org/pdf/2306.02858.pdf">Video-LLaMA An
-Instruction-tuned Audio-Visual Language Model for Video
-Understanding</a>: (1) propose a Video Q-former for temporal info; (2)
-propose an Audio Q-former based on ImageBind for audio-visual
-signals</li>
+<li>2023&#x2F;05&#x2F;10 <a href="https://arxiv.org/pdf/2305.06355.pdf">VideoChat: Chat-Centric Video Understanding</a>: (1) integrates video foundation models and large language models via a learnable neural interface; (2) propose a video-centric instruction dataset based on WebVid-10M; (3) spatiotemporal reasoning, event localization, and causal relationship inference</li>
+<li>2023&#x2F;06&#x2F;08 <a href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT: Towards Detailed Video Understanding via Large Vision and Language Models</a>: (1)  merges a video-adapted visual encoder with a LLM; (2) introduce a new dataset of 100,000 video-instruction pairs; (3) develop a quantitative evaluation framework for video-based dialogue models; (4) understanding and generating detailed conversations about videos</li>
+<li>2023&#x2F;06&#x2F;12 <a href="https://arxiv.org/pdf/2306.02858.pdf">Video-LLaMA An Instruction-tuned Audio-Visual Language Model for Video Understanding</a>: (1) propose a Video Q-former for temporal info; (2) propose an Audio Q-former based on ImageBind for audio-visual signals</li>
 </ul>
 <p>Image(Model)</p>
 <ul>
-<li>2023/04/27 <a
-href="https://arxiv.org/pdf/2302.14045v1.pdf">Kosmos-1</a>, <a
-href="https://arxiv.org/pdf/2304.10592.pdf">MiniGPT4</a>, <a
-href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a>, <a
-href="https://arxiv.org/pdf/2304.14178.pdf">mPLUG-Owl</a> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-14.jpg" /></li>
-<li>2023/05/05 <a href="https://arxiv.org/pdf/2305.03726.pdf">Otter: A
-Multi-Modal Model with In-Context Instruction Tuning</a></li>
-<li>2023/05/11 <a
-href="https://arxiv.org/pdf/2305.06500.pdf">InstructBLIP: Towards
-General-purpose Vision-Language Models with Instruction Tuning</a>: (1)
-gather a wide variety of 26 publicly available datasets, transform them
-into instruction tuning format; (2) instruction-aware visual feature
-extraction method</li>
-<li>2023/05/22 <a href="https://arxiv.org/pdf/2305.04160.pdf">X-LLM:
-Bootstrapping Advanced Large Language Models by Treating
-Multi-Modalities as Foreign Languages</a>: propose X2L interface to
-convert other modality(image, speech, video) into foreign language via 3
-training stages</li>
-<li>2023/05/24 <a href="https://arxiv.org/pdf/2305.15023.pdf">Cheap and
-Quick: Efficient Vision-Language Instruction Tuning for Large Language
-Models</a>: (1) Mixture-of-Modality Adaptation(MMA); (2) a routing
-algorithm for MMA, which enables an automatic shift between single- and
-multi-modal instructions; (3) MMA+LLaMA=LaVIN(efficient), 1.4 training
-hours with 3.8M trainable params</li>
-<li>2023/05/25 <a href="https://arxiv.org/pdf/2305.16355.pdf">PandaGPT:
-One Model To Instruction-Follow Them All</a>: (1) visual and auditory
-instruction-following capabilities(detailed image description
-generation, writing stories inspired by videos, answering questions
-about audios); (2) combines the multimodal encoders from ImageBind and
-the large language models from Vicuna; (3) displays emergent, i.e.
-zero-shot, cross-modal behaviors for data other than image and text
-(e.g., video, audio, depth, thermal, and IMU)</li>
-<li>2023/05/25 <a
-href="https://arxiv.org/pdf/2305.16103.pdf">ChatBridge: Bridging
-Modalities with Large Language Model as a Language Catalyst</a>: (1)
-show that only language-paired two-modality data is sufficient to
-connect all modalities; (2) propose a new multi-modal instruction tuning
-dataset MULTIS, which covers a wide range of 16 multimodal tasks of
-text, image, video, and audio modalities; (3) a two-stage training,
-firstly aligns each modality with language, secondly aligns model with
-user intent</li>
-<li>2023/05/30 <a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools:
-Teaching Large Language Model to Use Tools via Self-instruction</a>: (1)
-enable open-source LLMs to use multimodal tools; (2) generates an
-instruction-following dataset by prompting an advanced teacher with
-various multi-modal contexts; (3) provide a benchmark to evaluate the
-ability of LLMs to use tools</li>
-<li>2023/06/02 <a href="https://arxiv.org/pdf/2305.05662.pdf">InternGPT:
-Solving Vision-Centric Tasks by Interacting with ChatGPT Beyond
-Language</a>: integrates chatbots with non-verbal instructions(e.g.,
-point movements like gestures and cursors), which requires fine-grained
-control, editing, and generation of visual content</li>
-<li>2023/06/13 <a
-href="https://arxiv.org/pdf/2305.04790.pdf">MultiModal-GPT: A Vision and
-Language Model for Dialogue with Humans</a>: (1) capable of generating
-detailed captions, counting specific objects, and addressing general
-inquiries posed by users; (2) OpenFlamingo+LoRA; (3) construct
-multi-modal instruction templates; (4) also employ language-only
-instruction-following data for dialogue performance improvement</li>
+<li>2023&#x2F;04&#x2F;27 <a href="https://arxiv.org/pdf/2302.14045v1.pdf">Kosmos-1</a>, <a href="https://arxiv.org/pdf/2304.10592.pdf">MiniGPT4</a>, <a href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a>, <a href="https://arxiv.org/pdf/2304.14178.pdf">mPLUG-Owl</a> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-14.jpg"></li>
+<li>2023&#x2F;05&#x2F;05 <a href="https://arxiv.org/pdf/2305.03726.pdf">Otter: A Multi-Modal Model with In-Context Instruction Tuning</a></li>
+<li>2023&#x2F;05&#x2F;11 <a href="https://arxiv.org/pdf/2305.06500.pdf">InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning</a>: (1) gather a wide variety of 26 publicly available datasets, transform them into instruction tuning format; (2)  instruction-aware visual feature extraction method</li>
+<li>2023&#x2F;05&#x2F;22 <a href="https://arxiv.org/pdf/2305.04160.pdf">X-LLM: Bootstrapping Advanced Large Language Models by Treating Multi-Modalities as Foreign Languages</a>: propose X2L interface to convert other modality(image, speech, video) into foreign language via 3 training stages</li>
+<li>2023&#x2F;05&#x2F;24 <a href="https://arxiv.org/pdf/2305.15023.pdf">Cheap and Quick: Efficient Vision-Language Instruction Tuning for Large Language Models</a>: (1) Mixture-of-Modality Adaptation(MMA); (2) a routing algorithm for MMA, which enables an automatic shift between single- and multi-modal instructions; (3) MMA+LLaMA&#x3D;LaVIN(efficient), 1.4 training hours with 3.8M trainable params</li>
+<li>2023&#x2F;05&#x2F;25 <a href="https://arxiv.org/pdf/2305.16355.pdf">PandaGPT: One Model To Instruction-Follow Them All</a>: (1) visual and auditory instruction-following capabilities(detailed image description generation, writing stories inspired by videos, answering questions about audios); (2) combines the multimodal encoders from ImageBind and the large language models from Vicuna; (3) displays emergent, i.e. zero-shot, cross-modal behaviors for data other than image and text (e.g., video, audio, depth, thermal, and IMU)</li>
+<li>2023&#x2F;05&#x2F;25 <a href="https://arxiv.org/pdf/2305.16103.pdf">ChatBridge: Bridging Modalities with Large Language Model as a Language Catalyst</a>: (1) show that only language-paired two-modality data is sufficient to connect all modalities; (2) propose a new multi-modal instruction tuning dataset MULTIS, which covers a wide range of 16 multimodal tasks of text, image, video, and audio modalities; (3) a two-stage training, firstly aligns each modality with language, secondly aligns model with user intent</li>
+<li>2023&#x2F;05&#x2F;30 <a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools: Teaching Large Language Model to Use Tools via Self-instruction</a>: (1) enable open-source LLMs to use multimodal tools; (2) generates an instruction-following dataset by prompting an advanced teacher with various multi-modal contexts; (3) provide a benchmark to evaluate the ability of LLMs to use tools</li>
+<li>2023&#x2F;06&#x2F;02 <a href="https://arxiv.org/pdf/2305.05662.pdf">InternGPT: Solving Vision-Centric Tasks by Interacting with ChatGPT Beyond Language</a>: integrates chatbots with non-verbal instructions(e.g., point movements like gestures and cursors), which requires fine-grained control, editing, and generation of visual content</li>
+<li>2023&#x2F;06&#x2F;13 <a href="https://arxiv.org/pdf/2305.04790.pdf">MultiModal-GPT: A Vision and Language Model for Dialogue with Humans</a>: (1) capable of generating detailed captions, counting specific objects, and addressing general inquiries posed by users; (2) OpenFlamingo+LoRA; (3) construct multi-modal instruction templates; (4) also employ language-only instruction-following data for dialogue performance improvement</li>
 </ul>
 <p>Image(Dataset)</p>
 <ul>
-<li>2023/06/08 <a href="https://arxiv.org/pdf/2306.05425.pdf">MIMIC-IT:
-Multi-Modal In-Context Instruction Tuning</a>: (1) 2.8 million
-multimodal instruction-response pairs; (2) 8 languages; (3) contains
-videos</li>
-<li>2023/06/08 <a href="https://arxiv.org/pdf/2306.04387.pdf">M3IT: A
-Large-Scale Dataset towards Multi-Modal Multilingual Instruction
-Tuning</a>: (1) comprises 40 carefully curated datasets, including 2.4
-million instances and 400 manually written task instructions, which
-surpasses previous datasets regarding task coverage; (2) 80 languages;
-(3) Ying-VLM model</li>
-<li>2023/06/10 <a
-href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct: Improving
-Multi-Modal Zero-Shot Learning via Instruction Tuning</a>: (1) a
-multimodal instruction tuning benchmark dataset that consists of 62
-multimodal tasks; (2) a new evaluation metric, Sensitivity, to evaluate
-how sensitive the model is to the variety of instructions</li>
-<li>2023/06/11 <a href="https://arxiv.org/pdf/2306.06687.pdf">LAMM:
-Language-Assisted Multi-Modal Instruction-Tuning Dataset, Framework, and
-Benchmark</a>: (1) extend MLLMs to point clouds; (2) LAMM-Dataset and
-LAMM-Benchmark for 2D image and 3D point cloud understanding</li>
+<li>2023&#x2F;06&#x2F;08 <a href="https://arxiv.org/pdf/2306.05425.pdf">MIMIC-IT: Multi-Modal In-Context Instruction Tuning</a>: (1) 2.8 million multimodal instruction-response pairs; (2) 8 languages; (3) contains videos</li>
+<li>2023&#x2F;06&#x2F;08 <a href="https://arxiv.org/pdf/2306.04387.pdf">M3IT: A Large-Scale Dataset towards Multi-Modal Multilingual Instruction Tuning</a>: (1) comprises 40 carefully curated datasets, including 2.4 million instances and 400 manually written task instructions, which surpasses previous datasets regarding task coverage; (2) 80 languages; (3) Ying-VLM model</li>
+<li>2023&#x2F;06&#x2F;10 <a href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct: Improving Multi-Modal Zero-Shot Learning via Instruction Tuning</a>: (1) a multimodal instruction tuning benchmark dataset that consists of 62 multimodal tasks; (2) a new evaluation metric, Sensitivity, to evaluate how sensitive the model is to the variety of instructions</li>
+<li>2023&#x2F;06&#x2F;11 <a href="https://arxiv.org/pdf/2306.06687.pdf">LAMM: Language-Assisted Multi-Modal Instruction-Tuning Dataset, Framework, and Benchmark</a>: (1) extend MLLMs to point clouds; (2) LAMM-Dataset and LAMM-Benchmark for 2D image and 3D point cloud understanding</li>
 </ul>
-<h3 id="large-vision-language-models">Large Vision-Language Models</h3>
-<p>Recently, some researchers adopt pre-trained unimodal models as
-initialization and only train the newly introduced parameters. They use
-mapping networks or cross-attention layers to connect two
-modalities.</p>
+<h3 id="Large-Vision-Language-Models"><a href="#Large-Vision-Language-Models" class="headerlink" title="Large Vision-Language Models"></a>Large Vision-Language Models</h3><p>Recently, some researchers adopt pre-trained unimodal models as initialization and only train the newly introduced parameters. They use mapping networks or cross-attention layers to connect two modalities.</p>
 <p>As a new method, LLaMA-Adapter also belongs to this line of work.</p>
 <ul>
-<li><a href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>:
-fine-tunes an image encoder to transform visual tokens into LLM’s soft
-prompts</li>
-<li><a href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes
-pretrained image encoder to speed up CLIP training</li>
-<li><a href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes
-a mapping network to connect the pre-trained image encoder with
-LLMs</li>
-<li><a href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a
-href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a
-href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce
-customized adapters upon CLIP for 2D and 3D few-shot learning</li>
-<li><a href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts
-several cross-attention layers to inject visual knowledge into LLMs</li>
-<li><a href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects
-pre-trained image encoders and LLMs with a Q-Former</li>
+<li><a href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>: fine-tunes an image encoder to transform visual tokens into LLM’s soft prompts</li>
+<li><a href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes pretrained image encoder to speed up CLIP training</li>
+<li><a href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes a mapping network to connect the pre-trained image encoder with LLMs</li>
+<li><a href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce customized adapters upon CLIP for 2D and 3D few-shot learning</li>
+<li><a href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts several cross-attention layers to inject visual knowledge into LLMs</li>
+<li><a href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects pre-trained image encoders and LLMs with a Q-Former</li>
 </ul>
 ]]></content>
       <categories>
