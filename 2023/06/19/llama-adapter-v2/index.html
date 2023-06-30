@@ -21,14 +21,14 @@
 
 
 
-<link rel="canonical" href="https://ifshinelx.github.io/2023/06/15/2022-machine-learning-specialization/">
+<link rel="canonical" href="https://ifshinelx.github.io/2023/06/19/llama-adapter-v2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://ifshinelx.github.io/2023/06/15/2022-machine-learning-specialization/","path":"2023/06/15/2022-machine-learning-specialization/","title":"[Waiting...]2022 Machine Learning Specialization"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://ifshinelx.github.io/2023/06/19/llama-adapter-v2/","path":"2023/06/19/llama-adapter-v2/","title":"[waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>[Waiting...]2022 Machine Learning Specialization | XinLiu's Homepage, Welcome!</title>
+<title>[waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model | XinLiu's Homepage, Welcome!</title>
   
 
 
@@ -123,9 +123,13 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#supervised-machine-learning-regression-and-classification"><span class="nav-number">1.</span> <span class="nav-text">Supervised
-Machine Learning: Regression and Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-regression"><span class="nav-number">1.1.</span> <span class="nav-text">Linear Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic-regression"><span class="nav-number">1.2.</span> <span class="nav-text">Logistic Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-descent"><span class="nav-number">1.3.</span> <span class="nav-text">Gradient Descent</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#advanced-learning-algorithm"><span class="nav-number">2.</span> <span class="nav-text">Advanced Learning Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#neural-networks"><span class="nav-number">2.1.</span> <span class="nav-text">Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#decision-trees"><span class="nav-number">2.2.</span> <span class="nav-text">Decision Trees</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#advice-for-ml"><span class="nav-number">2.3.</span> <span class="nav-text">Advice for ML</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unsupervised-learning-recommender-systems-and-reinforcement-learning"><span class="nav-number">3.</span> <span class="nav-text">Unsupervised
-Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#clustering"><span class="nav-number">3.1.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anomaly-detection"><span class="nav-number">3.2.</span> <span class="nav-text">Anomaly Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#collaborative-filtering"><span class="nav-number">3.3.</span> <span class="nav-text">Collaborative Filtering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content-based-filtering"><span class="nav-number">3.4.</span> <span class="nav-text">Content-based Filtering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reinforcement-learning"><span class="nav-number">3.5.</span> <span class="nav-text">Reinforcement Learning</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-following-models"><span class="nav-number">2.1.</span> <span class="nav-text">Instruction-following Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parameter-efficient-fine-tuning"><span class="nav-number">2.2.</span> <span class="nav-text">Parameter-efficient
+Fine-tuning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#integration-of-expert-systems"><span class="nav-number">2.3.</span> <span class="nav-text">Integration of Expert
+Systems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#llama-adapter-v2"><span class="nav-number">3.</span> <span class="nav-text">LLaMA-Adapter V2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bias-tuning-of-linear-layers"><span class="nav-number">3.1.</span> <span class="nav-text">Bias Tuning of Linear Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#joint-training-with-disjoint-parameters"><span class="nav-number">3.2.</span> <span class="nav-text">Joint Training with
+Disjoint Parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#early-fusion-of-visual-knowledge"><span class="nav-number">3.3.</span> <span class="nav-text">Early Fusion of Visual
+Knowledge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#integration-with-experts"><span class="nav-number">3.4.</span> <span class="nav-text">Integration with Experts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">4.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#experimental-setups"><span class="nav-number">4.1.</span> <span class="nav-text">Experimental Setups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stronger-language-instruction-model"><span class="nav-number">4.2.</span> <span class="nav-text">Stronger Language
+Instruction Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visual-instruction-model"><span class="nav-number">4.3.</span> <span class="nav-text">Visual Instruction Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusionfuture-work-limits-broader-impact"><span class="nav-number">5.</span> <span class="nav-text">Conclusion(future
+work, limits, broader impact)</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +239,7 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/06/15/2022-machine-learning-specialization/">
+    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/06/19/llama-adapter-v2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/little%20star.jpg">
@@ -248,12 +252,12 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="[Waiting...]2022 Machine Learning Specialization | XinLiu's Homepage, Welcome!">
+      <meta itemprop="name" content="[waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model | XinLiu's Homepage, Welcome!">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          [Waiting...]2022 Machine Learning Specialization
+          [waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model
         </h1>
 
         <div class="post-meta-container">
@@ -264,14 +268,14 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-06-15 15:03:00" itemprop="dateCreated datePublished" datetime="2023-06-15T15:03:00+08:00">2023-06-15</time>
+      <time title="Created: 2023-06-19 22:00:00" itemprop="dateCreated datePublished" datetime="2023-06-19T22:00:00+08:00">2023-06-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-17 21:27:47" itemprop="dateModified" datetime="2023-06-17T21:27:47+08:00">2023-06-17</time>
+      <time title="Modified: 2023-06-30 16:30:49" itemprop="dateModified" datetime="2023-06-30T16:30:49+08:00">2023-06-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -279,11 +283,15 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Online-Course/" itemprop="url" rel="index"><span itemprop="name">Online Course</span></a>
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Online-Course/Andrew-Ng/" itemprop="url" rel="index"><span itemprop="name">Andrew Ng</span></a>
+          <a href="/categories/Paper/2023/" itemprop="url" rel="index"><span itemprop="name">2023</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/04/" itemprop="url" rel="index"><span itemprop="name">04</span></a>
         </span>
     </span>
 
@@ -301,20 +309,25 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>181</span>
+      <span>426</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
         </div>
           <div class="post-tags" style="margin-top: 5px;">
-              <a href="/tags/Machine-Learning/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Machine Learning</a>
+              <a href="/tags/Multi-modal/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Multi-modal</a>
+              <a href="/tags/LLM/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> LLM</a>
+              <a href="/tags/Instruction-Following/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Instruction-Following</a>
+              <a href="/tags/Adapter/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Adapter</a>
+              <a href="/tags/Prefix-Tuning/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Prefix-Tuning</a>
+              <a href="/tags/PEFT/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> PEFT</a>
           </div>
           <script type="text/javascript">
               var tagsall=document.getElementsByClassName("post-tags")
@@ -333,75 +346,110 @@ Learning: Recommender Systems and Reinforcement Learning</span></a><ol class="na
     
     
     
-    <div class="post-body" itemprop="articleBody"><blockquote>
-<p><em>Definition of Machine Learning(informal)</em>: Field of study
-that gives computers the ability to learn without being explicitly
-programmed. [1959, Arthur Samuel]</p>
+    <div class="post-body" itemprop="articleBody"><p><img src="/tmp/llama-adapter-v2-1.jpg" /></p>
+<p>Paper: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2304.15010.pdf</a></p>
+<p>Code: <a
+target="_blank" rel="noopener" href="https://github.com/OpenGVLab/LLaMA-Adapter">https://github.com/OpenGVLab/LLaMA-Adapter</a></p>
+<blockquote>
+<p>Considering the limited open-ended multi-modal reasoning ability of
+LLaMA-Adapter-V1(e.g., COCO Caption), LLaMA-Adapter-V2 is proposed to
+fully unleash the multi-modal potential of LLaMA.</p>
 </blockquote>
+<p><strong><em>When reading this note, you can think about the following
+questions:</em></strong></p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<h2 id="related-work">Related Work</h2>
+<h3 id="instruction-following-models">Instruction-following Models</h3>
+<blockquote>
+<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
+'Related Work/Instruction-Following Models' section.</p>
+</blockquote>
+<p>LLaMA-Adapter V2 can function effectively using just language
+instruction data and image-text pairs, without relying on multi-modal
+instruction data.</p>
+<h3 id="parameter-efficient-fine-tuning">Parameter-efficient
+Fine-tuning</h3>
+<blockquote>
+<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
+'Related Work/Parameter-Efficient Fine-Tuning(PEFT)' section.</p>
+</blockquote>
+<p>By utilizing an early fusion strategy and bias tuning, LLaMA-Adapter
+V2 injects visual features into large language models, yielding
+impressive multi-modal instruction-following performance with only 0.04%
+parameters of the entire LLaMA.</p>
+<h3 id="integration-of-expert-systems">Integration of Expert
+Systems</h3>
+<p>LLMs act as a core controller for external experts systems to boost
+its overall performance and capabilities.</p>
 <ul>
-<li>Main Course Content
-<ul>
-<li><strong>Supervised Learning</strong></li>
-<li>Unsupervised Learning</li>
-</ul></li>
-<li>Others
-<ul>
-<li>Reinforcement Learning</li>
-<li>Practical advice for applying learning algorithms</li>
-</ul></li>
+<li><strong>Vision Tasks</strong>: visual models as experts. <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.17580">HuggingGPT</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.04671">Visual ChatGPT</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.09842">Chameleon</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.11381">MMReACT</a> and <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.08128">ViperGPT</a></li>
+<li><strong>Robotics</strong>: real-world sensors as experts. <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.03378">PaLM-E</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.05608">Inner Monologue</a> and <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.12153">Text2Motion</a></li>
 </ul>
-<h1
-id="supervised-machine-learning-regression-and-classification">Supervised
-Machine Learning: Regression and Classification</h1>
-<h2 id="linear-regression">Linear Regression</h2>
-<h2 id="logistic-regression">Logistic Regression</h2>
-<h2 id="gradient-descent">Gradient Descent</h2>
-<!-- ## Machine Learning Overview
-## Linear Regression with One Variable
-## Training Linear Regression
-## Linear Regression with Multiple Variables
-## Practical Tips for Linear Regression
-## Classification
-## Cost Function
-## Gradient Descent
-## Regularization to Reduce Overfitting -->
-<h1 id="advanced-learning-algorithm">Advanced Learning Algorithm</h1>
-<h2 id="neural-networks">Neural Networks</h2>
-<h2 id="decision-trees">Decision Trees</h2>
-<h2 id="advice-for-ml">Advice for ML</h2>
-<!-- ## Neural Networks Intuition
-## Neural Network Model
-## TensorFlow Implementation
-## Neural Network Implementation in Python
-## Speculations on Artificial General Intelligence(AGI)
-## Vectorization(optional)
-## Neural Network Training
-## Activation Functions
-## Multiclass Classification
-## Additional Neural Network Concepts
-## Advice for Applying Machine Learning
-## Bias and Variance
-## Machine Learning Development Process
-## Skewed datasets(optional)
-## Decision Trees
-## Decision Tree Learning
-## Tree Ensembles -->
-<h1
-id="unsupervised-learning-recommender-systems-and-reinforcement-learning">Unsupervised
-Learning: Recommender Systems and Reinforcement Learning</h1>
-<h2 id="clustering">Clustering</h2>
-<h2 id="anomaly-detection">Anomaly Detection</h2>
-<h2 id="collaborative-filtering">Collaborative Filtering</h2>
-<h2 id="content-based-filtering">Content-based Filtering</h2>
-<h2 id="reinforcement-learning">Reinforcement Learning</h2>
-<!-- ## Clustering
-## Anomaly Detection
-## Recommender System
-## Recommender Systems Implementation
-## Content-based Filtering
-## Reinforcement Learning
-## State-action Value Function
-## Continuous State Spaces -->
+<p>LLaMA-Adapter V2 stands out by integrating short, yet precise
+descriptions generated by LLaMA-Adapter during inference time for
+efficient zero-shot and training-free visual instruction understanding,
+setting it apart from other methods that require extensive multimodal
+data during training.</p>
+<h2 id="llama-adapter-v2">LLaMA-Adapter V2</h2>
+<p>Based on finetuned LLaMA-Adapter V1, LLaMA-Adapter V2 optimizes the
+visual projection layers on image-text pairs to ensure proper
+vision-language alignment. But the visual features tend to dominate the
+adaptation prompts, causing the instruction-following ability to
+deteriorate rapidly. Therefore, Early Fusion of Visual Knowledge
+strategy is proposed.</p>
+<h3 id="bias-tuning-of-linear-layers">Bias Tuning of Linear Layers</h3>
+<blockquote>
+<p>To enhance its language instruction-following ability</p>
+</blockquote>
+<p>The added params accounts for 0.04%(~5M) of LLaMA and its
+initialization is helpful for stable training at early stages.</p>
+<ul>
+<li><span class="math inline">\(x\)</span>: input</li>
+<li><span class="math inline">\(W\)</span>: pre-trained weights(frozen)
+of a certain linear layer</li>
+<li><span class="math inline">\(b=Init(0)\)</span>: learnable bias</li>
+<li><span class="math inline">\(s=Init(1)\)</span>: learnable scale
+factor</li>
+<li><span class="math inline">\(y=W·x\rightarrow y=s·(W·x+b)\)</span>:
+modify each linear layer in the Transformer</li>
+</ul>
+<h3 id="joint-training-with-disjoint-parameters">Joint Training with
+Disjoint Parameters</h3>
+<blockquote>
+<p>For balanced visual instruction tuning</p>
+</blockquote>
+<h3 id="early-fusion-of-visual-knowledge">Early Fusion of Visual
+Knowledge</h3>
+<blockquote>
+<p>To balance textual and visual understanding</p>
+</blockquote>
+<h3 id="integration-with-experts">Integration with Experts</h3>
+<blockquote>
+<p>To boost zero-shot multi-modal reasoning</p>
+</blockquote>
+<h2 id="experiments">Experiments</h2>
+<h3 id="experimental-setups">Experimental Setups</h3>
+<h3 id="stronger-language-instruction-model">Stronger Language
+Instruction Model</h3>
+<h3 id="visual-instruction-model">Visual Instruction Model</h3>
+<h2 id="conclusionfuture-work-limits-broader-impact">Conclusion(future
+work, limits, broader impact)</h2>
+<p><strong><em>Future Work</em></strong></p>
+<ul>
+<li>integrate more expert visual systems</li>
+</ul>
+<p><strong><em>Limitations</em></strong></p>
+<p><strong><em>Broader Impact</em></strong></p>
 
     </div>
 
@@ -419,7 +467,7 @@ Learning: Recommender Systems and Reinforcement Learning</h1>
   </li>
   <li class="post-copyright-link">
       <strong>Post link: </strong>
-      <a href="https://ifshinelx.github.io/2023/06/15/2022-machine-learning-specialization/" title="[Waiting...]2022 Machine Learning Specialization">https://ifshinelx.github.io/2023/06/15/2022-machine-learning-specialization/</a>
+      <a href="https://ifshinelx.github.io/2023/06/19/llama-adapter-v2/" title="[waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model">https://ifshinelx.github.io/2023/06/19/llama-adapter-v2/</a>
   </li>
   <li class="post-copyright-license">
       <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -432,13 +480,13 @@ Learning: Recommender Systems and Reinforcement Learning</h1>
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/06/15/T%C3%BClu/" rel="prev" title="How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources">
-                  <i class="fa fa-chevron-left"></i> How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources
+                <a href="/2023/06/15/2022-machine-learning-specialization/" rel="prev" title="[Waiting...]2022 Machine Learning Specialization">
+                  <i class="fa fa-chevron-left"></i> [Waiting...]2022 Machine Learning Specialization
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/06/19/llama-adapter-v2/" rel="next" title="[waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model">
-                  [waiting...]LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model <i class="fa fa-chevron-right"></i>
+                <a href="/2023/06/30/MLLM/" rel="next" title="A Survey on Multimodal Large Language Models">
+                  A Survey on Multimodal Large Language Models <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
