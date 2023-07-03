@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/little%20star.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/little%20star.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ifshinelx.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"QRVCI4B1JK","apiKey":"683b41d81744270ced12c4596c915a0e","indexName":"hexo_index","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://ifshinelx.github.io/2023/07/01/LongMem/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://ifshinelx.github.io/2023/07/01/LongMem/","path":"2023/07/01/LongMem/","title":"(LongMem)Augmenting Language Models with Long-Term Memory"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>(LongMem)Augmenting Language Models with Long-Term Memory | XinLiu's Homepage, Welcome!</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XinLiu's Homepage, Welcome!</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#methods"><span class="nav-number">1.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#encoding-and-storing-memory"><span class="nav-number">1.1.</span> <span class="nav-text">Encoding and Storing Memory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memory-retrieval"><span class="nav-number">1.2.</span> <span class="nav-text">Memory Retrieval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memory-fusion"><span class="nav-number">1.3.</span> <span class="nav-text">Memory Fusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#training-objective"><span class="nav-number">1.4.</span> <span class="nav-text">Training Objective</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">2.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#training-setup"><span class="nav-number">2.1.</span> <span class="nav-text">Training Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#long-context-language-modeling"><span class="nav-number">2.2.</span> <span class="nav-text">Long-Context Language
+Modeling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#memory-augmented-in-context-learning"><span class="nav-number">2.3.</span> <span class="nav-text">Memory-Augmented
+In-Context Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ablation-studies"><span class="nav-number">2.4.</span> <span class="nav-text">Ablation Studies</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xin Liu"
+      src="/images/little%20star.jpg">
+  <p class="site-author-name" itemprop="name">Xin Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ifshinelx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ifshinelx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ifshine_lx@163.com" title="E-Mail → mailto:ifshine_lx@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <!-- modify icon to fire by szw -->
+      <i class="fa fa-history fa-" aria-hidden="true"></i>
+      Recent Posts
+    </div>
+    <ul class="links-of-blogroll-list" style="padding: 0px 12px;">
+      
+      
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/01/LongMem/" title="(LongMem)Augmenting Language Models with Long-Term Memory" target="_blank">07-01 (LongMem)Augmenting Language Models with Long-Term Memory </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/30/MLLM/" title="A Survey on Multimodal Large Language Models" target="_blank">06-30 A Survey on Multimodal Large Language Models </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/19/llama-adapter-v2/" title="LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model" target="_blank">06-19 LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/15/2022-machine-learning-specialization/" title="[Waiting...]2022 Machine Learning Specialization" target="_blank">06-15 [Waiting...]2022 Machine Learning Specialization </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/06/15/T%C3%BClu/" title="How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources" target="_blank">06-15 How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/07/01/LongMem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/little%20star.jpg">
+      <meta itemprop="name" content="Xin Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="(LongMem)Augmenting Language Models with Long-Term Memory | XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          (LongMem)Augmenting Language Models with Long-Term Memory
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-01 13:00:00" itemprop="dateCreated datePublished" datetime="2023-07-01T13:00:00+08:00">2023-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-07-03 13:28:26" itemprop="dateModified" datetime="2023-07-03T13:28:26+08:00">2023-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/" itemprop="url" rel="index"><span itemprop="name">2023</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/06/" itemprop="url" rel="index"><span itemprop="name">06</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>7 mins.</span>
+    </span>
+</div>
+
+        </div>
+          <div class="post-tags" style="margin-top: 5px;">
+              <a href="/tags/LLM/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> LLM</a>
+              <a href="/tags/Side-Tuning/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Side-Tuning</a>
+              <a href="/tags/X-Formers/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> X-Formers</a>
+              <a href="/tags/PEFT/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> PEFT</a>
+          </div>
+          <script type="text/javascript">
+              var tagsall=document.getElementsByClassName("post-tags")
+              for (var i = tagsall.length - 1; i >= 0; i--){
+                  var tags=tagsall[i].getElementsByTagName("a");
+                  for (var j = tags.length - 1; j >= 0; j--) {
+                      var r=Math.floor(Math.random()*75+200);
+                      var g=Math.floor(Math.random()*75+200);
+                      var b=Math.floor(Math.random()*75+200);
+                      tags[j].style.background = "rgb("+r+","+g+","+b+")";
+                  }
+              }                        
+            </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-0.png" /></p>
+<p>Paper: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.07174.pdf">https://arxiv.org/pdf/2306.07174.pdf</a></p>
+<p>Code: <a
+target="_blank" rel="noopener" href="https://github.com/Victorwz/LongMem">https://github.com/Victorwz/LongMem</a></p>
+<p>Bilibili: <a
+target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17M4y177WG/?share_source=copy_web">Augmenting
+Language Models with Long-Term Memory （UCSB， Microsoft 2023）</a></p>
+<aside>
+<p>👇 <strong>Problems</strong></p>
+</aside>
+<ul>
+<li>LLMs can <strong>only afford fix-sized inputs</strong> due to the
+input length limit, preventing them from utilizing rich long-context
+information from past inputs.</li>
+</ul>
+<p><strong><em>Two existing ways addressing the length limit
+issue:</em></strong></p>
+<ul>
+<li>Directly increasing the input length of LLM will cause <strong>huge
+computation complexity</strong>.</li>
+<li>Developing sparse attention reduces the computation cost, but still
+requires <strong>training from scratch</strong>.</li>
+</ul>
+<aside>
+<p>👇 <strong>Contributions</strong></p>
+</aside>
+<ul>
+<li><strong>LongMem</strong> enables LLMs to memorize long history,
+which benefits various downstream tasks.</li>
+</ul>
+<blockquote>
+<p>The idea behind this is very similar to LoRA's, creating a small
+network next to the backbone.</p>
+</blockquote>
+<p><strong><em>Two Benefits of LongMem:</em></strong></p>
+<ul>
+<li>Decouples the process of encoding memory and the process of memory
+retrieval and fusion, via decoupling LLM and SideNet, which effectively
+<strong>resolves the issue of memory staleness</strong>.</li>
+<li>The SideNet with frozen LLM is <strong>parameter-efficient</strong>
+can avoid catastrophic forgetting.</li>
+</ul>
+<blockquote>
+<p><strong>Remaining Questions</strong>: What is the ablation study of
+<span class="math inline">\(m\)</span> and <span
+class="math inline">\(m_s\)</span>? What are limitation of LongMem and
+its future work?</p>
+</blockquote>
+<hr />
+<h2 id="methods">Methods</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-1.png"
+alt="Overview of the memory caching and retrieval flow of LongMem." />
+<figcaption aria-hidden="true">Overview of the memory caching and
+retrieval flow of LongMem.</figcaption>
+</figure>
+<p>Three key components of LongMem: <strong>frozen LLM, Cache Memory
+Bank(CMB), Residual SideNet(RS).</strong></p>
+<p><strong>CMB</strong> is a cached head-wise vector queue that stores
+the memory.</p>
+<p><strong>RS</strong> is efficiently trained to fuse the memory context
+information.</p>
+<h3 id="encoding-and-storing-memory">Encoding and Storing Memory</h3>
+<p>Most LLMs process a fixed-sized input. Therefore, split a long
+sequence into fix-length segments.</p>
+<blockquote>
+<p>Each segment has several sequences.</p>
+</blockquote>
+<ul>
+<li><strong>Previous segments</strong>: key-value pairs of
+self-attention at m-th layer(<span
+class="math inline">\(\mathcal{Z}_k,\mathcal{Z}_v\in\mathbb{R}^{H\times
+M\times d}\)</span>) are stored in <strong>CMB</strong>
+<ul>
+<li><span class="math inline">\(H\)</span> is the attention heads num,
+<span class="math inline">\(d\)</span> is per-head dimension, <span
+class="math inline">\(M\)</span> indicates the capacity of
+<strong>CMB</strong></li>
+</ul></li>
+<li><strong>Current segment <span
+class="math inline">\(\{x_i\}_{i=1}^{|x|}:\)</span></strong> hidden
+states(of each layer) are retained and transfered to <strong>RS</strong>
+<ul>
+<li><span
+class="math inline">\(\mathbf{H}_{LLM}^0\in\mathbb{R}^{|x|\times
+E}\)</span> is the initial hidden states of <span
+class="math inline">\(\{x_i\}_{i=1}^{|x|}\)</span>, <span
+class="math inline">\(E\)</span> is the hidden dimension</li>
+<li><span
+class="math inline">\(\mathbf{H}_{LLM}^{l&#39;}=f_{\theta_{LLM}^{l&#39;}}(\mathbf{H}_{LLM}^{l&#39;-1}),\forall
+l&#39;\in[1,L&#39;]\)</span> is the successive hidden states, <span
+class="math inline">\(L&#39;\)</span> is the total layer num of LLM</li>
+</ul></li>
+<li><strong>Current token</strong>: top-K relevant key-value pairs are
+retrieved and fused into language modeling</li>
+</ul>
+<p><strong>CMB Update Mechanism</strong>: after memory retrieval and
+fusion, the oldest sequences are removed, the current sequences are
+appended.</p>
+<h3 id="memory-retrieval">Memory Retrieval</h3>
+<p><strong>Text-chunk</strong>: an n-gram structure of
+<strong>chunk-size</strong> <span class="math inline">\(csz\)</span>
+number of contiguous tokens.</p>
+<p>The hyperparameter <span class="math inline">\(csz\)</span> controls
+<strong>the granularity of retrieved contexts</strong>, which can be
+empirically adjusted based on downstream tasks.</p>
+<blockquote>
+<p>For instance, In-Context Learning requires more fine-grained label
+tokens from demostration examples cached in memory, where a smaller
+<span class="math inline">\(csz\)</span> is helpful.</p>
+</blockquote>
+<p><strong>Advantages of Token-to-Chunk Retrieval</strong>(compared with
+token-to-token):</p>
+<ul>
+<li>reduce the size of the retrieval index and
+<strong>accelerate</strong> the process</li>
+<li>further improve the retrieval <strong>accuracy</strong> (not always,
+when <span class="math inline">\(csz\)</span> is too large)</li>
+</ul>
+<p><strong>Three steps of retrieval:</strong></p>
+<ol type="1">
+<li>The <strong>CMB</strong> has <span
+class="math inline">\(M/csz\)</span> chunks. We use the
+<strong>mean-pooled vector</strong> on the chunk-size dimension to get
+the key vector for retrieval.</li>
+<li>Then we retrieve the top-(<span
+class="math inline">\(K/csz\)</span>) chunks w.r.t(with respect to) the
+dot product between the <strong>attention query</strong> of current
+token <span class="math inline">\(\mathbf{x}_i\)</span> and the
+<strong>mean-pooled attention key</strong> of a candidate chunk.</li>
+<li>Finally, by squeezing and flatterning, we get <span
+class="math inline">\(K\)</span> key-valus pairs <span
+class="math inline">\(\{\widetilde{\mathbf{K}}_j,\widetilde{\mathbf{V}}_j\}_{j=1}^K\)</span>
+at token-level.</li>
+</ol>
+<h3 id="memory-fusion">Memory Fusion</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-2.png"
+alt="Overview of LongMem architecture. “MemAug” represents Memory-Augmented Layer for memory retrieval and fusion." />
+<figcaption aria-hidden="true">Overview of LongMem architecture.
+“<strong>MemAug</strong>” represents <strong>Memory-Augmented
+Layer</strong> for memory retrieval and fusion.</figcaption>
+</figure>
+<aside>
+<p>👇 <strong>Residual</strong> <strong>SideNet</strong> Architecture
+and Initialization</p>
+</aside>
+<p>SideNet consists of (L-1) normal Transformer decoder layers and one
+special <strong>MemAug</strong>.</p>
+<p><span class="math inline">\(L\)</span> is the total layer num of
+<strong>SideNet</strong>, <span class="math inline">\(L&#39;=\alpha L,
+\alpha\in\{2,3,4,...\}\)</span>, <span
+class="math inline">\(L&lt;L&#39;\)</span> for efficiency.</p>
+<p><strong>Weight Initialization</strong>: <span
+class="math inline">\(\mathcal{\Theta}_{Side}^{\frac{l&#39;}{\alpha}}=\mathcal{\Theta}_{LLM}^{l&#39;}\)</span></p>
+<p><strong>Cross-Network Residual Connections</strong>:</p>
+<p><span
+class="math inline">\(\mathbf{H}_{Side}^l=f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})+(\mathbf{H}_{LLM}^{\alpha
+l}-\mathbf{H}_{LLM}^{\alpha(l-1)}),\forall l\in[1,L]\)</span></p>
+<blockquote>
+<p>The residual connections after the SA and FFN of a decoder layer will
+be performed as normal in <span
+class="math inline">\(f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})\)</span>
+and parallel to the proposed cross-network residual connections. SA is
+self-attention. FFN is feed-forward network.</p>
+</blockquote>
+<aside>
+<p>👇 <strong>MemAug:</strong> Each token attends on both local contexts
+and retrieved memory contexts.</p>
+</aside>
+<p><span class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V},
+\mathbf{A},\mathbf{M}\in\mathbb{R}^{|x|\times d}\)</span>, <span
+class="math inline">\(g\)</span> is a <strong>trainable</strong>
+<strong>head-wise</strong> gating factor, <span
+class="math inline">\(m_s\)</span> is the layer index of
+<strong>MemAug.</strong></p>
+<blockquote>
+<p>The initialization of gating factor g:
+Parameter(torch.zeros(self.num_heads))</p>
+</blockquote>
+<p>The hidden state output from previous layer (<span
+class="math inline">\(\mathbf{H}^{(m_s-1)}_{Side}\in\mathbb{R}^{|x|\times
+d}\)</span>) is linearly projected into <span
+class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V}\)</span> via
+three matrices <span
+class="math inline">\(W^Q,W^K,W^V\in\mathbb{R}^{d\times d}\)</span>.</p>
+<p><span
+class="math inline">\(\{\widetilde{\mathbf{K}}_i,\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\in\mathbb{R}^{|x|\times
+K\times d}\)</span> is the retrieved contexts. Each token has distinct
+contexts.</p>
+<p><span
+class="math inline">\(\mathbf{A}=softmax(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d}})\mathbf{V},\mathbf{M}=Concat\{softmax(\frac{\mathbf{Q}_i\widetilde{\mathbf{K}}_i^T}{\sqrt{d}})\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\)</span></p>
+<p><span
+class="math inline">\(\mathbf{H}^{m_s}_{Side}=sigmoid(g)·\mathbf{A}+(1-sigmoid(g))·\mathbf{M}:\)</span>
+the output of <strong>MemAug</strong></p>
+<h3 id="training-objective">Training Objective</h3>
+<ul>
+<li><span
+class="math inline">\(P(\mathbf{x}_i|\mathbf{x}_1,...,\mathbf{x}_{i-1})=softmax(W\mathbf{H}^{L}_{Side}):\)</span>
+the token probability is computed using the last SideNet hidden states
+<ul>
+<li><span class="math inline">\(W:\)</span> the frozen output embedding
+weight shared by LLM and SideNet</li>
+</ul></li>
+<li><span
+class="math inline">\(\max\sum_{x\in\mathcal{D}}\sum_{i=1}^{|x|}\log
+P(\mathbf{x}_i|\mathbf{x}_1, ..., \mathbf{x}_{i-1}):\)</span> the
+training objective of <strong>LongMem</strong>
+<ul>
+<li><span class="math inline">\(x\)</span> is a randomly sampled
+sentence from the pre-training text corpus <span
+class="math inline">\(\mathcal{D}\)</span></li>
+</ul></li>
+</ul>
+<h2 id="experiments">Experiments</h2>
+<h3 id="training-setup">Training Setup</h3>
+<aside>
+<p>👇 Batchfying the training corpora (document-level shuffling within
+each group)</p>
+</aside>
+<blockquote>
+<p>The conventional process truncates the corpora without padding and
+conduct a segment-level shuffling.</p>
+</blockquote>
+<p>Doc Group Num = Batch Size</p>
+<p>Segment num is same for each group.</p>
+<blockquote>
+<p>Maybe need padding. Seg num is unlimited.</p>
+</blockquote>
+<p>In a mini-batch, we select a segment from each group and get total
+batch-size num of segments.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-3.png"
+alt="Batchfying the large text corpora into batches to ensure that each consecutive segments within each document is distributed in consecutive batches." />
+<figcaption aria-hidden="true"><strong>Batchfying the large text
+corpora</strong> into batches to ensure that each consecutive segments
+within each document is distributed in consecutive batches.</figcaption>
+</figure>
+<aside>
+<p>👇 Training Corpus and Hyperparameters</p>
+</aside>
+<p><strong>Corpus</strong>: sample a subset of the <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a>.</p>
+<p>The pre-training of reproduced GPT-2* iterates on 117B tokens in
+total, with 512 batch-size and 1024-token fixed segment-length.</p>
+<blockquote>
+<p>Original GPT-2 adopts absolute position embedding, which is found to
+perform poorly to enable LLM to learn long-distance dependencies.</p>
+</blockquote>
+<p><strong>MemAug</strong> is the 9-th layer of SideNet.</p>
+<p><span
+class="math inline">\(L&#39;=24,L=12,\alpha=\frac{L&#39;}{L}=2,H=16,d=64,\)</span>
+<span class="math inline">\(csz=4,K=64,m=18\)</span></p>
+<blockquote>
+<p>The attention keys and values from m=18-th layer of backbone LLM is
+cached into CMB.</p>
+</blockquote>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-4.png"
+alt="Memory-Augmented Adaptation and Architectural Hyperparameters." />
+<figcaption aria-hidden="true">Memory-Augmented Adaptation and
+Architectural Hyperparameters.</figcaption>
+</figure>
+<p>The pre-training and adaptation are trained on <strong>16
+32GB-Tesla-V100 GPUs</strong>.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-5.png"
+alt="The superiority of our method over fully dense self-attention (GPT-2*) in terms of inference speed and GPU-memory utilization." />
+<figcaption aria-hidden="true">The superiority of our method over fully
+dense self-attention (GPT-2*) in terms of <strong>inference speed and
+GPU-memory utilization</strong>.</figcaption>
+</figure>
+<aside>
+<p>👇 Memory Retrieval Module</p>
+</aside>
+<p>The fixed memory-size of <strong>CMB</strong> in one GPU is 65536
+key-value pairs of tokens.</p>
+<blockquote>
+<p>We enable each GPU to construct and update their own memory retrieval
+module for efficiency.</p>
+<p>The capacity of CMB (M) is not unlimited.</p>
+</blockquote>
+<p>The retrieval takes about 15ms per 1k tokens, which is 55% timecost
+of LLM forwarding pass.</p>
+<p>Use <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1702.08734.pdf">faiss</a> to store
+the mean-pooled attention keys of <span
+class="math inline">\(M/csz\)</span> chunks and perform efficient
+retrieval.</p>
+<aside>
+<p>👇 Baselines</p>
+</aside>
+<p>Adopt reproduced GPT-2* and <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as two baseline
+under same pre-training setting.</p>
+<p>We insert the knn-augmented layer proposed by <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as the same 18-th
+layer in the LLM decoder.</p>
+<h3 id="long-context-language-modeling">Long-Context Language
+Modeling</h3>
+<aside>
+<p>👇 Zero-Shot Evaluation Setting(3 long-context modeling datasets)</p>
+</aside>
+<p>The majority of included books or papers in these datasets have the
+length of at least 16k tokens.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-6.png"
+alt="Dataset Statistics of five splits of PG-22 based on length range and ArXiv." />
+<figcaption aria-hidden="true">Dataset Statistics of five splits of
+PG-22 based on length range and ArXiv.</figcaption>
+</figure>
+<p><strong>PG-22(Project Gutenberg 2020-2022 Language
+Modeling):</strong> We crawled and cleaned the books published between
+2020 and 2022 under <a target="_blank" rel="noopener" href="https://www.gutenberg.org/">Project
+Gutenberg Library</a>.</p>
+<blockquote>
+<p>Our training subset PG-19 only contains books published before
+1919.</p>
+</blockquote>
+<p><strong>ArXiv:</strong> We select a val split of ArXiv paper subset
+in the <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a> corpus.
+The val split does not exist in our training corpus.</p>
+<p><strong><a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</strong>
+We select the Archive of Our Own (AO3) subset. Use its splits of 4k, 6k,
+and 8k prefix.</p>
+<p><strong><em>Details of <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</em></strong></p>
+<ul>
+<li>For LLMs that cannot process over 4k tokens, we abandon the front
+prefix to fulfill the maximum input length of LLMs.</li>
+<li>For <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> and
+LongMem model, we firstly load the given 4k/6k/8k prefix contexts into
+the cached memory(while the input length to local context is still 1k
+tokens) and then do the scoring.</li>
+<li>We use the perplexity as the scorer for each candidate suffix
+segment in zero-shot evaluation manner.</li>
+<li>Then the suffix segment with lower perplexity is selected as the
+label.</li>
+<li>The suffix identification accuracy is used as the evaluation
+metric.</li>
+</ul>
+<aside>
+<p>👇 Results</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-7.png"
+alt="Evaluation results on long-context language modeling datasets. We report token-level perplexity (PPL) (lower the better) on all datasets." />
+<figcaption aria-hidden="true">Evaluation results on long-context
+language modeling datasets. We report token-level perplexity (PPL)
+(lower the better) on all datasets.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-8.png"
+alt="Zero-shot Suffix Identification Accuracy on AO3 subset of ChapterBreak. Baselines marked with † are directly cited from ChapterBreak." />
+<figcaption aria-hidden="true">Zero-shot Suffix Identification Accuracy
+on AO3 subset of ChapterBreak. Baselines marked with † are directly
+cited from <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>.</figcaption>
+</figure>
+<h3 id="memory-augmented-in-context-learning">Memory-Augmented
+In-Context Learning</h3>
+<blockquote>
+<p>Conventional ICL is heavily restricted by input context length.</p>
+</blockquote>
+<p>LongMem: <strong>Infinite-length ICL when loading large number of
+demonstration examples into cached memory.</strong></p>
+<aside>
+<p>👇 Evaluation Setting</p>
+</aside>
+<ul>
+<li>NLU datasets, 4/20-shot: <a
+target="_blank" rel="noopener" href="https://aclanthology.org/D13-1170.pdf">SST-2</a>, <a
+target="_blank" rel="noopener" href="https://www.cs.cornell.edu/home/cardie/papers/lre05withappendix.pdf">MPQA</a>,
+<a
+target="_blank" rel="noopener" href="http://richard.cyganiak.de/2008/papers/dbpedia-iswc2007.pdf">MR</a>,
+<a target="_blank" rel="noopener" href="https://aclanthology.org/P04-1035.pdf">Subj</a>, <a
+target="_blank" rel="noopener" href="https://aclanthology.org/D13-1170.pdf">SST-5</a></li>
+<li>QA dataset, open-ended generation, 3-shot(about 1k tokens): <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.05250.pdf">SQuAD</a></li>
+</ul>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-9.png"
+alt="The hand-crafted ICL prompt templates. We concatenate the demonstration examples with newlines to delimit them." />
+<figcaption aria-hidden="true">The hand-crafted <strong>ICL prompt
+templates</strong>. We concatenate the demonstration examples with
+newlines to delimit them.</figcaption>
+</figure>
+<p>The prediction label is directly generated using greedy decoding.</p>
+<p>Chunk size <span class="math inline">\(csz=2\)</span></p>
+<aside>
+<p>👇 Results</p>
+</aside>
+<p>We report the mean and standard deviation of 6 runs with different
+random seeds to overcome the randomness in selecting k-shot
+demonstration examples.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-10.png"
+alt="Accuracy [%] on 5 NLU tasks. We sample 2000 extra demonstration examples and load them into cached memory." />
+<figcaption aria-hidden="true">Accuracy [%] on 5 NLU tasks. We sample
+2000 extra demonstration examples and load them into cached
+memory.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-11.png"
+alt="Exact match (EM) and F1 scores on SQuAD. LongMem loads 200 extra demonstration examples into cached memory." />
+<figcaption aria-hidden="true">Exact match (EM) and F1 scores on SQuAD.
+LongMem loads 200 extra demonstration examples into cached
+memory.</figcaption>
+</figure>
+<h3 id="ablation-studies">Ablation Studies</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-12.png"
+alt="(a) Effects of chunk size on ICL; (b) Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice msz=16k)." />
+<figcaption aria-hidden="true">(a) Effects of chunk size on ICL; (b)
+Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice
+msz=16k).</figcaption>
+</figure>
+<p>In general, the memory size should be compatible with the average
+length of documents or contexts, i.e., a set of books with average 16k
+tokens should deploy the memory size of 16k tokens in cached memory.</p>
+<h2 id="related-work">Related Work</h2>
+<p><strong>(1) Large Language Models</strong></p>
+<p><strong>(2) x-formers</strong></p>
+<p>x-former enables transformers to attend on longer context. However,
+existing x-formers is <strong>not efficient</strong> and their
+<strong>upper-bound seq_len</strong> is only 16k tokens.</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL</a>
+proposes to cache attention keys and values of past segment and reuse
+them in recurrent manner.</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.04768.pdf">LinFormer</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.05150.pdf">LongFormer</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2003.05997.pdf">Routing Transformer</a>
+propose various sparse attention mechanisms for decreasing <span
+class="math inline">\(O(n^2)\)</span> complexity to <span
+class="math inline">\(O(n log n)\)</span> or even <span
+class="math inline">\(O(n)\)</span>.</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2007.14062.pdf">BigBird</a> achieves a
+4k sequence length via attending on a subset of context tokens.</p>
+<p><strong>(3) Side-Tuning (<a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1912.13503.pdf">paper1</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2206.06522.pdf">paper2</a>)</strong></p>
+<p>Side-Tuning is a <strong>task-specific</strong> tuning method for
+pre-trained models via training a lightweight side-network that is fused
+with the fixed pre-trained network via summation.</p>
+<blockquote>
+<p>In constrast, LongMem has well zero-shot performance.</p>
+</blockquote>
+<p>Our method distinguishes the side-tuning method in terms of
+<strong>learning objective</strong> and <strong>cross-network fusion
+ways</strong>.</p>
+<p>LongMem proposes to augment LLMs with decoupled memory for memorizing
+long past inputs, which does not involve any task-specific tuning.</p>
+<p>The cross-network residual connections proposed by LongMem is novel
+and distincts from the vanilla summation of Side-Tuning.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Xin Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ifshinelx.github.io/2023/07/01/LongMem/" title="(LongMem)Augmenting Language Models with Long-Term Memory">https://ifshinelx.github.io/2023/07/01/LongMem/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/06/30/MLLM/" rel="prev" title="A Survey on Multimodal Large Language Models">
+                  <i class="fa fa-chevron-left"></i> A Survey on Multimodal Large Language Models
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xin Liu</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="far fa-file-word"></i>
+    </span>
+    <span title="Word count total">10k</span>
+  </span>
+
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.17.1/algoliasearch-lite.umd.js" integrity="sha256-F7emIId74fYoGrHzsnu3iClRHIbBMhMCbxDoA1cfMAY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.56.1/instantsearch.production.min.js" integrity="sha256-lz9C+x8+6w2rh56x5TrH5iYmE4Js2FiJS5h0tuMz7hQ=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"user-name/repo-name","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
