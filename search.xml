@@ -383,16 +383,424 @@ resources.</li>
       </tags>
   </entry>
   <entry>
-    <title>Home</title>
-    <url>/2023/06/08/home/</url>
-    <content><![CDATA[<p>I am currently a master student at <a
-href="https://www.ecnu.edu.cn/">ECNU</a>. My recent research interest
-mainly focuses on multi-modal learning (especially combined with LLMs).
-You can <a href="mailto:ifshine_lx@163.com">email</a> me for further
-communication.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
+    <title>MIMIC-IT: Multi-Modal In-Context Instruction Tuning</title>
+    <url>/2023/07/04/MIMIC-IT/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-0.png" /></p>
+<p>MIMIC-IT Paper: <a
+href="https://arxiv.org/pdf/2306.05425.pdf">https://arxiv.org/pdf/2306.05425.pdf</a></p>
+<p>Otter Paper: <a
+href="https://arxiv.org/pdf/2305.03726.pdf">https://arxiv.org/pdf/2305.03726.pdf</a></p>
+<p>Code: <a
+href="https://github.com/Luodian/Otter">https://github.com/Luodian/Otter</a></p>
+<p>Project Page: <a
+href="https://otter-ntu.github.io/">https://otter-ntu.github.io/</a></p>
+<aside>
+<p>👇 Problems</p>
+</aside>
+<p>Current VL instruction-response pairs in terms of quantity, diversity
+and creativity are limited, posing challenges to the generalization of
+interactive VLMs.</p>
+<aside>
+<p>👇 Contributions</p>
+</aside>
+<ul>
+<li><strong>MIMIC-IT</strong>: dataset with 2.8M instruction-response
+pairs</li>
+<li><strong>Syphus</strong>: automatic instruction-response generation
+pipeline &gt; Its filtering does not consider whether the visual info
+and textual info are paired or not. &gt;</li>
+<li><strong>Otter</strong>: improve OpenFlamingo in perception,
+reasoning, and planning via finetuning it on MIMIC-IT</li>
+</ul>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT%20Overview.jpg"
+alt="MIMIC-IT overview. Each instruction is accompanied by multi-modal conversational context." />
+<figcaption aria-hidden="true">MIMIC-IT overview. Each instruction is
+accompanied by multi-modal conversational context.</figcaption>
+</figure>
+<h1 id="related-workmulti-modal-instruction-tuning-dataset">1 - Related
+Work(Multi-modal Instruction Tuning Dataset)</h1>
+<blockquote>
+<p>One potential reason for the zero-shot performance gain by
+instruction tuning is that it internalizes the <a
+href="https://arxiv.org/pdf/2209.15189.pdf">context</a>, which is
+preferred in user interactions especially when user input skips
+commonsense context.</p>
+</blockquote>
+<p><a href="https://arxiv.org/pdf/2212.10773.pdf">Multi-Instruct</a>:
+Initially introduces the notion of instruction tuning in multi-modal
+models</p>
+<p><a href="https://arxiv.org/pdf/2304.10592.pdf">Mini-GPT4</a>: creates
+its instruction-based dataset by merging Conceptual Caption, SBU, and
+LAION with handwritten instruction templates.</p>
+<aside>
+<p>👇 <a
+href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA-Instruct-150K</a>
+elevates the quality of VL instruction-following datasets.</p>
+</aside>
+<p>Utilizing self-instruct and handwritten seed instructions,
+<strong>LLaVA-Instruct-150K</strong> obtains instructions and responses
+from GPT-4 based on COCO image captions and object bounding boxes.</p>
+<p><strong><em>Its three limitations:</em></strong></p>
+<ol type="1">
+<li><strong>Limited visual diversity</strong>: only COCO images.</li>
+<li><strong>Single image as visual data</strong>: cannot process
+multiple images or videos.</li>
+<li><strong>Language-only in-context information</strong>: no
+multi-modal in-context info</li>
+</ol>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-1.png"
+alt="LLaVA-Instruct-150K: Language-only In-context." />
+<figcaption aria-hidden="true">LLaVA-Instruct-150K: Language-only
+In-context.</figcaption>
+</figure>
+<aside>
+<p>👇 Three characteristics of MIMIC-IT</p>
+</aside>
+<blockquote>
+<p>While these previous works focuse on general scene images, MIMIC-IT
+categorizes our data sources into indoor scenes, outdoor scenes,
+conversations, and egocentric videos.</p>
+</blockquote>
+<ol type="1">
+<li><strong>Diverse visual scenes:</strong> incorporating images and
+videos from general scenes, egocentric view scenes, and indoor RGB-D
+images.</li>
+<li><strong>Multiple images (or a video) as visual data</strong>:
+supporting instruction-response pairs accompanied by any number of
+images or videos.</li>
+<li><strong>Multi-modal in-context information</strong>: including
+multiple instruction-response pairs and multiple images or videos</li>
+</ol>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-2.png"
+alt="MIMIC-IT: Multi-modal In-context. Left part is in-context, right part is the query." />
+<figcaption aria-hidden="true">MIMIC-IT: Multi-modal In-context. Left
+part is in-context, right part is the query.</figcaption>
+</figure>
+<h1 id="multi-modal-in-context-instruction-tuning-dataset">2 -
+Multi-modal In-Context Instruction Tuning Dataset</h1>
+<h2 id="mimic-it-data-format">2.1 - MIMIC-IT Data Format</h2>
+<p><span class="math inline">\(I_q\)</span> denotes the <span
+class="math inline">\(q\)</span>-th instruction, <span
+class="math inline">\(R_q\)</span> is the response, <span
+class="math inline">\(X_q\)</span> refers to images or videos.</p>
+<blockquote>
+<p>Videos can be viewed as ordered sequences of images.</p>
+</blockquote>
+<p>A <strong>query example</strong> is a tuple <span
+class="math inline">\((I_q, R_q, X_q)\)</span>, where <span
+class="math inline">\(\{x_{j=1}^N\}\in X_q\)</span>, <span
+class="math inline">\(N\)</span> is image num.</p>
+<aside>
+<p>👆 <span class="math inline">\(p_{\theta}(R_q|(I_q,X_q))\)</span> is
+the <strong>standard instruction-tuning process</strong> with trainable
+params <span class="math inline">\(\theta\)</span>.</p>
+</aside>
+<p><span
+class="math inline">\(C_{\psi}:(I_q,X_q)\mapsto\{(I_k,X_k)\}_{k=1}^M\)</span>
+are <span class="math inline">\(M\)</span> <strong>in-context
+examples</strong> of current query example.(The function is
+task-dependent.)</p>
+<p><strong>MIMIC-IT Data Format</strong>: <span
+class="math inline">\(d_q=(I_q,R_q,X_q,C_{\psi}(I_q,X_q)),d_q\sim
+D_{MIMIC-IT}\)</span>.</p>
+<aside>
+<p>👆 <span
+class="math inline">\(p_{\theta}(R_q|(I_q,X_q,C_{\psi}(I_q,X_q)))\)</span>
+incorporates in-context examples.</p>
+</aside>
+<h2 id="sythus-automatic-instruction-response-generation-pipeline">2.2 -
+Sythus: Automatic Instruction-Response Generation Pipeline</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-3.png"
+alt="Sythus overview. Step 4 expands pairs into 8 languages via GPT—— Chinese (zh), Japanese (ja), Spanish (es), German (de), French (fr), Korean (ko), and Arabic (ar)." />
+<figcaption aria-hidden="true">Sythus overview. Step 4 expands pairs
+into 8 languages via GPT—— Chinese (zh), Japanese (ja), Spanish (es),
+German (de), French (fr), Korean (ko), and Arabic (ar).</figcaption>
+</figure>
+<p><strong>System messages</strong> define the desired tone and style of
+the generated instruction-response(IR) pairs.</p>
+<p><strong>Visual annotations</strong> provide essential image
+information such as bounding boxes, captions, timestamps.</p>
+<p><strong>In-context examples</strong> assist ChatGPT in learning
+within the context.</p>
+<p><strong>Cold-start stage</strong> is before the large-scale query.
+This stage identifies the optimal system message and in-context example
+for each specific task via prompting ChatGPT.</p>
+<p><strong>Safety and Ethical Filtering</strong>: The GPT content policy
+eliminates output that is suspicious for unfair opportunities,
+stereotyping, overrepresentation/underrepresentation, explicit content,
+disinformation, or unreliable information.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-4.png"
+alt="System message for TV show Captions (TVC) query." />
+<figcaption aria-hidden="true">System message for TV show Captions (TVC)
+query.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-5.png"
+alt="In-context exemplars for TV show Captions (TVC) query." />
+<figcaption aria-hidden="true">In-context exemplars for TV show Captions
+(TVC) query.</figcaption>
+</figure>
+<h2 id="visual-data-exploration">2.3 - Visual Data Exploration</h2>
+<p><strong>Why we leverage existing datasets?</strong></p>
+<ol type="1">
+<li>high-quality visual annotations (2) align with real-world
+distribution</li>
+</ol>
+<blockquote>
+<p>In each sub-task, we elaborate on the process of organizing various
+data into an in-context instruction tuning format.</p>
+</blockquote>
+<h3 id="general-scene-understanding">2.3.1 - General Scene
+Understanding</h3>
+<aside>
+<p>👇 <strong>LLaVA-Interleaved (LA-I)</strong>.</p>
+</aside>
+<p>Retrieve ten in-context examples for each instruction-response pair
+in <a
+href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA-Instruct-150K</a>
+based on instruction text2text similarity(<strong>TTS</strong>) or
+image2image similarity(<strong>IIS</strong>).</p>
+<p>Trained on the LA task, the model exhibits exceptional scene
+comprehension, reasoning abilities, and multi-round conversation
+capabilities.</p>
+<aside>
+<p>👇 <strong>Spot The Difference (SD)</strong>. Identify scene
+differences between the paired images with varying complexity
+levels.</p>
+</aside>
+<ul>
+<li><strong>General Scene Difference</strong>: (1) create image pairs
+from the <a href="https://arxiv.org/pdf/1405.0312.pdf">COCO2017</a> via
+<strong>IIS</strong> (2) use image captions and object detection
+annotations</li>
+<li><strong>Subtle Difference</strong>: (1) image pairs from <a
+href="https://arxiv.org/pdf/1808.10584.pdf">Spot-the-Diff</a>(extracted
+from surveillance footage) (2) employ natural language difference
+descriptions as annotations</li>
+</ul>
+<aside>
+<p>👇 <strong>Visual Story Telling (VIST)</strong>. Generate coherent
+and engaging narratives based on visual input.</p>
+</aside>
+<p><a href="https://arxiv.org/pdf/1604.03968.pdf">Visual
+Storytelling</a> includes event-based image sequences and corresponding
+inquiry questions.</p>
+<p>Given that image annotations often contain narratives and timelines
+not directly observable, we instruct ChatGPT to act as a viewer
+answering questions about the images.</p>
+<p>The prompts also incorporate thought-provoking inquiries to promote
+creativity.</p>
+<aside>
+<p>👇 <strong>Dense Captions (DC)</strong>.</p>
+</aside>
+<p>Expanding the scope of video understanding, DC features dense
+captions from <a
+href="https://arxiv.org/pdf/1705.00754.pdf">DenseCaption/Activity
+caption</a> corresponding to clips within longer videos. The
+instructions pose a diverse set of questions, addressing the general
+visual content of the video, human actions, and behaviors, the
+chronological sequence of events, and causal relationships. This
+approach encourages VLMs to delve deeper into the intricacies of video
+content.</p>
+<aside>
+<p>👇 <strong>TV Show Captions (TVC)</strong>.</p>
+</aside>
+<p>The primary purpose of incorporating TV show clips with high-level
+captions into the training process of VLMs is to enhance their social
+reasoning abilities and deepen their understanding of complex character
+dynamics. By organizing drama clips from <a
+href="https://arxiv.org/pdf/2001.09099.pdf">TVR</a> to analyze character
+relationships and motivations, we aim to challenge VLMs to move beyond
+mere perception and demonstrate their reasoning capabilities within the
+context of TV show narratives. This focused approach is crucial for
+fostering advanced VLMs capable of effectively handling diverse
+real-world situations and user queries.</p>
+<h3 id="egocentric-view-understanding">2.3.2 - Egocentric View
+Understanding</h3>
+<aside>
+<p>👇 <strong>Indoor Event Planning (IEP)</strong>. Planning
+capabilities for diverse 2D room photos.</p>
+</aside>
+<p><strong>2D Photos Sampling</strong>: We gather indoor scene RGB-D
+images from <a href="https://arxiv.org/pdf/1702.04405.pdf">ScanNetv2</a>
+and sample them into multiple 2D visual inputs, representing a room’s
+layout from a first-person perspective.</p>
+<p><strong>Instructions Generation</strong> via prompting ChatGPT:
+direct humans to perform various activities in indoor spaces.</p>
+<ul>
+<li>Initially, we have ChatGPT create a personality for the room
+owner.</li>
+<li>Subsequently, the planning should be intimately related to the
+room’s layout and the generated room owner, underlining the importance
+of context awareness in VLMs.</li>
+</ul>
+<aside>
+<p>👇 <a href="https://arxiv.org/pdf/2110.07058.pdf">Ego4D (E4D,
+videos)</a>. For first-person augmented reality (AR) headset assistant
+applications.</p>
+</aside>
+<p>By prompting ChatGPT to generate instructions based on visual
+descriptions, our goal is to simulate practical interactions between
+users and AR assistants.</p>
+<p>An instance of assistant-related questions and context-aware
+responses:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Instruction: What should I do now?</span><br><span class="line">Response: Based on my observation, you can now proceed to do....</span><br></pre></td></tr></table></figure>
+<h2 id="dataset-statistics">2.4 - Dataset Statistics</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-6.png"
+alt="Comparison between MIMIC-IT and other multi-modal instruction datasets. MIMICIT features: (1) The largest. (2) Including video data. (3) In-context scenarios. (4) Multilingual." />
+<figcaption aria-hidden="true">Comparison between MIMIC-IT and other
+multi-modal instruction datasets. MIMICIT features: (1) The largest. (2)
+Including video data. (3) In-context scenarios. (4)
+Multilingual.</figcaption>
+</figure>
+<p><strong>2.8M instruction-response pairs</strong>(2.2M unique
+instructions): each pair includes at least one multi-modal in-context
+example and one language-only in-context example.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-7.png"
+alt="The data statistics of MIMIC-IT. (c) retains 25% of Ego4D instructions for a more balanced distribution." />
+<figcaption aria-hidden="true">The data statistics of MIMIC-IT. (c)
+retains 25% of Ego4D instructions for a more balanced
+distribution.</figcaption>
+</figure>
+<ol type="a">
+<li><p>and (b) examine the characteristics and diversity using <a
+href="https://github.com/explosion/spacy-models/releases/tag/en_core_web_md-3.5.0">spaCy</a>
+to get top 20 most frequent root verbs alongside their top 4 direct noun
+objects.</p></li>
+<li><p>demonstrates diversity in terms of instructions/responses length,
+image num per instruction, and in-context examples num per
+instruction.</p></li>
+</ol>
+<h1 id="empricial-evaluation">3 - Empricial Evaluation</h1>
+<h2 id="otter-a-multi-modal-in-context-instruction-tuned-model">3.1 -
+Otter: A Multi-Modal In-Context Instruction Tuned Model</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Otter.png"
+alt="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Otter.png" />
+<figcaption
+aria-hidden="true">https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Otter.png</figcaption>
+</figure>
+<h2 id="usage-examples-and-demonstrations">3.2 - Usage Examples and
+Demonstrations</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Otter-example.png"
+alt="Otter’s response examples in different scenarios. Otter is able to serve for situation understanding and reasoning, learning with in-context examples, and egocentric visual assistant." />
+<figcaption aria-hidden="true"><strong>Otter’s response examples in
+different scenarios</strong>. Otter is able to serve for situation
+understanding and reasoning, learning with in-context examples, and
+egocentric visual assistant.</figcaption>
+</figure>
+<p><strong>Otter’s response examples in different scenarios</strong>.
+Otter is able to serve for situation understanding and reasoning,
+learning with in-context examples, and egocentric visual assistant.</p>
+<p><strong>Scene Understanding and Reasoning</strong>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;image&gt;Human:&#123;instruction&#125; Assistant:&lt;answer&gt;&#123;model-generated response&#125;&lt;endofchunk&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>Learning with In-context Examples</strong>.</p>
+<p>The organized input data format(on the LA-T2T task) is as
+follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Multiple in-context example with similar instructions</span><br><span class="line">&lt;image&gt;Human:&#123;instruction&#125; Assistant:&lt;answer&gt;&#123;response&#125;&lt;|endofchunk|&gt;</span><br><span class="line"># ....</span><br><span class="line">&lt;image&gt;Human:&#123;instruction&#125; Assistant:&lt;answer&gt;&#123;response&#125;&lt;|endofchunk|&gt;</span><br><span class="line"># Query example</span><br><span class="line">&lt;image&gt;Human:&#123;instruction&#125; Assistant:&lt;answer&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>Egocentric Visual Assistant(Otter-E)</strong>.</p>
+<p>Otter-E is specifically designed for AR headset applications.</p>
+<p>In real-life scenarios, you are not encouraged to consult visual
+assistants for such hazardous actions.</p>
+<h2 id="chatgpt-evaluation">3.3 - ChatGPT Evaluation</h2>
+<blockquote>
+<p>Current evaluation metrics for VL models, like VQAv2 acc, exhibit
+shortcomings in terms of robustness.</p>
+</blockquote>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-8.png"
+alt="MMAGIBench evaluation results judged by ChatGPT." />
+<figcaption aria-hidden="true"><strong><a
+href="https://github.com/open-mmlab/mmagibench">MMAGIBench</a>
+evaluation results</strong> judged by ChatGPT.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/MIMIC-IT-9.png"
+alt="(a) ChatGPT evaluation. (b) Human evaluation comparison. (c) Few-shot in-context learning evaluation on COCO caption (CIDEr)." />
+<figcaption aria-hidden="true">(a) ChatGPT evaluation. (b) Human
+evaluation comparison. (c) Few-shot in-context learning evaluation on <a
+href="https://arxiv.org/pdf/1405.0312.pdf">COCO caption
+(CIDEr)</a>.</figcaption>
+</figure>
+<h2 id="human-evaluation">3.4 - Human Evaluation</h2>
+<p><a
+href="https://github.com/OpenGVLab/Multi-Modality-Arena">Multi-Modality
+Arena</a> uses an Elo rating(higher is better) system to evaluate
+<strong>the usefulness and alignment</strong> of VLM responses.</p>
+<p>The system calculates the relative skill levels of players.</p>
+<p>This system works well for evaluating conversational AI models,
+because multiple models can have pairwise "battles" responding to the
+same inputs in a user-blind evaluation.</p>
+<h2 id="few-shot-in-context-learning-metric-evaluation">3.5 - Few-shot
+In-Context Learning Metric Evaluation</h2>
+<p>As expected, the finetuning also brings marginal performance gain on
+zero-shot evaluation.</p>
+<h1 id="conclusion">4 - Conclusion</h1>
+<aside>
+<p>👇 <strong>Limitations</strong></p>
+</aside>
+<p>For MIMIC-IT:</p>
+<p>ChatGPT is prone to language hallucinations, therefore it might
+generate incorrect responses.</p>
+<p>For Otter:</p>
+<ul>
+<li><strong>Object hallucinations</strong>(objects mentioned in text
+inputs do not appeare in images or videos)</li>
+<li><strong>Language hallucinations</strong> from OpenFlamingo is
+inherited by Otter.</li>
+</ul>
+<aside>
+<p>👇 <strong>Future Works</strong></p>
+</aside>
+<p>For MIMIC-IT:</p>
+<ul>
+<li>More trustworthy LMs or generation techniques for self-instruct data
+generation.</li>
+<li>More embodied AI datasets such as <a
+href="https://arxiv.org/pdf/2210.06407.pdf">LanguageTable</a> and <a
+href="https://arxiv.org/pdf/2204.01691.pdf">SayCan</a>.</li>
+</ul>
+<p>For Otter:</p>
+<ul>
+<li>introducing negative examples in the training data to reduce
+hallucination issue</li>
+<li>more efficient training schemas(e.g., LoRA)</li>
+<li>more modalities.</li>
+</ul>
 ]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Multi-modal</tag>
+        <tag>Dataset</tag>
+        <tag>In-Context Learning</tag>
+        <tag>Instrcution-Following</tag>
+      </tags>
   </entry>
   <entry>
     <title>(LongMem)Augmenting Language Models with Long-Term Memory</title>
@@ -879,6 +1287,415 @@ and distincts from the vanilla summation of Side-Tuning.</p>
       </tags>
   </entry>
   <entry>
+    <title>How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources</title>
+    <url>/2023/06/15/T%C3%BClu/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-1.jpg"
+alt="authors" />Paper: <a
+href="https://arxiv.org/pdf/2306.04751.pdf">https://arxiv.org/pdf/2306.04751.pdf</a></p>
+<p>Code: <a
+href="https://github.com/allenai/open-instruct">https://github.com/allenai/open-instruct</a></p>
+<blockquote>
+<p>Evaluation for instruction-tuned models remains inconsistent and
+difficult. Therefore, this work covers extensive evaluations on a large
+range of models and datasets.</p>
+</blockquote>
+<p><strong><em>When reading this note, you can think about the following
+questions:</em></strong></p>
+<ol type="1">
+<li>What instruction datasets, pretrained models and <strong>evaluation
+metrics</strong> are used?</li>
+<li>What are the evaluation results?</li>
+</ol>
+<h2 id="background">Background</h2>
+<h3 id="instruction-tuning">Instruction Tuning</h3>
+<p><strong>Definition</strong>: finetuning pretrained LMs to better
+understand and respond to various human requests that are expressed in
+natural language.</p>
+<p><strong>Advantages</strong>: (1) zero-shot generalization to new
+tasks; (2) non-experts can use natural language to interact with
+LLMs.</p>
+<blockquote>
+<p>The most popular programming language in the future will be
+English.</p>
+</blockquote>
+<p><strong>Training Paradigms</strong>: (1) supervised
+learning(demonstrations); (2) reinforcement learning (feedback data)</p>
+<p><strong>Key Components</strong>: (1) pretrained LMs; (2) instruction
+datasets(diversity, task num)</p>
+<h3 id="evaluation-method">Evaluation Method</h3>
+<p><strong>Benchmark-based evaluation</strong></p>
+<ul>
+<li><a href="https://arxiv.org/abs/2211.09110">HELM</a>, <a
+href="https://doi.org/10.5281/zenodo.5371628">LM Evaluation Harness</a>:
+suitable for various NLP models</li>
+<li><a href="https://arxiv.org/pdf/2210.11416.pdf">Flan-T5 work</a>:
+focus on factuality and reasoning abilities</li>
+<li><a href="https://arxiv.org/abs/2303.08774">GPT-4</a>, <a
+href="https://arxiv.org/abs/2305.10403">PaLM v2</a>: proprietary models
+with comprehensive evaluations</li>
+</ul>
+<p><strong>Open-ended instruction-following ability
+evaluation</strong></p>
+<ul>
+<li><a href="https://arxiv.org/abs/2305.14387">Alpaca Farm</a>: leverage
+other models as annotators for judging model generations</li>
+<li><a href="https://lmsys.org/blog/2023-05-03-arena/">Chatbot
+Arena</a>: leverage humans</li>
+</ul>
+<p>This work involves traditional benchmarks, model-based evaluation,
+and human-based evaluation.</p>
+<h2 id="training-models-with-various-datasets">Training Models with
+Various Datasets</h2>
+<h3 id="datasets-and-format-unity">Datasets and Format Unity</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-2.png" />
+<strong>Datasets</strong>: Only CoT and Code-Alpaca are built for
+specific skills. <a
+href="https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset">ShareGPT</a>
+is a collection of user interactions with various chat systems publicly
+shared.</p>
+<p><strong>Human data mixture</strong>: FLAN V2, CoT, Dolly, Open
+Assistant 1</p>
+<p><strong>Human+GPT data mixture</strong>: Human data mixture +
+GPT4-Alpaca, Code-Alpaca, ShareGPT</p>
+<p><strong>Format Unity</strong>: It aims at representing arbitrary
+rounds as one sentence.</p>
+<ul>
+<li><span class="math inline">\(N\)</span>: instance num in a
+dataset</li>
+<li><span class="math inline">\(i\)</span>: round num in each
+example</li>
+<li><span class="math inline">\(\{(x_1^j, y_1^j,x_2^j, y_2^j,...,x_i^j,
+y_i^j)\}_{j=1}^N\)</span>: an instruction dataset</li>
+</ul>
+<h3 id="models-training">Models Training</h3>
+<ul>
+<li><span class="math inline">\(X:\{(x_1^j,
+x_2^j,...,x_i^j)\}_{j=1}^N\)</span></li>
+<li><span class="math inline">\(Y:\{(y_1^j,
+y_2^j,...,y_i^j)\}_{j=1}^N\)</span></li>
+<li><span class="math inline">\(t_n\)</span>: the <span
+class="math inline">\(n\)</span>-th input token(belonging to X or
+Y)</li>
+<li>loss function <span class="math inline">\(L=-\sum\limits_n \log
+p_{\theta}(t_n|t_{&lt;n})\times\left\{\begin{array}{}1 &amp; if\space
+t_n\in Y \\ 0 &amp; otherwise\end{array}\right.\)</span></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hyperparams</span><br><span class="line">max_seq_len: 1024 for 30B and 65B, 2048 for others</span><br><span class="line">epoch: 2</span><br><span class="line">learning rate: 1e-5 for 30B and 65B, 2e-5 for others. (linear decay and linear warmup only used for 3% of total steps)</span><br></pre></td></tr></table></figure>
+<p><strong>Tülu</strong>: a suite of 7B to 65B LLaMA models
+fully-instruction-tuned on Human+GPT data mixture.</p>
+<h2 id="evaluation-setup">Evaluation Setup</h2>
+<p>Load models using <strong><a
+href="https://arxiv.org/pdf/2208.07339.pdf">8-bit mode</a></strong>
+provided in the Huggingface Transformers library.</p>
+<p>When doing generation, we use greedy decoding and a max length of 512
+tokens, unless otherwise specified.</p>
+<h3 id="facets-of-evaluation">Facets of Evaluation</h3>
+<p><strong>(1) Specific model capabilities</strong>:</p>
+<ul>
+<li><strong>Factual knowledge</strong>: <a
+href="https://arxiv.org/abs/2009.03300">MMLU</a>. [<a
+href="https://github.com/hendrycks/test">Its official evaluation scripts
+and prompts</a>]. Modify it to allow for batch processing. We evaluate
+using 0 and 5 few-shot examples, following the original setup of
+MMLU.</li>
+<li><strong>Reasoning</strong>. We evaluate with and without
+chain-of-thought (CoT vs Direct). Subsample GSM and BBH to a reasonable
+size to improve the efficiency of doing CoT reasoning.
+<ul>
+<li><a href="https://arxiv.org/abs/2110.14168">GSM</a>(test split) for
+mathematical reasoning capabilities(8-shot). Because all answers in GSM
+are numbers, we extract the last number in the model response as the
+final answer. Sampled 200 from the 1319 examples.</li>
+<li><a href="https://arxiv.org/abs/2210.09261">BBH</a> for general
+reasoning capabilities(3-shot). For the CoT setup, we extract the first
+word after the phrase ‘So the answer is’, or the entire response if
+there is no such substring present.</li>
+</ul></li>
+<li><strong>Multilinguality</strong>: <a
+href="https://arxiv.org/abs/2003.05002">TyDiQA</a> for multilingual QA.
+Follow <a href="https://arxiv.org/pdf/2305.10403.pdf">PaLM 2</a>'s
+setup. We use the gold-passage setup where one passage containing the
+reference answer is given.</li>
+<li><strong>Coding</strong>: <a
+href="https://arxiv.org/abs/2107.03374">Codex-Eval(HumanEval)</a> for
+abilities of generating functionally correct programs from docstrings.
+Following the original paper, we compute unbiased estimates of pass@k to
+measure the functional correctness of models’ outputs. We report both
+pass@1 and pass@10. The pass@1 results were obtained by sampling with a
+temperature of 0.1 and the pass@10 results with a temperature of
+0.8.</li>
+</ul>
+<p><strong>(2) Open-ended instruction following</strong>: model-based
+evaluation and human evaluation</p>
+<h3 id="model-based-evaluation-using-gpt-4">Model-Based Evaluation using
+GPT-4</h3>
+<p><strong>Dataset</strong>: Use a test set of 805 instructions.</p>
+<p><strong>Code</strong>: Adopt <a
+href="https://arxiv.org/abs/2305.14387">AlpacaFarm</a>'s code, but
+slightly alter prompts to fit our message format.</p>
+<p><strong>A GPT-4 annotator('greedy_gpt4')</strong>: Compare the
+testing model with Davinci-003.</p>
+<p><strong>Win-rate</strong>: The percentage of model generations that
+GPT-4 reports as being preferred over the generations from
+Davinci-003.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Hyperparameters</span><br><span class="line">temperature: 0</span><br><span class="line">batch: 5 (reduce it if the 5 examples exceed the 8192 token context window limit)</span><br><span class="line">max_output_token_len: extended from 300 to 2048 (in order to avoid cut-off generations)</span><br></pre></td></tr></table></figure>
+<h3 id="human-evaluation">Human Evaluation</h3>
+<p>The model information is anonymized and their outputs are put in
+random order.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-8.jpg" /></p>
+<p><strong>Use 332 instructions</strong>: 252 from <a
+href="https://arxiv.org/abs/2212.10560">Self-Instruct</a> and 80 from <a
+href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> evaluation
+set.</p>
+<p><strong>Compare 3 pairs of models</strong>: (1) TÜLU 65B vs ChatGPT
+(2) TÜLU 65B vs TÜLU 7B (3) TÜLU 65B vs a 65B LLaMA model trained on the
+Human data mixture.</p>
+<p><strong>Interface for human judgements</strong>:</p>
+<ul>
+<li><strong>Indivisual acceptability</strong>: "yes"/"no", a 2-way
+decision. For "yes", if and only if the response answered the request in
+the query, had no significant errors, and did not have repetitive
+information.</li>
+<li><strong>Pairwise preference</strong>: "A is clearly better"/"A is
+slightly better"/"Tie"/"B is slightly better"/"B is clearly better", a
+5-way decision, select which one is more helpful.</li>
+</ul>
+<p><strong>Recruited 18 expert annotators</strong>, which are
+researchers at AI2 or students at UW for the annotation. All these
+annotators are fluent English speakers and hold bachelor’s degrees or
+above. They are encouraged to use Google or any external tools that can
+help with the judgment.</p>
+<p><strong>Inter-Annotator Agreement</strong>:</p>
+<ul>
+<li>We measure the agreement of our annotators on a subset of
+<strong>119 examples</strong> (63 instances randomly sampled from the
+ChatGPT3 vs TÜLU 65B comparison, and 59 instances randomly sampled from
+the TÜLU 65B vs TÜLU 7B comparison).</li>
+<li><strong>Indivisual acceptability</strong>: an agreement of
+0.84.</li>
+<li><strong>Pairwise preference</strong>: an agreement of 0.72.
+Following <a href="https://arxiv.org/pdf/2305.11206.pdf">Lima</a>, we
+report a tie-discounted accuracy, which assigns one point if both
+annotators agreed, half a point if either annotator (but not both)
+labeled a tie, and zero point otherwise. We also merged “clearly better”
+and “slightly better” together, so our final options will be simply
+comparing which of A and B is better, or a tie.</li>
+</ul>
+<h2 id="results">Results</h2>
+<blockquote>
+<p>The best model in any given evaluation reaches on average 83% of
+ChatGPT performance, and 68% of GPT-4 performance.</p>
+</blockquote>
+<h3
+id="analysis-of-instruction-tuning-datasets-and-base-models">Analysis of
+Instruction Tuning Datasets and Base Models</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-3.jpg" />
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-4.jpg" />
+"1.4T" means <span class="math inline">\(1.4\times 10^{12}\)</span>
+tokens are used to train the model. "180B" means <span
+class="math inline">\(180\times 10^{9}\)</span></p>
+<ul>
+<li>There is not a single best instruction tuning dataset across all
+tasks</li>
+<li>Combining datasets results in the best overall performance on the
+benchmark tasks</li>
+<li>Base model quality is extremely important for downstream
+performance</li>
+</ul>
+<h3 id="pushing-the-limits-of-open-models">Pushing the Limits of Open
+Models</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-5.jpg" /></p>
+<ul>
+<li>Instrcution tuning brings large benefits on top of LLaMA models at
+all sizes</li>
+<li>Smaller models benefit most from instruction tuning</li>
+<li>TÜLU still lags behind SOTA proprietary models</li>
+</ul>
+<h3
+id="model-basedhuman-evaluation-results-for-open-ended-generation">Model-Based/Human
+Evaluation Results for Open-ended Generation</h3>
+<p><strong>Model-Based Evaluation</strong> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-6.jpg" /></p>
+<ul>
+<li>Models trained on mixtures based on traditional NLP datasets perform
+poorly</li>
+<li>Datasets that encourage long, diverse generations perform best</li>
+<li>ShareGPT performs best</li>
+</ul>
+<blockquote>
+<p>The judge model(has bias) may not always reveal the testing model
+deficiencies.</p>
+</blockquote>
+<p><strong>Human Evaluation</strong> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-7.jpg" /></p>
+<ul>
+<li>Human evaluation results largely correlate with the AlpacaFarm and
+benchmark-based evaluation</li>
+<li>Making use of distilled datasets provides a large performance
+boost</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p><strong><em>Future Work</em></strong></p>
+<ul>
+<li>explore instruction-tuning methods that use reinforcement
+learning</li>
+<li>explore more recent strong base models and other instruction
+datasets</li>
+<li>design more versatile model(generality)
+<ul>
+<li>better dataset mixing</li>
+<li>instruction-tuning modular models (e.g., <a
+href="https://arxiv.org/abs/1701.06538">mixture-of-experts</a>)</li>
+</ul></li>
+<li>improve the reliability and scalability of human evaluation for
+instruction-following models</li>
+</ul>
+<p><strong><em>Limitations</em></strong></p>
+<ul>
+<li>Small proportions of data may contain personally identifying
+details, but this work does not remove them, which may produce toxic or
+harmful generations.</li>
+<li>Not include evaluations of multi-turn dialogue and summarization
+abilities</li>
+</ul>
+<p><strong><em>Broader Impact</em></strong></p>
+<p>Training and releasing large instruction-tuned models need sufficient
+testing to limit potential harm.</p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Evaluation</tag>
+        <tag>Instruction-Following</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Home</title>
+    <url>/2023/06/08/home/</url>
+    <content><![CDATA[<p>I am currently a master student at <a
+href="https://www.ecnu.edu.cn/">ECNU</a>. My recent research interest
+mainly focuses on multi-modal learning (especially combined with LLMs).
+You can <a href="mailto:ifshine_lx@163.com">email</a> me for further
+communication.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>[Waiting...]Hexo Usage</title>
+    <url>/2023/06/08/hexo-usage/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
+href="https://hexo.io/docs/">documentation</a> for more info. If you get
+any problems when using Hexo, you can find the answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask for help on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
+default OS in this post.</p>
+<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
+<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
+<p>Use <a
+href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
+as an example. More info: <a href="https://theme-next.js.org/docs">Theme
+Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
+href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="deploy-to-github">Deploy to Github</h2>
+<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
+cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
+"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
+minutes for the github page to refresh) For the first deployment, you
+need to click <a
+href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
+<span id="more"></span>
+<h2 id="personalization">Personalization</h2>
+<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
+<h3 id="next-theme-settings-basic"><a
+href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
+Settings Basic</a></h3>
+<p>root_dir/themes/next/_config.yml add "little star.jpg" to
+root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
+Equations</a>, <a
+href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
+<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
+<a
+href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
+<h3 id="sidebar"><a
+href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
+code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
+add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="footer"><a
+href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
+the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="posts"><a
+href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
+<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
+plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="custom-pagestags-categories-home"><a
+href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
+Pages(Tags, Categories, Home)</a></h3>
+<p><a
+href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
+of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
+<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="search-services"><a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
+Services()</a></h3>
+<p>Details of Algolia Search are in <a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
+<a
+href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
+href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
+Systems(Isso)</a></h3>
+<p>Click <a
+href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
+to install python3.8. You can find more versions <a
+href="https://www.python.org/downloads/windows/">here</a>. Download
+<em>sqlite-dll-win64-x64-3420000.zip</em> and
+<em>sqlite-tools-win32-x86</em> from <a
+href="https://www.sqlite.org/download.html">the official website</a>.
+Create "SQlite_root_dir" and move all files from the two zips to
+"SQlite_root_dir". Add "SQlite_root_dir" to the environment variable
+"Path". <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
+<h3 id="waiting...-statistics-and-analyticsumami">[Waiting...] <a
+href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
+and Analytics(Umami)</a></h3>
+<p><a href="http://t.csdn.cn/OCEnG">MySQL</a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Survey on Multimodal Large Language Models</title>
     <url>/2023/06/30/MLLM/</url>
     <content><![CDATA[<p><img
@@ -1241,407 +2058,10 @@ src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
         <tag>In-Context Learning</tag>
+        <tag>Instruction-Following</tag>
         <tag>Chain of Thought</tag>
         <tag>Tool Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How Far Can Camels Go? Exploring the State of Instruction Tuning on Open Resources</title>
-    <url>/2023/06/15/T%C3%BClu/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-1.jpg"
-alt="authors" />Paper: <a
-href="https://arxiv.org/pdf/2306.04751.pdf">https://arxiv.org/pdf/2306.04751.pdf</a></p>
-<p>Code: <a
-href="https://github.com/allenai/open-instruct">https://github.com/allenai/open-instruct</a></p>
-<blockquote>
-<p>Evaluation for instruction-tuned models remains inconsistent and
-difficult. Therefore, this work covers extensive evaluations on a large
-range of models and datasets.</p>
-</blockquote>
-<p><strong><em>When reading this note, you can think about the following
-questions:</em></strong></p>
-<ol type="1">
-<li>What instruction datasets, pretrained models and <strong>evaluation
-metrics</strong> are used?</li>
-<li>What are the evaluation results?</li>
-</ol>
-<h2 id="background">Background</h2>
-<h3 id="instruction-tuning">Instruction Tuning</h3>
-<p><strong>Definition</strong>: finetuning pretrained LMs to better
-understand and respond to various human requests that are expressed in
-natural language.</p>
-<p><strong>Advantages</strong>: (1) zero-shot generalization to new
-tasks; (2) non-experts can use natural language to interact with
-LLMs.</p>
-<blockquote>
-<p>The most popular programming language in the future will be
-English.</p>
-</blockquote>
-<p><strong>Training Paradigms</strong>: (1) supervised
-learning(demonstrations); (2) reinforcement learning (feedback data)</p>
-<p><strong>Key Components</strong>: (1) pretrained LMs; (2) instruction
-datasets(diversity, task num)</p>
-<h3 id="evaluation-method">Evaluation Method</h3>
-<p><strong>Benchmark-based evaluation</strong></p>
-<ul>
-<li><a href="https://arxiv.org/abs/2211.09110">HELM</a>, <a
-href="https://doi.org/10.5281/zenodo.5371628">LM Evaluation Harness</a>:
-suitable for various NLP models</li>
-<li><a href="https://arxiv.org/pdf/2210.11416.pdf">Flan-T5 work</a>:
-focus on factuality and reasoning abilities</li>
-<li><a href="https://arxiv.org/abs/2303.08774">GPT-4</a>, <a
-href="https://arxiv.org/abs/2305.10403">PaLM v2</a>: proprietary models
-with comprehensive evaluations</li>
-</ul>
-<p><strong>Open-ended instruction-following ability
-evaluation</strong></p>
-<ul>
-<li><a href="https://arxiv.org/abs/2305.14387">Alpaca Farm</a>: leverage
-other models as annotators for judging model generations</li>
-<li><a href="https://lmsys.org/blog/2023-05-03-arena/">Chatbot
-Arena</a>: leverage humans</li>
-</ul>
-<p>This work involves traditional benchmarks, model-based evaluation,
-and human-based evaluation.</p>
-<h2 id="training-models-with-various-datasets">Training Models with
-Various Datasets</h2>
-<h3 id="datasets-and-format-unity">Datasets and Format Unity</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-2.png" />
-<strong>Datasets</strong>: Only CoT and Code-Alpaca are built for
-specific skills. <a
-href="https://huggingface.co/datasets/anon8231489123/ShareGPT_Vicuna_unfiltered/tree/main/HTML_cleaned_raw_dataset">ShareGPT</a>
-is a collection of user interactions with various chat systems publicly
-shared.</p>
-<p><strong>Human data mixture</strong>: FLAN V2, CoT, Dolly, Open
-Assistant 1</p>
-<p><strong>Human+GPT data mixture</strong>: Human data mixture +
-GPT4-Alpaca, Code-Alpaca, ShareGPT</p>
-<p><strong>Format Unity</strong>: It aims at representing arbitrary
-rounds as one sentence.</p>
-<ul>
-<li><span class="math inline">\(N\)</span>: instance num in a
-dataset</li>
-<li><span class="math inline">\(i\)</span>: round num in each
-example</li>
-<li><span class="math inline">\(\{(x_1^j, y_1^j,x_2^j, y_2^j,...,x_i^j,
-y_i^j)\}_{j=1}^N\)</span>: an instruction dataset</li>
-</ul>
-<h3 id="models-training">Models Training</h3>
-<ul>
-<li><span class="math inline">\(X:\{(x_1^j,
-x_2^j,...,x_i^j)\}_{j=1}^N\)</span></li>
-<li><span class="math inline">\(Y:\{(y_1^j,
-y_2^j,...,y_i^j)\}_{j=1}^N\)</span></li>
-<li><span class="math inline">\(t_n\)</span>: the <span
-class="math inline">\(n\)</span>-th input token(belonging to X or
-Y)</li>
-<li>loss function <span class="math inline">\(L=-\sum\limits_n \log
-p_{\theta}(t_n|t_{&lt;n})\times\left\{\begin{array}{}1 &amp; if\space
-t_n\in Y \\ 0 &amp; otherwise\end{array}\right.\)</span></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># hyperparams</span><br><span class="line">max_seq_len: 1024 for 30B and 65B, 2048 for others</span><br><span class="line">epoch: 2</span><br><span class="line">learning rate: 1e-5 for 30B and 65B, 2e-5 for others. (linear decay and linear warmup only used for 3% of total steps)</span><br></pre></td></tr></table></figure>
-<p><strong>Tülu</strong>: a suite of 7B to 65B LLaMA models
-fully-instruction-tuned on Human+GPT data mixture.</p>
-<h2 id="evaluation-setup">Evaluation Setup</h2>
-<p>Load models using <strong><a
-href="https://arxiv.org/pdf/2208.07339.pdf">8-bit mode</a></strong>
-provided in the Huggingface Transformers library.</p>
-<p>When doing generation, we use greedy decoding and a max length of 512
-tokens, unless otherwise specified.</p>
-<h3 id="facets-of-evaluation">Facets of Evaluation</h3>
-<p><strong>(1) Specific model capabilities</strong>:</p>
-<ul>
-<li><strong>Factual knowledge</strong>: <a
-href="https://arxiv.org/abs/2009.03300">MMLU</a>. [<a
-href="https://github.com/hendrycks/test">Its official evaluation scripts
-and prompts</a>]. Modify it to allow for batch processing. We evaluate
-using 0 and 5 few-shot examples, following the original setup of
-MMLU.</li>
-<li><strong>Reasoning</strong>. We evaluate with and without
-chain-of-thought (CoT vs Direct). Subsample GSM and BBH to a reasonable
-size to improve the efficiency of doing CoT reasoning.
-<ul>
-<li><a href="https://arxiv.org/abs/2110.14168">GSM</a>(test split) for
-mathematical reasoning capabilities(8-shot). Because all answers in GSM
-are numbers, we extract the last number in the model response as the
-final answer. Sampled 200 from the 1319 examples.</li>
-<li><a href="https://arxiv.org/abs/2210.09261">BBH</a> for general
-reasoning capabilities(3-shot). For the CoT setup, we extract the first
-word after the phrase ‘So the answer is’, or the entire response if
-there is no such substring present.</li>
-</ul></li>
-<li><strong>Multilinguality</strong>: <a
-href="https://arxiv.org/abs/2003.05002">TyDiQA</a> for multilingual QA.
-Follow <a href="https://arxiv.org/pdf/2305.10403.pdf">PaLM 2</a>'s
-setup. We use the gold-passage setup where one passage containing the
-reference answer is given.</li>
-<li><strong>Coding</strong>: <a
-href="https://arxiv.org/abs/2107.03374">Codex-Eval(HumanEval)</a> for
-abilities of generating functionally correct programs from docstrings.
-Following the original paper, we compute unbiased estimates of pass@k to
-measure the functional correctness of models’ outputs. We report both
-pass@1 and pass@10. The pass@1 results were obtained by sampling with a
-temperature of 0.1 and the pass@10 results with a temperature of
-0.8.</li>
-</ul>
-<p><strong>(2) Open-ended instruction following</strong>: model-based
-evaluation and human evaluation</p>
-<h3 id="model-based-evaluation-using-gpt-4">Model-Based Evaluation using
-GPT-4</h3>
-<p><strong>Dataset</strong>: Use a test set of 805 instructions.</p>
-<p><strong>Code</strong>: Adopt <a
-href="https://arxiv.org/abs/2305.14387">AlpacaFarm</a>'s code, but
-slightly alter prompts to fit our message format.</p>
-<p><strong>A GPT-4 annotator('greedy_gpt4')</strong>: Compare the
-testing model with Davinci-003.</p>
-<p><strong>Win-rate</strong>: The percentage of model generations that
-GPT-4 reports as being preferred over the generations from
-Davinci-003.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Hyperparameters</span><br><span class="line">temperature: 0</span><br><span class="line">batch: 5 (reduce it if the 5 examples exceed the 8192 token context window limit)</span><br><span class="line">max_output_token_len: extended from 300 to 2048 (in order to avoid cut-off generations)</span><br></pre></td></tr></table></figure>
-<h3 id="human-evaluation">Human Evaluation</h3>
-<p>The model information is anonymized and their outputs are put in
-random order.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-8.jpg" /></p>
-<p><strong>Use 332 instructions</strong>: 252 from <a
-href="https://arxiv.org/abs/2212.10560">Self-Instruct</a> and 80 from <a
-href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> evaluation
-set.</p>
-<p><strong>Compare 3 pairs of models</strong>: (1) TÜLU 65B vs ChatGPT
-(2) TÜLU 65B vs TÜLU 7B (3) TÜLU 65B vs a 65B LLaMA model trained on the
-Human data mixture.</p>
-<p><strong>Interface for human judgements</strong>:</p>
-<ul>
-<li><strong>Indivisual acceptability</strong>: "yes"/"no", a 2-way
-decision. For "yes", if and only if the response answered the request in
-the query, had no significant errors, and did not have repetitive
-information.</li>
-<li><strong>Pairwise preference</strong>: "A is clearly better"/"A is
-slightly better"/"Tie"/"B is slightly better"/"B is clearly better", a
-5-way decision, select which one is more helpful.</li>
-</ul>
-<p><strong>Recruited 18 expert annotators</strong>, which are
-researchers at AI2 or students at UW for the annotation. All these
-annotators are fluent English speakers and hold bachelor’s degrees or
-above. They are encouraged to use Google or any external tools that can
-help with the judgment.</p>
-<p><strong>Inter-Annotator Agreement</strong>:</p>
-<ul>
-<li>We measure the agreement of our annotators on a subset of
-<strong>119 examples</strong> (63 instances randomly sampled from the
-ChatGPT3 vs TÜLU 65B comparison, and 59 instances randomly sampled from
-the TÜLU 65B vs TÜLU 7B comparison).</li>
-<li><strong>Indivisual acceptability</strong>: an agreement of
-0.84.</li>
-<li><strong>Pairwise preference</strong>: an agreement of 0.72.
-Following <a href="https://arxiv.org/pdf/2305.11206.pdf">Lima</a>, we
-report a tie-discounted accuracy, which assigns one point if both
-annotators agreed, half a point if either annotator (but not both)
-labeled a tie, and zero point otherwise. We also merged “clearly better”
-and “slightly better” together, so our final options will be simply
-comparing which of A and B is better, or a tie.</li>
-</ul>
-<h2 id="results">Results</h2>
-<blockquote>
-<p>The best model in any given evaluation reaches on average 83% of
-ChatGPT performance, and 68% of GPT-4 performance.</p>
-</blockquote>
-<h3
-id="analysis-of-instruction-tuning-datasets-and-base-models">Analysis of
-Instruction Tuning Datasets and Base Models</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-3.jpg" />
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-4.jpg" />
-"1.4T" means <span class="math inline">\(1.4\times 10^{12}\)</span>
-tokens are used to train the model. "180B" means <span
-class="math inline">\(180\times 10^{9}\)</span></p>
-<ul>
-<li>There is not a single best instruction tuning dataset across all
-tasks</li>
-<li>Combining datasets results in the best overall performance on the
-benchmark tasks</li>
-<li>Base model quality is extremely important for downstream
-performance</li>
-</ul>
-<h3 id="pushing-the-limits-of-open-models">Pushing the Limits of Open
-Models</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-5.jpg" /></p>
-<ul>
-<li>Instrcution tuning brings large benefits on top of LLaMA models at
-all sizes</li>
-<li>Smaller models benefit most from instruction tuning</li>
-<li>TÜLU still lags behind SOTA proprietary models</li>
-</ul>
-<h3
-id="model-basedhuman-evaluation-results-for-open-ended-generation">Model-Based/Human
-Evaluation Results for Open-ended Generation</h3>
-<p><strong>Model-Based Evaluation</strong> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-6.jpg" /></p>
-<ul>
-<li>Models trained on mixtures based on traditional NLP datasets perform
-poorly</li>
-<li>Datasets that encourage long, diverse generations perform best</li>
-<li>ShareGPT performs best</li>
-</ul>
-<blockquote>
-<p>The judge model(has bias) may not always reveal the testing model
-deficiencies.</p>
-</blockquote>
-<p><strong>Human Evaluation</strong> <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/open-instruct-7.jpg" /></p>
-<ul>
-<li>Human evaluation results largely correlate with the AlpacaFarm and
-benchmark-based evaluation</li>
-<li>Making use of distilled datasets provides a large performance
-boost</li>
-</ul>
-<h2 id="conclusion">Conclusion</h2>
-<p><strong><em>Future Work</em></strong></p>
-<ul>
-<li>explore instruction-tuning methods that use reinforcement
-learning</li>
-<li>explore more recent strong base models and other instruction
-datasets</li>
-<li>design more versatile model(generality)
-<ul>
-<li>better dataset mixing</li>
-<li>instruction-tuning modular models (e.g., <a
-href="https://arxiv.org/abs/1701.06538">mixture-of-experts</a>)</li>
-</ul></li>
-<li>improve the reliability and scalability of human evaluation for
-instruction-following models</li>
-</ul>
-<p><strong><em>Limitations</em></strong></p>
-<ul>
-<li>Small proportions of data may contain personally identifying
-details, but this work does not remove them, which may produce toxic or
-harmful generations.</li>
-<li>Not include evaluations of multi-turn dialogue and summarization
-abilities</li>
-</ul>
-<p><strong><em>Broader Impact</em></strong></p>
-<p>Training and releasing large instruction-tuned models need sufficient
-testing to limit potential harm.</p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Instruction-Following</tag>
-        <tag>Evaluation</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Waiting...]Hexo Usage</title>
-    <url>/2023/06/08/hexo-usage/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
-href="https://hexo.io/docs/">documentation</a> for more info. If you get
-any problems when using Hexo, you can find the answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask for help on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
-default OS in this post.</p>
-<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
-<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
-<p>Use <a
-href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
-as an example. More info: <a href="https://theme-next.js.org/docs">Theme
-Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
-href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="deploy-to-github">Deploy to Github</h2>
-<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
-cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
-"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
-minutes for the github page to refresh) For the first deployment, you
-need to click <a
-href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
-<span id="more"></span>
-<h2 id="personalization">Personalization</h2>
-<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
-<h3 id="next-theme-settings-basic"><a
-href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
-Settings Basic</a></h3>
-<p>root_dir/themes/next/_config.yml add "little star.jpg" to
-root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
-Equations</a>, <a
-href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
-<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
-<a
-href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
-<h3 id="sidebar"><a
-href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
-code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
-add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="footer"><a
-href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
-the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="posts"><a
-href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
-<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
-plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="custom-pagestags-categories-home"><a
-href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
-Pages(Tags, Categories, Home)</a></h3>
-<p><a
-href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
-of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
-<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = page.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = page.posts.toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="search-services"><a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
-Services()</a></h3>
-<p>Details of Algolia Search are in <a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
-<a
-href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Isso)</a></h3>
-<p>Click <a
-href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
-to install python3.8. You can find more versions <a
-href="https://www.python.org/downloads/windows/">here</a>. Download
-<em>sqlite-dll-win64-x64-3420000.zip</em> and
-<em>sqlite-tools-win32-x86</em> from <a
-href="https://www.sqlite.org/download.html">the official website</a>.
-Create "SQlite_root_dir" and move all files from the two zips to
-"SQlite_root_dir". Add "SQlite_root_dir" to the environment variable
-"Path". <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-statistics-and-analyticsumami">[Waiting...] <a
-href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
-and Analytics(Umami)</a></h3>
-<p><a href="http://t.csdn.cn/OCEnG">MySQL</a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">l</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Software</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
