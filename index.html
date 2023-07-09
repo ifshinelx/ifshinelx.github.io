@@ -137,13 +137,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -176,6 +176,12 @@
       
         
           <li class="recent_posts_li">
+            <a href="/2023/07/06/Lynx/" title="(Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs?" target="_blank">07-06 (Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs? </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
             <a href="/2023/07/04/MIMIC-IT/" title="MIMIC-IT: Multi-Modal In-Context Instruction Tuning" target="_blank">07-04 MIMIC-IT: Multi-Modal In-Context Instruction Tuning </a>
           </li>
         
@@ -195,12 +201,6 @@
         
           <li class="recent_posts_li">
             <a href="/2023/06/30/MLLM/" title="A Survey on Multimodal Large Language Models" target="_blank">06-30 A Survey on Multimodal Large Language Models </a>
-          </li>
-        
-      
-        
-          <li class="recent_posts_li">
-            <a href="/2023/06/19/llama-adapter-v2/" title="LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model" target="_blank">06-19 LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model </a>
           </li>
         
       
@@ -231,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/06/08/home/">
+    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/06/08/hexo-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/little%20star.jpg">
@@ -252,14 +252,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>I am currently a master student at <a
-target="_blank" rel="noopener" href="https://www.ecnu.edu.cn/">ECNU</a>. My recent research interest
-mainly focuses on multi-modal learning (especially combined with LLMs).
-You can <a href="mailto:ifshine_lx@163.com">email</a> me for further
-communication.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask for help on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the default OS in this post.</p>
+<h2 id="Hexo-Install-6-3-0"><a href="#Hexo-Install-6-3-0" class="headerlink" title="Hexo Install(6.3.0)"></a>Hexo Install(6.3.0)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
+<h2 id="Next-Theme-8-17-0"><a href="#Next-Theme-8-17-0" class="headerlink" title="Next Theme(8.17.0)"></a>Next Theme(8.17.0)</h2><p>Use <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a> as an example. More info: <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs">Theme Next Doc</a>, <a target="_blank" rel="noopener" href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a target="_blank" rel="noopener" href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="Deploy-to-Github"><a href="#Deploy-to-Github" class="headerlink" title="Deploy to Github"></a>Deploy to Github</h2><p>add “.gitignore” file to blog root dir:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure>
+<p>open cmd, then cd blog root dir (win10)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure>
+<p>open root_dir&#x2F;_config.yml, modify “deploy”</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+<p>deploy (After the cmd execution, it takes several minutes for the github page to refresh)<br>For the first deployment, you need to click <a href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/06/08/hexo-usage/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -315,7 +328,7 @@ src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
     <span class="post-meta-item-icon">
       <i class="far fa-file-word"></i>
     </span>
-    <span title="Word count total">13k</span>
+    <span title="Word count total">14k</span>
   </span>
 
 </div>
