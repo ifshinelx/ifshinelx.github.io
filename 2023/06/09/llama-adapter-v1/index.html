@@ -123,7 +123,11 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learnable-Adaption-Prompts"><span class="nav-number">1.1.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-init-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Zero-init Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-modal-Reasoning"><span class="nav-number">1.3.</span> <span class="nav-text">Multi-modal Reasoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-initialized-Attention-for-other-Large-Models"><span class="nav-number">1.4.</span> <span class="nav-text">Zero-initialized Attention for other Large Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">2.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction-following-Evaluation"><span class="nav-number">2.1.</span> <span class="nav-text">Instruction-following Evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-modal-Evaluation"><span class="nav-number">2.2.</span> <span class="nav-text">Multi-modal Evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ablation-Study"><span class="nav-number">2.3.</span> <span class="nav-text">Ablation Study</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zero-initialized-Attention-for-other-Large-Models-1"><span class="nav-number">2.4.</span> <span class="nav-text">Zero-initialized Attention for other Large Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Implementation"><span class="nav-number">4.</span> <span class="nav-text">Code Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Params"><span class="nav-number">4.1.</span> <span class="nav-text">Params</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dataset"><span class="nav-number">4.2.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learnable-Adaption-Prompts-1"><span class="nav-number">4.3.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">5.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-Efficient-Fine-Tuning-PEFT"><span class="nav-number">5.1.</span> <span class="nav-text">Parameter-Efficient Fine-Tuning(PEFT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Instruction-Following-Models"><span class="nav-number">5.2.</span> <span class="nav-text">Instruction-Following Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Vision-Language-Models"><span class="nav-number">5.3.</span> <span class="nav-text">Large Vision-Language Models</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#method"><span class="nav-number">1.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#learnable-adaption-prompts"><span class="nav-number">1.1.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zero-init-attention"><span class="nav-number">1.2.</span> <span class="nav-text">Zero-init Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-modal-reasoning"><span class="nav-number">1.3.</span> <span class="nav-text">Multi-modal Reasoning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zero-initialized-attention-for-other-large-models"><span class="nav-number">1.4.</span> <span class="nav-text">Zero-initialized
+Attention for other Large Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiment"><span class="nav-number">2.</span> <span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-following-evaluation"><span class="nav-number">2.1.</span> <span class="nav-text">Instruction-following
+Evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-modal-evaluation"><span class="nav-number">2.2.</span> <span class="nav-text">Multi-modal Evaluation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ablation-study"><span class="nav-number">2.3.</span> <span class="nav-text">Ablation Study</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zero-initialized-attention-for-other-large-models-1"><span class="nav-number">2.4.</span> <span class="nav-text">Zero-initialized
+Attention for other Large Models</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code-implementation"><span class="nav-number">4.</span> <span class="nav-text">Code Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#params"><span class="nav-number">4.1.</span> <span class="nav-text">Params</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dataset"><span class="nav-number">4.2.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#learnable-adaption-prompts-1"><span class="nav-number">4.3.</span> <span class="nav-text">Learnable Adaption Prompts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">5.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#parameter-efficient-fine-tuningpeft"><span class="nav-number">5.1.</span> <span class="nav-text">Parameter-Efficient
+Fine-Tuning(PEFT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instruction-following-models"><span class="nav-number">5.2.</span> <span class="nav-text">Instruction-Following Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#large-vision-language-models"><span class="nav-number">5.3.</span> <span class="nav-text">Large Vision-Language Models</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -340,179 +344,500 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-1.jpg" alt="authors">Paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2303.16199.pdf</a></p>
-<p>Code: <a target="_blank" rel="noopener" href="https://github.com/OpenGVLab/LLaMA-Adapter">https://github.com/OpenGVLab/LLaMA-Adapter</a></p>
-<p>More Info: <a target="_blank" rel="noopener" href="https://github.com/Lightning-AI/lit-parrot">Lighting AI | Lit-Parrot: lightweight update of llama</a></p>
-<p><em><strong>When reading this note, you can think about the following questions:</strong></em></p>
-<ol>
+    <div class="post-body" itemprop="articleBody"><p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-1.jpg"
+alt="authors" />Paper: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.16199.pdf">https://arxiv.org/pdf/2303.16199.pdf</a></p>
+<p>Code: <a
+target="_blank" rel="noopener" href="https://github.com/OpenGVLab/LLaMA-Adapter">https://github.com/OpenGVLab/LLaMA-Adapter</a></p>
+<p>More Info: <a
+target="_blank" rel="noopener" href="https://github.com/Lightning-AI/lit-parrot">Lighting AI |
+Lit-Parrot: lightweight update of llama</a></p>
+<p><strong><em>When reading this note, you can think about the following
+questions:</em></strong></p>
+<ol type="1">
 <li>What is learnable adaption prompts?</li>
 <li>What is zero-init attention?</li>
 <li>How to extend LLaMA-Adapter to multi-modal input?</li>
 </ol>
-<hr>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><em>4 characteristics of LLaMA-Adapter:</em></p>
-<ol>
+<hr />
+<h2 id="method">Method</h2>
+<p><em>4 characteristics of LLaMA-Adapter:</em></p>
+<ol type="1">
 <li>1.2M Parameters</li>
 <li>1 Hour: 8 A100 GPUs, three times faster than Alpaca</li>
-<li>Plug with Expertise: insert their respective adapters and endow LLaMA with different expert knowledge</li>
+<li>Plug with Expertise: insert their respective adapters and endow
+LLaMA with different expert knowledge</li>
 <li>Multi-modal: simply add images tokens into adaption prompts</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg" alt="LLaMA-Adapter&#39;s 4 characteristics and details"> <strong>The idea of LLaMA-Adapter is model-agnostic and can be applied to other LLMs.</strong></p>
-<h3 id="Learnable-Adaption-Prompts"><a href="#Learnable-Adaption-Prompts" class="headerlink" title="Learnable Adaption Prompts"></a>Learnable Adaption Prompts</h3><ul>
-<li>$K$: prompt length for each layer</li>
-<li>$C$: feature dim of transformer</li>
-<li>$N$: total transformer layer num of LLaMA</li>
-<li><strong>${ P_l }_{l&#x3D;1}^{L}$ ($P_l\in\mathbb{R}^{K\times C}$) : learnable adaption prompts</strong> for topmost $L (L\le N)$ transformer layers with higher-level semantic representations</li>
-<li>$T_l\in\mathbb{R}^{M\times C}$: $M$-length word tokens in $l$-th inserted layer</li>
-<li>$[P_l;\space T_l]\in\mathbb{R}^{(K+M)\times C}$: concatenate $P_l$ and $T_l$, the learned <strong>instruction knowledge</strong> in $P_l$ guides $T_l$ to generate contextual responses</li>
-</ul>
-<h3 id="Zero-init-Attention"><a href="#Zero-init-Attention" class="headerlink" title="Zero-init Attention"></a>Zero-init Attention</h3><p>If the adaption prompts are randomly initialized, they will bring noise to the word tokens and damage original knowledge in LLaMA at the early training stage, which harms stablity and effectiveness.</p>
-<p><em>$t_l\in\mathbb{R}^{1\times C}$: generate the (M+1)-th word $t_l$ on top of $[P_l;\space T_l]$</em> at the $l$-th inserted layer</p>
-<ol>
-<li>linear projection: queries $Q_l&#x3D;Linear_q(t_l)$, keys $K_l&#x3D;Linear_k([P_l;T_l;t_l])$, values $V_l&#x3D;Linear_v([P_l;T_l;t_l])$</li>
-<li>attention scores: $S_l&#x3D;\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}$, records the feature similarities between $t_l$ and all $K+M+1$ tokens</li>
-<li>reformulation: $S_l&#x3D;[S_l^K;S_l^{M+1}]^T, S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times 1}$<ul>
-<li>$S_l^K$ represents how much information the $P_l$ contribute to $t_l$, which probably causes noise in the early training stage</li>
-</ul>
-</li>
-<li>softmax operation: $S_l^g&#x3D;[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T$<ul>
-<li>$g_l$ is a learnable gating factor initialized by zero, adaptively controls the importance of $S_l^K$</li>
-<li>in practice, each head of attention has an independent $g_l$</li>
-</ul>
-</li>
-<li>output of the attention layer: $t_l^o&#x3D;Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times C}$</li>
-</ol>
-<h3 id="Multi-modal-Reasoning"><a href="#Multi-modal-Reasoning" class="headerlink" title="Multi-modal Reasoning"></a>Multi-modal Reasoning</h3><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-3.jpg"> Task textual input for ScienceQA: question + textual context + options. (We utilize “Generate caption for this image” as the textual instruction input for LLaMA-Adapter)</p>
-<ol>
-<li>multi-scale global visual features: ${I_m}_{m&#x3D;1}^{M},I_m\in\mathbb{R}^{1\times C_m}$, $M$ is the scale num<ul>
-<li>from pre-trained CLIP</li>
-</ul>
-</li>
-<li>overall image token: $I_p&#x3D;Projection\Big(Concat\left({I_m}_{m&#x3D;1}^M\right)\Big)\in\mathbb{R}^{1\times C}$<ul>
-<li>concatenate along the channel dim</li>
-<li>utilize cascaded MLPs as the learnable projection network with 0.6M parameters</li>
-</ul>
-</li>
-<li>repeat $I_p$ for $K$ times</li>
-<li>multi-modal prompt: $P_l^v&#x3D;P_l+Repeat(I_p)\in\mathbb{R}^{K\times C}$</li>
-</ol>
-<p><strong>Future work: using pre-trained modal-specific encoders, we can integrate instructional signals of different modalities into the adaption prompts</strong></p>
-<h3 id="Zero-initialized-Attention-for-other-Large-Models"><a href="#Zero-initialized-Attention-for-other-Large-Models" class="headerlink" title="Zero-initialized Attention for other Large Models"></a>Zero-initialized Attention for other Large Models</h3><p>In addition to instruction-following models, our zero-initialized attention can be generalized to other vision and language models for parameter-efficient fine-tuning.</p>
-<p><strong>Vision Model</strong>. We insert the adaption prompts as prefix into the topmost L transformer layers in the pre-trained <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a>, and modify the attention operations to be zero-initialized at all inserted layers.</p>
-<p><strong>Language Model</strong>. We evaluate our fine-tuning efficacy on <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa</a>, and implement the zero-initialized attention on top of <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.07602.pdf">P-tuning v2</a>, a prompt tuning method for efficiently adapting large language models. Likewise, we only enable the prompt tokens in P-tuning v2 and our zero gating factors to be learnable during fine-tuning.</p>
-<p><strong>Vision-Language Model</strong>. In detail, we adopt CLIP with a ViT-B&#x2F;16 as the visual encoder and a 12-layer transformer as the textual encoder. We freeze the entire CLIP and insert the adaption prompts with zero-initialized attention into CLIP’s visual encoder.</p>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Instruction-following-Evaluation"><a href="#Instruction-following-Evaluation" class="headerlink" title="Instruction-following Evaluation"></a>Instruction-following Evaluation</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">epochs: 5</span><br><span class="line">warmup epochs: 2</span><br><span class="line">batch size: 64</span><br><span class="line">learning rate: 0.009</span><br><span class="line">weight decay: 0.02</span><br><span class="line"># LLaMA-7B</span><br><span class="line">N: 32</span><br><span class="line">K: 10</span><br><span class="line">L: 30</span><br></pre></td></tr></table></figure>
-
-<p><strong>Generation Stage Decoding Method</strong>: top-p sampling with a temperature 0.1 and a top-p &#x3D; 0.75</p>
-<p><strong>Dataset</strong>: Alpaca-52K self-instruct data. LLaMA-Adapter paper wrongly denotes as Alphaca-52K</p>
-<p><strong>Evaluation Metric</strong>: (1) quantitative evaluation, ask GPT-4 to assess the response quality on 80 questions(Since we observed that GPT-4 has a preference to give higher scores to the first response in comparison, we also switch the position of two responses, resulting in a total of 160 evaluation items.); (2) simply show some response examples</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-15.jpg"></p>
-<p>Comparison of Instruction-Following Capability, LLaMA-Adapter is comparable to Alpaca with fully fine-tuned 7B parameters<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-4.jpg" alt="Comparison of Instruction-Following Capability"></p>
-<p>Comparison with Instruct LLaMA (LLaMA-I, LLaMA-65B fine-tuned on large-scale instructional data), LLaMA-Adapter can be further enhanced with larger LLaMA, larger data, larger learnable parameters<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-5.jpg" alt="Comparison with Instruct LLaMA (LLaMA-I)"></p>
-<h3 id="Multi-modal-Evaluation"><a href="#Multi-modal-Evaluation" class="headerlink" title="Multi-modal Evaluation"></a>Multi-modal Evaluation</h3><p><strong>Generation Stage Decoding Method</strong>: greedy search</p>
-<p>Other hyperparameters are the same as instruction-following LLaMA-Adapter.</p>
-<p><strong>Dataset</strong>: ScienceQA, COCO Caption</p>
-<p><strong>Result on ScienceQA</strong>: MM-CoT relies on the complex two-stage inference. <strong>Future Work: leverage CoT to boost LLaMA-Adapter.</strong><br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-7.jpg" alt="ScienceQA"></p>
-<p><strong>Result on COCO Caption</strong>: Both BLIP and BLIP-2 adopt a costly pre-training stage on additional datasets for superior performance. In contrast, our LLaMA-Adapter only requires COCO Catption’s training set of 0.6M data and attains better accuracy than ClipCap. <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-16.jpg"></p>
-<h3 id="Ablation-Study"><a href="#Ablation-Study" class="headerlink" title="Ablation Study"></a>Ablation Study</h3><p>(ScienceQA for example)</p>
-<p>Result: table 6 shows robustness to over-fitting on the small dataset. Even if LLaMA-Adapter has over-fitted the fine-tuning data(val loss), the val acc is still increasing.<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-8.jpg" alt="Ablation Study"></p>
-<h3 id="Zero-initialized-Attention-for-other-Large-Models-1"><a href="#Zero-initialized-Attention-for-other-Large-Models-1" class="headerlink" title="Zero-initialized Attention for other Large Models"></a>Zero-initialized Attention for other Large Models</h3><p><strong>Vision Model——ViT</strong>: Image classification.(Table 7, Table 9)</p>
-<p><strong>Language Model——RoBERTa</strong>: (1) Extractive question answering(Table 8), Exact Match (EM) and F1 scores on the dev set are reported. (2) NER and SRL.(Table 10)</p>
-<p><strong>Vision-Language Model——CLIP</strong>: The model is trained only on the base classes in a few-shot setting and evaluated on both base and novel categories.(Table 11)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-17.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-18.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-19.jpg"> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-20.jpg"></p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Future direction: </p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1--2.jpg"
+alt="LLaMA-Adapter&#39;s 4 characteristics and details" /> <strong>The
+idea of LLaMA-Adapter is model-agnostic and can be applied to other
+LLMs.</strong></p>
+<h3 id="learnable-adaption-prompts">Learnable Adaption Prompts</h3>
 <ul>
-<li>wider multi-modal inputs(audio, video, point clouds)<ul>
-<li>using pre-trained modal-specific encoders, we can integrate instructional signals of different modalities into the adaption prompts</li>
+<li><span class="math inline">\(K\)</span>: prompt length for each
+layer</li>
+<li><span class="math inline">\(C\)</span>: feature dim of
+transformer</li>
+<li><span class="math inline">\(N\)</span>: total transformer layer num
+of LLaMA</li>
+<li><strong><span class="math inline">\(\{ P_l \}_{l=1}^{L}\)</span>
+(<span class="math inline">\(P_l\in\mathbb{R}^{K\times C}\)</span>) :
+learnable adaption prompts</strong> for topmost <span
+class="math inline">\(L (L\le N)\)</span> transformer layers with
+higher-level semantic representations</li>
+<li><span class="math inline">\(T_l\in\mathbb{R}^{M\times C}\)</span>:
+<span class="math inline">\(M\)</span>-length word tokens in <span
+class="math inline">\(l\)</span>-th inserted layer</li>
+<li><span class="math inline">\([P_l;\space
+T_l]\in\mathbb{R}^{(K+M)\times C}\)</span>: concatenate <span
+class="math inline">\(P_l\)</span> and <span
+class="math inline">\(T_l\)</span>, the learned <strong>instruction
+knowledge</strong> in <span class="math inline">\(P_l\)</span> guides
+<span class="math inline">\(T_l\)</span> to generate contextual
+responses</li>
 </ul>
-</li>
+<h3 id="zero-init-attention">Zero-init Attention</h3>
+<p>If the adaption prompts are randomly initialized, they will bring
+noise to the word tokens and damage original knowledge in LLaMA at the
+early training stage, which harms stablity and effectiveness.</p>
+<p><em><span class="math inline">\(t_l\in\mathbb{R}^{1\times
+C}\)</span>: generate the (M+1)-th word <span
+class="math inline">\(t_l\)</span> on top of <span
+class="math inline">\([P_l;\space T_l]\)</span></em> at the <span
+class="math inline">\(l\)</span>-th inserted layer</p>
+<ol type="1">
+<li>linear projection: queries <span
+class="math inline">\(Q_l=Linear_q(t_l)\)</span>, keys <span
+class="math inline">\(K_l=Linear_k([P_l;T_l;t_l])\)</span>, values <span
+class="math inline">\(V_l=Linear_v([P_l;T_l;t_l])\)</span></li>
+<li>attention scores: <span
+class="math inline">\(S_l=\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}\)</span>,
+records the feature similarities between <span
+class="math inline">\(t_l\)</span> and all <span
+class="math inline">\(K+M+1\)</span> tokens</li>
+<li>reformulation: <span class="math inline">\(S_l=[S_l^K;S_l^{M+1}]^T,
+S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times
+1}\)</span>
+<ul>
+<li><span class="math inline">\(S_l^K\)</span> represents how much
+information the <span class="math inline">\(P_l\)</span> contribute to
+<span class="math inline">\(t_l\)</span>, which probably causes noise in
+the early training stage</li>
+</ul></li>
+<li>softmax operation: <span
+class="math inline">\(S_l^g=[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T\)</span>
+<ul>
+<li><span class="math inline">\(g_l\)</span> is a learnable gating
+factor initialized by zero, adaptively controls the importance of <span
+class="math inline">\(S_l^K\)</span></li>
+<li>in practice, each head of attention has an independent <span
+class="math inline">\(g_l\)</span></li>
+</ul></li>
+<li>output of the attention layer: <span
+class="math inline">\(t_l^o=Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times
+C}\)</span></li>
+</ol>
+<h3 id="multi-modal-reasoning">Multi-modal Reasoning</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-3.jpg" />
+Task textual input for ScienceQA: question + textual context + options.
+(We utilize "Generate caption for this image" as the textual instruction
+input for LLaMA-Adapter)</p>
+<ol type="1">
+<li>multi-scale global visual features: <span
+class="math inline">\(\{I_m\}_{m=1}^{M},I_m\in\mathbb{R}^{1\times
+C_m}\)</span>, <span class="math inline">\(M\)</span> is the scale num
+<ul>
+<li>from pre-trained CLIP</li>
+</ul></li>
+<li>overall image token: <span
+class="math inline">\(I_p=Projection\Big(Concat\left(\{I_m\}_{m=1}^M\right)\Big)\in\mathbb{R}^{1\times
+C}\)</span>
+<ul>
+<li>concatenate along the channel dim</li>
+<li>utilize cascaded MLPs as the learnable projection network with 0.6M
+parameters</li>
+</ul></li>
+<li>repeat <span class="math inline">\(I_p\)</span> for <span
+class="math inline">\(K\)</span> times</li>
+<li>multi-modal prompt: <span
+class="math inline">\(P_l^v=P_l+Repeat(I_p)\in\mathbb{R}^{K\times
+C}\)</span></li>
+</ol>
+<p><strong>Future work: using pre-trained modal-specific encoders, we
+can integrate instructional signals of different modalities into the
+adaption prompts</strong></p>
+<h3
+id="zero-initialized-attention-for-other-large-models">Zero-initialized
+Attention for other Large Models</h3>
+<p>In addition to instruction-following models, our zero-initialized
+attention can be generalized to other vision and language models for
+parameter-efficient fine-tuning.</p>
+<p><strong>Vision Model</strong>. We insert the adaption prompts as
+prefix into the topmost L transformer layers in the pre-trained <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2010.11929.pdf">ViT</a>, and modify the
+attention operations to be zero-initialized at all inserted layers.</p>
+<p><strong>Language Model</strong>. We evaluate our fine-tuning efficacy
+on <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa</a>, and
+implement the zero-initialized attention on top of <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.07602.pdf">P-tuning v2</a>, a prompt
+tuning method for efficiently adapting large language models. Likewise,
+we only enable the prompt tokens in P-tuning v2 and our zero gating
+factors to be learnable during fine-tuning.</p>
+<p><strong>Vision-Language Model</strong>. In detail, we adopt CLIP with
+a ViT-B/16 as the visual encoder and a 12-layer transformer as the
+textual encoder. We freeze the entire CLIP and insert the adaption
+prompts with zero-initialized attention into CLIP’s visual encoder.</p>
+<h2 id="experiment">Experiment</h2>
+<h3 id="instruction-following-evaluation">Instruction-following
+Evaluation</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">epochs: 5</span><br><span class="line">warmup epochs: 2</span><br><span class="line">batch size: 64</span><br><span class="line">learning rate: 0.009</span><br><span class="line">weight decay: 0.02</span><br><span class="line"># LLaMA-7B</span><br><span class="line">N: 32</span><br><span class="line">K: 10</span><br><span class="line">L: 30</span><br></pre></td></tr></table></figure>
+<p><strong>Generation Stage Decoding Method</strong>: top-p sampling
+with a temperature 0.1 and a top-p = 0.75</p>
+<p><strong>Dataset</strong>: Alpaca-52K self-instruct data.
+LLaMA-Adapter paper wrongly denotes as Alphaca-52K</p>
+<p><strong>Evaluation Metric</strong>: (1) quantitative evaluation, ask
+GPT-4 to assess the response quality on 80 questions(Since we observed
+that GPT-4 has a preference to give higher scores to the first response
+in comparison, we also switch the position of two responses, resulting
+in a total of 160 evaluation items.); (2) simply show some response
+examples</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-15.jpg" /></p>
+<p>Comparison of Instruction-Following Capability, LLaMA-Adapter is
+comparable to Alpaca with fully fine-tuned 7B parameters <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-4.jpg"
+alt="Comparison of Instruction-Following Capability" /></p>
+<p>Comparison with Instruct LLaMA (LLaMA-I, LLaMA-65B fine-tuned on
+large-scale instructional data), LLaMA-Adapter can be further enhanced
+with larger LLaMA, larger data, larger learnable parameters <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-5.jpg"
+alt="Comparison with Instruct LLaMA (LLaMA-I)" /></p>
+<h3 id="multi-modal-evaluation">Multi-modal Evaluation</h3>
+<p><strong>Generation Stage Decoding Method</strong>: greedy search</p>
+<p>Other hyperparameters are the same as instruction-following
+LLaMA-Adapter.</p>
+<p><strong>Dataset</strong>: ScienceQA, COCO Caption</p>
+<p><strong>Result on ScienceQA</strong>: MM-CoT relies on the complex
+two-stage inference. <strong>Future Work: leverage CoT to boost
+LLaMA-Adapter.</strong> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-7.jpg"
+alt="ScienceQA" /></p>
+<p><strong>Result on COCO Caption</strong>: Both BLIP and BLIP-2 adopt a
+costly pre-training stage on additional datasets for superior
+performance. In contrast, our LLaMA-Adapter only requires COCO
+Catption’s training set of 0.6M data and attains better accuracy than
+ClipCap. <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-16.jpg" /></p>
+<h3 id="ablation-study">Ablation Study</h3>
+<p>(ScienceQA for example)</p>
+<p>Result: table 6 shows robustness to over-fitting on the small
+dataset. Even if LLaMA-Adapter has over-fitted the fine-tuning data(val
+loss), the val acc is still increasing. <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-8.jpg"
+alt="Ablation Study" /></p>
+<h3
+id="zero-initialized-attention-for-other-large-models-1">Zero-initialized
+Attention for other Large Models</h3>
+<p><strong>Vision Model——ViT</strong>: Image classification.(Table 7,
+Table 9)</p>
+<p><strong>Language Model——RoBERTa</strong>: (1) Extractive question
+answering(Table 8), Exact Match (EM) and F1 scores on the dev set are
+reported. (2) NER and SRL.(Table 10)</p>
+<p><strong>Vision-Language Model——CLIP</strong>: The model is trained
+only on the base classes in a few-shot setting and evaluated on both
+base and novel categories.(Table 11)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-17.jpg" />
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-18.jpg" />
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-19.jpg" />
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-20.jpg" /></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Future direction:</p>
+<ul>
+<li>wider multi-modal inputs(audio, video, point clouds)
+<ul>
+<li>using pre-trained modal-specific encoders, we can integrate
+instructional signals of different modalities into the adaption
+prompts</li>
+</ul></li>
 <li>larger LLaMA(33B, 65B)</li>
 <li>other LLMs</li>
-<li>diverse benchmarks(VQA v2, OK-VQA, TVQA, DocVQA)<ul>
+<li>diverse benchmarks(VQA v2, OK-VQA, TVQA, DocVQA)
+<ul>
 <li>ScienceQA is only an understanding task</li>
-</ul>
-</li>
+</ul></li>
 <li>leverage CoT to boost LLaMA-Adapter</li>
 </ul>
-<h2 id="Code-Implementation"><a href="#Code-Implementation" class="headerlink" title="Code Implementation"></a>Code Implementation</h2><h3 id="Params"><a href="#Params" class="headerlink" title="Params"></a>Params</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">accum_iter: 1. Accumulate gradient iterations (for increasing the effective batch size under memory constraints)</span><br><span class="line">batch_size: 4(per GPU). effective_batch_size = batch_size * accum_iter * gpu_num</span><br><span class="line">epoch: 5</span><br><span class="line">adapter_layer: 30. the num of adapter layer L</span><br><span class="line">adapter_len: 10. the adapter length K</span><br><span class="line">max_seq_len: 512. specifies the maximum number of input tokens. token num &gt;= word num.</span><br><span class="line">max_batch_size: 32.</span><br><span class="line">dim: 4096.</span><br><span class="line">n_heads: 32.</span><br><span class="line">n_layers: 32.</span><br><span class="line">weight_decay: 0.02.</span><br><span class="line">blr: 9e-3. base learning rate.</span><br><span class="line">lr: learning_rate(absolute lr), lr = blr * total_batch_size / 256</span><br><span class="line">min_lr: 0.0. lower lr bound for cyclic schedulers that hit 0</span><br><span class="line">warmup_epochs: 2.</span><br><span class="line">seed: 0.</span><br></pre></td></tr></table></figure>
-
-<p>Why we need max_seq_len? For absolute position embedding(e.g., BERT, Roberta, BART), it uses the index of each token to calculate and its length is limited(max_seq_len). When the input token length exceeds max_seq_len, <strong>“index error”</strong> will be caused. For other position embedding methods(e.g., XLNet, T5), they have no limit of input token length. But longer input token length brings <strong>heavier memory burden</strong>, which may not necessarily lead to better performance.</p>
-<p>LLaMA uses Rotary Position Embedding: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627536105">分析 | ROPE的不同实现：llama&amp;palm</a>, <a target="_blank" rel="noopener" href="http://t.csdn.cn/U3RXo">blog 2.3 RoPE旋转位置编码</a></p>
-<h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstructionDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_path, model_path, max_seq_len, partition=<span class="string">&quot;train&quot;</span></span>):</span><br><span class="line">        self.ann = json.load(<span class="built_in">open</span>(data_path))</span><br><span class="line">        <span class="keyword">if</span> partition == <span class="string">&quot;train&quot;</span>:</span><br><span class="line">            self.ann = self.ann</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># It seems that the val set is a sub set of the train set.(data_path is same)</span></span><br><span class="line">            self.ann = self.ann[:<span class="number">200</span>]</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        ann = self.ann[index]</span><br><span class="line">        <span class="keyword">if</span> ann.get(<span class="string">&quot;input&quot;</span>, <span class="string">&quot;&quot;</span>) == <span class="string">&quot;&quot;</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_no_input&quot;</span>].format_map(ann)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_input&quot;</span>].format_map(ann)</span><br><span class="line">        example = prompt + ann[<span class="string">&quot;output&quot;</span>]</span><br><span class="line">        example = torch.tensor(self.tokenizer1.encode(example, bos=<span class="literal">True</span>, eos=<span class="literal">True</span>), dtype=torch.int64)</span><br><span class="line">        padding = self.max_words - example.shape[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># prompt = Propmt(template, ann[&#x27;instruction&#x27;], ann[&#x27;input&#x27;])</span></span><br><span class="line">        <span class="comment"># max_seq_len refers to tokenizer([prompt, ann[&#x27;output&#x27;]]).length, not tokenizer(prompt).length</span></span><br><span class="line">        <span class="keyword">if</span> padding &gt; <span class="number">0</span>:</span><br><span class="line">            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">elif</span> padding &lt; <span class="number">0</span>:</span><br><span class="line">            example = example[: self.max_words]</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
-
-<h3 id="Learnable-Adaption-Prompts-1"><a href="#Learnable-Adaption-Prompts-1" class="headerlink" title="Learnable Adaption Prompts"></a>Learnable Adaption Prompts</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module): <span class="comment"># Decoder</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, params: ModelArgs</span>):</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># randomly initialise the adaption prompts</span></span><br><span class="line">        <span class="comment"># github.com/OpenGVLab/LLaMA-Adapter/issues/9#issuecomment-1501705647</span></span><br><span class="line">        self.adapter_query = nn.Embedding(params.adapter_len * params.adapter_layer, params.dim)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, examples, labels</span>):</span><br><span class="line">        _bsz, seqlen = examples.shape</span><br><span class="line">        ...</span><br><span class="line">        mask = torch.full((<span class="number">1</span>, <span class="number">1</span>, seqlen, seqlen), <span class="built_in">float</span>(<span class="string">&quot;-inf&quot;</span>), device=h.device)</span><br><span class="line">        mask = torch.triu(mask, diagonal=<span class="number">0</span> + <span class="number">1</span>).type_as(h) <span class="comment"># Upper triangular matrix, and diagonal val is 0</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[: -<span class="number">1</span> * self.adapter_layer]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line">        adapter_index = <span class="number">0</span></span><br><span class="line">        <span class="comment"># adapter.shape: (30, 1, 10, 4096)</span></span><br><span class="line">        adapter = self.adapter_query.weight.reshape(-<span class="number">1</span>, self.adapter_len, <span class="number">4096</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[-<span class="number">1</span> * self.adapter_layer :]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask, adapter[adapter_index].half())</span><br><span class="line">            adapter_index = adapter_index + <span class="number">1</span></span><br><span class="line">        output = self.output(self.norm(h))</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<h2 id="code-implementation">Code Implementation</h2>
+<h3 id="params">Params</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">accum_iter: 1. Accumulate gradient iterations (for increasing the effective batch size under memory constraints)</span><br><span class="line">batch_size: 4(per GPU). effective_batch_size = batch_size * accum_iter * gpu_num</span><br><span class="line">epoch: 5</span><br><span class="line">adapter_layer: 30. the num of adapter layer L</span><br><span class="line">adapter_len: 10. the adapter length K</span><br><span class="line">max_seq_len: 512. specifies the maximum number of input tokens. token num &gt;= word num.</span><br><span class="line">max_batch_size: 32.</span><br><span class="line">dim: 4096.</span><br><span class="line">n_heads: 32.</span><br><span class="line">n_layers: 32.</span><br><span class="line">weight_decay: 0.02.</span><br><span class="line">blr: 9e-3. base learning rate.</span><br><span class="line">lr: learning_rate(absolute lr), lr = blr * total_batch_size / 256</span><br><span class="line">min_lr: 0.0. lower lr bound for cyclic schedulers that hit 0</span><br><span class="line">warmup_epochs: 2.</span><br><span class="line">seed: 0.</span><br></pre></td></tr></table></figure>
+<p>Why we need max_seq_len? For absolute position embedding(e.g., BERT,
+Roberta, BART), it uses the index of each token to calculate and its
+length is limited(max_seq_len). When the input token length exceeds
+max_seq_len, <strong>"index error"</strong> will be caused. For other
+position embedding methods(e.g., XLNet, T5), they have no limit of input
+token length. But longer input token length brings <strong>heavier
+memory burden</strong>, which may not necessarily lead to better
+performance.</p>
+<p>LLaMA uses Rotary Position Embedding: <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627536105">分析 |
+ROPE的不同实现：llama&amp;palm</a>, <a
+target="_blank" rel="noopener" href="http://t.csdn.cn/U3RXo">blog 2.3 RoPE旋转位置编码</a></p>
+<h3 id="dataset">Dataset</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstructionDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_path, model_path, max_seq_len, partition=<span class="string">&quot;train&quot;</span></span>):</span><br><span class="line">        self.ann = json.load(<span class="built_in">open</span>(data_path))</span><br><span class="line">        <span class="keyword">if</span> partition == <span class="string">&quot;train&quot;</span>:</span><br><span class="line">            self.ann = self.ann</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># It seems that the val set is a sub set of the train set.(data_path is same)</span></span><br><span class="line">            self.ann = self.ann[:<span class="number">200</span>]</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        ann = self.ann[index]</span><br><span class="line">        <span class="keyword">if</span> ann.get(<span class="string">&quot;input&quot;</span>, <span class="string">&quot;&quot;</span>) == <span class="string">&quot;&quot;</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_no_input&quot;</span>].format_map(ann)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            prompt = PROMPT_DICT[<span class="string">&quot;prompt_input&quot;</span>].format_map(ann)</span><br><span class="line">        example = prompt + ann[<span class="string">&quot;output&quot;</span>]</span><br><span class="line">        example = torch.tensor(self.tokenizer1.encode(example, bos=<span class="literal">True</span>, eos=<span class="literal">True</span>), dtype=torch.int64)</span><br><span class="line">        padding = self.max_words - example.shape[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># prompt = Propmt(template, ann[&#x27;instruction&#x27;], ann[&#x27;input&#x27;])</span></span><br><span class="line">        <span class="comment"># max_seq_len refers to tokenizer([prompt, ann[&#x27;output&#x27;]]).length, not tokenizer(prompt).length</span></span><br><span class="line">        <span class="keyword">if</span> padding &gt; <span class="number">0</span>:</span><br><span class="line">            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">elif</span> padding &lt; <span class="number">0</span>:</span><br><span class="line">            example = example[: self.max_words]</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+<h3 id="learnable-adaption-prompts-1">Learnable Adaption Prompts</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module): <span class="comment"># Decoder</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, params: ModelArgs</span>):</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># randomly initialise the adaption prompts</span></span><br><span class="line">        <span class="comment"># github.com/OpenGVLab/LLaMA-Adapter/issues/9#issuecomment-1501705647</span></span><br><span class="line">        self.adapter_query = nn.Embedding(params.adapter_len * params.adapter_layer, params.dim)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, examples, labels</span>):</span><br><span class="line">        _bsz, seqlen = examples.shape</span><br><span class="line">        ...</span><br><span class="line">        mask = torch.full((<span class="number">1</span>, <span class="number">1</span>, seqlen, seqlen), <span class="built_in">float</span>(<span class="string">&quot;-inf&quot;</span>), device=h.device)</span><br><span class="line">        mask = torch.triu(mask, diagonal=<span class="number">0</span> + <span class="number">1</span>).type_as(h) <span class="comment"># Upper triangular matrix, and diagonal val is 0</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[: -<span class="number">1</span> * self.adapter_layer]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line">        adapter_index = <span class="number">0</span></span><br><span class="line">        <span class="comment"># adapter.shape: (30, 1, 10, 4096)</span></span><br><span class="line">        adapter = self.adapter_query.weight.reshape(-<span class="number">1</span>, self.adapter_len, <span class="number">4096</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers[-<span class="number">1</span> * self.adapter_layer :]:</span><br><span class="line">            h = layer(h, start_pos, freqs_cis, mask, adapter[adapter_index].half())</span><br><span class="line">            adapter_index = adapter_index + <span class="number">1</span></span><br><span class="line">        output = self.output(self.norm(h))</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
 <ul>
-<li>linear projection: queries $Q_l&#x3D;Linear_q(t_l)$, keys $K_l&#x3D;Linear_k([P_l;T_l;t_l])$, values $V_l&#x3D;Linear_v([P_l;T_l;t_l])$</li>
-<li>attention scores: $S_l&#x3D;\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}$</li>
-<li>reformulation: $S_l&#x3D;[S_l^K;S_l^{M+1}]^T, S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times 1}$</li>
-<li>softmax operation: $S_l^g&#x3D;[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T$</li>
-<li>output of the attention layer: $t_l^o&#x3D;Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times C}$</li>
+<li>linear projection: queries <span
+class="math inline">\(Q_l=Linear_q(t_l)\)</span>, keys <span
+class="math inline">\(K_l=Linear_k([P_l;T_l;t_l])\)</span>, values <span
+class="math inline">\(V_l=Linear_v([P_l;T_l;t_l])\)</span></li>
+<li>attention scores: <span
+class="math inline">\(S_l=\frac{Q_lK_l^T}{\sqrt{C}}\in\mathbb{R}^{1\times(K+M+1)}\)</span></li>
+<li>reformulation: <span class="math inline">\(S_l=[S_l^K;S_l^{M+1}]^T,
+S_l^K\in\mathbb{R}^{K\times 1}, S_l^{M+1}\in\mathbb{R}^{(M+1)\times
+1}\)</span></li>
+<li>softmax operation: <span
+class="math inline">\(S_l^g=[Softmax(S_l^K)·g_l;Softmax(S_l^{M+1})]^T\)</span></li>
+<li>output of the attention layer: <span
+class="math inline">\(t_l^o=Linear_o(S_l^gV_l)\in\mathbb{R}^{1\times
+C}\)</span></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Attention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, args: ModelArgs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># zero-init attention</span></span><br><span class="line">        self.gate = torch.nn.Parameter(torch.zeros(<span class="number">1</span>, self.n_local_heads, <span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor, start_pos: <span class="built_in">int</span>, freqs_cis: torch.Tensor, mask: <span class="type">Optional</span>[torch.Tensor], adapter=<span class="literal">None</span></span>):</span><br><span class="line">        bsz, seqlen, _ = x.shape</span><br><span class="line">        <span class="comment"># 1. three Linears for x</span></span><br><span class="line">        xq, xk, xv = self.wq(x), self.wk(x), self.wv(x)</span><br><span class="line">        xq = xq.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xk = xk.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        xv = xv.view(bsz, seqlen, self.n_local_heads, self.head_dim)</span><br><span class="line">        <span class="comment"># 2. add position info via Rotary Position Embedding</span></span><br><span class="line">        xq, xk = apply_rotary_emb(xq, xk, freqs_cis=freqs_cis)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            adapter_len = adapter.shape[<span class="number">1</span>] <span class="comment"># adapter.shape: (1, 10, 4096)</span></span><br><span class="line">            <span class="comment"># linear projection</span></span><br><span class="line">            <span class="comment"># adapter_k.shape: (bsz, adapter_len, self.n_local_heads, self.head_dim)</span></span><br><span class="line">            adapter_k = self.wk(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            adapter_v = self.wv(adapter).view(<span class="number">1</span>, adapter_len, self.n_local_heads, self.head_dim).repeat(bsz, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">            xk = torch.cat([adapter_k, xk], dim=<span class="number">1</span>)</span><br><span class="line">            xv = torch.cat([adapter_v, xv], dim=<span class="number">1</span>)</span><br><span class="line">            extra_mask = torch.zeros(<span class="number">1</span>, <span class="number">1</span>, seqlen, adapter_len).to(mask)</span><br><span class="line">            mask = torch.cat([extra_mask, mask], dim=-<span class="number">1</span>) <span class="comment"># (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        keys = xk</span><br><span class="line">        values = xv</span><br><span class="line"></span><br><span class="line">        xq = xq.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        keys = keys.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        values = values.transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="comment"># 3. attention scores</span></span><br><span class="line">        scores = torch.matmul(xq, keys.transpose(<span class="number">2</span>, <span class="number">3</span>)) / math.sqrt(self.head_dim)</span><br><span class="line">        <span class="comment"># for decoder type, mask is needed to avoid using the information in the future.</span></span><br><span class="line">        <span class="comment"># the predictions for position i can depend only on the known outputs at positions less than i</span></span><br><span class="line">        <span class="comment"># mask.shape: (1, 1, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = scores + mask  <span class="comment"># (bsz, n_local_heads, seqlen, adapter_len + seqlen)</span></span><br><span class="line">        <span class="comment"># 4. softmax</span></span><br><span class="line">        <span class="keyword">if</span> adapter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            scores = torch.cat(</span><br><span class="line">                [</span><br><span class="line">                    <span class="comment"># zero-init attention</span></span><br><span class="line">                    self.gate.tanh().half() * F.softmax(scores[:, :, :, :adapter_len].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                    F.softmax(scores[:, :, :, adapter_len:].<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq),</span><br><span class="line">                ],</span><br><span class="line">                dim=-<span class="number">1</span>,</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            scores = F.softmax(scores.<span class="built_in">float</span>(), dim=-<span class="number">1</span>).type_as(xq)</span><br><span class="line">        output = torch.matmul(scores, values)  <span class="comment"># (bs, n_local_heads, slen, head_dim)</span></span><br><span class="line">        output = output.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(bsz, seqlen, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.wo(output)</span><br></pre></td></tr></table></figure>
-<p>(images below are from <a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io&#x2F;illustrated-gpt2&#x2F;</a>)<br><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png"><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png"><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png"></p>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><h3 id="Parameter-Efficient-Fine-Tuning-PEFT"><a href="#Parameter-Efficient-Fine-Tuning-PEFT" class="headerlink" title="Parameter-Efficient Fine-Tuning(PEFT)"></a>Parameter-Efficient Fine-Tuning(PEFT)</h3><p><img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-flowchart-1536x535.png" alt="Three conventional approaches of finetuing"> <a target="_blank" rel="noopener" href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Three conventional approaches of finetuing.(the pre-trained model is not too large)</a> They are all compatible with encoder and decoder style. When finetune generative models, we work with and build on the embeddings they create instead of the generated output texts. But in-context learning only applies to decoder style. <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-performance-1024x377.png" alt="traininig efficiency and modeling performance"></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/huggingface/peft">PEFT</a> methods freeze most parameters of pre-trained models, and can still exhibit comparable capabilities on downstream tasks. It is needed when we want to get a similar modeling quality as finetuning II on LLMs. (e.g., Prompt-Tuning, Adapter, LoRA)</p>
-<p>Prompt tuning appends a collection of trainable prompt tokens to pre-trained large models, which are inserted either to the input embeddings only, or to all of the intermediate layers. (e.g., Hard&#x2F;Soft Prompt-Tuning, Prefix-Tuning)</p>
-<p>Hard Prompt-Tuning: directly change the discrete input tokens, which are not differentiable: <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/hard-prompting-1024x214.png"></p>
-<p>Soft Prompt-Tuning: concatenates the embeddings of the input tokens with a trainable tensor that can be optimized via backpropagation.</p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>: add a trainable tensor to each transformer block instead of only the input embeddings, as in Soft Prompt-Tuning: <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/prefix-tuning-1536x907.png"></p>
-<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.00751.pdf">Adapter</a>: adds adapter layers in two places. The hidden dim in each adapter layer is low(e.g., 1024–&gt;24, params 1024×24+24×1024&#x3D;49,512 &lt; 1024×1024&#x3D;1,048,576). <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/adapter-outline-1024x548.png"></p>
-<p><a target="_blank" rel="noopener" href="https://lightning.ai/pages/community/tutorial/lora-llm/">LoRA</a>: introduces trainable rank decomposition matrices into each network weights: <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-13.jpg"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png"> <a target="_blank" rel="noopener" href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
-<p>LLaMA-Adapter is distinct from regular Prefix-Tuning: 1. L topmost layer(not all) 2. zero-init attention(stablity improvement) 3. unified multi-modal tuning(unimodal to multi-modal) <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/popular-methods-1024x282.png"> <img src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/llama-adapter-1447x1536.png"></p>
-<h3 id="Instruction-Following-Models"><a href="#Instruction-Following-Models" class="headerlink" title="Instruction-Following Models"></a>Instruction-Following Models</h3><p>Instruction-following capabilities: understand user intentions and follow instructions accurately.</p>
-<p>Closed-source restriction and high training costs imped instruction-following models’ development.</p>
-<p>Compared to a concurrent work <a target="_blank" rel="noopener" href="https://github.com/tloen/alpaca-lora">Alpaca-LoRA</a>, our approach further reduces the computational demands, and can be generalized to follow visual instructions for multi-modal reasoning.</p>
+<p>(images below are from <a
+target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-gpt2/">jalammar.github.io/illustrated-gpt2/</a>)
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-9.png" /><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-10.png" /><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-11.png" /></p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="parameter-efficient-fine-tuningpeft">Parameter-Efficient
+Fine-Tuning(PEFT)</h3>
+<p><img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-flowchart-1536x535.png"
+alt="Three conventional approaches of finetuing" /> <a
+target="_blank" rel="noopener" href="https://lightning.ai/pages/community/article/understanding-llama-adapters/">Three
+conventional approaches of finetuing.(the pre-trained model is not too
+large)</a> They are all compatible with encoder and decoder style. When
+finetune generative models, we work with and build on the embeddings
+they create instead of the generated output texts. But in-context
+learning only applies to decoder style. <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/classic-performance-1024x377.png"
+alt="traininig efficiency and modeling performance" /></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/huggingface/peft">PEFT</a> methods freeze
+most parameters of pre-trained models, and can still exhibit comparable
+capabilities on downstream tasks. It is needed when we want to get a
+similar modeling quality as finetuning II on LLMs. (e.g., Prompt-Tuning,
+Adapter, LoRA)</p>
+<p>Prompt tuning appends a collection of trainable prompt tokens to
+pre-trained large models, which are inserted either to the input
+embeddings only, or to all of the intermediate layers. (e.g., Hard/Soft
+Prompt-Tuning, Prefix-Tuning)</p>
+<p>Hard Prompt-Tuning: directly change the discrete input tokens, which
+are not differentiable: <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/hard-prompting-1024x214.png" /></p>
+<p>Soft Prompt-Tuning: concatenates the embeddings of the input tokens
+with a trainable tensor that can be optimized via backpropagation.</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2101.00190.pdf">Prefix Tuning</a>: add
+a trainable tensor to each transformer block instead of only the input
+embeddings, as in Soft Prompt-Tuning: <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/prefix-tuning-1536x907.png" /></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1902.00751.pdf">Adapter</a>: adds
+adapter layers in two places. The hidden dim in each adapter layer is
+low(e.g., 1024--&gt;24, params 1024×24+24×1024=49,512 &lt;
+1024×1024=1,048,576). <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/adapter-outline-1024x548.png" /></p>
+<p><a
+target="_blank" rel="noopener" href="https://lightning.ai/pages/community/tutorial/lora-llm/">LoRA</a>:
+introduces trainable rank decomposition matrices into each network
+weights: <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-13.jpg" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-12.png" />
+<a target="_blank" rel="noopener" href="https://aclanthology.org/2022.acl-long.433.pdf">(UniPELT: A
+Unified Framework for Parameter-Efficient Language Model Tuning)</a></p>
+<p>LLaMA-Adapter is distinct from regular Prefix-Tuning: 1. L topmost
+layer(not all) 2. zero-init attention(stablity improvement) 3. unified
+multi-modal tuning(unimodal to multi-modal) <img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/popular-methods-1024x282.png" />
+<img
+src="https://lightningaidev.wpengine.com/wp-content/uploads/2023/04/llama-adapter-1447x1536.png" /></p>
+<h3 id="instruction-following-models">Instruction-Following Models</h3>
+<p>Instruction-following capabilities: understand user intentions and
+follow instructions accurately.</p>
+<p>Closed-source restriction and high training costs imped
+instruction-following models' development.</p>
+<p>Compared to a concurrent work <a
+target="_blank" rel="noopener" href="https://github.com/tloen/alpaca-lora">Alpaca-LoRA</a>, our
+approach further reduces the computational demands, and can be
+generalized to follow visual instructions for multi-modal reasoning.</p>
 <p><em>Language Modality:</em></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces an instruction tuning method</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a web-based GUI for creating and managing natural language prompt</li>
-<li><a target="_blank" rel="noopener" href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>: an benchmark of instructions on 1,616 NLP tasks</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>: RLHF, significant performance improvements</li>
-<li><strong><a target="_blank" rel="noopener" href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>: data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
-<li><a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> and <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.03277.pdf">GPT-4-LLM</a>: reveal that dialog and enhanced instruction-following capabilities can be ignited by fine-tuning on either user-shared ChatGPT conversations or instruction-following data generated by the GPT-4 API</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2109.01652.pdf">FLAN</a>: introduces
+an instruction tuning method</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.01279.pdf">PromptSource</a>: a
+web-based GUI for creating and managing natural language prompt</li>
+<li><a
+target="_blank" rel="noopener" href="https://aclanthology.org/2022.emnlp-main.340.pdf">SUP-NATINST</a>:
+an benchmark of instructions on 1,616 NLP tasks</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.02155.pdf">InstructGPT</a>:
+RLHF, significant performance improvements</li>
+<li><strong><a
+target="_blank" rel="noopener" href="https://github.com/tatsu-lab/stanford_alpaca">Alpaca</a>:
+data-efficient(self-instruction), high costs(fine-tuning)</strong></li>
+<li><a target="_blank" rel="noopener" href="https://lmsys.org/blog/2023-03-30-vicuna/">Vicuna</a> and
+<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.03277.pdf">GPT-4-LLM</a>: reveal
+that dialog and enhanced instruction-following capabilities can be
+ignited by fine-tuning on either user-shared ChatGPT conversations or
+instruction-following data generated by the GPT-4 API</li>
 </ul>
 <p><em>Multi-modality:</em></p>
 <p>Robot</p>
 <ul>
-<li>2020&#x2F;03&#x2F;31 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>:  a benchmark for robotics instruction following</li>
-<li>2022&#x2F;03&#x2F;16 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>: a modular method for robotics instruction following</li>
+<li>2020/03/31 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/1912.01734.pdf">ALFRED</a>: a benchmark for
+robotics instruction following</li>
+<li>2022/03/16 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.07342.pdf">FILM</a>:
+a modular method for robotics instruction following</li>
 </ul>
 <p>Video</p>
 <ul>
-<li>2023&#x2F;05&#x2F;10 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.06355.pdf">VideoChat: Chat-Centric Video Understanding</a>: (1) integrates video foundation models and large language models via a learnable neural interface; (2) propose a video-centric instruction dataset based on WebVid-10M; (3) spatiotemporal reasoning, event localization, and causal relationship inference</li>
-<li>2023&#x2F;06&#x2F;08 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT: Towards Detailed Video Understanding via Large Vision and Language Models</a>: (1)  merges a video-adapted visual encoder with a LLM; (2) introduce a new dataset of 100,000 video-instruction pairs; (3) develop a quantitative evaluation framework for video-based dialogue models; (4) understanding and generating detailed conversations about videos</li>
-<li>2023&#x2F;06&#x2F;12 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.02858.pdf">Video-LLaMA An Instruction-tuned Audio-Visual Language Model for Video Understanding</a>: (1) propose a Video Q-former for temporal info; (2) propose an Audio Q-former based on ImageBind for audio-visual signals</li>
+<li>2023/05/10 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.06355.pdf">VideoChat:
+Chat-Centric Video Understanding</a>: (1) integrates video foundation
+models and large language models via a learnable neural interface; (2)
+propose a video-centric instruction dataset based on WebVid-10M; (3)
+spatiotemporal reasoning, event localization, and causal relationship
+inference</li>
+<li>2023/06/08 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT: Towards
+Detailed Video Understanding via Large Vision and Language Models</a>:
+(1) merges a video-adapted visual encoder with a LLM; (2) introduce a
+new dataset of 100,000 video-instruction pairs; (3) develop a
+quantitative evaluation framework for video-based dialogue models; (4)
+understanding and generating detailed conversations about videos</li>
+<li>2023/06/12 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.02858.pdf">Video-LLaMA An
+Instruction-tuned Audio-Visual Language Model for Video
+Understanding</a>: (1) propose a Video Q-former for temporal info; (2)
+propose an Audio Q-former based on ImageBind for audio-visual
+signals</li>
 </ul>
 <p>Image(Model)</p>
 <ul>
-<li>2023&#x2F;04&#x2F;27 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2302.14045v1.pdf">Kosmos-1</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.10592.pdf">MiniGPT4</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.14178.pdf">mPLUG-Owl</a> <img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-14.jpg"></li>
-<li>2023&#x2F;05&#x2F;05 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.03726.pdf">Otter: A Multi-Modal Model with In-Context Instruction Tuning</a></li>
-<li>2023&#x2F;05&#x2F;11 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.06500.pdf">InstructBLIP: Towards General-purpose Vision-Language Models with Instruction Tuning</a>: (1) gather a wide variety of 26 publicly available datasets, transform them into instruction tuning format; (2)  instruction-aware visual feature extraction method</li>
-<li>2023&#x2F;05&#x2F;22 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.04160.pdf">X-LLM: Bootstrapping Advanced Large Language Models by Treating Multi-Modalities as Foreign Languages</a>: propose X2L interface to convert other modality(image, speech, video) into foreign language via 3 training stages</li>
-<li>2023&#x2F;05&#x2F;24 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.15023.pdf">Cheap and Quick: Efficient Vision-Language Instruction Tuning for Large Language Models</a>: (1) Mixture-of-Modality Adaptation(MMA); (2) a routing algorithm for MMA, which enables an automatic shift between single- and multi-modal instructions; (3) MMA+LLaMA&#x3D;LaVIN(efficient), 1.4 training hours with 3.8M trainable params</li>
-<li>2023&#x2F;05&#x2F;25 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.16355.pdf">PandaGPT: One Model To Instruction-Follow Them All</a>: (1) visual and auditory instruction-following capabilities(detailed image description generation, writing stories inspired by videos, answering questions about audios); (2) combines the multimodal encoders from ImageBind and the large language models from Vicuna; (3) displays emergent, i.e. zero-shot, cross-modal behaviors for data other than image and text (e.g., video, audio, depth, thermal, and IMU)</li>
-<li>2023&#x2F;05&#x2F;25 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.16103.pdf">ChatBridge: Bridging Modalities with Large Language Model as a Language Catalyst</a>: (1) show that only language-paired two-modality data is sufficient to connect all modalities; (2) propose a new multi-modal instruction tuning dataset MULTIS, which covers a wide range of 16 multimodal tasks of text, image, video, and audio modalities; (3) a two-stage training, firstly aligns each modality with language, secondly aligns model with user intent</li>
-<li>2023&#x2F;05&#x2F;30 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools: Teaching Large Language Model to Use Tools via Self-instruction</a>: (1) enable open-source LLMs to use multimodal tools; (2) generates an instruction-following dataset by prompting an advanced teacher with various multi-modal contexts; (3) provide a benchmark to evaluate the ability of LLMs to use tools</li>
-<li>2023&#x2F;06&#x2F;02 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.05662.pdf">InternGPT: Solving Vision-Centric Tasks by Interacting with ChatGPT Beyond Language</a>: integrates chatbots with non-verbal instructions(e.g., point movements like gestures and cursors), which requires fine-grained control, editing, and generation of visual content</li>
-<li>2023&#x2F;06&#x2F;13 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.04790.pdf">MultiModal-GPT: A Vision and Language Model for Dialogue with Humans</a>: (1) capable of generating detailed captions, counting specific objects, and addressing general inquiries posed by users; (2) OpenFlamingo+LoRA; (3) construct multi-modal instruction templates; (4) also employ language-only instruction-following data for dialogue performance improvement</li>
+<li>2023/04/27 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2302.14045v1.pdf">Kosmos-1</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.10592.pdf">MiniGPT4</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.14178.pdf">mPLUG-Owl</a> <img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v1-14.jpg" /></li>
+<li>2023/05/05 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.03726.pdf">Otter: A
+Multi-Modal Model with In-Context Instruction Tuning</a></li>
+<li>2023/05/11 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.06500.pdf">InstructBLIP: Towards
+General-purpose Vision-Language Models with Instruction Tuning</a>: (1)
+gather a wide variety of 26 publicly available datasets, transform them
+into instruction tuning format; (2) instruction-aware visual feature
+extraction method</li>
+<li>2023/05/22 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.04160.pdf">X-LLM:
+Bootstrapping Advanced Large Language Models by Treating
+Multi-Modalities as Foreign Languages</a>: propose X2L interface to
+convert other modality(image, speech, video) into foreign language via 3
+training stages</li>
+<li>2023/05/24 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.15023.pdf">Cheap and
+Quick: Efficient Vision-Language Instruction Tuning for Large Language
+Models</a>: (1) Mixture-of-Modality Adaptation(MMA); (2) a routing
+algorithm for MMA, which enables an automatic shift between single- and
+multi-modal instructions; (3) MMA+LLaMA=LaVIN(efficient), 1.4 training
+hours with 3.8M trainable params</li>
+<li>2023/05/25 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.16355.pdf">PandaGPT:
+One Model To Instruction-Follow Them All</a>: (1) visual and auditory
+instruction-following capabilities(detailed image description
+generation, writing stories inspired by videos, answering questions
+about audios); (2) combines the multimodal encoders from ImageBind and
+the large language models from Vicuna; (3) displays emergent, i.e.
+zero-shot, cross-modal behaviors for data other than image and text
+(e.g., video, audio, depth, thermal, and IMU)</li>
+<li>2023/05/25 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.16103.pdf">ChatBridge: Bridging
+Modalities with Large Language Model as a Language Catalyst</a>: (1)
+show that only language-paired two-modality data is sufficient to
+connect all modalities; (2) propose a new multi-modal instruction tuning
+dataset MULTIS, which covers a wide range of 16 multimodal tasks of
+text, image, video, and audio modalities; (3) a two-stage training,
+firstly aligns each modality with language, secondly aligns model with
+user intent</li>
+<li>2023/05/30 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools:
+Teaching Large Language Model to Use Tools via Self-instruction</a>: (1)
+enable open-source LLMs to use multimodal tools; (2) generates an
+instruction-following dataset by prompting an advanced teacher with
+various multi-modal contexts; (3) provide a benchmark to evaluate the
+ability of LLMs to use tools</li>
+<li>2023/06/02 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.05662.pdf">InternGPT:
+Solving Vision-Centric Tasks by Interacting with ChatGPT Beyond
+Language</a>: integrates chatbots with non-verbal instructions(e.g.,
+point movements like gestures and cursors), which requires fine-grained
+control, editing, and generation of visual content</li>
+<li>2023/06/13 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.04790.pdf">MultiModal-GPT: A Vision and
+Language Model for Dialogue with Humans</a>: (1) capable of generating
+detailed captions, counting specific objects, and addressing general
+inquiries posed by users; (2) OpenFlamingo+LoRA; (3) construct
+multi-modal instruction templates; (4) also employ language-only
+instruction-following data for dialogue performance improvement</li>
 </ul>
 <p>Image(Dataset)</p>
 <ul>
-<li>2023&#x2F;06&#x2F;08 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.05425.pdf">MIMIC-IT: Multi-Modal In-Context Instruction Tuning</a>: (1) 2.8 million multimodal instruction-response pairs; (2) 8 languages; (3) contains videos</li>
-<li>2023&#x2F;06&#x2F;08 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.04387.pdf">M3IT: A Large-Scale Dataset towards Multi-Modal Multilingual Instruction Tuning</a>: (1) comprises 40 carefully curated datasets, including 2.4 million instances and 400 manually written task instructions, which surpasses previous datasets regarding task coverage; (2) 80 languages; (3) Ying-VLM model</li>
-<li>2023&#x2F;06&#x2F;10 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct: Improving Multi-Modal Zero-Shot Learning via Instruction Tuning</a>: (1) a multimodal instruction tuning benchmark dataset that consists of 62 multimodal tasks; (2) a new evaluation metric, Sensitivity, to evaluate how sensitive the model is to the variety of instructions</li>
-<li>2023&#x2F;06&#x2F;11 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.06687.pdf">LAMM: Language-Assisted Multi-Modal Instruction-Tuning Dataset, Framework, and Benchmark</a>: (1) extend MLLMs to point clouds; (2) LAMM-Dataset and LAMM-Benchmark for 2D image and 3D point cloud understanding</li>
+<li>2023/06/08 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.05425.pdf">MIMIC-IT:
+Multi-Modal In-Context Instruction Tuning</a>: (1) 2.8 million
+multimodal instruction-response pairs; (2) 8 languages; (3) contains
+videos</li>
+<li>2023/06/08 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.04387.pdf">M3IT: A
+Large-Scale Dataset towards Multi-Modal Multilingual Instruction
+Tuning</a>: (1) comprises 40 carefully curated datasets, including 2.4
+million instances and 400 manually written task instructions, which
+surpasses previous datasets regarding task coverage; (2) 80 languages;
+(3) Ying-VLM model</li>
+<li>2023/06/10 <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct: Improving
+Multi-Modal Zero-Shot Learning via Instruction Tuning</a>: (1) a
+multimodal instruction tuning benchmark dataset that consists of 62
+multimodal tasks; (2) a new evaluation metric, Sensitivity, to evaluate
+how sensitive the model is to the variety of instructions</li>
+<li>2023/06/11 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.06687.pdf">LAMM:
+Language-Assisted Multi-Modal Instruction-Tuning Dataset, Framework, and
+Benchmark</a>: (1) extend MLLMs to point clouds; (2) LAMM-Dataset and
+LAMM-Benchmark for 2D image and 3D point cloud understanding</li>
 </ul>
-<h3 id="Large-Vision-Language-Models"><a href="#Large-Vision-Language-Models" class="headerlink" title="Large Vision-Language Models"></a>Large Vision-Language Models</h3><p>Recently, some researchers adopt pre-trained unimodal models as initialization and only train the newly introduced parameters. They use mapping networks or cross-attention layers to connect two modalities.</p>
+<h3 id="large-vision-language-models">Large Vision-Language Models</h3>
+<p>Recently, some researchers adopt pre-trained unimodal models as
+initialization and only train the newly introduced parameters. They use
+mapping networks or cross-attention layers to connect two
+modalities.</p>
 <p>As a new method, LLaMA-Adapter also belongs to this line of work.</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>: fine-tunes an image encoder to transform visual tokens into LLM’s soft prompts</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes pretrained image encoder to speed up CLIP training</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes a mapping network to connect the pre-trained image encoder with LLMs</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce customized adapters upon CLIP for 2D and 3D few-shot learning</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts several cross-attention layers to inject visual knowledge into LLMs</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects pre-trained image encoders and LLMs with a Q-Former</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>:
+fine-tunes an image encoder to transform visual tokens into LLM’s soft
+prompts</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.07991.pdf">LiT</a>: utilizes
+pretrained image encoder to speed up CLIP training</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.09734.pdf">CLIPCap</a>: proposes
+a mapping network to connect the pre-trained image encoder with
+LLMs</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.04544.pdf">CLIP-Adapter</a>, <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2111.03930.pdf">Tip-Adapter</a> and <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2112.02413.pdf">PointCLIP</a>: introduce
+customized adapters upon CLIP for 2D and 3D few-shot learning</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>: inserts
+several cross-attention layers to inject visual knowledge into LLMs</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.12597.pdf">BLIP2</a>: connects
+pre-trained image encoders and LLMs with a Q-Former</li>
 </ul>
 
     </div>
