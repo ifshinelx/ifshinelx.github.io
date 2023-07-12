@@ -31,6 +31,8 @@
 <title>(LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language | XinLiu's Homepage, Welcome!</title>
   
 
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?e3036db38ab77b40ce364116d7aad494"></script>
 
 
 
@@ -127,9 +129,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">1.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#two-visual-vocabularies"><span class="nav-number">2.1.</span> <span class="nav-text">Two Visual
-Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#four-lens-components"><span class="nav-number">2.2.</span> <span class="nav-text">Four LENS🔍
-Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prompt-design"><span class="nav-number">2.3.</span> <span class="nav-text">Prompt Design</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#datasets"><span class="nav-number">3.1.</span> <span class="nav-text">Datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#implementation-details"><span class="nav-number">3.2.</span> <span class="nav-text">Implementation Details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#results"><span class="nav-number">3.3.</span> <span class="nav-text">Results</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ablations-on-lens-components"><span class="nav-number">3.4.</span> <span class="nav-text">Ablations on LENS components</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">2.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-Visual-Vocabularies"><span class="nav-number">2.1.</span> <span class="nav-text">Two Visual Vocabularies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Four-LENS%F0%9F%94%8D-Components"><span class="nav-number">2.2.</span> <span class="nav-text">Four LENS🔍 Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prompt-Design"><span class="nav-number">2.3.</span> <span class="nav-text">Prompt Design</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Datasets"><span class="nav-number">3.1.</span> <span class="nav-text">Datasets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implementation-Details"><span class="nav-number">3.2.</span> <span class="nav-text">Implementation Details</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Results"><span class="nav-number">3.3.</span> <span class="nav-text">Results</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ablations-on-LENS-components"><span class="nav-number">3.4.</span> <span class="nav-text">Ablations on LENS components</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -337,287 +337,115 @@ Components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" h
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-0.png" /></p>
-<p>Paper: <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.16410.pdf">https://arxiv.org/pdf/2306.16410.pdf</a></p>
-<p>Code: <a
-target="_blank" rel="noopener" href="https://github.com/ContextualAI/lens">https://github.com/ContextualAI/lens</a></p>
-<p>BlogPost: <a
-target="_blank" rel="noopener" href="https://contextual.ai/introducing-lens/">https://contextual.ai/introducing-lens/</a></p>
-<p>Demo: <a
-target="_blank" rel="noopener" href="https://lens.contextual.ai/">https://lens.contextual.ai/</a></p>
-<p><strong>Problems</strong>: Existing alignment methods for visual and
-language modalities need training, which requires heavy computation
-burden and large corpora.</p>
-<p><strong>Contributions</strong>: Training-free LENS enables LLM to
-have visual capabilities.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-1.png"
-alt="Comparison of approaches for aligning visual and language modalities. Old-Style trains visual encoder. Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight module between visual encoder and LLM." />
-<figcaption aria-hidden="true">Comparison of approaches for aligning
-visual and language modalities. Old-Style trains visual encoder.
-Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight
-module between visual encoder and LLM.</figcaption>
-</figure>
-<h2 id="related-work">Related Work</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2212.10846.pdf">Img2Prompt</a> uses
-LLMs for solving VQA tasks.(In contrast, LENS extends the capacity of
-LLM to also solve object recognition tasks.)</li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08128.pdf">ViperGPT</a> also
-leverages LLMs to solve VQA tasks, but heavily relies on BLIP2 which
-needs extra training rounds of multimodal pre-training.</li>
+    <div class="post-body" itemprop="articleBody"><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-0.png"></p>
+<p>Paper: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.16410.pdf">https://arxiv.org/pdf/2306.16410.pdf</a></p>
+<p>Code: <a target="_blank" rel="noopener" href="https://github.com/ContextualAI/lens">https://github.com/ContextualAI/lens</a></p>
+<p>BlogPost: <a target="_blank" rel="noopener" href="https://contextual.ai/introducing-lens/">https://contextual.ai/introducing-lens/</a></p>
+<p>Demo: <a target="_blank" rel="noopener" href="https://lens.contextual.ai/">https://lens.contextual.ai/</a></p>
+<p><strong>Problems</strong>: Existing alignment methods for visual and language modalities need training, which requires heavy computation burden and large corpora.</p>
+<p><strong>Contributions</strong>: Training-free LENS enables LLM to have visual capabilities.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-1.png" alt="Comparison of approaches for aligning visual and language modalities. Old-Style trains visual encoder. Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight module between visual encoder and LLM."></p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2212.10846.pdf">Img2Prompt</a> uses LLMs for solving VQA tasks.(In contrast, LENS extends the capacity of LLM to also solve object recognition tasks.)</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2303.08128.pdf">ViperGPT</a> also leverages LLMs to solve VQA tasks, but heavily relies on BLIP2 which needs extra training rounds of multimodal pre-training.</li>
 </ul>
-<p><strong>[Img2Prompt, ViperGPT] “top-down”</strong>
-approach(question-aware): attention mechanisms are driven by nonvisual
-or task-specific contexts.</p>
-<p><strong>[LENS] <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1707.07998.pdf">“bottom-up”</a></strong>
-approach: does not involve any question-guided information
-extraction</p>
-<h2 id="method">Method</h2>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-2.png"
-alt="The training-free LENS framework. Via a set of “vision modules”, a frozen LLM can perform object recognition or visual reasoning tasks." />
-<figcaption aria-hidden="true">The training-free LENS framework. Via a
-set of “vision modules”, a frozen LLM can perform object recognition or
-visual reasoning tasks.</figcaption>
-</figure>
-<h3 id="two-visual-vocabularies"><strong>Two</strong> <strong>Visual
-Vocabularies</strong></h3>
-<blockquote>
+<p><strong>[Img2Prompt, ViperGPT] “top-down”</strong> approach(question-aware): attention mechanisms are driven by nonvisual or task-specific contexts.</p>
+<p><strong>[LENS] <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1707.07998.pdf">“bottom-up”</a></strong> approach: does not involve any question-guided information extraction</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-2.png" alt="The training-free LENS framework. Via a set of “vision modules”, a frozen LLM can perform object recognition or visual reasoning tasks."></p>
+<h3 id="Two-Visual-Vocabularies"><a href="#Two-Visual-Vocabularies" class="headerlink" title="Two Visual Vocabularies"></a><strong>Two</strong> <strong>Visual Vocabularies</strong></h3><blockquote>
 <p>They act as a bridge to convert an image into textual info.</p>
 </blockquote>
-<p><strong>Tag(Object) Vocabulary</strong>: We collect tags from various
-sources, including image classification(<a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.0575.pdf">ImageNet</a>, <a
-target="_blank" rel="noopener" href="https://data.caltech.edu/records/mzrjq-6wc02">Caltech 101</a>, <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1311.3618.pdf">DTD</a>, <a
-target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6248092">Cats and Dogs</a>,
-<a
-target="_blank" rel="noopener" href="https://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08/nilsback08.pdf">Flower</a>,
-<a
-target="_blank" rel="noopener" href="https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/">Food
-101</a>, <a
-target="_blank" rel="noopener" href="https://vision.princeton.edu/projects/2010/SUN/paper.pdf">SUN</a>,
-<a target="_blank" rel="noopener" href="http://vision.stanford.edu/pdf/3drr13.pdf">3D</a>), object
-detection and semantic segmentation(<a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.03195.pdf">LAVIS</a>, <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1405.0312.pdf">MS COCO</a>, <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1811.00982.pdf">Open Images V4</a>), <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1602.07332.pdf">Visual Genome</a>.</p>
-<p><strong>Attribute Vocabulary</strong>: Following <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>, we
-employ GPT-3 to generate descriptions of the visual characteristics that
-differentiate each object category.</p>
-<h3 id="four-lens-components">Four LENS<strong>🔍</strong>
-Components</h3>
-<p><strong>Tag Module</strong> identifies and assigns suitable tags to
-the image via CLIP. We adopt a common prompt: "A photo of
-{tagname}".</p>
-<p><strong>Attributes Module</strong> identifies and assigns relevant
-attributes to the objects present in the image via CLIP. We incorporates
-the task-specific prompts outlined in <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
-Vondrick</a>.</p>
-<p><strong>Intensive Captioner</strong> utilizes BLIP and applies <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.04833.pdf">stochastic top-k
-sampling</a> to generate N captions per image.</p>
-<p><strong>Reasoning Module</strong> generates answers based on the
-textual descriptions from vision modules, along with the task-specific
-instructions.</p>
-<h3 id="prompt-design">Prompt Design</h3>
-<blockquote>
+<p><strong>Tag(Object) Vocabulary</strong>: We collect tags from various sources, including image classification(<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.0575.pdf">ImageNet</a>, <a target="_blank" rel="noopener" href="https://data.caltech.edu/records/mzrjq-6wc02">Caltech 101</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1311.3618.pdf">DTD</a>, <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/6248092">Cats and Dogs</a>, <a target="_blank" rel="noopener" href="https://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08/nilsback08.pdf">Flower</a>, <a target="_blank" rel="noopener" href="https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/">Food 101</a>, <a target="_blank" rel="noopener" href="https://vision.princeton.edu/projects/2010/SUN/paper.pdf">SUN</a>, <a target="_blank" rel="noopener" href="http://vision.stanford.edu/pdf/3drr13.pdf">3D</a>), object detection and semantic segmentation(<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.03195.pdf">LAVIS</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1405.0312.pdf">MS COCO</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1811.00982.pdf">Open Images V4</a>), <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1602.07332.pdf">Visual Genome</a>.</p>
+<p><strong>Attribute Vocabulary</strong>: Following <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>, we employ GPT-3 to generate descriptions of the visual characteristics that differentiate each object category.</p>
+<h3 id="Four-LENS🔍-Components"><a href="#Four-LENS🔍-Components" class="headerlink" title="Four LENS🔍 Components"></a>Four LENS<strong>🔍</strong> Components</h3><p><strong>Tag Module</strong> identifies and assigns suitable tags to the image via CLIP. We adopt a common prompt: “A photo of {tagname}”.</p>
+<p><strong>Attributes Module</strong> identifies and assigns relevant attributes to the objects present in the image via CLIP. We incorporates the task-specific prompts outlined in <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>.</p>
+<p><strong>Intensive Captioner</strong> utilizes BLIP and applies <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.04833.pdf">stochastic top-k sampling</a> to generate N captions per image.</p>
+<p><strong>Reasoning Module</strong> generates answers based on the textual descriptions from vision modules, along with the task-specific instructions.</p>
+<h3 id="Prompt-Design"><a href="#Prompt-Design" class="headerlink" title="Prompt Design"></a>Prompt Design</h3><blockquote>
 <p>Concatenate generic prompts with task-specific prompts.</p>
 <p>Can see in demo.</p>
 </blockquote>
 <p>OCR is optional(for hateful-memes task).</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># prompt template</span><br><span class="line">Tags: &#123;Top-k tags&#125;</span><br><span class="line">Attributes: &#123;Top-K attributes&#125;</span><br><span class="line">Captions: &#123;Top-N Captions&#125;</span><br><span class="line">OCR: this is an image with written &quot;&#123;meme text&#125;&quot; on it</span><br><span class="line">Question: &#123;task-specific prompt&#125; \n Short Answer:</span><br></pre></td></tr></table></figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-3.png"
-alt="Object recognition prompt used in LENS." />
-<figcaption aria-hidden="true">Object recognition prompt used in
-LENS.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-4.png"
-alt="VQA prompt used in LENS." />
-<figcaption aria-hidden="true">VQA prompt used in LENS.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-5.png"
-alt="Hateful-memes prompt used in LENS." />
-<figcaption aria-hidden="true">Hateful-memes prompt used in
-LENS.</figcaption>
-</figure>
-<h2 id="experiments">Experiments</h2>
-<blockquote>
-<p>The experiments is only about Flan-T5 and do not include other
-LLMs.</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-3.png" alt="Object recognition prompt used in LENS."></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-4.png" alt="VQA prompt used in LENS."></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-5.png" alt="Hateful-memes prompt used in LENS."></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><blockquote>
+<p>The experiments is only about Flan-T5 and do not include other LLMs.</p>
 </blockquote>
-<h3 id="datasets">Datasets</h3>
-<p><strong>Object Recognition</strong>: 8 benchmarks in <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020.pdf">CLIP</a>.</p>
-<p><strong>VL Reasoning</strong>: the test-dev split of <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/1612.00837.pdf">VQA 2.0</a>, the test set of
-<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00067.pdf">OK-VQA</a>.</p>
-<p><strong>Others</strong>: the dev and test-seen sets of the <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.04790.pdf">Hateful Memes</a>, the test
-set of <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020.pdf">Rendered
-SST2</a>.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-6.png"
-alt="Datasets examined for evaluation of LENS. The closed-ended manner uses a fixed class(/tag/object) vocabulary. ." />
-<figcaption aria-hidden="true">Datasets examined for evaluation of LENS.
-The closed-ended manner uses a fixed class(/tag/object) vocabulary.
-.</figcaption>
-</figure>
-<h3 id="implementation-details">Implementation Details</h3>
-<ul>
-<li><strong>Tags and attributes modules</strong>: <a
-target="_blank" rel="noopener" href="https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K">OpenCLIP-H/142</a>,
-<a
-target="_blank" rel="noopener" href="https://huggingface.co/openai/clip-vit-large-patch14">CLIP-L/143</a></li>
-<li><strong>Captioner</strong>: <a
-target="_blank" rel="noopener" href="https://huggingface.co/Salesforce/blip-image-captioning-large">BLIP-large4</a>
-finetuned on COCO to generate 50 captions per image.</li>
-<li><strong>Frozen LLMs</strong>: <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.13688.pdf">Flan-T5</a> models.</li>
+<h3 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h3><p><strong>Object Recognition</strong>: 8 benchmarks in <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020.pdf">CLIP</a>.</p>
+<p><strong>VL Reasoning</strong>: the test-dev split of <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1612.00837.pdf">VQA 2.0</a>, the test set of <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.00067.pdf">OK-VQA</a>.</p>
+<p><strong>Others</strong>: the dev and test-seen sets of the <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2005.04790.pdf">Hateful Memes</a>, the test set of <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020.pdf">Rendered SST2</a>.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-6.png" alt="Datasets examined for evaluation of LENS. The closed-ended manner uses a fixed class(/tag/object) vocabulary. ."></p>
+<h3 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h3><ul>
+<li><strong>Tags and attributes modules</strong>: <a target="_blank" rel="noopener" href="https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K">OpenCLIP-H&#x2F;142</a>, <a target="_blank" rel="noopener" href="https://huggingface.co/openai/clip-vit-large-patch14">CLIP-L&#x2F;143</a></li>
+<li><strong>Captioner</strong>: <a target="_blank" rel="noopener" href="https://huggingface.co/Salesforce/blip-image-captioning-large">BLIP-large4</a> finetuned on COCO to generate 50 captions per image.</li>
+<li><strong>Frozen LLMs</strong>: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.13688.pdf">Flan-T5</a> models.</li>
 </ul>
 <p>We employ beam search with number of beams equal to 5.</p>
 <blockquote>
 <p>Beam search is an improved algorithm for greedy search.</p>
 </blockquote>
-<p>Additionally, we apply a length penalty equal to -1, encouraging the
-generation of concise answers as in <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.12597.pdf">BLIP-2</a>.</p>
+<p>Additionally, we apply a length penalty equal to -1, encouraging the generation of concise answers as in <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2301.12597.pdf">BLIP-2</a>.</p>
 <p>These experiments were conducted on 8 NVIDIA A100 (40GB) GPUs.</p>
 <aside>
-<p>👇 Task-specific optimizations</p>
+👇 Task-specific optimizations
+
 </aside>
+
 <ul>
-<li><strong>Object recognition</strong>: we utilize the tag module and
-the attribute module, but skip the intensive captioning modules.</li>
-<li><strong>VQA</strong>: we solely use the intensive captioning
-module.</li>
-<li><strong>Hateful Memes and Rendered-SST2</strong>: we incorporate the
-tag, attributes, and captioning modules.</li>
+<li><strong>Object recognition</strong>: we utilize the tag module and the attribute module, but skip the intensive captioning modules.</li>
+<li><strong>VQA</strong>: we solely use the intensive captioning module.</li>
+<li><strong>Hateful Memes and Rendered-SST2</strong>: we incorporate the tag, attributes, and captioning modules.</li>
 </ul>
 <p>We generate only one caption using beam search with a width of 5.</p>
-<h3 id="results">Results</h3>
-<aside>
-<p>👇 Object recognition(0/1/3-shot)</p>
+<h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><aside>
+👇 Object recognition(0/1/3-shot)
+
 </aside>
-<p>We compare LENS with SOTA models following <a
-target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
-Vondrick</a>.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-7.png"
-alt="Zero-shot results for LENS in object recognition tasks." />
-<figcaption aria-hidden="true"><strong>Zero-shot results</strong> for
-LENS in object recognition tasks.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-8.png"
-alt="Average few-shot performance of LENS on vision tasks except ImageNet (due to its large size)." />
-<figcaption aria-hidden="true">Average few-shot performance of LENS on
-vision tasks except ImageNet (due to its large size).</figcaption>
-</figure>
+
+<p>We compare LENS with SOTA models following <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-7.png" alt="**Zero-shot results** for LENS in object recognition tasks."></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-8.png" alt="Average few-shot performance of LENS on vision tasks except ImageNet (due to its large size)."></p>
 <ul>
 <li>More shots help to increase performance.</li>
-<li>The both results show direct relationship between ViT size and
-performance(but not for LLM size).</li>
+<li>The both results show direct relationship between ViT size and performance(but not for LLM size).</li>
 </ul>
 <aside>
-<p>👇 Vision and Language reasoning(0-shot)</p>
+👇 Vision and Language reasoning(0-shot)
+
 </aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-9.png"
-alt="The highly competitive nature of LENS." />
-<figcaption aria-hidden="true">The highly competitive nature of
-LENS.</figcaption>
-</figure>
-<h3 id="ablations-on-lens-components">Ablations on LENS components</h3>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-9.png" alt="The highly competitive nature of LENS."></p>
+<h3 id="Ablations-on-LENS-components"><a href="#Ablations-on-LENS-components" class="headerlink" title="Ablations on LENS components"></a>Ablations on LENS components</h3><aside>
+👇 Object recognition
+
+</aside>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-10.png" alt="Ablations results using OpenCLIP-H/14 as vision encoder and $Flan-T5_{XL}$ as the LLM."></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-11.png" alt="The detailed results."></p>
+<p>The object information helps more than the attributes, but together they are complimentary and lead to overall better performance.</p>
 <aside>
-<p>👇 Object recognition</p>
+👇 Vision and Language reasoning
+
 </aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-10.png"
-alt="Ablations results using OpenCLIP-H/14 as vision encoder and Flan-T5_{XL} as the LLM." />
-<figcaption aria-hidden="true">Ablations results using OpenCLIP-H/14 as
-vision encoder and <span class="math inline">\(Flan-T5_{XL}\)</span> as
-the LLM.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-11.png"
-alt="The detailed results." />
-<figcaption aria-hidden="true">The detailed results.</figcaption>
-</figure>
-<p>The object information helps more than the attributes, but together
-they are complimentary and lead to overall better performance.</p>
-<aside>
-<p>👇 Vision and Language reasoning</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-12.png"
-alt="Ablation results of LENS with Flan-T5XXL on VQA 2.0 minival split." />
-<figcaption aria-hidden="true">Ablation results of LENS with Flan-T5XXL
-on VQA 2.0 minival split.</figcaption>
-</figure>
-<p>Increasing the caption num improves the performance gradually but
-starts saturating eventually.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-13.png"
-alt="On the dev set of Hateful Memes. Adding more visual information improves the performance consistently." />
-<figcaption aria-hidden="true">On the dev set of Hateful Memes. Adding
-more visual information improves the performance
-consistently.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-14.png"
-alt="Selected examples of LENS with all prompts, illustrating its reasoning capabilities by answering questions about complex scenes and scenarios." />
-<figcaption aria-hidden="true"><strong>Selected examples of LENS with
-all prompts</strong>, illustrating its reasoning capabilities by
-answering questions about complex scenes and scenarios.</figcaption>
-</figure>
-<h2 id="conclusion">Conclusion</h2>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-15.png"
-alt="Failure examples of LENS." />
-<figcaption aria-hidden="true"><strong>Failure examples of
-LENS.</strong></figcaption>
-</figure>
-<ol type="a">
-<li><p><strong>Incorrect Visual Info</strong> of objects or attributes
-from CLIP and BLIP</p></li>
-<li><p><strong>Inconsistency</strong> between the responses</p></li>
-<li><p><strong>Presuppositions</strong> and in-built biases</p></li>
-<li><p><strong>Forgetting</strong> and limitations of context windows of
-the LLMs.</p></li>
-</ol>
-<p><strong><em>Limitations of LENS</em></strong></p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-12.png" alt="Ablation results of LENS with Flan-T5XXL on VQA 2.0 minival split."></p>
+<p>Increasing the caption num improves the performance gradually but starts saturating eventually.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-13.png" alt="On the dev set of Hateful Memes. Adding more visual information improves the performance consistently."></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-14.png" alt="**Selected examples of LENS with all prompts**, illustrating its reasoning capabilities by answering questions about complex scenes and scenarios."></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p><img src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-15.png" alt="**Failure examples of LENS.**"></p>
+<p>(a) <strong>Incorrect Visual Info</strong> of objects or attributes from CLIP and BLIP</p>
+<p>(b) <strong>Inconsistency</strong> between the responses</p>
+<p>(c) <strong>Presuppositions</strong> and in-built biases</p>
+<p>(d) <strong>Forgetting</strong> and limitations of context windows of the LLMs.</p>
+<p><em><strong>Limitations of LENS</strong></em></p>
 <ul>
 <li>the vision capability of LENS heavily relies on CLIP and BLIP</li>
-<li>LENS evaluation still requires substantial computational
-resources.</li>
+<li>LENS evaluation still requires substantial computational resources.</li>
 </ul>
-<p><strong><em>Future work</em></strong></p>
+<p><em><strong>Future work</strong></em></p>
 <ul>
 <li>more effective ways integrating visual modules</li>
 <li>more efficient methods to reduce the computational burden</li>
