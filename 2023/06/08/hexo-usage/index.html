@@ -126,8 +126,8 @@
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-install6.3.0"><span class="nav-number">1.</span> <span class="nav-text">Hexo Install(6.3.0)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next-theme8.17.0"><span class="nav-number">2.</span> <span class="nav-text">Next Theme(8.17.0)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#deploy-to-github"><span class="nav-number">3.</span> <span class="nav-text">Deploy to Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#personalization"><span class="nav-number">4.</span> <span class="nav-text">Personalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-basic-info_config.yml"><span class="nav-number">4.1.</span> <span class="nav-text">Hexo Basic Info(_config.yml)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#next-theme-settings-basic"><span class="nav-number">4.2.</span> <span class="nav-text">NexT Theme
 Settings Basic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sidebar"><span class="nav-number">4.3.</span> <span class="nav-text">Sidebar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#footer"><span class="nav-number">4.4.</span> <span class="nav-text">Footer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#posts"><span class="nav-number">4.5.</span> <span class="nav-text">Posts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#custom-pagestags-categories-home"><span class="nav-number">4.6.</span> <span class="nav-text">Custom
 Pages(Tags, Categories, Home)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-services"><span class="nav-number">4.7.</span> <span class="nav-text">Search
-Services()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waiting...-comment-systemsisso"><span class="nav-number">4.8.</span> <span class="nav-text">[Waiting...] Comment
-Systems(Isso)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waiting...-statistics-and-analyticsumami"><span class="nav-number">4.9.</span> <span class="nav-text">[Waiting...] Statistics
+Services()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waiting...-comment-systemsgitalk"><span class="nav-number">4.8.</span> <span class="nav-text">[Waiting...] Comment
+Systems(Gitalk)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waiting...-statistics-and-analyticsumami"><span class="nav-number">4.9.</span> <span class="nav-text">[Waiting...] Statistics
 and Analytics(Umami)</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
@@ -274,7 +274,7 @@ and Analytics(Umami)</span></a></li></ol></li></ol></div>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-07-12 19:52:29" itemprop="dateModified" datetime="2023-07-12T19:52:29+08:00">2023-07-12</time>
+      <time title="Modified: 2023-07-12 21:24:05" itemprop="dateModified" datetime="2023-07-12T21:24:05+08:00">2023-07-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -408,9 +408,9 @@ target="_blank" rel="noopener" href="https://theme-next.js.org/docs/third-party-
 target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="waiting...-comment-systemsisso">[Waiting...] <a
+<h3 id="waiting...-comment-systemsgitalk">[Waiting...] <a
 target="_blank" rel="noopener" href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Isso)</a></h3>
+Systems(Gitalk)</a></h3>
 <p>Click <a
 target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">link</a>
 to install python3.8. You can find more versions <a
@@ -557,7 +557,7 @@ and Analytics(Umami)</a></h3>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ifshinelx","repo":"GitalkForBlog","client_id":"0cbb3af62c4f4096c907","client_secret":"3b535adf6818071ff1dc37a695e585cf044a2541","admin_user":"ifshinelx","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"489fc241c723657812dcdf4013733945"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"ifshinelx","repo":"GitalkForBlog","client_id":"0cbb3af62c4f4096c907","client_secret":"3b535adf6818071ff1dc37a695e585cf044a2541","admin_user":"ifshinelx","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"en","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"489fc241c723657812dcdf4013733945"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
