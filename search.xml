@@ -867,789 +867,6 @@ resources.</li>
       </tags>
   </entry>
   <entry>
-    <title>A Survey on Multimodal Large Language Models</title>
-    <url>/2023/06/30/MLLM/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
-<p>Code: <a
-href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
-<aside>
-<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
-</aside>
-<p><strong>MLLM</strong>: the LLM-based model with the ability to
-receive and reason with multimodal information</p>
-<p><strong>Three Advantages</strong>: (1) more in line with human
-perception (2) more user-friendly interface (3) more well-rounded
-task-solver</p>
-<p><strong>Three Example Capabilities</strong>: (1) write website codes
-based on images (2) understand deep meaning of memes (3) OCR-free math
-reasoning</p>
-<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
-<hr />
-<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
-Tuning</h2>
-<h3 id="preliminaries">Preliminaries</h3>
-<p><strong>Instruction</strong>: the description of tasks</p>
-<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
-on instruction-formatted datasets</p>
-<p><strong>Instruction Tuning 3 Advantages:</strong></p>
-<ol type="1">
-<li><p>better understand and respond to various human requests</p></li>
-<li><p>zero-shot generalization to new tasks</p></li>
-<li><p>non-experts can use natural language to interact with LLMs</p>
-<blockquote>
-<p><em>The most popular programming language in the future will be
-English.</em></p>
-</blockquote></li>
-</ol>
-<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
-A: large-scale task-specific training data; B: zero-shot performance is
-still quite average</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
-<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
-the next token of the response. The instruction template is flexible and
-subject to manual designs. It can also be generalized to multi-round
-instructions.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
-<h3 id="data">Data</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
-<aside>
-<p>👉 <strong>Benchmark Adaptation</strong></p>
-</aside>
-<p><strong>Instruction templates for VQA datasets</strong>.
-&lt;image&gt; and {Question} are the image and the question in the
-original VQA datasets, respectively. Utilize existing benchmark datasets
-to construct instruction-formatted datasets.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
-<p><strong>Directly using concise answers may limit the output length of
-MLLM</strong>.</p>
-<ul>
-<li>Modify Instructions: ChatBridge, InstructBLIP</li>
-<li>Extend the length of existing answers: <span
-class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
-<aside>
-<p>👉 <strong>Self-Instruction</strong></p>
-</aside>
-<p><strong>Self-Instruction</strong>: To meet real-world human needs,
-such as multiple rounds of conversations.</p>
-<ul>
-<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
-<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
-different M-IT datasets catering for different needs</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
-<aside>
-<p>👉 <strong>Hybrid Composition</strong></p>
-</aside>
-<p>M-IT data + language-only user-assistant conversation data.</p>
-<p><strong>Adavantage</strong>: conversational proficiencies,
-instruction-following abilities</p>
-<p><strong>Representative work</strong>:</p>
-<ul>
-<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
-sampling from both data</li>
-<li><strong>MultiInstruct</strong>: two transfer learning strategies
-<ul>
-<li>Mixed instruction tuning: combine both types of data and randomly
-shuffle. (The empirical results show that mixed instruction tuning is at
-least not worse than solely tuning on multimodal data.)</li>
-<li>Sequential instruction tuning: text data followed by multimodal
-data</li>
-</ul></li>
-</ul>
-<h3 id="modality-bridging">Modality Bridging</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
-<aside>
-<p>👉 <strong>Learnable Interface</strong></p>
-</aside>
-<p><strong>Adavantages</strong>: little cost, avoid catastrophic
-forgetting</p>
-<p><strong>Three manners</strong>:</p>
-<ol type="1">
-<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
-BLIP-2</li>
-<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
-<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
-LaVIN</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
-<aside>
-<p>👉 <strong>Expert Model</strong></p>
-</aside>
-<p><strong>Advantage</strong>: Via expert models, convert multimodal
-inputs into languages without training.</p>
-<p><strong>Disadvantage</strong>: less flexible, info loss</p>
-<p><a
-href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
-transforming videos into textual descriptions distorts spatial-temporal
-relationships.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
-<h3 id="evaluation">Evaluation</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
-<aside>
-<p>👉 <strong>Closed-set</strong></p>
-</aside>
-<p><strong>Closed-set questions</strong>: its possible answer options
-are predefined and limited</p>
-<p><strong>Two evaluation types</strong>:</p>
-<ol type="1">
-<li><strong>leverage existing datasets</strong>: limited to a small
-range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
-evaluation settings:
-<ol type="1">
-<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
-<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
-</ol></li>
-<li><strong>develop new benchmarks specially designed for
-MLLMs</strong>: more comprehensive
-<ol type="1">
-<li><a
-href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
-perception and cognition tasks, manually design instruction-answer pairs
-to avoid data leakage</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
-various 2D/3D vision tasks</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
-(1) video-based generative performance (2) zero-shot QA</li>
-</ol></li>
-</ol>
-<aside>
-<p>👉 <strong>Open-set</strong></p>
-</aside>
-<p><strong>Open-set questions</strong>: its possible answer options are
-open and flexible.</p>
-<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
-<ol type="1">
-<li><strong>Manual scoring</strong>: require humans to assess specific
-dimensions</li>
-<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
-(LLaVA)
-<ul>
-<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
-setting GPT-4 as the performance upper bound is not perfect.</li>
-</ul></li>
-<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
-<aside>
-<p>👉 <strong>Others</strong></p>
-</aside>
-<p><strong><a
-href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
-sensitivity metric, model’s robustness to varied instructions</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
-into the object hallucination problem</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
-(safety) the robustness of MLLMs to adversarial attacks</p>
-<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
-In-Context Learning</h2>
-<p><strong>ICL</strong>: few-shot, training-free</p>
-<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
-a demonstration set (i.e., a set of in-context samples), to the original
-sample.</p>
-<p><strong>Template example of an M-ICL query</strong>:</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
-<aside>
-<p>👉 <strong>Two Scenarios</strong></p>
-</aside>
-<p><strong>Scenario 1: solving various visual reasoning
-tasks</strong></p>
-<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
-href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
-href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
-href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
-href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
-<ul>
-<li>Via demonstrations, LLMs get a sense of what the task is doing and
-what the output template is.</li>
-<li>Thus LLMs learn from a few task-specific examples and generalize to
-a new but similar question.</li>
-</ul>
-<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
-<p>(<strong><a
-href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
-href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
-href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
-<ul>
-<li>Demonstrations are often text-only and more fine-grained.</li>
-<li>They typically comprise a chain of steps that could be sequentially
-executed to fulfill the task. (related to CoT)</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
-<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
-Thought</h2>
-<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
-<p><strong>CoT Scenario</strong>: complex reasoning</p>
-<p><strong>CoT Main Idea</strong>: output both reasoning process and
-final answer</p>
-<p><strong>M-CoT</strong> (<strong><a
-href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
-href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
-href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
-<p><strong>Modality Bridging</strong></p>
-<ul>
-<li><p><strong>Expert Model</strong>: transforming visual input into
-textual descriptions (<a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
-image captions and original textual imput to LLMs)</p></li>
-<li><p><strong>Learnable Interface</strong>: feature fusion (<a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
-two-stage framework)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
-</ul>
-<p><strong>Learning Paradigms</strong></p>
-<ul>
-<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
-<li><strong>Few-shot</strong>: requires hand-crafting some in-context
-examples</li>
-<li><strong>Zero-shot</strong>: require no specific example</li>
-</ul>
-<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
-<ul>
-<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
-reasoning chains</li>
-<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
-length</li>
-</ul>
-<p><strong>Generation Pattens——</strong>(How the chain is
-constructed?)</p>
-<p>The generated steps should be consistent and correct.</p>
-<ul>
-<li><p><strong>Predicting</strong>: extending the reasoning chains given
-conditions such as instructions and previous reasoning history</p></li>
-<li><p><strong>Infilling</strong>: deducing steps between surrounding
-context (previous and following steps) to fill the logical gaps
-(VideoCoT)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
-</ul>
-<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
-Reasoning</h2>
-<p><strong>LAVR</strong>: use external tools or visual foundation
-models.</p>
-<p><strong>Three advantages</strong> compared with conventional visual
-reasoning models: <strong>Strong generalization, Emergent abilities,
-Better interactivity and control</strong></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
-<aside>
-<p>👉 <strong>Training Paradigms</strong></p>
-</aside>
-<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
-generate a new tool-related instruction dataset</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
-<aside>
-<p>👉 <strong>Functions</strong></p>
-</aside>
-<p><em>The primary roles that LLMs play in LAVR.</em></p>
-<ul>
-<li><strong>Controller</strong>: (single-round) breaks down a complex
-task [via CoT], assign subtasks to right tools/modules</li>
-<li><strong>Decision Maker</strong>: (multi-round) summarize history and
-current info, decide whether the info is sufficient to finish the task,
-friendly present answer</li>
-<li><strong>Semantics Refiner</strong>: integrate info into fluent
-scentences, generate texts according to different specific needs</li>
-</ul>
-<h2 id="challenges-and-future-directions">Challenges and Future
-Directions</h2>
-<ol type="1">
-<li><p><strong>Perception Capabilities</strong>: compromise between info
-capacity and computation burden</p></li>
-<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
-chain delivers right answer</p></li>
-<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
-type)</p></li>
-<li><p><strong>Object Hallucination</strong>: more fine-grained modality
-alignment</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
-<p>(The object does not appear in the image)</p></li>
-<li><p><strong>Parameter-Efficient Training</strong></p></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
-        <tag>In-Context Learning</tag>
-        <tag>Chain of Thought</tag>
-        <tag>Tool Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic</title>
-    <url>/2023/07/09/Shikra/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-0.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2306.15195.pdf">https://arxiv.org/pdf/2306.15195.pdf</a></p>
-<p>Code: <a
-href="https://github.com/shikras/shikra">https://github.com/shikras/shikra</a></p>
-<aside>
-<p>👇 Problems</p>
-</aside>
-<p>In human conversations, individuals can indicate relevant regions
-within a scene while addressing others.</p>
-<p>This natural referential ability in dialogue remains absent in
-current MLLMs.</p>
-<aside>
-<p>👇 Contributions</p>
-</aside>
-<ul>
-<li><p>Study referential ability in existing MLLMs.</p></li>
-<li><p>Define new task——Referential dialogue(RD)</p>
-<p>Potential applications of this ability</p>
-<ul>
-<li>aiding AI assistants in Mixed Reality headsets</li>
-<li>facilitating precise communication in online shopping scenery</li>
-</ul></li>
-<li><p>Propose Shikra</p>
-<ul>
-<li>Shikra can comprehend and output <strong>spatial
-coordinates</strong> in natural language.</li>
-<li>With a <strong>simple architecture</strong>, Shikra shows no need
-for extra vocabularies, position encoder, pre-/post-detection modules,
-or external plugin models.</li>
-<li>Shikra enables numerous <strong>exciting applications</strong>, like
-providing mentioned objects’ coordinates in chains of thoughts and
-comparing user-pointed regions similarities.</li>
-<li>It achieves <strong>promising performance</strong> on conventional
-VL tasks w/o finetuning.</li>
-</ul></li>
-</ul>
-<h1 id="referential-dialogue">1 - Referential Dialogue</h1>
-<ul>
-<li><strong>Current MLLM Can</strong>: VQA, Image Caption, and
-multimodal dialogue</li>
-<li><strong>Current MLLM Cannot</strong>: REC, REG(referring expression
-generation), and PointQA</li>
-</ul>
-<p><strong>Shikra can do them all.</strong></p>
-<p>The model demonstrates proficiency in tasks not in the training set,
-such as identifying similarities between two indicated objects, or
-counting somethings, and providing their positions.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-1.png"
-alt="Demo of Referential Dialogue (RD). Users can point to specific areas and ask questions. In turn, Shikra will indicate the specific regions when replying, if necessary." />
-<figcaption aria-hidden="true">Demo of Referential Dialogue (RD). Users
-can point to specific areas and ask questions. In turn, Shikra will
-indicate the specific regions when replying, if necessary.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-2.png"
-alt="Referential Dialogues between real users and Shikra-7B." />
-<figcaption aria-hidden="true">Referential Dialogues between real users
-and Shikra-7B.</figcaption>
-</figure>
-<h1 id="chessboard-test-for-current-mllm">2 - Chessboard Test for
-Current MLLM</h1>
-<blockquote>
-<p>The current MLLMs cannot directly output coordinates. We need to
-explore appropriate coordinate representations and finer-grained
-training data.</p>
-</blockquote>
-<p><strong>Chessboard Test</strong>:</p>
-<p>Simplifies the object grounding into a part choice task:</p>
-<ol type="1">
-<li><p>Divide a image into a 2 × 2 chessboard.</p></li>
-<li><p>Next, ask:</p>
-<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &lt;image&gt;: image tokens, &lt;expr&gt; class name</span><br><span class="line">“&lt;image&gt; Which part is &lt;expr&gt; in if the picture is divided equally into four 2 by 2 parts? Choose from: (A) Top-left (B) Top-right (C) Bottom-left (D) Bottom-right.”</span><br></pre></td></tr></table></figure></p></li>
-</ol>
-<p><strong>Test Data Construction</strong>:</p>
-<ul>
-<li>Based on <a href="https://arxiv.org/pdf/1908.03195.pdf">LVIS</a>,
-which is a perception detection with over 1000 entry-level object
-categories.</li>
-<li>We choose objects that are completely within a certain part (i.e.,
-ambiguous positions are not considered).</li>
-<li>Select 600 images per part, resulting in 2,400 images across 945
-categories.</li>
-</ul>
-<p><strong>Tested Model</strong>: <a
-href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA-13B</a></p>
-<p><strong>Test Results</strong>: 25.96% acc, comparable to random
-selection.</p>
-<h1 id="breeding-shikra">3 - Breeding Shikra</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User Question: </span><br><span class="line">“How many other clothes in the &lt;image&gt; are of the same color as the jacket [0.268, 0.372]?”. </span><br><span class="line">Shikra reply: </span><br><span class="line">“The jacket [0.268, 0.372] is green. We can find a T-shirt [0.653, 0.532] and cropped pants [0.569, 0.101] a with same green color. So the answer is two.”</span><br></pre></td></tr></table></figure>
-<h2 id="architecture">3.1 - Architecture</h2>
-<p><strong>Frozen Visual Encoder</strong>: pre-trained ViT-L/14 CLIP,
-its output embedding denoted as <span
-class="math inline">\(\mathbf{V}\in\mathbb{R}^{16\times16\times1024}\)</span></p>
-<p><strong>Trainable LLM</strong>: Vicuna-7/13B</p>
-<p><strong>One Trainable fully connected layer</strong>: map <span
-class="math inline">\(\mathbf{V}\)</span> to <span
-class="math inline">\(\mathbf{V&#39;}\in\mathbb{R}^{256\times
-D}\)</span>, <span class="math inline">\(D\)</span> is 4096 for
-Vicuna-7B and 5120 for 13B</p>
-<p>Visual embedding can be inserted into anywhere of input sequence.</p>
-<p>We do not introduce any vocabulary or special encoder for encoding
-position information.</p>
-<p>We have not introduced additional pre-/post-detectors for points or
-bounding boxes.</p>
-<h2 id="numerical-representation-of-position">3.2 - Numerical
-representation of position</h2>
-<p>x, y is normalized(3 decimal places) according to image size.</p>
-<p><strong>Bounding box</strong>: <span class="math inline">\([x_{min},
-y_{min},x_{max}, y_{max}]\)</span></p>
-<p><strong>Region center point</strong>: <span
-class="math inline">\([x_{center}, y_{center}]\)</span></p>
-<p>The coordinates can appear anywhere in the input and output sequence
-of the model.</p>
-<p>Like regular text, tokenizing without discrimination.</p>
-<h2 id="instruction-data-construction">3.3 - Instruction data
-construction</h2>
-<h3 id="reorganization-of-public-data">3.3.1 - Reorganization of public
-data</h3>
-<p><strong>Spotting Captioning Definition</strong>: describe the image
-and spots the mentioned objects or regions using points or boxes. We use
-Flickr30K Entities for this task.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-3.png"
-alt="All training data used by Shikra. The asterisk indicates that this data is only used in the second stage." />
-<figcaption aria-hidden="true">All training data used by Shikra. The
-asterisk indicates that this data is only used in the second
-stage.</figcaption>
-</figure>
-<p>We have <strong>excluded images present in the test and validation
-data</strong> from the training data to prevent potential data leakage,
-despite their distinction in terms of image-text pairs.</p>
-<h3 id="generated-data">3.3.2 - Generated Data</h3>
-<blockquote>
-<p>Data in 3.3.1 lack CoT data with <strong>positional
-annotations</strong>, natural communication data with <strong>positional
-annotations</strong>, etc.</p>
-</blockquote>
-<p><strong>Flickr30K Entities:</strong> has five descriptions for each
-image. These mentioned objects appearing in the image will be labeled
-using bounding box.</p>
-<p><strong>Shikra-RD</strong>: High-quality RD data built from Flickr30K
-Entities using GPT-4.</p>
-<p><strong>Shikra-RD</strong> contains 5,922 QA pairs with
-<strong>positional annotations</strong> and will continues expanding in
-the future.</p>
-<p><strong>GPT-4 Usage</strong>: We explained the format of the bounding
-boxes to GPT-4 and asked it to understand the image through these five
-sentences and boxes. Next, we require GPT-4 to design Q&amp;A pairs.</p>
-<h3 id="task-prompts">3.3.3 - Task prompts</h3>
-<ol type="1">
-<li>Write <strong>a sample template</strong> of a specific task</li>
-<li>Have GPT-4 rewrite it in rich language, expanding it into
-<strong>hundreds of variations</strong>.</li>
-</ol>
-<p><strong>During training</strong>, we can randomly choose from
-them.</p>
-<p><strong>During inference</strong>, users can describe their needs in
-their own format.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-4.png" /></p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-5.png"
-alt="Examples of task templates used by Shikra on different types of training data.  represents visual tokens,  denotes coordinates of region center points,  is the expression in REC." />
-<figcaption aria-hidden="true">Examples of task templates used by Shikra
-on different types of training data. <image> represents visual tokens,
-<objs> denotes coordinates of region center points, <expr> is the
-expression in REC.</figcaption>
-</figure>
-<h2 id="tuning-details">3.4 - Tuning details</h2>
-<ul>
-<li>First stage: train Shikra on the reorganized VL dataset for 100,000
-steps (around 1.5 epoch)</li>
-<li>Second stage: raise the sampling ratio to 50% on LLaVA-Instruct-150K
-and Shikra-RD</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">optimizer: AdamW</span><br><span class="line">learning rate scheduler: cosine annealing scheduler</span><br><span class="line">initial learning rate: 2e-5</span><br><span class="line">global batch size: 64</span><br><span class="line">device: 8 NVIDIA A100 GPUs</span><br><span class="line">time cost: ~100h for first stage, ~20h for second stage</span><br></pre></td></tr></table></figure>
-<h1 id="experiment-and-analysis">4 - Experiment and Analysis</h1>
-<h2 id="grounding-cot-or-verbal-cot">4.1 - Grounding CoT or verbal
-CoT?</h2>
-<aside>
-<p>💡 Investigate whether <strong>Grounding CoT</strong>(GCoT, CoT with
-position annotations) can reduce visual hallucinations and improve model
-performance.</p>
-</aside>
-<p>We train three toy models of Shikra-7B (without using additional
-datasets) on the CLEVR dataset.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-6.png"
-alt="Comparing different forms of CoTs. Q, A, C, and C^{Point} denote the Question, final Answer, Chain of thoughts, and Chain of thoughts with center points [x_{center},y_{center}]." />
-<figcaption aria-hidden="true">Comparing different forms of CoTs. <span
-class="math inline">\(Q, A, C\)</span>, and <span
-class="math inline">\(C^{Point}\)</span> denote the Question, final
-Answer, Chain of thoughts, and Chain of thoughts with center points
-<span
-class="math inline">\([x_{center},y_{center}]\)</span>.</figcaption>
-</figure>
-<h2 id="location-tokens-or-just-numbers">4.2 - Location tokens or just
-numbers?</h2>
-<p>We train two toy Shikra using two different representations with REC
-data.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-7.png"
-alt="Comparing different position representations. Vocab., e.g., , · · · , . Numerical directly uses numbers." />
-<figcaption aria-hidden="true">Comparing different position
-representations. Vocab., e.g., <bin_0>, · · · , <bin_1000>. Numerical
-directly uses numbers.</figcaption>
-</figure>
-<p><strong>Numerical representation Advantages</strong>:</p>
-<ul>
-<li>better performance</li>
-<li>does not retrain vocabularies for localization tasks</li>
-<li>freely control the precision</li>
-</ul>
-<p><strong>Numerical representation Disadvantages</strong>:</p>
-<ul>
-<li>longer token length brings more computational costs</li>
-</ul>
-<h2 id="quantitative-results-on-conventional-tasks">4.3 - Quantitative
-results on conventional tasks</h2>
-<aside>
-<p>👇 <strong>REC task</strong>: ground the object described with an
-expression.</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-8.png"
-alt="Results on standard REC task. OFA-L* refers to the OFA-Large checkpoint without finetuning. GRIT refexp is the ablation split." />
-<figcaption aria-hidden="true">Results on standard REC task. OFA-L*
-refers to the OFA-Large checkpoint without finetuning. GRIT refexp is
-the ablation split.</figcaption>
-</figure>
-<aside>
-<p>👇 <strong>PointQA task</strong></p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-9.png"
-alt="Comparing pointQA capabilities on the Visual-7W. Accuracy (%) is used for evaluation." />
-<figcaption aria-hidden="true">Comparing pointQA capabilities on the
-Visual-7W. Accuracy (%) is used for evaluation.</figcaption>
-</figure>
-<p><strong>Visual-7W</strong>: given a question and four box options,
-model should choose one as the answer.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-10.png"
-alt="Comparing pointQA capabilities on the LookTwice-QA. We use Shikra-13B and Accuracy (%) for evaluation." />
-<figcaption aria-hidden="true">Comparing pointQA capabilities on the
-LookTwice-QA. We use Shikra-13B and Accuracy (%) for
-evaluation.</figcaption>
-</figure>
-<p><strong>LookTwice-QA</strong>: answer question based on the input
-point/box.</p>
-<p>[**Pronoun/Superclass/Class]** indicate different levels of
-referential clarity in the question, e.g., “How many of these
-<strong>[∅/fruits/apples]</strong> <obj>?"</p>
-<p><strong><obj></strong> denotes the coordinates of input point/box</p>
-<aside>
-<p>👇 <strong>conventional VL tasks</strong></p>
-</aside>
-<blockquote>
-<p>It’s worth noting that these task configurations are just some
-subsets of Referential Dialogue.</p>
-</blockquote>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-11.png"
-alt="Comparing generalist models on VQA and Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for Caption." />
-<figcaption aria-hidden="true">Comparing generalist models on VQA and
-Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for
-Caption.</figcaption>
-</figure>
-<p>We also provide <span class="math inline">\(VQAv2^{val}\)</span>
-(83.3) and OK-VQA (53.8) results on LVLM-eHub toolbox for easy
-comparison.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-12.png"
-alt="Object hallucination benchmark using POPE evaluation pipeline." />
-<figcaption aria-hidden="true">Object hallucination benchmark using POPE
-evaluation pipeline.</figcaption>
-</figure>
-<p><strong>Accuracy</strong> denotes the accuracy of predictions.</p>
-<p><strong>Precision</strong> signifies the true positive samples among
-the predicted positives.</p>
-<p><strong>Recall</strong> indicates the correct identification of all
-true positive samples.</p>
-<p><strong>“Yes”</strong> represents the probability of the model
-outputting a positive answer.</p>
-<h1 id="related-work">5 - Related Work</h1>
-<h2 id="vision-language-positioning-tasks">5.1 - Vision-Language
-Positioning Tasks</h2>
-<p>Many vision-language tasks require localization representation.</p>
-<h3 id="tasks-with-output-boxes">5.1.1 - Tasks with output boxes</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-13.png"
-alt="REC." />
-<figcaption aria-hidden="true">REC.</figcaption>
-</figure>
-<p><strong>Referring Expression Comprehension (REC)</strong> aims to
-localize <strong>a</strong> target object in an image described by a
-referring expression.</p>
-<p><strong>Described Object Detection</strong> extends REC to more
-realistic scenarios where the object may <strong>not exist</strong> or
-there may be <strong>multiple</strong> objects.</p>
-<p><strong>VQA Grounding</strong> aims to answer visual questions and
-associate the answers with specific visual regions or objects.</p>
-<h3 id="tasks-with-input-boxes">5.1.2 - Tasks with input boxes</h3>
-<p><strong>Grounding Caption (GC)</strong>: Given an image and a
-location box, <strong>GC</strong> aims to generate a description for
-this location by considering the surrounding environment.</p>
-<p><strong>Referring Expression Generation (REG)</strong>: Compared to
-<strong>GC</strong>, <strong>REG</strong> requires the generated
-description to indicate that it describes this region specifically, not
-others, making it necessary for the description to be
-discriminative.</p>
-<p><strong>PointQA</strong> requires a model answer for a visual
-question where the questioner queries a specific position in the
-picture.</p>
-<h3 id="shikra-both-input-and-output">5.1.3 - Shikra: both input and
-output</h3>
-<p>Our model is not only compatible with the above tasks, but also can
-handles the input and output of position representation flexibly and
-simultaneously.</p>
-<h2 id="position-representation">5.2 - Position Representation</h2>
-<p>RoI: regions of interest</p>
-<h3 id="inputting-roi">5.2.1 - Inputting RoI</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-14.png"
-alt="Method 1: directly concatenate cropped image patches with the original image as model input." />
-<figcaption aria-hidden="true"><strong>Method 1:</strong> directly
-concatenate cropped image patches with the original image as model
-input.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-15.png"
-alt="Method 2: use 0/1 mask or Gaussian map input with the original image to emphasize the area of user interest." />
-<figcaption aria-hidden="true"><strong>Method 2</strong>: use 0/1 mask
-or Gaussian map input with the original image to emphasize the area of
-user interest.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-16.png"
-alt="Method 3: first encode points and boxes to positional encodings then add them to intermediate features or learned queries." />
-<figcaption aria-hidden="true"><strong>Method 3</strong>: first encode
-points and boxes to positional encodings then add them to intermediate
-features or learned queries.</figcaption>
-</figure>
-<h3 id="outputting-roi">5.2.2 - Outputting RoI</h3>
-<p><strong>Anchor-based methods</strong> utilize predefined sliding
-windows and proposal candidate regions for classification., e.g., Fast
-R-CNN.</p>
-<p>Some methods directly regress four values for bounding box
-coordinates, e.g., FCOS.</p>
-<p>Some methods adopt one-to-one label assignment to evolve object
-detection into an end-to-end manner, e.g., DETR and POTP.</p>
-<p><strong>Pix2seq</strong> formalizes the detection task as a sequence
-generation task:</p>
-<ul>
-<li>It desires the spatial position of the image in 1,000 bins and uses
-a 1,000-token vocabulary to represent it.</li>
-<li>For detection, Pix2seq performs classification on the coordinate
-vocabulary in an auto-regressive manner.</li>
-</ul>
-<p>Following Pix2seq, several methods, e.g., OFA, Unified-IO, UniTab,
-GIT, and VisionLLM introduce similar coordinate vocabulary alongside the
-language vocabulary for object detection and REC tasks.</p>
-<h3 id="shikra">5.2.3 - Shikra</h3>
-<p>Shikra formulates position input/output as the most natural and
-flexible form of language and compare it with the extra coordinate
-vocabulary in Section 4.2.</p>
-<h1 id="conclusion">6 - Conclusion</h1>
-<p><strong>Limitations</strong></p>
-<ul>
-<li>Shikra is unsuitable for dense object detection and segmentation
-tasks.</li>
-<li>Shikra may produce harmful and counterfactual responses.</li>
-</ul>
-<p><strong>Future Work</strong></p>
-<ul>
-<li>Exploring improved coordinate representations for these tasks.</li>
-<li>Improve GCoT</li>
-<li>Multilingual</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
-        <tag>Fine-grained MLLM</tag>
-        <tag>Position Representation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>(Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs?</title>
     <url>/2023/07/06/Lynx/</url>
     <content><![CDATA[<p><img
@@ -2038,10 +1255,10 @@ restrictions(e.g., ethical, political, and racism issues).</li>
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
         <tag>Dataset</tag>
+        <tag>Instruction-Following</tag>
         <tag>Evaluation</tag>
       </tags>
   </entry>
@@ -2510,125 +1727,423 @@ hallucination issue</li>
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
+        <tag>Dataset</tag>
         <tag>Instruction-Following</tag>
         <tag>In-Context Learning</tag>
-        <tag>Dataset</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hexo Usage</title>
-    <url>/2023/06/08/hexo-usage/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
-href="https://hexo.io/docs/">documentation</a> for more info. If you get
-any problems when using Hexo, you can find the answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask for help on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
-default OS in this post.</p>
-<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
-<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
-<p>Use <a
-href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
-as an example. More info: <a href="https://theme-next.js.org/docs">Theme
-Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
-href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="deploy-to-github">Deploy to Github</h2>
-<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
-cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
-"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
-minutes for the github page to refresh) For the first deployment, you
-need to click <a
-href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
-<span id="more"></span>
-<h2 id="personalization">Personalization</h2>
-<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
-<h3 id="next-theme-settings-basic"><a
-href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
-Settings Basic</a></h3>
-<p>root_dir/themes/next/_config.yml add "little star.jpg" to
-root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
-href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
-Equations</a>, <a
-href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
-<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
-<a
-href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
-<h3 id="sidebar"><a
-href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
-code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
-add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="footer"><a
-href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
-<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
-root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
-the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="posts"><a
-href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
-<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
-plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="custom-pagestags-categories-home"><a
-href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
-Pages(Tags, Categories, Home)</a></h3>
-<p><a
-href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
-of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
-<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = site.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = site.posts.sort(&#x27;-date&#x27;).toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="search-servicessearchdb-not-algolia"><a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
-Services(Searchdb, not Algolia)</a></h3>
-<p>Details of Algolia Search are in <a
-href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
-<a
-href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<h3 id="comment-systemsgitalk"><a
-href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Gitalk)</a></h3>
-<p>Click here to sign up for a <a
-href="https://github.com/settings/applications/new">new OAuth
-Application</a>. Other content can be filled in at will, but be sure to
-fill in the correct callback URL (usually the domain name corresponding
-to the comment page). Then you will get a Client ID and a Client
-secret.</p>
-<p>Create a public repository you want to store Gitalk comments in your
-GitHub.</p>
-<p>Set the value <code>enable</code> to <code>true</code>, add Client ID
-(<code>client_id</code>) and Client secret (<code>client_secret</code>)
-in step 1, add your Github username (<code>github_id</code> and
-<code>admin_user</code>) and the created repository name
-(<code>repo</code>) in step 2, and edit other configurations in
-<code>gitalk</code> section in the <strong><em>NexT config
-file</em></strong> as following:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Gitalk</span><br><span class="line"># For more information: https://gitalk.github.io</span><br><span class="line">gitalk:</span><br><span class="line">  enable: false</span><br><span class="line">  github_id: # GitHub repo owner</span><br><span class="line">  repo: # Repository name to store issues</span><br><span class="line">  client_id: # GitHub Application Client ID</span><br><span class="line">  client_secret: # GitHub Application Client Secret</span><br><span class="line">  admin_user: # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">  distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line">  # When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line">  # Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line">  # If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line">  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">  language:</span><br></pre></td></tr></table></figure>
-<h3 id="statistics-and-analyticsbaidu-analytics"><a
-href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
-and Analytics(Baidu Analytics)</a></h3>
+    <title>Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic</title>
+    <url>/2023/07/09/Shikra/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-0.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2306.15195.pdf">https://arxiv.org/pdf/2306.15195.pdf</a></p>
+<p>Code: <a
+href="https://github.com/shikras/shikra">https://github.com/shikras/shikra</a></p>
+<aside>
+<p>👇 Problems</p>
+</aside>
+<p>In human conversations, individuals can indicate relevant regions
+within a scene while addressing others.</p>
+<p>This natural referential ability in dialogue remains absent in
+current MLLMs.</p>
+<aside>
+<p>👇 Contributions</p>
+</aside>
+<ul>
+<li><p>Study referential ability in existing MLLMs.</p></li>
+<li><p>Define new task——Referential dialogue(RD)</p>
+<p>Potential applications of this ability</p>
+<ul>
+<li>aiding AI assistants in Mixed Reality headsets</li>
+<li>facilitating precise communication in online shopping scenery</li>
+</ul></li>
+<li><p>Propose Shikra</p>
+<ul>
+<li>Shikra can comprehend and output <strong>spatial
+coordinates</strong> in natural language.</li>
+<li>With a <strong>simple architecture</strong>, Shikra shows no need
+for extra vocabularies, position encoder, pre-/post-detection modules,
+or external plugin models.</li>
+<li>Shikra enables numerous <strong>exciting applications</strong>, like
+providing mentioned objects’ coordinates in chains of thoughts and
+comparing user-pointed regions similarities.</li>
+<li>It achieves <strong>promising performance</strong> on conventional
+VL tasks w/o finetuning.</li>
+</ul></li>
+</ul>
+<h1 id="referential-dialogue">1 - Referential Dialogue</h1>
+<ul>
+<li><strong>Current MLLM Can</strong>: VQA, Image Caption, and
+multimodal dialogue</li>
+<li><strong>Current MLLM Cannot</strong>: REC, REG(referring expression
+generation), and PointQA</li>
+</ul>
+<p><strong>Shikra can do them all.</strong></p>
+<p>The model demonstrates proficiency in tasks not in the training set,
+such as identifying similarities between two indicated objects, or
+counting somethings, and providing their positions.</p>
 <figure>
 <img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/hexo-1.png"
-alt="https://tongji.baidu.com" />
-<figcaption aria-hidden="true"><a
-href="https://tongji.baidu.com">https://tongji.baidu.com</a></figcaption>
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-1.png"
+alt="Demo of Referential Dialogue (RD). Users can point to specific areas and ask questions. In turn, Shikra will indicate the specific regions when replying, if necessary." />
+<figcaption aria-hidden="true">Demo of Referential Dialogue (RD). Users
+can point to specific areas and ask questions. In turn, Shikra will
+indicate the specific regions when replying, if necessary.</figcaption>
 </figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-2.png"
+alt="Referential Dialogues between real users and Shikra-7B." />
+<figcaption aria-hidden="true">Referential Dialogues between real users
+and Shikra-7B.</figcaption>
+</figure>
+<h1 id="chessboard-test-for-current-mllm">2 - Chessboard Test for
+Current MLLM</h1>
+<blockquote>
+<p>The current MLLMs cannot directly output coordinates. We need to
+explore appropriate coordinate representations and finer-grained
+training data.</p>
+</blockquote>
+<p><strong>Chessboard Test</strong>:</p>
+<p>Simplifies the object grounding into a part choice task:</p>
+<ol type="1">
+<li><p>Divide a image into a 2 × 2 chessboard.</p></li>
+<li><p>Next, ask:</p>
+<p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &lt;image&gt;: image tokens, &lt;expr&gt; class name</span><br><span class="line">“&lt;image&gt; Which part is &lt;expr&gt; in if the picture is divided equally into four 2 by 2 parts? Choose from: (A) Top-left (B) Top-right (C) Bottom-left (D) Bottom-right.”</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<p><strong>Test Data Construction</strong>:</p>
+<ul>
+<li>Based on <a href="https://arxiv.org/pdf/1908.03195.pdf">LVIS</a>,
+which is a perception detection with over 1000 entry-level object
+categories.</li>
+<li>We choose objects that are completely within a certain part (i.e.,
+ambiguous positions are not considered).</li>
+<li>Select 600 images per part, resulting in 2,400 images across 945
+categories.</li>
+</ul>
+<p><strong>Tested Model</strong>: <a
+href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA-13B</a></p>
+<p><strong>Test Results</strong>: 25.96% acc, comparable to random
+selection.</p>
+<h1 id="breeding-shikra">3 - Breeding Shikra</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User Question: </span><br><span class="line">“How many other clothes in the &lt;image&gt; are of the same color as the jacket [0.268, 0.372]?”. </span><br><span class="line">Shikra reply: </span><br><span class="line">“The jacket [0.268, 0.372] is green. We can find a T-shirt [0.653, 0.532] and cropped pants [0.569, 0.101] a with same green color. So the answer is two.”</span><br></pre></td></tr></table></figure>
+<h2 id="architecture">3.1 - Architecture</h2>
+<p><strong>Frozen Visual Encoder</strong>: pre-trained ViT-L/14 CLIP,
+its output embedding denoted as <span
+class="math inline">\(\mathbf{V}\in\mathbb{R}^{16\times16\times1024}\)</span></p>
+<p><strong>Trainable LLM</strong>: Vicuna-7/13B</p>
+<p><strong>One Trainable fully connected layer</strong>: map <span
+class="math inline">\(\mathbf{V}\)</span> to <span
+class="math inline">\(\mathbf{V&#39;}\in\mathbb{R}^{256\times
+D}\)</span>, <span class="math inline">\(D\)</span> is 4096 for
+Vicuna-7B and 5120 for 13B</p>
+<p>Visual embedding can be inserted into anywhere of input sequence.</p>
+<p>We do not introduce any vocabulary or special encoder for encoding
+position information.</p>
+<p>We have not introduced additional pre-/post-detectors for points or
+bounding boxes.</p>
+<h2 id="numerical-representation-of-position">3.2 - Numerical
+representation of position</h2>
+<p>x, y is normalized(3 decimal places) according to image size.</p>
+<p><strong>Bounding box</strong>: <span class="math inline">\([x_{min},
+y_{min},x_{max}, y_{max}]\)</span></p>
+<p><strong>Region center point</strong>: <span
+class="math inline">\([x_{center}, y_{center}]\)</span></p>
+<p>The coordinates can appear anywhere in the input and output sequence
+of the model.</p>
+<p>Like regular text, tokenizing without discrimination.</p>
+<h2 id="instruction-data-construction">3.3 - Instruction data
+construction</h2>
+<h3 id="reorganization-of-public-data">3.3.1 - Reorganization of public
+data</h3>
+<p><strong>Spotting Captioning Definition</strong>: describe the image
+and spots the mentioned objects or regions using points or boxes. We use
+Flickr30K Entities for this task.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-3.png"
+alt="All training data used by Shikra. The asterisk indicates that this data is only used in the second stage." />
+<figcaption aria-hidden="true">All training data used by Shikra. The
+asterisk indicates that this data is only used in the second
+stage.</figcaption>
+</figure>
+<p>We have <strong>excluded images present in the test and validation
+data</strong> from the training data to prevent potential data leakage,
+despite their distinction in terms of image-text pairs.</p>
+<h3 id="generated-data">3.3.2 - Generated Data</h3>
+<blockquote>
+<p>Data in 3.3.1 lack CoT data with <strong>positional
+annotations</strong>, natural communication data with <strong>positional
+annotations</strong>, etc.</p>
+</blockquote>
+<p><strong>Flickr30K Entities:</strong> has five descriptions for each
+image. These mentioned objects appearing in the image will be labeled
+using bounding box.</p>
+<p><strong>Shikra-RD</strong>: High-quality RD data built from Flickr30K
+Entities using GPT-4.</p>
+<p><strong>Shikra-RD</strong> contains 5,922 QA pairs with
+<strong>positional annotations</strong> and will continues expanding in
+the future.</p>
+<p><strong>GPT-4 Usage</strong>: We explained the format of the bounding
+boxes to GPT-4 and asked it to understand the image through these five
+sentences and boxes. Next, we require GPT-4 to design Q&amp;A pairs.</p>
+<h3 id="task-prompts">3.3.3 - Task prompts</h3>
+<ol type="1">
+<li>Write <strong>a sample template</strong> of a specific task</li>
+<li>Have GPT-4 rewrite it in rich language, expanding it into
+<strong>hundreds of variations</strong>.</li>
+</ol>
+<p><strong>During training</strong>, we can randomly choose from
+them.</p>
+<p><strong>During inference</strong>, users can describe their needs in
+their own format.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-4.png" /></p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-5.png"
+alt="Examples of task templates used by Shikra on different types of training data.  represents visual tokens,  denotes coordinates of region center points,  is the expression in REC." />
+<figcaption aria-hidden="true">Examples of task templates used by Shikra
+on different types of training data. <image> represents visual tokens,
+<objs> denotes coordinates of region center points, <expr> is the
+expression in REC.</figcaption>
+</figure>
+<h2 id="tuning-details">3.4 - Tuning details</h2>
+<ul>
+<li>First stage: train Shikra on the reorganized VL dataset for 100,000
+steps (around 1.5 epoch)</li>
+<li>Second stage: raise the sampling ratio to 50% on LLaVA-Instruct-150K
+and Shikra-RD</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">optimizer: AdamW</span><br><span class="line">learning rate scheduler: cosine annealing scheduler</span><br><span class="line">initial learning rate: 2e-5</span><br><span class="line">global batch size: 64</span><br><span class="line">device: 8 NVIDIA A100 GPUs</span><br><span class="line">time cost: ~100h for first stage, ~20h for second stage</span><br></pre></td></tr></table></figure>
+<h1 id="experiment-and-analysis">4 - Experiment and Analysis</h1>
+<h2 id="grounding-cot-or-verbal-cot">4.1 - Grounding CoT or verbal
+CoT?</h2>
+<aside>
+<p>💡 Investigate whether <strong>Grounding CoT</strong>(GCoT, CoT with
+position annotations) can reduce visual hallucinations and improve model
+performance.</p>
+</aside>
+<p>We train three toy models of Shikra-7B (without using additional
+datasets) on the CLEVR dataset.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-6.png"
+alt="Comparing different forms of CoTs. Q, A, C, and C^{Point} denote the Question, final Answer, Chain of thoughts, and Chain of thoughts with center points [x_{center},y_{center}]." />
+<figcaption aria-hidden="true">Comparing different forms of CoTs. <span
+class="math inline">\(Q, A, C\)</span>, and <span
+class="math inline">\(C^{Point}\)</span> denote the Question, final
+Answer, Chain of thoughts, and Chain of thoughts with center points
+<span
+class="math inline">\([x_{center},y_{center}]\)</span>.</figcaption>
+</figure>
+<h2 id="location-tokens-or-just-numbers">4.2 - Location tokens or just
+numbers?</h2>
+<p>We train two toy Shikra using two different representations with REC
+data.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-7.png"
+alt="Comparing different position representations. Vocab., e.g., , · · · , . Numerical directly uses numbers." />
+<figcaption aria-hidden="true">Comparing different position
+representations. Vocab., e.g., <bin_0>, · · · , <bin_1000>. Numerical
+directly uses numbers.</figcaption>
+</figure>
+<p><strong>Numerical representation Advantages</strong>:</p>
+<ul>
+<li>better performance</li>
+<li>does not retrain vocabularies for localization tasks</li>
+<li>freely control the precision</li>
+</ul>
+<p><strong>Numerical representation Disadvantages</strong>:</p>
+<ul>
+<li>longer token length brings more computational costs</li>
+</ul>
+<h2 id="quantitative-results-on-conventional-tasks">4.3 - Quantitative
+results on conventional tasks</h2>
+<aside>
+<p>👇 <strong>REC task</strong>: ground the object described with an
+expression.</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-8.png"
+alt="Results on standard REC task. OFA-L* refers to the OFA-Large checkpoint without finetuning. GRIT refexp is the ablation split." />
+<figcaption aria-hidden="true">Results on standard REC task. OFA-L*
+refers to the OFA-Large checkpoint without finetuning. GRIT refexp is
+the ablation split.</figcaption>
+</figure>
+<aside>
+<p>👇 <strong>PointQA task</strong></p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-9.png"
+alt="Comparing pointQA capabilities on the Visual-7W. Accuracy (%) is used for evaluation." />
+<figcaption aria-hidden="true">Comparing pointQA capabilities on the
+Visual-7W. Accuracy (%) is used for evaluation.</figcaption>
+</figure>
+<p><strong>Visual-7W</strong>: given a question and four box options,
+model should choose one as the answer.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-10.png"
+alt="Comparing pointQA capabilities on the LookTwice-QA. We use Shikra-13B and Accuracy (%) for evaluation." />
+<figcaption aria-hidden="true">Comparing pointQA capabilities on the
+LookTwice-QA. We use Shikra-13B and Accuracy (%) for
+evaluation.</figcaption>
+</figure>
+<p><strong>LookTwice-QA</strong>: answer question based on the input
+point/box.</p>
+<p>[**Pronoun/Superclass/Class]** indicate different levels of
+referential clarity in the question, e.g., “How many of these
+<strong>[∅/fruits/apples]</strong> <obj>?"</p>
+<p><strong><obj></strong> denotes the coordinates of input point/box</p>
+<aside>
+<p>👇 <strong>conventional VL tasks</strong></p>
+</aside>
+<blockquote>
+<p>It’s worth noting that these task configurations are just some
+subsets of Referential Dialogue.</p>
+</blockquote>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-11.png"
+alt="Comparing generalist models on VQA and Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for Caption." />
+<figcaption aria-hidden="true">Comparing generalist models on VQA and
+Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for
+Caption.</figcaption>
+</figure>
+<p>We also provide <span class="math inline">\(VQAv2^{val}\)</span>
+(83.3) and OK-VQA (53.8) results on LVLM-eHub toolbox for easy
+comparison.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-12.png"
+alt="Object hallucination benchmark using POPE evaluation pipeline." />
+<figcaption aria-hidden="true">Object hallucination benchmark using POPE
+evaluation pipeline.</figcaption>
+</figure>
+<p><strong>Accuracy</strong> denotes the accuracy of predictions.</p>
+<p><strong>Precision</strong> signifies the true positive samples among
+the predicted positives.</p>
+<p><strong>Recall</strong> indicates the correct identification of all
+true positive samples.</p>
+<p><strong>“Yes”</strong> represents the probability of the model
+outputting a positive answer.</p>
+<h1 id="related-work">5 - Related Work</h1>
+<h2 id="vision-language-positioning-tasks">5.1 - Vision-Language
+Positioning Tasks</h2>
+<p>Many vision-language tasks require localization representation.</p>
+<h3 id="tasks-with-output-boxes">5.1.1 - Tasks with output boxes</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-13.png"
+alt="REC." />
+<figcaption aria-hidden="true">REC.</figcaption>
+</figure>
+<p><strong>Referring Expression Comprehension (REC)</strong> aims to
+localize <strong>a</strong> target object in an image described by a
+referring expression.</p>
+<p><strong>Described Object Detection</strong> extends REC to more
+realistic scenarios where the object may <strong>not exist</strong> or
+there may be <strong>multiple</strong> objects.</p>
+<p><strong>VQA Grounding</strong> aims to answer visual questions and
+associate the answers with specific visual regions or objects.</p>
+<h3 id="tasks-with-input-boxes">5.1.2 - Tasks with input boxes</h3>
+<p><strong>Grounding Caption (GC)</strong>: Given an image and a
+location box, <strong>GC</strong> aims to generate a description for
+this location by considering the surrounding environment.</p>
+<p><strong>Referring Expression Generation (REG)</strong>: Compared to
+<strong>GC</strong>, <strong>REG</strong> requires the generated
+description to indicate that it describes this region specifically, not
+others, making it necessary for the description to be
+discriminative.</p>
+<p><strong>PointQA</strong> requires a model answer for a visual
+question where the questioner queries a specific position in the
+picture.</p>
+<h3 id="shikra-both-input-and-output">5.1.3 - Shikra: both input and
+output</h3>
+<p>Our model is not only compatible with the above tasks, but also can
+handles the input and output of position representation flexibly and
+simultaneously.</p>
+<h2 id="position-representation">5.2 - Position Representation</h2>
+<p>RoI: regions of interest</p>
+<h3 id="inputting-roi">5.2.1 - Inputting RoI</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-14.png"
+alt="Method 1: directly concatenate cropped image patches with the original image as model input." />
+<figcaption aria-hidden="true"><strong>Method 1:</strong> directly
+concatenate cropped image patches with the original image as model
+input.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-15.png"
+alt="Method 2: use 0/1 mask or Gaussian map input with the original image to emphasize the area of user interest." />
+<figcaption aria-hidden="true"><strong>Method 2</strong>: use 0/1 mask
+or Gaussian map input with the original image to emphasize the area of
+user interest.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-16.png"
+alt="Method 3: first encode points and boxes to positional encodings then add them to intermediate features or learned queries." />
+<figcaption aria-hidden="true"><strong>Method 3</strong>: first encode
+points and boxes to positional encodings then add them to intermediate
+features or learned queries.</figcaption>
+</figure>
+<h3 id="outputting-roi">5.2.2 - Outputting RoI</h3>
+<p><strong>Anchor-based methods</strong> utilize predefined sliding
+windows and proposal candidate regions for classification., e.g., Fast
+R-CNN.</p>
+<p>Some methods directly regress four values for bounding box
+coordinates, e.g., FCOS.</p>
+<p>Some methods adopt one-to-one label assignment to evolve object
+detection into an end-to-end manner, e.g., DETR and POTP.</p>
+<p><strong>Pix2seq</strong> formalizes the detection task as a sequence
+generation task:</p>
+<ul>
+<li>It desires the spatial position of the image in 1,000 bins and uses
+a 1,000-token vocabulary to represent it.</li>
+<li>For detection, Pix2seq performs classification on the coordinate
+vocabulary in an auto-regressive manner.</li>
+</ul>
+<p>Following Pix2seq, several methods, e.g., OFA, Unified-IO, UniTab,
+GIT, and VisionLLM introduce similar coordinate vocabulary alongside the
+language vocabulary for object detection and REC tasks.</p>
+<h3 id="shikra">5.2.3 - Shikra</h3>
+<p>Shikra formulates position input/output as the most natural and
+flexible form of language and compare it with the extra coordinate
+vocabulary in Section 4.2.</p>
+<h1 id="conclusion">6 - Conclusion</h1>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Shikra is unsuitable for dense object detection and segmentation
+tasks.</li>
+<li>Shikra may produce harmful and counterfactual responses.</li>
+</ul>
+<p><strong>Future Work</strong></p>
+<ul>
+<li>Exploring improved coordinate representations for these tasks.</li>
+<li>Improve GCoT</li>
+<li>Multilingual</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Software</category>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
+        <tag>LLM</tag>
+        <tag>Multi-modal</tag>
+        <tag>Instruction-Following</tag>
+        <tag>Fine-grained MLLM</tag>
+        <tag>Position Representation</tag>
       </tags>
   </entry>
   <entry>
@@ -2925,6 +2440,122 @@ testing to limit potential harm.</p>
       </tags>
   </entry>
   <entry>
+    <title>Hexo Usage</title>
+    <url>/2023/06/08/hexo-usage/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! Check <a
+href="https://hexo.io/docs/">documentation</a> for more info. If you get
+any problems when using Hexo, you can find the answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask for help on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>. Win11 is the
+default OS in this post.</p>
+<h2 id="hexo-install6.3.0">Hexo Install(6.3.0)</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli <span class="comment"># cmd with administrator permissions</span></span><br><span class="line">hexo -v <span class="comment"># check whether the installation is successful</span></span><br><span class="line"><span class="built_in">mkdir</span> &lt;root_dir&gt; <span class="comment"># create an empty dir</span></span><br><span class="line"><span class="built_in">cd</span> &lt;root_dir&gt;</span><br><span class="line">hexo init</span><br><span class="line">hexo s <span class="comment"># run server</span></span><br></pre></td></tr></table></figure>
+<h2 id="next-theme8.17.0">Next Theme(8.17.0)</h2>
+<p>Use <a
+href="https://github.com/next-theme/hexo-theme-next">hexo-theme-next</a>
+as an example. More info: <a href="https://theme-next.js.org/docs">Theme
+Next Doc</a>, <a href="http://t.csdn.cn/Tu6fy">CSDN blog 1</a>, <a
+href="http://t.csdn.cn/EmYFJ">CSDN blog 2</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># open root_dir/_config.yml, replace &quot;theme: landscape&quot; with &quot;theme: next&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="deploy-to-github">Deploy to Github</h2>
+<p>add ".gitignore" file to blog root dir: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure> open cmd, then
+cd blog root dir (win10) <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save <span class="comment"># install a plugin</span></span><br><span class="line">git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br></pre></td></tr></table></figure> open root_dir/_config.yml, modify
+"deploy" <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:ifshinelx/ifshinelx.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure> deploy (After the cmd execution, it takes several
+minutes for the github page to refresh) For the first deployment, you
+need to click <a
+href="http://ifshinelx.github.io/ifshinelx.github.io">http://ifshinelx.github.io/ifshinelx.github.io</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="comment"># clean cache</span></span><br><span class="line">hexo g <span class="comment"># generate static files</span></span><br><span class="line">hexo d <span class="comment"># deploy to remote sites</span></span><br></pre></td></tr></table></figure></p>
+<span id="more"></span>
+<h2 id="personalization">Personalization</h2>
+<h3 id="hexo-basic-info_config.yml">Hexo Basic Info(_config.yml)</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: XinLiu&#x27;s Homepage, Welcome!</span><br><span class="line">subtitle: &#x27;&#x27;</span><br><span class="line">description: &#x27;&#x27;</span><br><span class="line">keywords:</span><br><span class="line">author: Xin Liu</span><br><span class="line">language: en</span><br><span class="line">timezone: &#x27;Asia/Shanghai&#x27;</span><br><span class="line"></span><br><span class="line">url: https://ifshinelx.github.io</span><br><span class="line">math:</span><br><span class="line">  every_page: false</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
+<h3 id="next-theme-settings-basic"><a
+href="https://theme-next.js.org/docs/theme-settings/">NexT Theme
+Settings Basic</a></h3>
+<p>root_dir/themes/next/_config.yml add "little star.jpg" to
+root_dir/themes/next/source/images/ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cache:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line"># Remove unnecessary files after hexo generate.</span><br><span class="line">minify: true</span><br><span class="line"></span><br><span class="line">scheme: Gemini</span><br><span class="line">favicon:</span><br><span class="line">  small: /images/little star.jpg</span><br><span class="line">  medium: /images/little star.jpg</span><br><span class="line">  # small: /images/favicon-16x16-next.png</span><br><span class="line">  # medium: /images/favicon-32x32-next.png</span><br><span class="line">creative_commons:</span><br><span class="line">  size: small</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: deed.en</span><br><span class="line">menu:</span><br><span class="line">  home: / || fa fa-home</span><br><span class="line">  archives: /archives/ || fa fa-archive</span><br><span class="line">menu_settings:</span><br><span class="line">  icons: true</span><br><span class="line">  badges: true</span><br></pre></td></tr></table></figure> More Info: <a
+href="https://theme-next.js.org/docs/third-party-services/math-equations.html">Math
+Equations</a>, <a
+href="https://theme-next.js.org/docs/tag-plugins/label.html">Label</a>,
+<a href="https://theme-next.js.org/docs/tag-plugins/note.html">Note</a>,
+<a
+href="https://theme-next.js.org/docs/tag-plugins/tabs.html">Tabs</a></p>
+<h3 id="sidebar"><a
+href="https://theme-next.js.org/docs/theme-settings/sidebar.html">Sidebar</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sidebar:</span><br><span class="line">  position: right</span><br><span class="line">avatar:</span><br><span class="line">  url: /images/little star.jpg #/images/avatar.gif</span><br><span class="line">social:</span><br><span class="line">  GitHub: https://ifshinelx.github.io || fab fa-github</span><br><span class="line">  E-Mail: mailto:ifshine_lx@163.com || fa fa-envelope</span><br><span class="line">recent_posts_title: Recent Posts</span><br><span class="line">recent_posts_layout: block</span><br><span class="line">recent_posts: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/sidebar/site-overview.njk, add the
+code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.social %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;# recent posts #&#125;</span><br><span class="line">&#123;% if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class=&quot;links-of-blogroll motion-element &#123;&#123; &quot;links-of-blogroll-&quot; + theme.recent_posts_layout  &#125;&#125;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;links-of-blogroll-title&quot;&gt;</span><br><span class="line">      &lt;!-- modify icon to fire by szw --&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-history fa-&#123;&#123; theme.recent_posts_icon | lower &#125;&#125;&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &#123;&#123; theme.recent_posts_title &#125;&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;ul class=&quot;links-of-blogroll-list&quot; style=&quot;padding: 0px 12px;&quot;&gt;</span><br><span class="line">      &#123;% set posts = site.posts.sort(&#x27;-date&#x27;) %&#125;</span><br><span class="line">      &#123;% set recent_posts = posts.slice(0, 5).toArray() %&#125;</span><br><span class="line">      &#123;% for post in recent_posts %&#125;</span><br><span class="line">        &#123;% if post.title != &quot;Home&quot; %&#125;</span><br><span class="line">          &lt;li class=&quot;recent_posts_li&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;&#123;&#123; url_for(post.path) &#125;&#125;&quot; title=&quot;&#123;&#123; post.title &#125;&#125;&quot; target=&quot;_blank&quot;&gt;&#123;&#123;date(post.date, &#x27;MM-DD&#x27;) &#125;&#125; &#123;&#123; post.title &#125;&#125; &lt;/a&gt;</span><br><span class="line">          &lt;/li&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">      &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;%- if theme.creative_commons.license and theme.creative_commons.sidebar %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/source/css/main.styl,
+add the code block in the file end. <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">li.recent_posts_li &#123;</span><br><span class="line">    text-align: left;</span><br><span class="line">    display: block;</span><br><span class="line">    word-break: keep-all;</span><br><span class="line">    white-space: nowrap;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    text-overflow: ellipsis;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      a&#123;</span><br><span class="line">        color: #fc6423;</span><br><span class="line">        border-bottom-color: #fc6423;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="footer"><a
+href="https://theme-next.js.org/docs/theme-settings/footer.html">Footer</a></h3>
+<p>NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2023</span><br><span class="line">  powered: false</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure> In
+root_dir/themes/next/layout/_partials/footer.njk, delete the code block:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;wordcount&quot;&gt;</span><br><span class="line">...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure> In root_dir/themes/next/layout/_partials/footer.njk, add
+the code block: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;%- if theme.busuanzi_count.enable %&#125;</span><br><span class="line">&lt;div class=&quot;busuanzi-count&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  &#123;%- if config.symbols_count_time.total_symbols %&#125;</span><br><span class="line">  &lt;span class=&quot;post-meta-item&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;post-meta-item-icon&quot;&gt;</span><br><span class="line">      &lt;i class=&quot;fa fa-chart-line&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">    &#123;%- if theme.symbols_count_time.item_text_total %&#125;</span><br><span class="line">      &lt;span&gt;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) + __(&#x27;symbol.colon&#x27;) &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;span title=&quot;&#123;&#123; __(&#x27;symbols_count_time.count_total&#x27;) &#125;&#125;&quot;&gt;&#123;&#123; symbolsCountTotal(site) &#125;&#125;&lt;/span&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="posts"><a
+href="https://theme-next.js.org/docs/theme-settings/posts.html">Posts</a></h3>
+<p>a <strong>Read More</strong> button in a post: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure> a
+plug-in <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-word-counter --save</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure> NexT config file <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="custom-pagestags-categories-home"><a
+href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom
+Pages(Tags, Categories, Home)</a></h3>
+<p><a
+href="https://hexo.io/docs/front-matter#Categories-amp-Tags">Hexo's Docs
+of Categories &amp; Tags</a> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> root_dir</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure> NexT config file
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  tags: /tags/ || fa fa-tags</span><br><span class="line">  categories: /categories/ || fa fa-th</span><br></pre></td></tr></table></figure></p>
+<p>root_dir/source/tags/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:15</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+root_dir/source/categories/index.md <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">date: 2023-06-10 21:55:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure> tag color setting
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// create themes\next\layout\tag-color.njk</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">     var alltags = document.getElementsByClassName(&#x27;tag-cloud-tags&#x27;);</span><br><span class="line">     var tags = alltags[0].getElementsByTagName(&#x27;a&#x27;);</span><br><span class="line">     for (var i = tags.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">       var golden_ratio = 0.618033988749895;</span><br><span class="line">       var s = 0.5;</span><br><span class="line">       var v = 0.999;</span><br><span class="line">       var h = golden_ratio + Math.random()*0.8 - 0.5;</span><br><span class="line">       var h_i = parseInt(h * 6);</span><br><span class="line">       var f = h * 6 - h_i;</span><br><span class="line">       var p = v * (1 - s);</span><br><span class="line">       var q = v * (1 - f * s);</span><br><span class="line">       var t = v * (1 - (1 - f) * s);</span><br><span class="line">       var r, g, b;</span><br><span class="line">       switch (h_i) &#123;</span><br><span class="line">          case 0:</span><br><span class="line">              r = v;</span><br><span class="line">              g = t;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 1:</span><br><span class="line">              r = q;</span><br><span class="line">              g = v;</span><br><span class="line">              b = p;</span><br><span class="line">              break;</span><br><span class="line">          case 2:</span><br><span class="line">              r = p;</span><br><span class="line">              g = v;</span><br><span class="line">              b = t;</span><br><span class="line">              break;</span><br><span class="line">          case 3 :</span><br><span class="line">              r = p;</span><br><span class="line">              g = q;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 4:</span><br><span class="line">              r = t;</span><br><span class="line">              g = p;</span><br><span class="line">              b = v;</span><br><span class="line">              break;</span><br><span class="line">          case 5:</span><br><span class="line">              r = v;</span><br><span class="line">              g = p;</span><br><span class="line">              b = q;</span><br><span class="line">              break;</span><br><span class="line">          default:</span><br><span class="line">              r = 1;</span><br><span class="line">              g = 1;</span><br><span class="line">              b = 1;</span><br><span class="line">        &#125;</span><br><span class="line">       tags[i].style.background = &quot;rgba(&quot;+parseInt(r*255)+&quot;,&quot;+parseInt(g*255)+&quot;,&quot;+parseInt(b*255)+&quot;,&quot;+0.5+&quot;)&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .tag-cloud-tags&#123;</span><br><span class="line">    text-align: center;</span><br><span class="line">    counter-reset: tags;</span><br><span class="line">  &#125;</span><br><span class="line">  .tag-cloud-tags a&#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border: 0px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">    padding: 0px 10px;</span><br><span class="line">    margin: 8px;</span><br><span class="line">    color: rgba(34, 34, 34, 0.8);</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .tag-cloud-tags a:hover&#123;</span><br><span class="line">     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);</span><br><span class="line">     transform: scale(1.1);</span><br><span class="line">     transition-duration: 0.15s;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_partials\page\tags.njk</span><br><span class="line">&lt;div class=&quot;tag-cloud&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&#123;% include &#x27;tag-color.njk&#x27; %&#125;</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// modify themes\next\layout\_macro\post.njk</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        ...</span><br><span class="line">        </span><br><span class="line">        &#123;%- if post.tags and post.tags.length %&#125;</span><br><span class="line">          &#123;%- set tag_indicate = &#x27;&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;&#x27; if theme.tag_icon else &#x27;#&#x27; %&#125;</span><br><span class="line">          &lt;div class=&quot;post-tags&quot; style=&quot;margin-top: 5px;&quot;&gt;</span><br><span class="line">            &#123;%- for tag in post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=&quot;&#123;&#123; url_for(tag.path) &#125;&#125;&quot; rel=&quot;tag&quot; style=&quot;border: 0px; border-radius: 10px; padding: 0px 10px;&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag.name &#125;&#125;&lt;/a&gt;</span><br><span class="line">            &#123;%- endfor %&#125;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">              var tagsall=document.getElementsByClassName(&quot;post-tags&quot;)</span><br><span class="line">              for (var i = tagsall.length - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                  var tags=tagsall[i].getElementsByTagName(&quot;a&quot;);</span><br><span class="line">                  for (var j = tags.length - 1; j &gt;= 0; j--) &#123;</span><br><span class="line">                      var r=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var g=Math.floor(Math.random()*75+200);</span><br><span class="line">                      var b=Math.floor(Math.random()*75+200);</span><br><span class="line">                      tags[j].style.background = &quot;rgb(&quot;+r+&quot;,&quot;+g+&quot;,&quot;+b+&quot;)&quot;;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;                        </span><br><span class="line">            &lt;/script&gt;</span><br><span class="line">        &#123;%- endif %&#125;</span><br><span class="line">      &lt;/header&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Home Page</strong>: root_dir/themes/next/layout/index.njk:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &#123;%- set postlen = site.posts.toArray().length %&#125;</span><br><span class="line">  &#123;%- set post = site.posts.sort(&#x27;-date&#x27;).toArray()[postlen-1] %&#125;</span><br><span class="line">  &#123;&#123; partial(&#x27;_macro/home.njk&#x27;, &#123;post: post, is_index: true&#125;) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="search-servicessearchdb-not-algolia"><a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html">Search
+Services(Searchdb, not Algolia)</a></h3>
+<p>Details of Algolia Search are in <a
+href="https://theme-next.js.org/docs/third-party-services/search-services.html#Algolia-Search">here</a>.
+<a
+href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="comment-systemsgitalk"><a
+href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
+Systems(Gitalk)</a></h3>
+<p>Click here to sign up for a <a
+href="https://github.com/settings/applications/new">new OAuth
+Application</a>. Other content can be filled in at will, but be sure to
+fill in the correct callback URL (usually the domain name corresponding
+to the comment page). Then you will get a Client ID and a Client
+secret.</p>
+<p>Create a public repository you want to store Gitalk comments in your
+GitHub.</p>
+<p>Set the value <code>enable</code> to <code>true</code>, add Client ID
+(<code>client_id</code>) and Client secret (<code>client_secret</code>)
+in step 1, add your Github username (<code>github_id</code> and
+<code>admin_user</code>) and the created repository name
+(<code>repo</code>) in step 2, and edit other configurations in
+<code>gitalk</code> section in the <strong><em>NexT config
+file</em></strong> as following:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Gitalk</span><br><span class="line"># For more information: https://gitalk.github.io</span><br><span class="line">gitalk:</span><br><span class="line">  enable: false</span><br><span class="line">  github_id: # GitHub repo owner</span><br><span class="line">  repo: # Repository name to store issues</span><br><span class="line">  client_id: # GitHub Application Client ID</span><br><span class="line">  client_secret: # GitHub Application Client Secret</span><br><span class="line">  admin_user: # GitHub repo owner and collaborators, only these guys can initialize gitHub issues</span><br><span class="line">  distraction_free_mode: true # Facebook-like distraction free mode</span><br><span class="line">  # When the official proxy is not available, you can change it to your own proxy address</span><br><span class="line">  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address</span><br><span class="line">  # Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span><br><span class="line">  # If you want everyone visiting your site to see a uniform language, you can set a force language value</span><br><span class="line">  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW</span><br><span class="line">  language:</span><br></pre></td></tr></table></figure>
+<h3 id="statistics-and-analyticsbaidu-analytics"><a
+href="https://theme-next.js.org/docs/third-party-services/statistics-and-analytics.html">Statistics
+and Analytics(Baidu Analytics)</a></h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/hexo-1.png"
+alt="https://tongji.baidu.com" />
+<figcaption aria-hidden="true"><a
+href="https://tongji.baidu.com">https://tongji.baidu.com</a></figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>Software</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Home</title>
     <url>/2023/06/08/home/</url>
     <content><![CDATA[<p>I am currently a master student at <a
@@ -2935,319 +2566,6 @@ communication.</p>
 <p><img
 src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/home.jpg" /></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model</title>
-    <url>/2023/06/19/llama-adapter-v2/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-0.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2304.15010.pdf">https://arxiv.org/pdf/2304.15010.pdf</a></p>
-<p>Code: <a
-href="https://github.com/OpenGVLab/LLaMA-Adapter">https://github.com/OpenGVLab/LLaMA-Adapter</a></p>
-<blockquote>
-<p>After trained on language instruction data, LLaMA-Adapter-V1 is
-fine-tuned on COCO Caption, which introducing new visual cues but
-damaging instruction-following abilities.</p>
-</blockquote>
-<aside>
-<p>⤴️ Therefore, LLaMA-Adapter-V2 further improves the multi-modal
-instruction-following abilities of LLaMA by introducing 14M parameters
-over LLaMA.</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-1.png"
-alt="Training Pipeline of LLaMA-Adapter V2." />
-<figcaption aria-hidden="true">Training Pipeline of LLaMA-Adapter
-V2.</figcaption>
-</figure>
-<hr />
-<h2 id="related-work">Related Work</h2>
-<h3 id="instruction-following-models">Instruction-following Models</h3>
-<blockquote>
-<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
-'Related Work/Instruction-Following Models' section.</p>
-</blockquote>
-<p>LLaMA-Adapter V2 can function effectively using just language
-instruction data and image-text pairs, without relying on multi-modal
-instruction data.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-2.png"
-alt="Table 1. Training Comparison of Different Methods. CC, VG and L400 represent Conceptual Caption, Visual Genome and LAION 400M, respectively. ∗ denotes the filtered dataset." />
-<figcaption aria-hidden="true">Table 1. Training Comparison of Different
-Methods. CC, VG and L400 represent Conceptual Caption, Visual Genome and
-LAION 400M, respectively. ∗ denotes the filtered dataset.</figcaption>
-</figure>
-<h3 id="parameter-efficient-fine-tuning">Parameter-efficient
-Fine-tuning</h3>
-<blockquote>
-<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
-'Related Work/Parameter-Efficient Fine-Tuning(PEFT)' section.</p>
-</blockquote>
-<p>By utilizing an <strong>early fusion strategy</strong> and
-<strong>bias tuning</strong>, LLaMA-Adapter V2 injects visual features
-into LLMs, with only <strong>0.04%</strong> parameters of LLaMA.</p>
-<h3 id="integration-of-expert-systems">Integration of Expert
-Systems</h3>
-<p>LLMs act as a core controller for external experts systems to boost
-its overall performance.</p>
-<ul>
-<li><strong>Vision Tasks</strong>: visual models as experts. <a
-href="https://arxiv.org/abs/2303.17580">HuggingGPT</a>, <a
-href="https://arxiv.org/abs/2303.04671">Visual ChatGPT</a>, <a
-href="https://arxiv.org/abs/2304.09842">Chameleon</a>, <a
-href="https://arxiv.org/abs/2303.11381">MMReACT</a> and <a
-href="https://arxiv.org/abs/2303.08128">ViperGPT</a></li>
-<li><strong>Robotics</strong>: real-world sensors as experts. <a
-href="https://arxiv.org/abs/2303.03378">PaLM-E</a>, <a
-href="https://arxiv.org/abs/2207.05608">Inner Monologue</a> and <a
-href="https://arxiv.org/abs/2303.12153">Text2Motion</a></li>
-</ul>
-<p>For LLaMA-Adapter V2, experts integration compensates for the
-shortcomings brought by small training data.</p>
-<h2 id="llama-adapter-v2">LLaMA-Adapter V2</h2>
-<p>LLaMA-Adapter V2 is based on finetuned LLaMA-Adapter V1.</p>
-<h3 id="bias-tuning-of-linear-layers">Bias Tuning of Linear Layers</h3>
-<aside>
-<p>👉 To enhance its language instruction-following ability</p>
-</aside>
-<p>The added params accounts for <strong>0.04%(~5M) of LLaMA</strong>
-and its initialization is helpful for stable training at early
-stages.</p>
-<p><strong>We first unfreeze all the normalization layers in LLaMA, and
-then</strong>:</p>
-<ul>
-<li><span class="math inline">\(x\)</span>: input</li>
-<li><span class="math inline">\(W\)</span>: pre-trained weights(frozen)
-of a certain linear layer</li>
-<li><span class="math inline">\(b=Init(0)\)</span>: learnable bias</li>
-<li><span class="math inline">\(s=Init(1)\)</span>: learnable scale
-factor</li>
-<li><span class="math inline">\(y=W·x\rightarrow y=s·(W·x+b)\)</span>:
-<strong>modify each linear layer in the Transformer</strong></li>
-</ul>
-<p><strong>Our bias tuning method compared with related
-work:</strong></p>
-<ul>
-<li><strong>BitFit, SSF</strong>: experiments on 80M parameters scale
-<ul>
-<li><strong>Ours</strong>: from 7B to 65B</li>
-</ul></li>
-<li><strong>LoRA</strong>: input-aware bias
-<ul>
-<li><p><strong>Ours</strong>: input-agnostic, less fine-tuning cost</p>
-<aside>
-<p>❓ why less cost</p>
-</aside></li>
-</ul></li>
-</ul>
-<h3 id="joint-training-with-disjoint-parameters">Joint Training with
-Disjoint Parameters</h3>
-<aside>
-<p>👉 For balanced visual instruction tuning</p>
-</aside>
-<ul>
-<li>Trained on <strong>500K image-text pairs</strong>: visual projection
-layers, early zero-initialized attention</li>
-<li>Trained on <strong>50K language-only instruction data</strong>: late
-zero-initialized attention, unfrozen norm, learnable bias and scale
-factor (or optional <a
-href="https://arxiv.org/pdf/2106.09685.pdf">LoRA</a>)</li>
-</ul>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-3.png"
-alt="Joint Training Paradigm in LLaMA-Adapter V2." />
-<figcaption aria-hidden="true">Joint Training Paradigm in LLaMA-Adapter
-V2.</figcaption>
-</figure>
-<h3 id="early-fusion-of-visual-knowledge">Early Fusion of Visual
-Knowledge</h3>
-<aside>
-<p>👉 To balance textual and visual understanding</p>
-</aside>
-<p><span class="math inline">\(N\)</span>: the total number of
-Transformer layers</p>
-<ul>
-<li><p><strong>Visual prompts</strong>: concatenated with the word
-tokens at <strong>the first <span class="math inline">\(K\)</span>
-Transformer layers</strong> with zero-initialized attention</p>
-<ul>
-<li><span class="math inline">\(K&lt;N-L\)</span></li>
-</ul></li>
-<li><p><strong>Static adaptation prompts</strong>: inserted into the
-last <span class="math inline">\(L\)</span> layers (e.g., L=31)</p>
-<aside>
-<p>❓ a little hard to understand ”inserted into”: add or
-concatenate?</p>
-</aside></li>
-</ul>
-<p>Prevent direct interactions between the two via placing them in
-different layers.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-4.png"
-alt="Early Fusion of Visual Knowledge." />
-<figcaption aria-hidden="true">Early Fusion of Visual
-Knowledge.</figcaption>
-</figure>
-<aside>
-<p>❓ <strong>But in code implementation, textual tokens are not
-concatenated with visual_query in the first layer</strong></p>
-</aside>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># LLaMA-Adapter/llama_adapter_v2_multimodal/llama/llama_adapter.py</span><br><span class="line"># class LLaMA_adapter:</span><br><span class="line">def forward(self, visual_query, tokens, start_pos: int):</span><br><span class="line">    _bsz, seqlen = tokens.shape</span><br><span class="line">    h = self.llama.tok_embeddings(tokens)</span><br><span class="line">    freqs_cis = self.llama.freqs_cis.to(h.device)</span><br><span class="line">    freqs_cis = freqs_cis[start_pos : start_pos + seqlen]</span><br><span class="line">    mask = None</span><br><span class="line">    mask = torch.full((1, 1, seqlen, seqlen),</span><br><span class="line">                        float(&quot;-inf&quot;), device=h.device)</span><br><span class="line">    mask = torch.triu(mask, diagonal=start_pos + 1).type_as(h)</span><br><span class="line"></span><br><span class="line">    for layer in self.llama.layers[:-1 * self.query_layer]:</span><br><span class="line">        h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line"></span><br><span class="line">    adapter = self.adapter_query.weight.reshape(</span><br><span class="line">        self.query_layer, self.query_len, -1).unsqueeze(1)</span><br><span class="line">    adapter_index = 0</span><br><span class="line">    for layer in self.llama.layers[-1 * self.query_layer:]:</span><br><span class="line">        dynamic_adapter = adapter[adapter_index].repeat(_bsz, 1, 1)</span><br><span class="line">        dynamic_adapter = dynamic_adapter + visual_query</span><br><span class="line">        h = layer(h, start_pos, freqs_cis, mask, dynamic_adapter)</span><br><span class="line">        adapter_index = adapter_index + 1</span><br><span class="line"></span><br><span class="line">    h = self.llama.norm(h)</span><br><span class="line">    output = self.llama.output(h[:, -1, :])</span><br><span class="line">    return output.float()</span><br></pre></td></tr></table></figure>
-<h3 id="integration-with-experts">Integration with Experts</h3>
-<aside>
-<p>👉 To boost zero-shot multi-modal reasoning</p>
-</aside>
-<p><strong>Well-trained img2text experts</strong>:</p>
-<ul>
-<li><strong>default implementation</strong> adopts LLaMA-Adapter v1
-pre-trained on COCO Caption for short and accurate image descriptions
-generation</li>
-<li>can be replaced with a search engine / OCR</li>
-</ul>
-<p>We can easily switch among different experts based on the specific
-downstream task.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-5.png"
-alt="Generation Pipeline of LLaMA-Adapter V2." />
-<figcaption aria-hidden="true">Generation Pipeline of LLaMA-Adapter
-V2.</figcaption>
-</figure>
-<aside>
-<p>❓ The order of 3 input parts(Textual Context, Question, Visual
-Context)</p>
-</aside>
-<h2 id="experiments">Experiments</h2>
-<h3 id="experimental-setups">Experimental Setups</h3>
-<p><strong>Training Data</strong>:</p>
-<ul>
-<li>52K single-turn instruction data from GPT-4-LLM</li>
-<li>567K captioning data from COCO Caption</li>
-<li>80K conversation data from ShareGPT (train a chatbot,
-multi-round)</li>
-</ul>
-<p><strong>Implementation Details</strong>:</p>
-<ul>
-<li>visual prompt length: 20</li>
-</ul>
-<h3 id="stronger-language-instruction-model">Stronger Language
-Instruction Model</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-6.png"
-alt="Part of Table 2. LLaMA-Adapter V2 provides more comprehensive answers and detailed explanations." />
-<figcaption aria-hidden="true">Part of Table 2. LLaMA-Adapter V2
-provides more comprehensive answers and detailed
-explanations.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-7.png"
-alt="A Chatting Example using 7B LLaMA-Adapter V2. But its understanding of context is not very accurate." />
-<figcaption aria-hidden="true">A Chatting Example using 7B LLaMA-Adapter
-V2. But its understanding of context is not very accurate.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-8.png"
-alt="A Chatting Example using 65B LLaMA-Adapter V2." />
-<figcaption aria-hidden="true">A Chatting Example using 65B
-LLaMA-Adapter V2.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-9.png"
-alt="Response Quality Comparisons(assessed by GPT-4 on 80 questions)." />
-<figcaption aria-hidden="true">Response Quality Comparisons(assessed by
-GPT-4 on 80 questions).</figcaption>
-</figure>
-<ul>
-<li>Ours: based on LLaMA-65B, fine-tune 14M parameters</li>
-<li>Vicuna: based on LLaMA-13B, fine-tune 13B parameters</li>
-</ul>
-<h3 id="visual-instruction-model">Visual Instruction Model</h3>
-<aside>
-<p>👇 Image Captioning</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-10.png"
-alt="Comparisons on COCO Caption." />
-<figcaption aria-hidden="true">Comparisons on COCO Caption.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-11.png"
-alt="Comparisons of Image Captioning Results(between LLaMA-Adapter and LLaMA-Adapter V2)." />
-<figcaption aria-hidden="true">Comparisons of Image Captioning
-Results(between LLaMA-Adapter and LLaMA-Adapter V2).</figcaption>
-</figure>
-<p>The failure case is intentionally choosen as an out-of-distribution
-example (cartoon picture) for testing.</p>
-<p>It shows that the image-text alignment ability is not strong
-enough.</p>
-<p>This motivates us to employ <strong>additional expert
-systems</strong> to enhance the image understanding ability.</p>
-<aside>
-<p>👇 Visual Understanding</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-12.png"
-alt="The Visual Understanding Examples of LLaMA-Adapter V2." />
-<figcaption aria-hidden="true">The Visual Understanding Examples of
-LLaMA-Adapter V2.</figcaption>
-</figure>
-<ul>
-<li>identify and explain the specific object or feature in the
-image</li>
-<li>sophisticated reasoning and decision-making</li>
-<li>offer a plausible guess or explanation when image cannot provide
-sufficient direct info</li>
-</ul>
-<aside>
-<p>👇 Integration with Experts</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-13.png"
-alt="Visual Understanding with the help of Caption Experts(more precise and detailed responses)." />
-<figcaption aria-hidden="true">Visual Understanding with the help of
-Caption Experts(more precise and detailed responses).</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-14.png"
-alt="Visual Understanding with the help of OCR Experts. The example and OCR context are from DocVQA." />
-<figcaption aria-hidden="true">Visual Understanding with the help of OCR
-Experts. The example and OCR context are from DocVQA.</figcaption>
-</figure>
-<h2 id="future-work">Future Work</h2>
-<ul>
-<li>integrate more expert visual systems</li>
-<li>use multi-modal instruction dataset</li>
-<li>other PEFT methods (e.g., LoRA)</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>04</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>PEFT</tag>
-        <tag>Multi-modal</tag>
-        <tag>Expert Integration</tag>
-        <tag>Instruction-Following</tag>
-        <tag>Prefix-Tuning</tag>
-        <tag>Adapter</tag>
-      </tags>
   </entry>
   <entry>
     <title>LLaMA-Adapter: Efficient Fine-tuning of Language Models with Zero-init Attention</title>
@@ -3757,9 +3075,691 @@ pre-trained image encoders and LLMs with a Q-Former</li>
         <tag>LLM</tag>
         <tag>PEFT</tag>
         <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
+        <tag>Instruction-Following</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LLaMA-Adapter V2: Parameter-Efficient Visual Instruction Model</title>
+    <url>/2023/06/19/llama-adapter-v2/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-0.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2304.15010.pdf">https://arxiv.org/pdf/2304.15010.pdf</a></p>
+<p>Code: <a
+href="https://github.com/OpenGVLab/LLaMA-Adapter">https://github.com/OpenGVLab/LLaMA-Adapter</a></p>
+<blockquote>
+<p>After trained on language instruction data, LLaMA-Adapter-V1 is
+fine-tuned on COCO Caption, which introducing new visual cues but
+damaging instruction-following abilities.</p>
+</blockquote>
+<aside>
+<p>⤴️ Therefore, LLaMA-Adapter-V2 further improves the multi-modal
+instruction-following abilities of LLaMA by introducing 14M parameters
+over LLaMA.</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-1.png"
+alt="Training Pipeline of LLaMA-Adapter V2." />
+<figcaption aria-hidden="true">Training Pipeline of LLaMA-Adapter
+V2.</figcaption>
+</figure>
+<hr />
+<h2 id="related-work">Related Work</h2>
+<h3 id="instruction-following-models">Instruction-following Models</h3>
+<blockquote>
+<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
+'Related Work/Instruction-Following Models' section.</p>
+</blockquote>
+<p>LLaMA-Adapter V2 can function effectively using just language
+instruction data and image-text pairs, without relying on multi-modal
+instruction data.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-2.png"
+alt="Table 1. Training Comparison of Different Methods. CC, VG and L400 represent Conceptual Caption, Visual Genome and LAION 400M, respectively. ∗ denotes the filtered dataset." />
+<figcaption aria-hidden="true">Table 1. Training Comparison of Different
+Methods. CC, VG and L400 represent Conceptual Caption, Visual Genome and
+LAION 400M, respectively. ∗ denotes the filtered dataset.</figcaption>
+</figure>
+<h3 id="parameter-efficient-fine-tuning">Parameter-efficient
+Fine-tuning</h3>
+<blockquote>
+<p>Details can be seen in my previous note of LLaMA-Adapter V1: the
+'Related Work/Parameter-Efficient Fine-Tuning(PEFT)' section.</p>
+</blockquote>
+<p>By utilizing an <strong>early fusion strategy</strong> and
+<strong>bias tuning</strong>, LLaMA-Adapter V2 injects visual features
+into LLMs, with only <strong>0.04%</strong> parameters of LLaMA.</p>
+<h3 id="integration-of-expert-systems">Integration of Expert
+Systems</h3>
+<p>LLMs act as a core controller for external experts systems to boost
+its overall performance.</p>
+<ul>
+<li><strong>Vision Tasks</strong>: visual models as experts. <a
+href="https://arxiv.org/abs/2303.17580">HuggingGPT</a>, <a
+href="https://arxiv.org/abs/2303.04671">Visual ChatGPT</a>, <a
+href="https://arxiv.org/abs/2304.09842">Chameleon</a>, <a
+href="https://arxiv.org/abs/2303.11381">MMReACT</a> and <a
+href="https://arxiv.org/abs/2303.08128">ViperGPT</a></li>
+<li><strong>Robotics</strong>: real-world sensors as experts. <a
+href="https://arxiv.org/abs/2303.03378">PaLM-E</a>, <a
+href="https://arxiv.org/abs/2207.05608">Inner Monologue</a> and <a
+href="https://arxiv.org/abs/2303.12153">Text2Motion</a></li>
+</ul>
+<p>For LLaMA-Adapter V2, experts integration compensates for the
+shortcomings brought by small training data.</p>
+<h2 id="llama-adapter-v2">LLaMA-Adapter V2</h2>
+<p>LLaMA-Adapter V2 is based on finetuned LLaMA-Adapter V1.</p>
+<h3 id="bias-tuning-of-linear-layers">Bias Tuning of Linear Layers</h3>
+<aside>
+<p>👉 To enhance its language instruction-following ability</p>
+</aside>
+<p>The added params accounts for <strong>0.04%(~5M) of LLaMA</strong>
+and its initialization is helpful for stable training at early
+stages.</p>
+<p><strong>We first unfreeze all the normalization layers in LLaMA, and
+then</strong>:</p>
+<ul>
+<li><span class="math inline">\(x\)</span>: input</li>
+<li><span class="math inline">\(W\)</span>: pre-trained weights(frozen)
+of a certain linear layer</li>
+<li><span class="math inline">\(b=Init(0)\)</span>: learnable bias</li>
+<li><span class="math inline">\(s=Init(1)\)</span>: learnable scale
+factor</li>
+<li><span class="math inline">\(y=W·x\rightarrow y=s·(W·x+b)\)</span>:
+<strong>modify each linear layer in the Transformer</strong></li>
+</ul>
+<p><strong>Our bias tuning method compared with related
+work:</strong></p>
+<ul>
+<li><strong>BitFit, SSF</strong>: experiments on 80M parameters scale
+<ul>
+<li><strong>Ours</strong>: from 7B to 65B</li>
+</ul></li>
+<li><strong>LoRA</strong>: input-aware bias
+<ul>
+<li><p><strong>Ours</strong>: input-agnostic, less fine-tuning cost</p>
+<aside>
+<p>❓ why less cost</p>
+</aside></li>
+</ul></li>
+</ul>
+<h3 id="joint-training-with-disjoint-parameters">Joint Training with
+Disjoint Parameters</h3>
+<aside>
+<p>👉 For balanced visual instruction tuning</p>
+</aside>
+<ul>
+<li>Trained on <strong>500K image-text pairs</strong>: visual projection
+layers, early zero-initialized attention</li>
+<li>Trained on <strong>50K language-only instruction data</strong>: late
+zero-initialized attention, unfrozen norm, learnable bias and scale
+factor (or optional <a
+href="https://arxiv.org/pdf/2106.09685.pdf">LoRA</a>)</li>
+</ul>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-3.png"
+alt="Joint Training Paradigm in LLaMA-Adapter V2." />
+<figcaption aria-hidden="true">Joint Training Paradigm in LLaMA-Adapter
+V2.</figcaption>
+</figure>
+<h3 id="early-fusion-of-visual-knowledge">Early Fusion of Visual
+Knowledge</h3>
+<aside>
+<p>👉 To balance textual and visual understanding</p>
+</aside>
+<p><span class="math inline">\(N\)</span>: the total number of
+Transformer layers</p>
+<ul>
+<li><p><strong>Visual prompts</strong>: concatenated with the word
+tokens at <strong>the first <span class="math inline">\(K\)</span>
+Transformer layers</strong> with zero-initialized attention</p>
+<ul>
+<li><span class="math inline">\(K&lt;N-L\)</span></li>
+</ul></li>
+<li><p><strong>Static adaptation prompts</strong>: inserted into the
+last <span class="math inline">\(L\)</span> layers (e.g., L=31)</p>
+<aside>
+<p>❓ a little hard to understand ”inserted into”: add or
+concatenate?</p>
+</aside></li>
+</ul>
+<p>Prevent direct interactions between the two via placing them in
+different layers.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-4.png"
+alt="Early Fusion of Visual Knowledge." />
+<figcaption aria-hidden="true">Early Fusion of Visual
+Knowledge.</figcaption>
+</figure>
+<aside>
+<p>❓ <strong>But in code implementation, textual tokens are not
+concatenated with visual_query in the first layer</strong></p>
+</aside>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># LLaMA-Adapter/llama_adapter_v2_multimodal/llama/llama_adapter.py</span><br><span class="line"># class LLaMA_adapter:</span><br><span class="line">def forward(self, visual_query, tokens, start_pos: int):</span><br><span class="line">    _bsz, seqlen = tokens.shape</span><br><span class="line">    h = self.llama.tok_embeddings(tokens)</span><br><span class="line">    freqs_cis = self.llama.freqs_cis.to(h.device)</span><br><span class="line">    freqs_cis = freqs_cis[start_pos : start_pos + seqlen]</span><br><span class="line">    mask = None</span><br><span class="line">    mask = torch.full((1, 1, seqlen, seqlen),</span><br><span class="line">                        float(&quot;-inf&quot;), device=h.device)</span><br><span class="line">    mask = torch.triu(mask, diagonal=start_pos + 1).type_as(h)</span><br><span class="line"></span><br><span class="line">    for layer in self.llama.layers[:-1 * self.query_layer]:</span><br><span class="line">        h = layer(h, start_pos, freqs_cis, mask)</span><br><span class="line"></span><br><span class="line">    adapter = self.adapter_query.weight.reshape(</span><br><span class="line">        self.query_layer, self.query_len, -1).unsqueeze(1)</span><br><span class="line">    adapter_index = 0</span><br><span class="line">    for layer in self.llama.layers[-1 * self.query_layer:]:</span><br><span class="line">        dynamic_adapter = adapter[adapter_index].repeat(_bsz, 1, 1)</span><br><span class="line">        dynamic_adapter = dynamic_adapter + visual_query</span><br><span class="line">        h = layer(h, start_pos, freqs_cis, mask, dynamic_adapter)</span><br><span class="line">        adapter_index = adapter_index + 1</span><br><span class="line"></span><br><span class="line">    h = self.llama.norm(h)</span><br><span class="line">    output = self.llama.output(h[:, -1, :])</span><br><span class="line">    return output.float()</span><br></pre></td></tr></table></figure>
+<h3 id="integration-with-experts">Integration with Experts</h3>
+<aside>
+<p>👉 To boost zero-shot multi-modal reasoning</p>
+</aside>
+<p><strong>Well-trained img2text experts</strong>:</p>
+<ul>
+<li><strong>default implementation</strong> adopts LLaMA-Adapter v1
+pre-trained on COCO Caption for short and accurate image descriptions
+generation</li>
+<li>can be replaced with a search engine / OCR</li>
+</ul>
+<p>We can easily switch among different experts based on the specific
+downstream task.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-5.png"
+alt="Generation Pipeline of LLaMA-Adapter V2." />
+<figcaption aria-hidden="true">Generation Pipeline of LLaMA-Adapter
+V2.</figcaption>
+</figure>
+<aside>
+<p>❓ The order of 3 input parts(Textual Context, Question, Visual
+Context)</p>
+</aside>
+<h2 id="experiments">Experiments</h2>
+<h3 id="experimental-setups">Experimental Setups</h3>
+<p><strong>Training Data</strong>:</p>
+<ul>
+<li>52K single-turn instruction data from GPT-4-LLM</li>
+<li>567K captioning data from COCO Caption</li>
+<li>80K conversation data from ShareGPT (train a chatbot,
+multi-round)</li>
+</ul>
+<p><strong>Implementation Details</strong>:</p>
+<ul>
+<li>visual prompt length: 20</li>
+</ul>
+<h3 id="stronger-language-instruction-model">Stronger Language
+Instruction Model</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-6.png"
+alt="Part of Table 2. LLaMA-Adapter V2 provides more comprehensive answers and detailed explanations." />
+<figcaption aria-hidden="true">Part of Table 2. LLaMA-Adapter V2
+provides more comprehensive answers and detailed
+explanations.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-7.png"
+alt="A Chatting Example using 7B LLaMA-Adapter V2. But its understanding of context is not very accurate." />
+<figcaption aria-hidden="true">A Chatting Example using 7B LLaMA-Adapter
+V2. But its understanding of context is not very accurate.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-8.png"
+alt="A Chatting Example using 65B LLaMA-Adapter V2." />
+<figcaption aria-hidden="true">A Chatting Example using 65B
+LLaMA-Adapter V2.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-9.png"
+alt="Response Quality Comparisons(assessed by GPT-4 on 80 questions)." />
+<figcaption aria-hidden="true">Response Quality Comparisons(assessed by
+GPT-4 on 80 questions).</figcaption>
+</figure>
+<ul>
+<li>Ours: based on LLaMA-65B, fine-tune 14M parameters</li>
+<li>Vicuna: based on LLaMA-13B, fine-tune 13B parameters</li>
+</ul>
+<h3 id="visual-instruction-model">Visual Instruction Model</h3>
+<aside>
+<p>👇 Image Captioning</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-10.png"
+alt="Comparisons on COCO Caption." />
+<figcaption aria-hidden="true">Comparisons on COCO Caption.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-11.png"
+alt="Comparisons of Image Captioning Results(between LLaMA-Adapter and LLaMA-Adapter V2)." />
+<figcaption aria-hidden="true">Comparisons of Image Captioning
+Results(between LLaMA-Adapter and LLaMA-Adapter V2).</figcaption>
+</figure>
+<p>The failure case is intentionally choosen as an out-of-distribution
+example (cartoon picture) for testing.</p>
+<p>It shows that the image-text alignment ability is not strong
+enough.</p>
+<p>This motivates us to employ <strong>additional expert
+systems</strong> to enhance the image understanding ability.</p>
+<aside>
+<p>👇 Visual Understanding</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-12.png"
+alt="The Visual Understanding Examples of LLaMA-Adapter V2." />
+<figcaption aria-hidden="true">The Visual Understanding Examples of
+LLaMA-Adapter V2.</figcaption>
+</figure>
+<ul>
+<li>identify and explain the specific object or feature in the
+image</li>
+<li>sophisticated reasoning and decision-making</li>
+<li>offer a plausible guess or explanation when image cannot provide
+sufficient direct info</li>
+</ul>
+<aside>
+<p>👇 Integration with Experts</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-13.png"
+alt="Visual Understanding with the help of Caption Experts(more precise and detailed responses)." />
+<figcaption aria-hidden="true">Visual Understanding with the help of
+Caption Experts(more precise and detailed responses).</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/llama-adapter-v2-14.png"
+alt="Visual Understanding with the help of OCR Experts. The example and OCR context are from DocVQA." />
+<figcaption aria-hidden="true">Visual Understanding with the help of OCR
+Experts. The example and OCR context are from DocVQA.</figcaption>
+</figure>
+<h2 id="future-work">Future Work</h2>
+<ul>
+<li>integrate more expert visual systems</li>
+<li>use multi-modal instruction dataset</li>
+<li>other PEFT methods (e.g., LoRA)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>04</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>PEFT</tag>
+        <tag>Multi-modal</tag>
+        <tag>Expert Integration</tag>
+        <tag>Prefix-Tuning</tag>
+        <tag>Adapter</tag>
+        <tag>Instruction-Following</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Survey on Multimodal Large Language Models</title>
+    <url>/2023/06/30/MLLM/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
+<p>Code: <a
+href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
+<aside>
+<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
+</aside>
+<p><strong>MLLM</strong>: the LLM-based model with the ability to
+receive and reason with multimodal information</p>
+<p><strong>Three Advantages</strong>: (1) more in line with human
+perception (2) more user-friendly interface (3) more well-rounded
+task-solver</p>
+<p><strong>Three Example Capabilities</strong>: (1) write website codes
+based on images (2) understand deep meaning of memes (3) OCR-free math
+reasoning</p>
+<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
+<hr />
+<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
+Tuning</h2>
+<h3 id="preliminaries">Preliminaries</h3>
+<p><strong>Instruction</strong>: the description of tasks</p>
+<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
+on instruction-formatted datasets</p>
+<p><strong>Instruction Tuning 3 Advantages:</strong></p>
+<ol type="1">
+<li><p>better understand and respond to various human requests</p></li>
+<li><p>zero-shot generalization to new tasks</p></li>
+<li><p>non-experts can use natural language to interact with LLMs</p>
+<blockquote>
+<p><em>The most popular programming language in the future will be
+English.</em></p>
+</blockquote></li>
+</ol>
+<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
+A: large-scale task-specific training data; B: zero-shot performance is
+still quite average</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
+<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
+the next token of the response. The instruction template is flexible and
+subject to manual designs. It can also be generalized to multi-round
+instructions.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
+<h3 id="data">Data</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
+<aside>
+<p>👉 <strong>Benchmark Adaptation</strong></p>
+</aside>
+<p><strong>Instruction templates for VQA datasets</strong>.
+&lt;image&gt; and {Question} are the image and the question in the
+original VQA datasets, respectively. Utilize existing benchmark datasets
+to construct instruction-formatted datasets.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
+<p><strong>Directly using concise answers may limit the output length of
+MLLM</strong>.</p>
+<ul>
+<li>Modify Instructions: ChatBridge, InstructBLIP</li>
+<li>Extend the length of existing answers: <span
+class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
+<aside>
+<p>👉 <strong>Self-Instruction</strong></p>
+</aside>
+<p><strong>Self-Instruction</strong>: To meet real-world human needs,
+such as multiple rounds of conversations.</p>
+<ul>
+<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
+<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
+different M-IT datasets catering for different needs</li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
+<aside>
+<p>👉 <strong>Hybrid Composition</strong></p>
+</aside>
+<p>M-IT data + language-only user-assistant conversation data.</p>
+<p><strong>Adavantage</strong>: conversational proficiencies,
+instruction-following abilities</p>
+<p><strong>Representative work</strong>:</p>
+<ul>
+<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
+sampling from both data</li>
+<li><strong>MultiInstruct</strong>: two transfer learning strategies
+<ul>
+<li>Mixed instruction tuning: combine both types of data and randomly
+shuffle. (The empirical results show that mixed instruction tuning is at
+least not worse than solely tuning on multimodal data.)</li>
+<li>Sequential instruction tuning: text data followed by multimodal
+data</li>
+</ul></li>
+</ul>
+<h3 id="modality-bridging">Modality Bridging</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
+<aside>
+<p>👉 <strong>Learnable Interface</strong></p>
+</aside>
+<p><strong>Adavantages</strong>: little cost, avoid catastrophic
+forgetting</p>
+<p><strong>Three manners</strong>:</p>
+<ol type="1">
+<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
+BLIP-2</li>
+<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
+<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
+LaVIN</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
+<aside>
+<p>👉 <strong>Expert Model</strong></p>
+</aside>
+<p><strong>Advantage</strong>: Via expert models, convert multimodal
+inputs into languages without training.</p>
+<p><strong>Disadvantage</strong>: less flexible, info loss</p>
+<p><a
+href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
+transforming videos into textual descriptions distorts spatial-temporal
+relationships.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
+<h3 id="evaluation">Evaluation</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
+<aside>
+<p>👉 <strong>Closed-set</strong></p>
+</aside>
+<p><strong>Closed-set questions</strong>: its possible answer options
+are predefined and limited</p>
+<p><strong>Two evaluation types</strong>:</p>
+<ol type="1">
+<li><strong>leverage existing datasets</strong>: limited to a small
+range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
+evaluation settings:
+<ol type="1">
+<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
+<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
+</ol></li>
+<li><strong>develop new benchmarks specially designed for
+MLLMs</strong>: more comprehensive
+<ol type="1">
+<li><a
+href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
+perception and cognition tasks, manually design instruction-answer pairs
+to avoid data leakage</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
+various 2D/3D vision tasks</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
+(1) video-based generative performance (2) zero-shot QA</li>
+</ol></li>
+</ol>
+<aside>
+<p>👉 <strong>Open-set</strong></p>
+</aside>
+<p><strong>Open-set questions</strong>: its possible answer options are
+open and flexible.</p>
+<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
+<ol type="1">
+<li><strong>Manual scoring</strong>: require humans to assess specific
+dimensions</li>
+<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
+(LLaVA)
+<ul>
+<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
+setting GPT-4 as the performance upper bound is not perfect.</li>
+</ul></li>
+<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
+<aside>
+<p>👉 <strong>Others</strong></p>
+</aside>
+<p><strong><a
+href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
+sensitivity metric, model’s robustness to varied instructions</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
+into the object hallucination problem</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
+(safety) the robustness of MLLMs to adversarial attacks</p>
+<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
+In-Context Learning</h2>
+<p><strong>ICL</strong>: few-shot, training-free</p>
+<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
+a demonstration set (i.e., a set of in-context samples), to the original
+sample.</p>
+<p><strong>Template example of an M-ICL query</strong>:</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
+<aside>
+<p>👉 <strong>Two Scenarios</strong></p>
+</aside>
+<p><strong>Scenario 1: solving various visual reasoning
+tasks</strong></p>
+<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
+href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
+href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
+href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
+href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
+<ul>
+<li>Via demonstrations, LLMs get a sense of what the task is doing and
+what the output template is.</li>
+<li>Thus LLMs learn from a few task-specific examples and generalize to
+a new but similar question.</li>
+</ul>
+<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
+<p>(<strong><a
+href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
+href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
+href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
+<ul>
+<li>Demonstrations are often text-only and more fine-grained.</li>
+<li>They typically comprise a chain of steps that could be sequentially
+executed to fulfill the task. (related to CoT)</li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
+<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
+Thought</h2>
+<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
+<p><strong>CoT Scenario</strong>: complex reasoning</p>
+<p><strong>CoT Main Idea</strong>: output both reasoning process and
+final answer</p>
+<p><strong>M-CoT</strong> (<strong><a
+href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
+href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
+href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
+<p><strong>Modality Bridging</strong></p>
+<ul>
+<li><p><strong>Expert Model</strong>: transforming visual input into
+textual descriptions (<a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
+image captions and original textual imput to LLMs)</p></li>
+<li><p><strong>Learnable Interface</strong>: feature fusion (<a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
+two-stage framework)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
+</ul>
+<p><strong>Learning Paradigms</strong></p>
+<ul>
+<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
+<li><strong>Few-shot</strong>: requires hand-crafting some in-context
+examples</li>
+<li><strong>Zero-shot</strong>: require no specific example</li>
+</ul>
+<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
+<ul>
+<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
+reasoning chains</li>
+<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
+length</li>
+</ul>
+<p><strong>Generation Pattens——</strong>(How the chain is
+constructed?)</p>
+<p>The generated steps should be consistent and correct.</p>
+<ul>
+<li><p><strong>Predicting</strong>: extending the reasoning chains given
+conditions such as instructions and previous reasoning history</p></li>
+<li><p><strong>Infilling</strong>: deducing steps between surrounding
+context (previous and following steps) to fill the logical gaps
+(VideoCoT)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
+</ul>
+<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
+Reasoning</h2>
+<p><strong>LAVR</strong>: use external tools or visual foundation
+models.</p>
+<p><strong>Three advantages</strong> compared with conventional visual
+reasoning models: <strong>Strong generalization, Emergent abilities,
+Better interactivity and control</strong></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
+<aside>
+<p>👉 <strong>Training Paradigms</strong></p>
+</aside>
+<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
+generate a new tool-related instruction dataset</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
+<aside>
+<p>👉 <strong>Functions</strong></p>
+</aside>
+<p><em>The primary roles that LLMs play in LAVR.</em></p>
+<ul>
+<li><strong>Controller</strong>: (single-round) breaks down a complex
+task [via CoT], assign subtasks to right tools/modules</li>
+<li><strong>Decision Maker</strong>: (multi-round) summarize history and
+current info, decide whether the info is sufficient to finish the task,
+friendly present answer</li>
+<li><strong>Semantics Refiner</strong>: integrate info into fluent
+scentences, generate texts according to different specific needs</li>
+</ul>
+<h2 id="challenges-and-future-directions">Challenges and Future
+Directions</h2>
+<ol type="1">
+<li><p><strong>Perception Capabilities</strong>: compromise between info
+capacity and computation burden</p></li>
+<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
+chain delivers right answer</p></li>
+<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
+type)</p></li>
+<li><p><strong>Object Hallucination</strong>: more fine-grained modality
+alignment</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
+<p>(The object does not appear in the image)</p></li>
+<li><p><strong>Parameter-Efficient Training</strong></p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Multi-modal</tag>
+        <tag>Instruction-Following</tag>
+        <tag>In-Context Learning</tag>
+        <tag>Chain of Thought</tag>
+        <tag>Tool Learning</tag>
       </tags>
   </entry>
 </search>
