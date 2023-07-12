@@ -82,6 +82,307 @@ Learning: Recommender Systems and Reinforcement Learning</h1>
       </tags>
   </entry>
   <entry>
+    <title>(LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language</title>
+    <url>/2023/07/03/LENS/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-0.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2306.16410.pdf">https://arxiv.org/pdf/2306.16410.pdf</a></p>
+<p>Code: <a
+href="https://github.com/ContextualAI/lens">https://github.com/ContextualAI/lens</a></p>
+<p>BlogPost: <a
+href="https://contextual.ai/introducing-lens/">https://contextual.ai/introducing-lens/</a></p>
+<p>Demo: <a
+href="https://lens.contextual.ai/">https://lens.contextual.ai/</a></p>
+<p><strong>Problems</strong>: Existing alignment methods for visual and
+language modalities need training, which requires heavy computation
+burden and large corpora.</p>
+<p><strong>Contributions</strong>: Training-free LENS enables LLM to
+have visual capabilities.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-1.png"
+alt="Comparison of approaches for aligning visual and language modalities. Old-Style trains visual encoder. Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight module between visual encoder and LLM." />
+<figcaption aria-hidden="true">Comparison of approaches for aligning
+visual and language modalities. Old-Style trains visual encoder.
+Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight
+module between visual encoder and LLM.</figcaption>
+</figure>
+<h2 id="related-work">Related Work</h2>
+<ul>
+<li><a href="https://arxiv.org/pdf/2212.10846.pdf">Img2Prompt</a> uses
+LLMs for solving VQA tasks.(In contrast, LENS extends the capacity of
+LLM to also solve object recognition tasks.)</li>
+<li><a href="https://arxiv.org/pdf/2303.08128.pdf">ViperGPT</a> also
+leverages LLMs to solve VQA tasks, but heavily relies on BLIP2 which
+needs extra training rounds of multimodal pre-training.</li>
+</ul>
+<p><strong>[Img2Prompt, ViperGPT] “top-down”</strong>
+approach(question-aware): attention mechanisms are driven by nonvisual
+or task-specific contexts.</p>
+<p><strong>[LENS] <a
+href="https://arxiv.org/pdf/1707.07998.pdf">“bottom-up”</a></strong>
+approach: does not involve any question-guided information
+extraction</p>
+<h2 id="method">Method</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-2.png"
+alt="The training-free LENS framework. Via a set of “vision modules”, a frozen LLM can perform object recognition or visual reasoning tasks." />
+<figcaption aria-hidden="true">The training-free LENS framework. Via a
+set of “vision modules”, a frozen LLM can perform object recognition or
+visual reasoning tasks.</figcaption>
+</figure>
+<h3 id="two-visual-vocabularies"><strong>Two</strong> <strong>Visual
+Vocabularies</strong></h3>
+<blockquote>
+<p>They act as a bridge to convert an image into textual info.</p>
+</blockquote>
+<p><strong>Tag(Object) Vocabulary</strong>: We collect tags from various
+sources, including image classification(<a
+href="https://arxiv.org/pdf/1409.0575.pdf">ImageNet</a>, <a
+href="https://data.caltech.edu/records/mzrjq-6wc02">Caltech 101</a>, <a
+href="https://arxiv.org/pdf/1311.3618.pdf">DTD</a>, <a
+href="https://ieeexplore.ieee.org/document/6248092">Cats and Dogs</a>,
+<a
+href="https://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08/nilsback08.pdf">Flower</a>,
+<a
+href="https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/">Food
+101</a>, <a
+href="https://vision.princeton.edu/projects/2010/SUN/paper.pdf">SUN</a>,
+<a href="http://vision.stanford.edu/pdf/3drr13.pdf">3D</a>), object
+detection and semantic segmentation(<a
+href="https://arxiv.org/pdf/1908.03195.pdf">LAVIS</a>, <a
+href="https://arxiv.org/pdf/1405.0312.pdf">MS COCO</a>, <a
+href="https://arxiv.org/pdf/1811.00982.pdf">Open Images V4</a>), <a
+href="https://arxiv.org/pdf/1602.07332.pdf">Visual Genome</a>.</p>
+<p><strong>Attribute Vocabulary</strong>: Following <a
+href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>, we
+employ GPT-3 to generate descriptions of the visual characteristics that
+differentiate each object category.</p>
+<h3 id="four-lens-components">Four LENS<strong>🔍</strong>
+Components</h3>
+<p><strong>Tag Module</strong> identifies and assigns suitable tags to
+the image via CLIP. We adopt a common prompt: "A photo of
+{tagname}".</p>
+<p><strong>Attributes Module</strong> identifies and assigns relevant
+attributes to the objects present in the image via CLIP. We incorporates
+the task-specific prompts outlined in <a
+href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
+Vondrick</a>.</p>
+<p><strong>Intensive Captioner</strong> utilizes BLIP and applies <a
+href="https://arxiv.org/pdf/1805.04833.pdf">stochastic top-k
+sampling</a> to generate N captions per image.</p>
+<p><strong>Reasoning Module</strong> generates answers based on the
+textual descriptions from vision modules, along with the task-specific
+instructions.</p>
+<h3 id="prompt-design">Prompt Design</h3>
+<blockquote>
+<p>Concatenate generic prompts with task-specific prompts.</p>
+<p>Can see in demo.</p>
+</blockquote>
+<p>OCR is optional(for hateful-memes task).</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># prompt template</span><br><span class="line">Tags: &#123;Top-k tags&#125;</span><br><span class="line">Attributes: &#123;Top-K attributes&#125;</span><br><span class="line">Captions: &#123;Top-N Captions&#125;</span><br><span class="line">OCR: this is an image with written &quot;&#123;meme text&#125;&quot; on it</span><br><span class="line">Question: &#123;task-specific prompt&#125; \n Short Answer:</span><br></pre></td></tr></table></figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-3.png"
+alt="Object recognition prompt used in LENS." />
+<figcaption aria-hidden="true">Object recognition prompt used in
+LENS.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-4.png"
+alt="VQA prompt used in LENS." />
+<figcaption aria-hidden="true">VQA prompt used in LENS.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-5.png"
+alt="Hateful-memes prompt used in LENS." />
+<figcaption aria-hidden="true">Hateful-memes prompt used in
+LENS.</figcaption>
+</figure>
+<h2 id="experiments">Experiments</h2>
+<blockquote>
+<p>The experiments is only about Flan-T5 and do not include other
+LLMs.</p>
+</blockquote>
+<h3 id="datasets">Datasets</h3>
+<p><strong>Object Recognition</strong>: 8 benchmarks in <a
+href="https://arxiv.org/pdf/2103.00020.pdf">CLIP</a>.</p>
+<p><strong>VL Reasoning</strong>: the test-dev split of <a
+href="https://arxiv.org/pdf/1612.00837.pdf">VQA 2.0</a>, the test set of
+<a href="https://arxiv.org/pdf/1906.00067.pdf">OK-VQA</a>.</p>
+<p><strong>Others</strong>: the dev and test-seen sets of the <a
+href="https://arxiv.org/pdf/2005.04790.pdf">Hateful Memes</a>, the test
+set of <a href="https://arxiv.org/pdf/2103.00020.pdf">Rendered
+SST2</a>.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-6.png"
+alt="Datasets examined for evaluation of LENS. The closed-ended manner uses a fixed class(/tag/object) vocabulary. ." />
+<figcaption aria-hidden="true">Datasets examined for evaluation of LENS.
+The closed-ended manner uses a fixed class(/tag/object) vocabulary.
+.</figcaption>
+</figure>
+<h3 id="implementation-details">Implementation Details</h3>
+<ul>
+<li><strong>Tags and attributes modules</strong>: <a
+href="https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K">OpenCLIP-H/142</a>,
+<a
+href="https://huggingface.co/openai/clip-vit-large-patch14">CLIP-L/143</a></li>
+<li><strong>Captioner</strong>: <a
+href="https://huggingface.co/Salesforce/blip-image-captioning-large">BLIP-large4</a>
+finetuned on COCO to generate 50 captions per image.</li>
+<li><strong>Frozen LLMs</strong>: <a
+href="https://arxiv.org/pdf/2301.13688.pdf">Flan-T5</a> models.</li>
+</ul>
+<p>We employ beam search with number of beams equal to 5.</p>
+<blockquote>
+<p>Beam search is an improved algorithm for greedy search.</p>
+</blockquote>
+<p>Additionally, we apply a length penalty equal to -1, encouraging the
+generation of concise answers as in <a
+href="https://arxiv.org/pdf/2301.12597.pdf">BLIP-2</a>.</p>
+<p>These experiments were conducted on 8 NVIDIA A100 (40GB) GPUs.</p>
+<aside>
+<p>👇 Task-specific optimizations</p>
+</aside>
+<ul>
+<li><strong>Object recognition</strong>: we utilize the tag module and
+the attribute module, but skip the intensive captioning modules.</li>
+<li><strong>VQA</strong>: we solely use the intensive captioning
+module.</li>
+<li><strong>Hateful Memes and Rendered-SST2</strong>: we incorporate the
+tag, attributes, and captioning modules.</li>
+</ul>
+<p>We generate only one caption using beam search with a width of 5.</p>
+<h3 id="results">Results</h3>
+<aside>
+<p>👇 Object recognition(0/1/3-shot)</p>
+</aside>
+<p>We compare LENS with SOTA models following <a
+href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
+Vondrick</a>.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-7.png"
+alt="Zero-shot results for LENS in object recognition tasks." />
+<figcaption aria-hidden="true"><strong>Zero-shot results</strong> for
+LENS in object recognition tasks.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-8.png"
+alt="Average few-shot performance of LENS on vision tasks except ImageNet (due to its large size)." />
+<figcaption aria-hidden="true">Average few-shot performance of LENS on
+vision tasks except ImageNet (due to its large size).</figcaption>
+</figure>
+<ul>
+<li>More shots help to increase performance.</li>
+<li>The both results show direct relationship between ViT size and
+performance(but not for LLM size).</li>
+</ul>
+<aside>
+<p>👇 Vision and Language reasoning(0-shot)</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-9.png"
+alt="The highly competitive nature of LENS." />
+<figcaption aria-hidden="true">The highly competitive nature of
+LENS.</figcaption>
+</figure>
+<h3 id="ablations-on-lens-components">Ablations on LENS components</h3>
+<aside>
+<p>👇 Object recognition</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-10.png"
+alt="Ablations results using OpenCLIP-H/14 as vision encoder and Flan-T5_{XL} as the LLM." />
+<figcaption aria-hidden="true">Ablations results using OpenCLIP-H/14 as
+vision encoder and <span class="math inline">\(Flan-T5_{XL}\)</span> as
+the LLM.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-11.png"
+alt="The detailed results." />
+<figcaption aria-hidden="true">The detailed results.</figcaption>
+</figure>
+<p>The object information helps more than the attributes, but together
+they are complimentary and lead to overall better performance.</p>
+<aside>
+<p>👇 Vision and Language reasoning</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-12.png"
+alt="Ablation results of LENS with Flan-T5XXL on VQA 2.0 minival split." />
+<figcaption aria-hidden="true">Ablation results of LENS with Flan-T5XXL
+on VQA 2.0 minival split.</figcaption>
+</figure>
+<p>Increasing the caption num improves the performance gradually but
+starts saturating eventually.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-13.png"
+alt="On the dev set of Hateful Memes. Adding more visual information improves the performance consistently." />
+<figcaption aria-hidden="true">On the dev set of Hateful Memes. Adding
+more visual information improves the performance
+consistently.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-14.png"
+alt="Selected examples of LENS with all prompts, illustrating its reasoning capabilities by answering questions about complex scenes and scenarios." />
+<figcaption aria-hidden="true"><strong>Selected examples of LENS with
+all prompts</strong>, illustrating its reasoning capabilities by
+answering questions about complex scenes and scenarios.</figcaption>
+</figure>
+<h2 id="conclusion">Conclusion</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-15.png"
+alt="Failure examples of LENS." />
+<figcaption aria-hidden="true"><strong>Failure examples of
+LENS.</strong></figcaption>
+</figure>
+<ol type="a">
+<li><p><strong>Incorrect Visual Info</strong> of objects or attributes
+from CLIP and BLIP</p></li>
+<li><p><strong>Inconsistency</strong> between the responses</p></li>
+<li><p><strong>Presuppositions</strong> and in-built biases</p></li>
+<li><p><strong>Forgetting</strong> and limitations of context windows of
+the LLMs.</p></li>
+</ol>
+<p><strong><em>Limitations of LENS</em></strong></p>
+<ul>
+<li>the vision capability of LENS heavily relies on CLIP and BLIP</li>
+<li>LENS evaluation still requires substantial computational
+resources.</li>
+</ul>
+<p><strong><em>Future work</em></strong></p>
+<ul>
+<li>more effective ways integrating visual modules</li>
+<li>more efficient methods to reduce the computational burden</li>
+<li>expand to more modalities(e.g., audio, video)</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Multi-modal</tag>
+        <tag>Expert Integration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(LongMem)Augmenting Language Models with Long-Term Memory</title>
     <url>/2023/07/01/LongMem/</url>
     <content><![CDATA[<p><img
@@ -566,294 +867,359 @@ and distincts from the vanilla summation of Side-Tuning.</p>
       </tags>
   </entry>
   <entry>
-    <title>(LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language</title>
-    <url>/2023/07/03/LENS/</url>
+    <title>A Survey on Multimodal Large Language Models</title>
+    <url>/2023/06/30/MLLM/</url>
     <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-0.png" /></p>
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
 <p>Paper: <a
-href="https://arxiv.org/pdf/2306.16410.pdf">https://arxiv.org/pdf/2306.16410.pdf</a></p>
+href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
 <p>Code: <a
-href="https://github.com/ContextualAI/lens">https://github.com/ContextualAI/lens</a></p>
-<p>BlogPost: <a
-href="https://contextual.ai/introducing-lens/">https://contextual.ai/introducing-lens/</a></p>
-<p>Demo: <a
-href="https://lens.contextual.ai/">https://lens.contextual.ai/</a></p>
-<p><strong>Problems</strong>: Existing alignment methods for visual and
-language modalities need training, which requires heavy computation
-burden and large corpora.</p>
-<p><strong>Contributions</strong>: Training-free LENS enables LLM to
-have visual capabilities.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-1.png"
-alt="Comparison of approaches for aligning visual and language modalities. Old-Style trains visual encoder. Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight module between visual encoder and LLM." />
-<figcaption aria-hidden="true">Comparison of approaches for aligning
-visual and language modalities. Old-Style trains visual encoder.
-Flamingo inserts new layer into LLM. BLIP-2 introduces new lightweight
-module between visual encoder and LLM.</figcaption>
-</figure>
-<h2 id="related-work">Related Work</h2>
-<ul>
-<li><a href="https://arxiv.org/pdf/2212.10846.pdf">Img2Prompt</a> uses
-LLMs for solving VQA tasks.(In contrast, LENS extends the capacity of
-LLM to also solve object recognition tasks.)</li>
-<li><a href="https://arxiv.org/pdf/2303.08128.pdf">ViperGPT</a> also
-leverages LLMs to solve VQA tasks, but heavily relies on BLIP2 which
-needs extra training rounds of multimodal pre-training.</li>
-</ul>
-<p><strong>[Img2Prompt, ViperGPT] “top-down”</strong>
-approach(question-aware): attention mechanisms are driven by nonvisual
-or task-specific contexts.</p>
-<p><strong>[LENS] <a
-href="https://arxiv.org/pdf/1707.07998.pdf">“bottom-up”</a></strong>
-approach: does not involve any question-guided information
-extraction</p>
-<h2 id="method">Method</h2>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-2.png"
-alt="The training-free LENS framework. Via a set of “vision modules”, a frozen LLM can perform object recognition or visual reasoning tasks." />
-<figcaption aria-hidden="true">The training-free LENS framework. Via a
-set of “vision modules”, a frozen LLM can perform object recognition or
-visual reasoning tasks.</figcaption>
-</figure>
-<h3 id="two-visual-vocabularies"><strong>Two</strong> <strong>Visual
-Vocabularies</strong></h3>
+href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
+<aside>
+<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
+</aside>
+<p><strong>MLLM</strong>: the LLM-based model with the ability to
+receive and reason with multimodal information</p>
+<p><strong>Three Advantages</strong>: (1) more in line with human
+perception (2) more user-friendly interface (3) more well-rounded
+task-solver</p>
+<p><strong>Three Example Capabilities</strong>: (1) write website codes
+based on images (2) understand deep meaning of memes (3) OCR-free math
+reasoning</p>
+<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
+<hr />
+<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
+Tuning</h2>
+<h3 id="preliminaries">Preliminaries</h3>
+<p><strong>Instruction</strong>: the description of tasks</p>
+<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
+on instruction-formatted datasets</p>
+<p><strong>Instruction Tuning 3 Advantages:</strong></p>
+<ol type="1">
+<li><p>better understand and respond to various human requests</p></li>
+<li><p>zero-shot generalization to new tasks</p></li>
+<li><p>non-experts can use natural language to interact with LLMs</p>
 <blockquote>
-<p>They act as a bridge to convert an image into textual info.</p>
-</blockquote>
-<p><strong>Tag(Object) Vocabulary</strong>: We collect tags from various
-sources, including image classification(<a
-href="https://arxiv.org/pdf/1409.0575.pdf">ImageNet</a>, <a
-href="https://data.caltech.edu/records/mzrjq-6wc02">Caltech 101</a>, <a
-href="https://arxiv.org/pdf/1311.3618.pdf">DTD</a>, <a
-href="https://ieeexplore.ieee.org/document/6248092">Cats and Dogs</a>,
-<a
-href="https://www.robots.ox.ac.uk/~vgg/publications/2008/Nilsback08/nilsback08.pdf">Flower</a>,
-<a
-href="https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/">Food
-101</a>, <a
-href="https://vision.princeton.edu/projects/2010/SUN/paper.pdf">SUN</a>,
-<a href="http://vision.stanford.edu/pdf/3drr13.pdf">3D</a>), object
-detection and semantic segmentation(<a
-href="https://arxiv.org/pdf/1908.03195.pdf">LAVIS</a>, <a
-href="https://arxiv.org/pdf/1405.0312.pdf">MS COCO</a>, <a
-href="https://arxiv.org/pdf/1811.00982.pdf">Open Images V4</a>), <a
-href="https://arxiv.org/pdf/1602.07332.pdf">Visual Genome</a>.</p>
-<p><strong>Attribute Vocabulary</strong>: Following <a
-href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp; Vondrick</a>, we
-employ GPT-3 to generate descriptions of the visual characteristics that
-differentiate each object category.</p>
-<h3 id="four-lens-components">Four LENS<strong>🔍</strong>
-Components</h3>
-<p><strong>Tag Module</strong> identifies and assigns suitable tags to
-the image via CLIP. We adopt a common prompt: "A photo of
-{tagname}".</p>
-<p><strong>Attributes Module</strong> identifies and assigns relevant
-attributes to the objects present in the image via CLIP. We incorporates
-the task-specific prompts outlined in <a
-href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
-Vondrick</a>.</p>
-<p><strong>Intensive Captioner</strong> utilizes BLIP and applies <a
-href="https://arxiv.org/pdf/1805.04833.pdf">stochastic top-k
-sampling</a> to generate N captions per image.</p>
-<p><strong>Reasoning Module</strong> generates answers based on the
-textual descriptions from vision modules, along with the task-specific
-instructions.</p>
-<h3 id="prompt-design">Prompt Design</h3>
-<blockquote>
-<p>Concatenate generic prompts with task-specific prompts.</p>
-<p>Can see in demo.</p>
-</blockquote>
-<p>OCR is optional(for hateful-memes task).</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># prompt template</span><br><span class="line">Tags: &#123;Top-k tags&#125;</span><br><span class="line">Attributes: &#123;Top-K attributes&#125;</span><br><span class="line">Captions: &#123;Top-N Captions&#125;</span><br><span class="line">OCR: this is an image with written &quot;&#123;meme text&#125;&quot; on it</span><br><span class="line">Question: &#123;task-specific prompt&#125; \n Short Answer:</span><br></pre></td></tr></table></figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-3.png"
-alt="Object recognition prompt used in LENS." />
-<figcaption aria-hidden="true">Object recognition prompt used in
-LENS.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-4.png"
-alt="VQA prompt used in LENS." />
-<figcaption aria-hidden="true">VQA prompt used in LENS.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-5.png"
-alt="Hateful-memes prompt used in LENS." />
-<figcaption aria-hidden="true">Hateful-memes prompt used in
-LENS.</figcaption>
-</figure>
-<h2 id="experiments">Experiments</h2>
-<blockquote>
-<p>The experiments is only about Flan-T5 and do not include other
-LLMs.</p>
-</blockquote>
-<h3 id="datasets">Datasets</h3>
-<p><strong>Object Recognition</strong>: 8 benchmarks in <a
-href="https://arxiv.org/pdf/2103.00020.pdf">CLIP</a>.</p>
-<p><strong>VL Reasoning</strong>: the test-dev split of <a
-href="https://arxiv.org/pdf/1612.00837.pdf">VQA 2.0</a>, the test set of
-<a href="https://arxiv.org/pdf/1906.00067.pdf">OK-VQA</a>.</p>
-<p><strong>Others</strong>: the dev and test-seen sets of the <a
-href="https://arxiv.org/pdf/2005.04790.pdf">Hateful Memes</a>, the test
-set of <a href="https://arxiv.org/pdf/2103.00020.pdf">Rendered
-SST2</a>.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-6.png"
-alt="Datasets examined for evaluation of LENS. The closed-ended manner uses a fixed class(/tag/object) vocabulary. ." />
-<figcaption aria-hidden="true">Datasets examined for evaluation of LENS.
-The closed-ended manner uses a fixed class(/tag/object) vocabulary.
-.</figcaption>
-</figure>
-<h3 id="implementation-details">Implementation Details</h3>
-<ul>
-<li><strong>Tags and attributes modules</strong>: <a
-href="https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K">OpenCLIP-H/142</a>,
-<a
-href="https://huggingface.co/openai/clip-vit-large-patch14">CLIP-L/143</a></li>
-<li><strong>Captioner</strong>: <a
-href="https://huggingface.co/Salesforce/blip-image-captioning-large">BLIP-large4</a>
-finetuned on COCO to generate 50 captions per image.</li>
-<li><strong>Frozen LLMs</strong>: <a
-href="https://arxiv.org/pdf/2301.13688.pdf">Flan-T5</a> models.</li>
-</ul>
-<p>We employ beam search with number of beams equal to 5.</p>
-<blockquote>
-<p>Beam search is an improved algorithm for greedy search.</p>
-</blockquote>
-<p>Additionally, we apply a length penalty equal to -1, encouraging the
-generation of concise answers as in <a
-href="https://arxiv.org/pdf/2301.12597.pdf">BLIP-2</a>.</p>
-<p>These experiments were conducted on 8 NVIDIA A100 (40GB) GPUs.</p>
-<aside>
-<p>👇 Task-specific optimizations</p>
-</aside>
-<ul>
-<li><strong>Object recognition</strong>: we utilize the tag module and
-the attribute module, but skip the intensive captioning modules.</li>
-<li><strong>VQA</strong>: we solely use the intensive captioning
-module.</li>
-<li><strong>Hateful Memes and Rendered-SST2</strong>: we incorporate the
-tag, attributes, and captioning modules.</li>
-</ul>
-<p>We generate only one caption using beam search with a width of 5.</p>
-<h3 id="results">Results</h3>
-<aside>
-<p>👇 Object recognition(0/1/3-shot)</p>
-</aside>
-<p>We compare LENS with SOTA models following <a
-href="https://arxiv.org/pdf/2210.07183.pdf">Menon &amp;
-Vondrick</a>.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-7.png"
-alt="Zero-shot results for LENS in object recognition tasks." />
-<figcaption aria-hidden="true"><strong>Zero-shot results</strong> for
-LENS in object recognition tasks.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-8.png"
-alt="Average few-shot performance of LENS on vision tasks except ImageNet (due to its large size)." />
-<figcaption aria-hidden="true">Average few-shot performance of LENS on
-vision tasks except ImageNet (due to its large size).</figcaption>
-</figure>
-<ul>
-<li>More shots help to increase performance.</li>
-<li>The both results show direct relationship between ViT size and
-performance(but not for LLM size).</li>
-</ul>
-<aside>
-<p>👇 Vision and Language reasoning(0-shot)</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-9.png"
-alt="The highly competitive nature of LENS." />
-<figcaption aria-hidden="true">The highly competitive nature of
-LENS.</figcaption>
-</figure>
-<h3 id="ablations-on-lens-components">Ablations on LENS components</h3>
-<aside>
-<p>👇 Object recognition</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-10.png"
-alt="Ablations results using OpenCLIP-H/14 as vision encoder and Flan-T5_{XL} as the LLM." />
-<figcaption aria-hidden="true">Ablations results using OpenCLIP-H/14 as
-vision encoder and <span class="math inline">\(Flan-T5_{XL}\)</span> as
-the LLM.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-11.png"
-alt="The detailed results." />
-<figcaption aria-hidden="true">The detailed results.</figcaption>
-</figure>
-<p>The object information helps more than the attributes, but together
-they are complimentary and lead to overall better performance.</p>
-<aside>
-<p>👇 Vision and Language reasoning</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-12.png"
-alt="Ablation results of LENS with Flan-T5XXL on VQA 2.0 minival split." />
-<figcaption aria-hidden="true">Ablation results of LENS with Flan-T5XXL
-on VQA 2.0 minival split.</figcaption>
-</figure>
-<p>Increasing the caption num improves the performance gradually but
-starts saturating eventually.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-13.png"
-alt="On the dev set of Hateful Memes. Adding more visual information improves the performance consistently." />
-<figcaption aria-hidden="true">On the dev set of Hateful Memes. Adding
-more visual information improves the performance
-consistently.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-14.png"
-alt="Selected examples of LENS with all prompts, illustrating its reasoning capabilities by answering questions about complex scenes and scenarios." />
-<figcaption aria-hidden="true"><strong>Selected examples of LENS with
-all prompts</strong>, illustrating its reasoning capabilities by
-answering questions about complex scenes and scenarios.</figcaption>
-</figure>
-<h2 id="conclusion">Conclusion</h2>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/LENS-15.png"
-alt="Failure examples of LENS." />
-<figcaption aria-hidden="true"><strong>Failure examples of
-LENS.</strong></figcaption>
-</figure>
-<ol type="a">
-<li><p><strong>Incorrect Visual Info</strong> of objects or attributes
-from CLIP and BLIP</p></li>
-<li><p><strong>Inconsistency</strong> between the responses</p></li>
-<li><p><strong>Presuppositions</strong> and in-built biases</p></li>
-<li><p><strong>Forgetting</strong> and limitations of context windows of
-the LLMs.</p></li>
+<p><em>The most popular programming language in the future will be
+English.</em></p>
+</blockquote></li>
 </ol>
-<p><strong><em>Limitations of LENS</em></strong></p>
+<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
+A: large-scale task-specific training data; B: zero-shot performance is
+still quite average</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
+<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
+the next token of the response. The instruction template is flexible and
+subject to manual designs. It can also be generalized to multi-round
+instructions.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
+<h3 id="data">Data</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
+<aside>
+<p>👉 <strong>Benchmark Adaptation</strong></p>
+</aside>
+<p><strong>Instruction templates for VQA datasets</strong>.
+&lt;image&gt; and {Question} are the image and the question in the
+original VQA datasets, respectively. Utilize existing benchmark datasets
+to construct instruction-formatted datasets.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
+<p><strong>Directly using concise answers may limit the output length of
+MLLM</strong>.</p>
 <ul>
-<li>the vision capability of LENS heavily relies on CLIP and BLIP</li>
-<li>LENS evaluation still requires substantial computational
-resources.</li>
+<li>Modify Instructions: ChatBridge, InstructBLIP</li>
+<li>Extend the length of existing answers: <span
+class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
 </ul>
-<p><strong><em>Future work</em></strong></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
+<aside>
+<p>👉 <strong>Self-Instruction</strong></p>
+</aside>
+<p><strong>Self-Instruction</strong>: To meet real-world human needs,
+such as multiple rounds of conversations.</p>
 <ul>
-<li>more effective ways integrating visual modules</li>
-<li>more efficient methods to reduce the computational burden</li>
-<li>expand to more modalities(e.g., audio, video)</li>
+<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
+<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
+different M-IT datasets catering for different needs</li>
 </ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
+<aside>
+<p>👉 <strong>Hybrid Composition</strong></p>
+</aside>
+<p>M-IT data + language-only user-assistant conversation data.</p>
+<p><strong>Adavantage</strong>: conversational proficiencies,
+instruction-following abilities</p>
+<p><strong>Representative work</strong>:</p>
+<ul>
+<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
+sampling from both data</li>
+<li><strong>MultiInstruct</strong>: two transfer learning strategies
+<ul>
+<li>Mixed instruction tuning: combine both types of data and randomly
+shuffle. (The empirical results show that mixed instruction tuning is at
+least not worse than solely tuning on multimodal data.)</li>
+<li>Sequential instruction tuning: text data followed by multimodal
+data</li>
+</ul></li>
+</ul>
+<h3 id="modality-bridging">Modality Bridging</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
+<aside>
+<p>👉 <strong>Learnable Interface</strong></p>
+</aside>
+<p><strong>Adavantages</strong>: little cost, avoid catastrophic
+forgetting</p>
+<p><strong>Three manners</strong>:</p>
+<ol type="1">
+<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
+BLIP-2</li>
+<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
+<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
+LaVIN</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
+<aside>
+<p>👉 <strong>Expert Model</strong></p>
+</aside>
+<p><strong>Advantage</strong>: Via expert models, convert multimodal
+inputs into languages without training.</p>
+<p><strong>Disadvantage</strong>: less flexible, info loss</p>
+<p><a
+href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
+transforming videos into textual descriptions distorts spatial-temporal
+relationships.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
+<h3 id="evaluation">Evaluation</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
+<aside>
+<p>👉 <strong>Closed-set</strong></p>
+</aside>
+<p><strong>Closed-set questions</strong>: its possible answer options
+are predefined and limited</p>
+<p><strong>Two evaluation types</strong>:</p>
+<ol type="1">
+<li><strong>leverage existing datasets</strong>: limited to a small
+range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
+evaluation settings:
+<ol type="1">
+<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
+<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
+</ol></li>
+<li><strong>develop new benchmarks specially designed for
+MLLMs</strong>: more comprehensive
+<ol type="1">
+<li><a
+href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
+perception and cognition tasks, manually design instruction-answer pairs
+to avoid data leakage</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
+various 2D/3D vision tasks</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
+(1) video-based generative performance (2) zero-shot QA</li>
+</ol></li>
+</ol>
+<aside>
+<p>👉 <strong>Open-set</strong></p>
+</aside>
+<p><strong>Open-set questions</strong>: its possible answer options are
+open and flexible.</p>
+<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
+<ol type="1">
+<li><strong>Manual scoring</strong>: require humans to assess specific
+dimensions</li>
+<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
+(LLaVA)
+<ul>
+<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
+setting GPT-4 as the performance upper bound is not perfect.</li>
+</ul></li>
+<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
+<aside>
+<p>👉 <strong>Others</strong></p>
+</aside>
+<p><strong><a
+href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
+sensitivity metric, model’s robustness to varied instructions</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
+into the object hallucination problem</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
+(safety) the robustness of MLLMs to adversarial attacks</p>
+<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
+In-Context Learning</h2>
+<p><strong>ICL</strong>: few-shot, training-free</p>
+<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
+a demonstration set (i.e., a set of in-context samples), to the original
+sample.</p>
+<p><strong>Template example of an M-ICL query</strong>:</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
+<aside>
+<p>👉 <strong>Two Scenarios</strong></p>
+</aside>
+<p><strong>Scenario 1: solving various visual reasoning
+tasks</strong></p>
+<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
+href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
+href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
+href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
+href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
+<ul>
+<li>Via demonstrations, LLMs get a sense of what the task is doing and
+what the output template is.</li>
+<li>Thus LLMs learn from a few task-specific examples and generalize to
+a new but similar question.</li>
+</ul>
+<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
+<p>(<strong><a
+href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
+href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
+href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
+<ul>
+<li>Demonstrations are often text-only and more fine-grained.</li>
+<li>They typically comprise a chain of steps that could be sequentially
+executed to fulfill the task. (related to CoT)</li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
+<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
+Thought</h2>
+<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
+<p><strong>CoT Scenario</strong>: complex reasoning</p>
+<p><strong>CoT Main Idea</strong>: output both reasoning process and
+final answer</p>
+<p><strong>M-CoT</strong> (<strong><a
+href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
+href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
+href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
+<p><strong>Modality Bridging</strong></p>
+<ul>
+<li><p><strong>Expert Model</strong>: transforming visual input into
+textual descriptions (<a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
+image captions and original textual imput to LLMs)</p></li>
+<li><p><strong>Learnable Interface</strong>: feature fusion (<a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
+two-stage framework)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
+</ul>
+<p><strong>Learning Paradigms</strong></p>
+<ul>
+<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
+<li><strong>Few-shot</strong>: requires hand-crafting some in-context
+examples</li>
+<li><strong>Zero-shot</strong>: require no specific example</li>
+</ul>
+<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
+<ul>
+<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
+reasoning chains</li>
+<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
+length</li>
+</ul>
+<p><strong>Generation Pattens——</strong>(How the chain is
+constructed?)</p>
+<p>The generated steps should be consistent and correct.</p>
+<ul>
+<li><p><strong>Predicting</strong>: extending the reasoning chains given
+conditions such as instructions and previous reasoning history</p></li>
+<li><p><strong>Infilling</strong>: deducing steps between surrounding
+context (previous and following steps) to fill the logical gaps
+(VideoCoT)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
+</ul>
+<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
+Reasoning</h2>
+<p><strong>LAVR</strong>: use external tools or visual foundation
+models.</p>
+<p><strong>Three advantages</strong> compared with conventional visual
+reasoning models: <strong>Strong generalization, Emergent abilities,
+Better interactivity and control</strong></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
+<aside>
+<p>👉 <strong>Training Paradigms</strong></p>
+</aside>
+<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
+generate a new tool-related instruction dataset</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
+<aside>
+<p>👉 <strong>Functions</strong></p>
+</aside>
+<p><em>The primary roles that LLMs play in LAVR.</em></p>
+<ul>
+<li><strong>Controller</strong>: (single-round) breaks down a complex
+task [via CoT], assign subtasks to right tools/modules</li>
+<li><strong>Decision Maker</strong>: (multi-round) summarize history and
+current info, decide whether the info is sufficient to finish the task,
+friendly present answer</li>
+<li><strong>Semantics Refiner</strong>: integrate info into fluent
+scentences, generate texts according to different specific needs</li>
+</ul>
+<h2 id="challenges-and-future-directions">Challenges and Future
+Directions</h2>
+<ol type="1">
+<li><p><strong>Perception Capabilities</strong>: compromise between info
+capacity and computation burden</p></li>
+<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
+chain delivers right answer</p></li>
+<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
+type)</p></li>
+<li><p><strong>Object Hallucination</strong>: more fine-grained modality
+alignment</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
+<p>(The object does not appear in the image)</p></li>
+<li><p><strong>Parameter-Efficient Training</strong></p></li>
+</ol>
 ]]></content>
       <categories>
         <category>Paper</category>
@@ -863,7 +1229,10 @@ resources.</li>
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
-        <tag>Expert Integration</tag>
+        <tag>Instruction-Following</tag>
+        <tag>In-Context Learning</tag>
+        <tag>Chain of Thought</tag>
+        <tag>Tool Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1255,10 +1624,10 @@ restrictions(e.g., ethical, political, and racism issues).</li>
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
+        <tag>Instruction-Following</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
         <tag>Dataset</tag>
-        <tag>Instruction-Following</tag>
         <tag>Evaluation</tag>
       </tags>
   </entry>
@@ -1727,9 +2096,9 @@ hallucination issue</li>
       <tags>
         <tag>LLM</tag>
         <tag>Multi-modal</tag>
-        <tag>Dataset</tag>
         <tag>Instruction-Following</tag>
         <tag>In-Context Learning</tag>
+        <tag>Dataset</tag>
       </tags>
   </entry>
   <entry>
@@ -3073,11 +3442,11 @@ pre-trained image encoders and LLMs with a Q-Former</li>
       </categories>
       <tags>
         <tag>LLM</tag>
-        <tag>PEFT</tag>
         <tag>Multi-modal</tag>
+        <tag>PEFT</tag>
+        <tag>Instruction-Following</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
-        <tag>Instruction-Following</tag>
       </tags>
   </entry>
   <entry>
@@ -3385,381 +3754,12 @@ Experts. The example and OCR context are from DocVQA.</figcaption>
       </categories>
       <tags>
         <tag>LLM</tag>
-        <tag>PEFT</tag>
         <tag>Multi-modal</tag>
         <tag>Expert Integration</tag>
+        <tag>PEFT</tag>
+        <tag>Instruction-Following</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
-        <tag>Instruction-Following</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A Survey on Multimodal Large Language Models</title>
-    <url>/2023/06/30/MLLM/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
-<p>Code: <a
-href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
-<aside>
-<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
-</aside>
-<p><strong>MLLM</strong>: the LLM-based model with the ability to
-receive and reason with multimodal information</p>
-<p><strong>Three Advantages</strong>: (1) more in line with human
-perception (2) more user-friendly interface (3) more well-rounded
-task-solver</p>
-<p><strong>Three Example Capabilities</strong>: (1) write website codes
-based on images (2) understand deep meaning of memes (3) OCR-free math
-reasoning</p>
-<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
-<hr />
-<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
-Tuning</h2>
-<h3 id="preliminaries">Preliminaries</h3>
-<p><strong>Instruction</strong>: the description of tasks</p>
-<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
-on instruction-formatted datasets</p>
-<p><strong>Instruction Tuning 3 Advantages:</strong></p>
-<ol type="1">
-<li><p>better understand and respond to various human requests</p></li>
-<li><p>zero-shot generalization to new tasks</p></li>
-<li><p>non-experts can use natural language to interact with LLMs</p>
-<blockquote>
-<p><em>The most popular programming language in the future will be
-English.</em></p>
-</blockquote></li>
-</ol>
-<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
-A: large-scale task-specific training data; B: zero-shot performance is
-still quite average</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
-<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
-the next token of the response. The instruction template is flexible and
-subject to manual designs. It can also be generalized to multi-round
-instructions.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
-<h3 id="data">Data</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
-<aside>
-<p>👉 <strong>Benchmark Adaptation</strong></p>
-</aside>
-<p><strong>Instruction templates for VQA datasets</strong>.
-&lt;image&gt; and {Question} are the image and the question in the
-original VQA datasets, respectively. Utilize existing benchmark datasets
-to construct instruction-formatted datasets.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
-<p><strong>Directly using concise answers may limit the output length of
-MLLM</strong>.</p>
-<ul>
-<li>Modify Instructions: ChatBridge, InstructBLIP</li>
-<li>Extend the length of existing answers: <span
-class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
-<aside>
-<p>👉 <strong>Self-Instruction</strong></p>
-</aside>
-<p><strong>Self-Instruction</strong>: To meet real-world human needs,
-such as multiple rounds of conversations.</p>
-<ul>
-<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
-<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
-different M-IT datasets catering for different needs</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
-<aside>
-<p>👉 <strong>Hybrid Composition</strong></p>
-</aside>
-<p>M-IT data + language-only user-assistant conversation data.</p>
-<p><strong>Adavantage</strong>: conversational proficiencies,
-instruction-following abilities</p>
-<p><strong>Representative work</strong>:</p>
-<ul>
-<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
-sampling from both data</li>
-<li><strong>MultiInstruct</strong>: two transfer learning strategies
-<ul>
-<li>Mixed instruction tuning: combine both types of data and randomly
-shuffle. (The empirical results show that mixed instruction tuning is at
-least not worse than solely tuning on multimodal data.)</li>
-<li>Sequential instruction tuning: text data followed by multimodal
-data</li>
-</ul></li>
-</ul>
-<h3 id="modality-bridging">Modality Bridging</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
-<aside>
-<p>👉 <strong>Learnable Interface</strong></p>
-</aside>
-<p><strong>Adavantages</strong>: little cost, avoid catastrophic
-forgetting</p>
-<p><strong>Three manners</strong>:</p>
-<ol type="1">
-<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
-BLIP-2</li>
-<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
-<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
-LaVIN</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
-<aside>
-<p>👉 <strong>Expert Model</strong></p>
-</aside>
-<p><strong>Advantage</strong>: Via expert models, convert multimodal
-inputs into languages without training.</p>
-<p><strong>Disadvantage</strong>: less flexible, info loss</p>
-<p><a
-href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
-transforming videos into textual descriptions distorts spatial-temporal
-relationships.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
-<h3 id="evaluation">Evaluation</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
-<aside>
-<p>👉 <strong>Closed-set</strong></p>
-</aside>
-<p><strong>Closed-set questions</strong>: its possible answer options
-are predefined and limited</p>
-<p><strong>Two evaluation types</strong>:</p>
-<ol type="1">
-<li><strong>leverage existing datasets</strong>: limited to a small
-range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
-evaluation settings:
-<ol type="1">
-<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
-<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
-</ol></li>
-<li><strong>develop new benchmarks specially designed for
-MLLMs</strong>: more comprehensive
-<ol type="1">
-<li><a
-href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
-perception and cognition tasks, manually design instruction-answer pairs
-to avoid data leakage</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
-various 2D/3D vision tasks</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
-(1) video-based generative performance (2) zero-shot QA</li>
-</ol></li>
-</ol>
-<aside>
-<p>👉 <strong>Open-set</strong></p>
-</aside>
-<p><strong>Open-set questions</strong>: its possible answer options are
-open and flexible.</p>
-<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
-<ol type="1">
-<li><strong>Manual scoring</strong>: require humans to assess specific
-dimensions</li>
-<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
-(LLaVA)
-<ul>
-<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
-setting GPT-4 as the performance upper bound is not perfect.</li>
-</ul></li>
-<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
-<aside>
-<p>👉 <strong>Others</strong></p>
-</aside>
-<p><strong><a
-href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
-sensitivity metric, model’s robustness to varied instructions</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
-into the object hallucination problem</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
-(safety) the robustness of MLLMs to adversarial attacks</p>
-<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
-In-Context Learning</h2>
-<p><strong>ICL</strong>: few-shot, training-free</p>
-<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
-a demonstration set (i.e., a set of in-context samples), to the original
-sample.</p>
-<p><strong>Template example of an M-ICL query</strong>:</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
-<aside>
-<p>👉 <strong>Two Scenarios</strong></p>
-</aside>
-<p><strong>Scenario 1: solving various visual reasoning
-tasks</strong></p>
-<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
-href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
-href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
-href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
-href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
-<ul>
-<li>Via demonstrations, LLMs get a sense of what the task is doing and
-what the output template is.</li>
-<li>Thus LLMs learn from a few task-specific examples and generalize to
-a new but similar question.</li>
-</ul>
-<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
-<p>(<strong><a
-href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
-href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
-href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
-<ul>
-<li>Demonstrations are often text-only and more fine-grained.</li>
-<li>They typically comprise a chain of steps that could be sequentially
-executed to fulfill the task. (related to CoT)</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
-<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
-Thought</h2>
-<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
-<p><strong>CoT Scenario</strong>: complex reasoning</p>
-<p><strong>CoT Main Idea</strong>: output both reasoning process and
-final answer</p>
-<p><strong>M-CoT</strong> (<strong><a
-href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
-href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
-href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
-<p><strong>Modality Bridging</strong></p>
-<ul>
-<li><p><strong>Expert Model</strong>: transforming visual input into
-textual descriptions (<a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
-image captions and original textual imput to LLMs)</p></li>
-<li><p><strong>Learnable Interface</strong>: feature fusion (<a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
-two-stage framework)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
-</ul>
-<p><strong>Learning Paradigms</strong></p>
-<ul>
-<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
-<li><strong>Few-shot</strong>: requires hand-crafting some in-context
-examples</li>
-<li><strong>Zero-shot</strong>: require no specific example</li>
-</ul>
-<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
-<ul>
-<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
-reasoning chains</li>
-<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
-length</li>
-</ul>
-<p><strong>Generation Pattens——</strong>(How the chain is
-constructed?)</p>
-<p>The generated steps should be consistent and correct.</p>
-<ul>
-<li><p><strong>Predicting</strong>: extending the reasoning chains given
-conditions such as instructions and previous reasoning history</p></li>
-<li><p><strong>Infilling</strong>: deducing steps between surrounding
-context (previous and following steps) to fill the logical gaps
-(VideoCoT)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
-</ul>
-<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
-Reasoning</h2>
-<p><strong>LAVR</strong>: use external tools or visual foundation
-models.</p>
-<p><strong>Three advantages</strong> compared with conventional visual
-reasoning models: <strong>Strong generalization, Emergent abilities,
-Better interactivity and control</strong></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
-<aside>
-<p>👉 <strong>Training Paradigms</strong></p>
-</aside>
-<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
-generate a new tool-related instruction dataset</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
-<aside>
-<p>👉 <strong>Functions</strong></p>
-</aside>
-<p><em>The primary roles that LLMs play in LAVR.</em></p>
-<ul>
-<li><strong>Controller</strong>: (single-round) breaks down a complex
-task [via CoT], assign subtasks to right tools/modules</li>
-<li><strong>Decision Maker</strong>: (multi-round) summarize history and
-current info, decide whether the info is sufficient to finish the task,
-friendly present answer</li>
-<li><strong>Semantics Refiner</strong>: integrate info into fluent
-scentences, generate texts according to different specific needs</li>
-</ul>
-<h2 id="challenges-and-future-directions">Challenges and Future
-Directions</h2>
-<ol type="1">
-<li><p><strong>Perception Capabilities</strong>: compromise between info
-capacity and computation burden</p></li>
-<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
-chain delivers right answer</p></li>
-<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
-type)</p></li>
-<li><p><strong>Object Hallucination</strong>: more fine-grained modality
-alignment</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
-<p>(The object does not appear in the image)</p></li>
-<li><p><strong>Parameter-Efficient Training</strong></p></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
-        <tag>In-Context Learning</tag>
-        <tag>Chain of Thought</tag>
-        <tag>Tool Learning</tag>
       </tags>
   </entry>
 </search>
