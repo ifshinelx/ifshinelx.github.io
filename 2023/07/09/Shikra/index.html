@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/little%20star.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/little%20star.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ifshinelx.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"QRVCI4B1JK","apiKey":"683b41d81744270ced12c4596c915a0e","indexName":"hexo_index","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="https://ifshinelx.github.io/2023/07/09/Shikra/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://ifshinelx.github.io/2023/07/09/Shikra/","path":"2023/07/09/Shikra/","title":"Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic | XinLiu's Homepage, Welcome!</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XinLiu's Homepage, Welcome!</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#referential-dialogue"><span class="nav-number">1.</span> <span class="nav-text">1 - Referential Dialogue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chessboard-test-for-current-mllm"><span class="nav-number">2.</span> <span class="nav-text">2 - Chessboard Test for
+Current MLLM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#breeding-shikra"><span class="nav-number">3.</span> <span class="nav-text">3 - Breeding Shikra</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#architecture"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 - Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#numerical-representation-of-position"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 - Numerical
+representation of position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instruction-data-construction"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 - Instruction data
+construction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reorganization-of-public-data"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 - Reorganization of public
+data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generated-data"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 - Generated Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task-prompts"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 - Task prompts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tuning-details"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 - Tuning details</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#experiment-and-analysis"><span class="nav-number">4.</span> <span class="nav-text">4 - Experiment and Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grounding-cot-or-verbal-cot"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 - Grounding CoT or verbal
+CoT?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location-tokens-or-just-numbers"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 - Location tokens or just
+numbers?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quantitative-results-on-conventional-tasks"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 - Quantitative
+results on conventional tasks</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#related-work"><span class="nav-number">5.</span> <span class="nav-text">5 - Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vision-language-positioning-tasks"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 - Vision-Language
+Positioning Tasks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tasks-with-output-boxes"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 - Tasks with output boxes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tasks-with-input-boxes"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 - Tasks with input boxes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shikra-both-input-and-output"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 - Shikra: both input and
+output</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#position-representation"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 - Position Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#inputting-roi"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 - Inputting RoI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outputting-roi"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 - Outputting RoI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shikra"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 - Shikra</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conclusion"><span class="nav-number">6.</span> <span class="nav-text">6 - Conclusion</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xin Liu"
+      src="/images/little%20star.jpg">
+  <p class="site-author-name" itemprop="name">Xin Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ifshinelx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ifshinelx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ifshine_lx@163.com" title="E-Mail → mailto:ifshine_lx@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <!-- modify icon to fire by szw -->
+      <i class="fa fa-history fa-" aria-hidden="true"></i>
+      Recent Posts
+    </div>
+    <ul class="links-of-blogroll-list" style="padding: 0px 12px;">
+      
+      
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/09/Shikra/" title="Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic" target="_blank">07-09 Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/06/Lynx/" title="(Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs?" target="_blank">07-06 (Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs? </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/04/MIMIC-IT/" title="MIMIC-IT: Multi-Modal In-Context Instruction Tuning" target="_blank">07-04 MIMIC-IT: Multi-Modal In-Context Instruction Tuning </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/03/LENS/" title="(LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language" target="_blank">07-03 (LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language </a>
+          </li>
+        
+      
+        
+          <li class="recent_posts_li">
+            <a href="/2023/07/01/LongMem/" title="(LongMem)Augmenting Language Models with Long-Term Memory" target="_blank">07-01 (LongMem)Augmenting Language Models with Long-Term Memory </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://ifshinelx.github.io/2023/07/09/Shikra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/little%20star.jpg">
+      <meta itemprop="name" content="Xin Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic | XinLiu's Homepage, Welcome!">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-09 13:00:00" itemprop="dateCreated datePublished" datetime="2023-07-09T13:00:00+08:00">2023-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-07-12 10:04:03" itemprop="dateModified" datetime="2023-07-12T10:04:03+08:00">2023-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/" itemprop="url" rel="index"><span itemprop="name">2023</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/2023/06/" itemprop="url" rel="index"><span itemprop="name">06</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>6 mins.</span>
+    </span>
+</div>
+
+        </div>
+          <div class="post-tags" style="margin-top: 5px;">
+              <a href="/tags/LLM/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> LLM</a>
+              <a href="/tags/Multi-modal/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Multi-modal</a>
+              <a href="/tags/Instrcution-Following/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Instrcution-Following</a>
+              <a href="/tags/Fine-grained-MLLM/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Fine-grained MLLM</a>
+              <a href="/tags/Position-Representation/" rel="tag" style="border: 0px; border-radius: 10px; padding: 0px 10px;"><i class="fa fa-tag"></i> Position Representation</a>
+          </div>
+          <script type="text/javascript">
+              var tagsall=document.getElementsByClassName("post-tags")
+              for (var i = tagsall.length - 1; i >= 0; i--){
+                  var tags=tagsall[i].getElementsByTagName("a");
+                  for (var j = tags.length - 1; j >= 0; j--) {
+                      var r=Math.floor(Math.random()*75+200);
+                      var g=Math.floor(Math.random()*75+200);
+                      var b=Math.floor(Math.random()*75+200);
+                      tags[j].style.background = "rgb("+r+","+g+","+b+")";
+                  }
+              }                        
+            </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-0.png" /></p>
+<p>Paper: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.15195.pdf">https://arxiv.org/pdf/2306.15195.pdf</a></p>
+<p>Code: <a
+target="_blank" rel="noopener" href="https://github.com/shikras/shikra">https://github.com/shikras/shikra</a></p>
+<aside>
+<p>👇 Problems</p>
+</aside>
+<p>In human conversations, individuals can indicate relevant regions
+within a scene while addressing others.</p>
+<p>This natural referential ability in dialogue remains absent in
+current MLLMs.</p>
+<aside>
+<p>👇 Contributions</p>
+</aside>
+<ul>
+<li><p>Study referential ability in existing MLLMs.</p></li>
+<li><p>Define new task——Referential dialogue(RD)</p>
+<p>Potential applications of this ability</p>
+<ul>
+<li>aiding AI assistants in Mixed Reality headsets</li>
+<li>facilitating precise communication in online shopping scenery</li>
+</ul></li>
+<li><p>Propose Shikra</p>
+<ul>
+<li>Shikra can comprehend and output <strong>spatial
+coordinates</strong> in natural language.</li>
+<li>With a <strong>simple architecture</strong>, Shikra shows no need
+for extra vocabularies, position encoder, pre-/post-detection modules,
+or external plugin models.</li>
+<li>Shikra enables numerous <strong>exciting applications</strong>, like
+providing mentioned objects’ coordinates in chains of thoughts and
+comparing user-pointed regions similarities.</li>
+<li>It achieves <strong>promising performance</strong> on conventional
+VL tasks w/o finetuning.</li>
+</ul></li>
+</ul>
+<h1 id="referential-dialogue">1 - Referential Dialogue</h1>
+<ul>
+<li><strong>Current MLLM Can</strong>: VQA, Image Caption, and
+multimodal dialogue</li>
+<li><strong>Current MLLM Cannot</strong>: REC, REG(referring expression
+generation), and PointQA</li>
+</ul>
+<p><strong>Shikra can do them all.</strong></p>
+<p>The model demonstrates proficiency in tasks not in the training set,
+such as identifying similarities between two indicated objects, or
+counting somethings, and providing their positions.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-1.png"
+alt="Demo of Referential Dialogue (RD). Users can point to specific areas and ask questions. In turn, Shikra will indicate the specific regions when replying, if necessary." />
+<figcaption aria-hidden="true">Demo of Referential Dialogue (RD). Users
+can point to specific areas and ask questions. In turn, Shikra will
+indicate the specific regions when replying, if necessary.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-2.png"
+alt="Referential Dialogues between real users and Shikra-7B." />
+<figcaption aria-hidden="true">Referential Dialogues between real users
+and Shikra-7B.</figcaption>
+</figure>
+<h1 id="chessboard-test-for-current-mllm">2 - Chessboard Test for
+Current MLLM</h1>
+<blockquote>
+<p>The current MLLMs cannot directly output coordinates. We need to
+explore appropriate coordinate representations and finer-grained
+training data.</p>
+</blockquote>
+<p><strong>Chessboard Test</strong>:</p>
+<p>Simplifies the object grounding into a part choice task:</p>
+<ol type="1">
+<li><p>Divide a image into a 2 × 2 chessboard.</p></li>
+<li><p>Next, ask:</p>
+<p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># &lt;image&gt;: image tokens, &lt;expr&gt; class name</span><br><span class="line">“&lt;image&gt; Which part is &lt;expr&gt; in if the picture is divided equally into four 2 by 2 parts? Choose from: (A) Top-left (B) Top-right (C) Bottom-left (D) Bottom-right.”</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<p><strong>Test Data Construction</strong>:</p>
+<ul>
+<li>Based on <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.03195.pdf">LVIS</a>,
+which is a perception detection with over 1000 entry-level object
+categories.</li>
+<li>We choose objects that are completely within a certain part (i.e.,
+ambiguous positions are not considered).</li>
+<li>Select 600 images per part, resulting in 2,400 images across 945
+categories.</li>
+</ul>
+<p><strong>Tested Model</strong>: <a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.08485.pdf">LLaVA-13B</a></p>
+<p><strong>Test Results</strong>: 25.96% acc, comparable to random
+selection.</p>
+<h1 id="breeding-shikra">3 - Breeding Shikra</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User Question: </span><br><span class="line">“How many other clothes in the &lt;image&gt; are of the same color as the jacket [0.268, 0.372]?”. </span><br><span class="line">Shikra reply: </span><br><span class="line">“The jacket [0.268, 0.372] is green. We can find a T-shirt [0.653, 0.532] and cropped pants [0.569, 0.101] a with same green color. So the answer is two.”</span><br></pre></td></tr></table></figure>
+<h2 id="architecture">3.1 - Architecture</h2>
+<p><strong>Frozen Visual Encoder</strong>: pre-trained ViT-L/14 CLIP,
+its output embedding denoted as <span
+class="math inline">\(\mathbf{V}\in\mathbb{R}^{16\times16\times1024}\)</span></p>
+<p><strong>Trainable LLM</strong>: Vicuna-7/13B</p>
+<p><strong>One Trainable fully connected layer</strong>: map <span
+class="math inline">\(\mathbf{V}\)</span> to <span
+class="math inline">\(\mathbf{V&#39;}\in\mathbb{R}^{256\times
+D}\)</span>, <span class="math inline">\(D\)</span> is 4096 for
+Vicuna-7B and 5120 for 13B</p>
+<p>Visual embedding can be inserted into anywhere of input sequence.</p>
+<p>We do not introduce any vocabulary or special encoder for encoding
+position information.</p>
+<p>We have not introduced additional pre-/post-detectors for points or
+bounding boxes.</p>
+<h2 id="numerical-representation-of-position">3.2 - Numerical
+representation of position</h2>
+<p>x, y is normalized(3 decimal places) according to image size.</p>
+<p><strong>Bounding box</strong>: <span class="math inline">\([x_{min},
+y_{min},x_{max}, y_{max}]\)</span></p>
+<p><strong>Region center point</strong>: <span
+class="math inline">\([x_{center}, y_{center}]\)</span></p>
+<p>The coordinates can appear anywhere in the input and output sequence
+of the model.</p>
+<p>Like regular text, tokenizing without discrimination.</p>
+<h2 id="instruction-data-construction">3.3 - Instruction data
+construction</h2>
+<h3 id="reorganization-of-public-data">3.3.1 - Reorganization of public
+data</h3>
+<p><strong>Spotting Captioning Definition</strong>: describe the image
+and spots the mentioned objects or regions using points or boxes. We use
+Flickr30K Entities for this task.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-3.png"
+alt="All training data used by Shikra. The asterisk indicates that this data is only used in the second stage." />
+<figcaption aria-hidden="true">All training data used by Shikra. The
+asterisk indicates that this data is only used in the second
+stage.</figcaption>
+</figure>
+<p>We have <strong>excluded images present in the test and validation
+data</strong> from the training data to prevent potential data leakage,
+despite their distinction in terms of image-text pairs.</p>
+<h3 id="generated-data">3.3.2 - Generated Data</h3>
+<blockquote>
+<p>Data in 3.3.1 lack CoT data with <strong>positional
+annotations</strong>, natural communication data with <strong>positional
+annotations</strong>, etc.</p>
+</blockquote>
+<p><strong>Flickr30K Entities:</strong> has five descriptions for each
+image. These mentioned objects appearing in the image will be labeled
+using bounding box.</p>
+<p><strong>Shikra-RD</strong>: High-quality RD data built from Flickr30K
+Entities using GPT-4.</p>
+<p><strong>Shikra-RD</strong> contains 5,922 QA pairs with
+<strong>positional annotations</strong> and will continues expanding in
+the future.</p>
+<p><strong>GPT-4 Usage</strong>: We explained the format of the bounding
+boxes to GPT-4 and asked it to understand the image through these five
+sentences and boxes. Next, we require GPT-4 to design Q&amp;A pairs.</p>
+<h3 id="task-prompts">3.3.3 - Task prompts</h3>
+<ol type="1">
+<li>Write <strong>a sample template</strong> of a specific task</li>
+<li>Have GPT-4 rewrite it in rich language, expanding it into
+<strong>hundreds of variations</strong>.</li>
+</ol>
+<p><strong>During training</strong>, we can randomly choose from
+them.</p>
+<p><strong>During inference</strong>, users can describe their needs in
+their own format.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-4.png" /></p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-5.png"
+alt="Examples of task templates used by Shikra on different types of training data.  represents visual tokens,  denotes coordinates of region center points,  is the expression in REC." />
+<figcaption aria-hidden="true">Examples of task templates used by Shikra
+on different types of training data. <image> represents visual tokens,
+<objs> denotes coordinates of region center points, <expr> is the
+expression in REC.</figcaption>
+</figure>
+<h2 id="tuning-details">3.4 - Tuning details</h2>
+<ul>
+<li>First stage: train Shikra on the reorganized VL dataset for 100,000
+steps (around 1.5 epoch)</li>
+<li>Second stage: raise the sampling ratio to 50% on LLaVA-Instruct-150K
+and Shikra-RD</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">optimizer: AdamW</span><br><span class="line">learning rate scheduler: cosine annealing scheduler</span><br><span class="line">initial learning rate: 2e-5</span><br><span class="line">global batch size: 64</span><br><span class="line">device: 8 NVIDIA A100 GPUs</span><br><span class="line">time cost: ~100h for first stage, ~20h for second stage</span><br></pre></td></tr></table></figure>
+<h1 id="experiment-and-analysis">4 - Experiment and Analysis</h1>
+<h2 id="grounding-cot-or-verbal-cot">4.1 - Grounding CoT or verbal
+CoT?</h2>
+<aside>
+<p>💡 Investigate whether <strong>Grounding CoT</strong>(GCoT, CoT with
+position annotations) can reduce visual hallucinations and improve model
+performance.</p>
+</aside>
+<p>We train three toy models of Shikra-7B (without using additional
+datasets) on the CLEVR dataset.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-6.png"
+alt="Comparing different forms of CoTs. Q, A, C, and C^{Point} denote the Question, final Answer, Chain of thoughts, and Chain of thoughts with center points [x_{center},y_{center}]." />
+<figcaption aria-hidden="true">Comparing different forms of CoTs. <span
+class="math inline">\(Q, A, C\)</span>, and <span
+class="math inline">\(C^{Point}\)</span> denote the Question, final
+Answer, Chain of thoughts, and Chain of thoughts with center points
+<span
+class="math inline">\([x_{center},y_{center}]\)</span>.</figcaption>
+</figure>
+<h2 id="location-tokens-or-just-numbers">4.2 - Location tokens or just
+numbers?</h2>
+<p>We train two toy Shikra using two different representations with REC
+data.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-7.png"
+alt="Comparing different position representations. Vocab., e.g., , · · · , . Numerical directly uses numbers." />
+<figcaption aria-hidden="true">Comparing different position
+representations. Vocab., e.g., <bin_0>, · · · , <bin_1000>. Numerical
+directly uses numbers.</figcaption>
+</figure>
+<p><strong>Numerical representation Advantages</strong>:</p>
+<ul>
+<li>better performance</li>
+<li>does not retrain vocabularies for localization tasks</li>
+<li>freely control the precision</li>
+</ul>
+<p><strong>Numerical representation Disadvantages</strong>:</p>
+<ul>
+<li>longer token length brings more computational costs</li>
+</ul>
+<h2 id="quantitative-results-on-conventional-tasks">4.3 - Quantitative
+results on conventional tasks</h2>
+<aside>
+<p>👇 <strong>REC task</strong>: ground the object described with an
+expression.</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-8.png"
+alt="Results on standard REC task. OFA-L* refers to the OFA-Large checkpoint without finetuning. GRIT refexp is the ablation split." />
+<figcaption aria-hidden="true">Results on standard REC task. OFA-L*
+refers to the OFA-Large checkpoint without finetuning. GRIT refexp is
+the ablation split.</figcaption>
+</figure>
+<aside>
+<p>👇 <strong>PointQA task</strong></p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-9.png"
+alt="Comparing pointQA capabilities on the Visual-7W. Accuracy (%) is used for evaluation." />
+<figcaption aria-hidden="true">Comparing pointQA capabilities on the
+Visual-7W. Accuracy (%) is used for evaluation.</figcaption>
+</figure>
+<p><strong>Visual-7W</strong>: given a question and four box options,
+model should choose one as the answer.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-10.png"
+alt="Comparing pointQA capabilities on the LookTwice-QA. We use Shikra-13B and Accuracy (%) for evaluation." />
+<figcaption aria-hidden="true">Comparing pointQA capabilities on the
+LookTwice-QA. We use Shikra-13B and Accuracy (%) for
+evaluation.</figcaption>
+</figure>
+<p><strong>LookTwice-QA</strong>: answer question based on the input
+point/box.</p>
+<p>[**Pronoun/Superclass/Class]** indicate different levels of
+referential clarity in the question, e.g., “How many of these
+<strong>[∅/fruits/apples]</strong> <obj>?"</p>
+<p><strong><obj></strong> denotes the coordinates of input point/box</p>
+<aside>
+<p>👇 <strong>conventional VL tasks</strong></p>
+</aside>
+<blockquote>
+<p>It’s worth noting that these task configurations are just some
+subsets of Referential Dialogue.</p>
+</blockquote>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-11.png"
+alt="Comparing generalist models on VQA and Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for Caption." />
+<figcaption aria-hidden="true">Comparing generalist models on VQA and
+Image Captioning. Use Shikra-13B. FM: Flamingo. Acc for VQA, CIDEr for
+Caption.</figcaption>
+</figure>
+<p>We also provide <span class="math inline">\(VQAv2^{val}\)</span>
+(83.3) and OK-VQA (53.8) results on LVLM-eHub toolbox for easy
+comparison.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-12.png"
+alt="Object hallucination benchmark using POPE evaluation pipeline." />
+<figcaption aria-hidden="true">Object hallucination benchmark using POPE
+evaluation pipeline.</figcaption>
+</figure>
+<p><strong>Accuracy</strong> denotes the accuracy of predictions.</p>
+<p><strong>Precision</strong> signifies the true positive samples among
+the predicted positives.</p>
+<p><strong>Recall</strong> indicates the correct identification of all
+true positive samples.</p>
+<p><strong>“Yes”</strong> represents the probability of the model
+outputting a positive answer.</p>
+<h1 id="related-work">5 - Related Work</h1>
+<h2 id="vision-language-positioning-tasks">5.1 - Vision-Language
+Positioning Tasks</h2>
+<p>Many vision-language tasks require localization representation.</p>
+<h3 id="tasks-with-output-boxes">5.1.1 - Tasks with output boxes</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-13.png"
+alt="REC." />
+<figcaption aria-hidden="true">REC.</figcaption>
+</figure>
+<p><strong>Referring Expression Comprehension (REC)</strong> aims to
+localize <strong>a</strong> target object in an image described by a
+referring expression.</p>
+<p><strong>Described Object Detection</strong> extends REC to more
+realistic scenarios where the object may <strong>not exist</strong> or
+there may be <strong>multiple</strong> objects.</p>
+<p><strong>VQA Grounding</strong> aims to answer visual questions and
+associate the answers with specific visual regions or objects.</p>
+<h3 id="tasks-with-input-boxes">5.1.2 - Tasks with input boxes</h3>
+<p><strong>Grounding Caption (GC)</strong>: Given an image and a
+location box, <strong>GC</strong> aims to generate a description for
+this location by considering the surrounding environment.</p>
+<p><strong>Referring Expression Generation (REG)</strong>: Compared to
+<strong>GC</strong>, <strong>REG</strong> requires the generated
+description to indicate that it describes this region specifically, not
+others, making it necessary for the description to be
+discriminative.</p>
+<p><strong>PointQA</strong> requires a model answer for a visual
+question where the questioner queries a specific position in the
+picture.</p>
+<h3 id="shikra-both-input-and-output">5.1.3 - Shikra: both input and
+output</h3>
+<p>Our model is not only compatible with the above tasks, but also can
+handles the input and output of position representation flexibly and
+simultaneously.</p>
+<h2 id="position-representation">5.2 - Position Representation</h2>
+<p>RoI: regions of interest</p>
+<h3 id="inputting-roi">5.2.1 - Inputting RoI</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-14.png"
+alt="Method 1: directly concatenate cropped image patches with the original image as model input." />
+<figcaption aria-hidden="true"><strong>Method 1:</strong> directly
+concatenate cropped image patches with the original image as model
+input.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-15.png"
+alt="Method 2: use 0/1 mask or Gaussian map input with the original image to emphasize the area of user interest." />
+<figcaption aria-hidden="true"><strong>Method 2</strong>: use 0/1 mask
+or Gaussian map input with the original image to emphasize the area of
+user interest.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/Shikra-16.png"
+alt="Method 3: first encode points and boxes to positional encodings then add them to intermediate features or learned queries." />
+<figcaption aria-hidden="true"><strong>Method 3</strong>: first encode
+points and boxes to positional encodings then add them to intermediate
+features or learned queries.</figcaption>
+</figure>
+<h3 id="outputting-roi">5.2.2 - Outputting RoI</h3>
+<p><strong>Anchor-based methods</strong> utilize predefined sliding
+windows and proposal candidate regions for classification., e.g., Fast
+R-CNN.</p>
+<p>Some methods directly regress four values for bounding box
+coordinates, e.g., FCOS.</p>
+<p>Some methods adopt one-to-one label assignment to evolve object
+detection into an end-to-end manner, e.g., DETR and POTP.</p>
+<p><strong>Pix2seq</strong> formalizes the detection task as a sequence
+generation task:</p>
+<ul>
+<li>It desires the spatial position of the image in 1,000 bins and uses
+a 1,000-token vocabulary to represent it.</li>
+<li>For detection, Pix2seq performs classification on the coordinate
+vocabulary in an auto-regressive manner.</li>
+</ul>
+<p>Following Pix2seq, several methods, e.g., OFA, Unified-IO, UniTab,
+GIT, and VisionLLM introduce similar coordinate vocabulary alongside the
+language vocabulary for object detection and REC tasks.</p>
+<h3 id="shikra">5.2.3 - Shikra</h3>
+<p>Shikra formulates position input/output as the most natural and
+flexible form of language and compare it with the extra coordinate
+vocabulary in Section 4.2.</p>
+<h1 id="conclusion">6 - Conclusion</h1>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Shikra is unsuitable for dense object detection and segmentation
+tasks.</li>
+<li>Shikra may produce harmful and counterfactual responses.</li>
+</ul>
+<p><strong>Future Work</strong></p>
+<ul>
+<li>Exploring improved coordinate representations for these tasks.</li>
+<li>Improve GCoT</li>
+<li>Multilingual</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Xin Liu
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ifshinelx.github.io/2023/07/09/Shikra/" title="Shikra: Unleashing Multimodal LLM’s Referential Dialogue Magic">https://ifshinelx.github.io/2023/07/09/Shikra/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/06/Lynx/" rel="prev" title="(Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs?">
+                  <i class="fa fa-chevron-left"></i> (Lynx)What Matters in Training a GPT4-Style Language Model with Multimodal Inputs?
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xin Liu</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="far fa-file-word"></i>
+    </span>
+    <span title="Word count total">16k</span>
+  </span>
+
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.17.1/algoliasearch-lite.umd.js" integrity="sha256-F7emIId74fYoGrHzsnu3iClRHIbBMhMCbxDoA1cfMAY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.56.1/instantsearch.production.min.js" integrity="sha256-lz9C+x8+6w2rh56x5TrH5iYmE4Js2FiJS5h0tuMz7hQ=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"user-name/repo-name","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
