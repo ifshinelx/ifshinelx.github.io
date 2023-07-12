@@ -82,6 +82,490 @@ Learning: Recommender Systems and Reinforcement Learning</h1>
       </tags>
   </entry>
   <entry>
+    <title>(LongMem)Augmenting Language Models with Long-Term Memory</title>
+    <url>/2023/07/01/LongMem/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-0.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2306.07174.pdf">https://arxiv.org/pdf/2306.07174.pdf</a></p>
+<p>Code: <a
+href="https://github.com/Victorwz/LongMem">https://github.com/Victorwz/LongMem</a></p>
+<p>Bilibili: <a
+href="https://www.bilibili.com/video/BV17M4y177WG/?share_source=copy_web">Augmenting
+Language Models with Long-Term Memory （UCSB， Microsoft 2023）</a></p>
+<aside>
+<p>👇 <strong>Problems</strong></p>
+</aside>
+<ul>
+<li>LLMs can <strong>only afford fix-sized inputs</strong> due to the
+input length limit, preventing them from utilizing rich long-context
+information from past inputs.</li>
+</ul>
+<p><strong><em>Two existing ways addressing the length limit
+issue:</em></strong></p>
+<ul>
+<li>Directly increasing the input length of LLM will cause <strong>huge
+computation complexity</strong>.</li>
+<li>Developing sparse attention reduces the computation cost, but still
+requires <strong>training from scratch</strong>.</li>
+</ul>
+<aside>
+<p>👇 <strong>Contributions</strong></p>
+</aside>
+<ul>
+<li><strong>LongMem</strong> enables LLMs to memorize long history,
+which benefits various downstream tasks.</li>
+</ul>
+<blockquote>
+<p>The idea behind this is very similar to LoRA's, creating a small
+network next to the backbone.</p>
+</blockquote>
+<p><strong><em>Two Benefits of LongMem:</em></strong></p>
+<ul>
+<li>Decouples the process of encoding memory and the process of memory
+retrieval and fusion, via decoupling LLM and SideNet, which effectively
+<strong>resolves the issue of memory staleness</strong>.</li>
+<li>The SideNet with frozen LLM is <strong>parameter-efficient</strong>
+can avoid catastrophic forgetting.</li>
+</ul>
+<blockquote>
+<p><strong>Remaining Questions</strong>: What is the ablation study of
+<span class="math inline">\(m\)</span> and <span
+class="math inline">\(m_s\)</span>? What are limitation of LongMem and
+its future work?</p>
+</blockquote>
+<hr />
+<h2 id="methods">Methods</h2>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-1.png"
+alt="Overview of the memory caching and retrieval flow of LongMem." />
+<figcaption aria-hidden="true">Overview of the memory caching and
+retrieval flow of LongMem.</figcaption>
+</figure>
+<p>Three key components of LongMem: <strong>frozen LLM, Cache Memory
+Bank(CMB), Residual SideNet(RS).</strong></p>
+<p><strong>CMB</strong> is a cached head-wise vector queue that stores
+the memory.</p>
+<p><strong>RS</strong> is efficiently trained to fuse the memory context
+information.</p>
+<h3 id="encoding-and-storing-memory">Encoding and Storing Memory</h3>
+<p>Most LLMs process a fixed-sized input. Therefore, split a long
+sequence into fix-length segments.</p>
+<blockquote>
+<p>Each segment has several sequences.</p>
+</blockquote>
+<ul>
+<li><strong>Previous segments</strong>: key-value pairs of
+self-attention at m-th layer(<span
+class="math inline">\(\mathcal{Z}_k,\mathcal{Z}_v\in\mathbb{R}^{H\times
+M\times d}\)</span>) are stored in <strong>CMB</strong>
+<ul>
+<li><span class="math inline">\(H\)</span> is the attention heads num,
+<span class="math inline">\(d\)</span> is per-head dimension, <span
+class="math inline">\(M\)</span> indicates the capacity of
+<strong>CMB</strong></li>
+</ul></li>
+<li><strong>Current segment <span
+class="math inline">\(\{x_i\}_{i=1}^{|x|}:\)</span></strong> hidden
+states(of each layer) are retained and transfered to <strong>RS</strong>
+<ul>
+<li><span
+class="math inline">\(\mathbf{H}_{LLM}^0\in\mathbb{R}^{|x|\times
+E}\)</span> is the initial hidden states of <span
+class="math inline">\(\{x_i\}_{i=1}^{|x|}\)</span>, <span
+class="math inline">\(E\)</span> is the hidden dimension</li>
+<li><span
+class="math inline">\(\mathbf{H}_{LLM}^{l&#39;}=f_{\theta_{LLM}^{l&#39;}}(\mathbf{H}_{LLM}^{l&#39;-1}),\forall
+l&#39;\in[1,L&#39;]\)</span> is the successive hidden states, <span
+class="math inline">\(L&#39;\)</span> is the total layer num of LLM</li>
+</ul></li>
+<li><strong>Current token</strong>: top-K relevant key-value pairs are
+retrieved and fused into language modeling</li>
+</ul>
+<p><strong>CMB Update Mechanism</strong>: after memory retrieval and
+fusion, the oldest sequences are removed, the current sequences are
+appended.</p>
+<h3 id="memory-retrieval">Memory Retrieval</h3>
+<p><strong>Text-chunk</strong>: an n-gram structure of
+<strong>chunk-size</strong> <span class="math inline">\(csz\)</span>
+number of contiguous tokens.</p>
+<p>The hyperparameter <span class="math inline">\(csz\)</span> controls
+<strong>the granularity of retrieved contexts</strong>, which can be
+empirically adjusted based on downstream tasks.</p>
+<blockquote>
+<p>For instance, In-Context Learning requires more fine-grained label
+tokens from demostration examples cached in memory, where a smaller
+<span class="math inline">\(csz\)</span> is helpful.</p>
+</blockquote>
+<p><strong>Advantages of Token-to-Chunk Retrieval</strong>(compared with
+token-to-token):</p>
+<ul>
+<li>reduce the size of the retrieval index and
+<strong>accelerate</strong> the process</li>
+<li>further improve the retrieval <strong>accuracy</strong> (not always,
+when <span class="math inline">\(csz\)</span> is too large)</li>
+</ul>
+<p><strong>Three steps of retrieval:</strong></p>
+<ol type="1">
+<li>The <strong>CMB</strong> has <span
+class="math inline">\(M/csz\)</span> chunks. We use the
+<strong>mean-pooled vector</strong> on the chunk-size dimension to get
+the key vector for retrieval.</li>
+<li>Then we retrieve the top-(<span
+class="math inline">\(K/csz\)</span>) chunks w.r.t(with respect to) the
+dot product between the <strong>attention query</strong> of current
+token <span class="math inline">\(\mathbf{x}_i\)</span> and the
+<strong>mean-pooled attention key</strong> of a candidate chunk.</li>
+<li>Finally, by squeezing and flatterning, we get <span
+class="math inline">\(K\)</span> key-valus pairs <span
+class="math inline">\(\{\widetilde{\mathbf{K}}_j,\widetilde{\mathbf{V}}_j\}_{j=1}^K\)</span>
+at token-level.</li>
+</ol>
+<h3 id="memory-fusion">Memory Fusion</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-2.png"
+alt="Overview of LongMem architecture. “MemAug” represents Memory-Augmented Layer for memory retrieval and fusion." />
+<figcaption aria-hidden="true">Overview of LongMem architecture.
+“<strong>MemAug</strong>” represents <strong>Memory-Augmented
+Layer</strong> for memory retrieval and fusion.</figcaption>
+</figure>
+<aside>
+<p>👇 <strong>Residual</strong> <strong>SideNet</strong> Architecture
+and Initialization</p>
+</aside>
+<p>SideNet consists of (L-1) normal Transformer decoder layers and one
+special <strong>MemAug</strong>.</p>
+<p><span class="math inline">\(L\)</span> is the total layer num of
+<strong>SideNet</strong>, <span class="math inline">\(L&#39;=\alpha L,
+\alpha\in\{2,3,4,...\}\)</span>, <span
+class="math inline">\(L&lt;L&#39;\)</span> for efficiency.</p>
+<p><strong>Weight Initialization</strong>: <span
+class="math inline">\(\mathcal{\Theta}_{Side}^{\frac{l&#39;}{\alpha}}=\mathcal{\Theta}_{LLM}^{l&#39;}\)</span></p>
+<p><strong>Cross-Network Residual Connections</strong>:</p>
+<p><span
+class="math inline">\(\mathbf{H}_{Side}^l=f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})+(\mathbf{H}_{LLM}^{\alpha
+l}-\mathbf{H}_{LLM}^{\alpha(l-1)}),\forall l\in[1,L]\)</span></p>
+<blockquote>
+<p>The residual connections after the SA and FFN of a decoder layer will
+be performed as normal in <span
+class="math inline">\(f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})\)</span>
+and parallel to the proposed cross-network residual connections. SA is
+self-attention. FFN is feed-forward network.</p>
+</blockquote>
+<aside>
+<p>👇 <strong>MemAug:</strong> Each token attends on both local contexts
+and retrieved memory contexts.</p>
+</aside>
+<p><span class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V},
+\mathbf{A},\mathbf{M}\in\mathbb{R}^{|x|\times d}\)</span>, <span
+class="math inline">\(g\)</span> is a <strong>trainable</strong>
+<strong>head-wise</strong> gating factor, <span
+class="math inline">\(m_s\)</span> is the layer index of
+<strong>MemAug.</strong></p>
+<blockquote>
+<p>The initialization of gating factor g:
+Parameter(torch.zeros(self.num_heads))</p>
+</blockquote>
+<p>The hidden state output from previous layer (<span
+class="math inline">\(\mathbf{H}^{(m_s-1)}_{Side}\in\mathbb{R}^{|x|\times
+d}\)</span>) is linearly projected into <span
+class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V}\)</span> via
+three matrices <span
+class="math inline">\(W^Q,W^K,W^V\in\mathbb{R}^{d\times d}\)</span>.</p>
+<p><span
+class="math inline">\(\{\widetilde{\mathbf{K}}_i,\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\in\mathbb{R}^{|x|\times
+K\times d}\)</span> is the retrieved contexts. Each token has distinct
+contexts.</p>
+<p><span
+class="math inline">\(\mathbf{A}=softmax(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d}})\mathbf{V},\mathbf{M}=Concat\{softmax(\frac{\mathbf{Q}_i\widetilde{\mathbf{K}}_i^T}{\sqrt{d}})\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\)</span></p>
+<p><span
+class="math inline">\(\mathbf{H}^{m_s}_{Side}=sigmoid(g)·\mathbf{A}+(1-sigmoid(g))·\mathbf{M}:\)</span>
+the output of <strong>MemAug</strong></p>
+<h3 id="training-objective">Training Objective</h3>
+<ul>
+<li><span
+class="math inline">\(P(\mathbf{x}_i|\mathbf{x}_1,...,\mathbf{x}_{i-1})=softmax(W\mathbf{H}^{L}_{Side}):\)</span>
+the token probability is computed using the last SideNet hidden states
+<ul>
+<li><span class="math inline">\(W:\)</span> the frozen output embedding
+weight shared by LLM and SideNet</li>
+</ul></li>
+<li><span
+class="math inline">\(\max\sum_{x\in\mathcal{D}}\sum_{i=1}^{|x|}\log
+P(\mathbf{x}_i|\mathbf{x}_1, ..., \mathbf{x}_{i-1}):\)</span> the
+training objective of <strong>LongMem</strong>
+<ul>
+<li><span class="math inline">\(x\)</span> is a randomly sampled
+sentence from the pre-training text corpus <span
+class="math inline">\(\mathcal{D}\)</span></li>
+</ul></li>
+</ul>
+<h2 id="experiments">Experiments</h2>
+<h3 id="training-setup">Training Setup</h3>
+<aside>
+<p>👇 Batchfying the training corpora (document-level shuffling within
+each group)</p>
+</aside>
+<blockquote>
+<p>The conventional process truncates the corpora without padding and
+conduct a segment-level shuffling.</p>
+</blockquote>
+<p>Doc Group Num = Batch Size</p>
+<p>Segment num is same for each group.</p>
+<blockquote>
+<p>Maybe need padding. Seg num is unlimited.</p>
+</blockquote>
+<p>In a mini-batch, we select a segment from each group and get total
+batch-size num of segments.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-3.png"
+alt="Batchfying the large text corpora into batches to ensure that each consecutive segments within each document is distributed in consecutive batches." />
+<figcaption aria-hidden="true"><strong>Batchfying the large text
+corpora</strong> into batches to ensure that each consecutive segments
+within each document is distributed in consecutive batches.</figcaption>
+</figure>
+<aside>
+<p>👇 Training Corpus and Hyperparameters</p>
+</aside>
+<p><strong>Corpus</strong>: sample a subset of the <a
+href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a>.</p>
+<p>The pre-training of reproduced GPT-2* iterates on 117B tokens in
+total, with 512 batch-size and 1024-token fixed segment-length.</p>
+<blockquote>
+<p>Original GPT-2 adopts absolute position embedding, which is found to
+perform poorly to enable LLM to learn long-distance dependencies.</p>
+</blockquote>
+<p><strong>MemAug</strong> is the 9-th layer of SideNet.</p>
+<p><span
+class="math inline">\(L&#39;=24,L=12,\alpha=\frac{L&#39;}{L}=2,H=16,d=64,\)</span>
+<span class="math inline">\(csz=4,K=64,m=18\)</span></p>
+<blockquote>
+<p>The attention keys and values from m=18-th layer of backbone LLM is
+cached into CMB.</p>
+</blockquote>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-4.png"
+alt="Memory-Augmented Adaptation and Architectural Hyperparameters." />
+<figcaption aria-hidden="true">Memory-Augmented Adaptation and
+Architectural Hyperparameters.</figcaption>
+</figure>
+<p>The pre-training and adaptation are trained on <strong>16
+32GB-Tesla-V100 GPUs</strong>.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-5.png"
+alt="The superiority of our method over fully dense self-attention (GPT-2*) in terms of inference speed and GPU-memory utilization." />
+<figcaption aria-hidden="true">The superiority of our method over fully
+dense self-attention (GPT-2*) in terms of <strong>inference speed and
+GPU-memory utilization</strong>.</figcaption>
+</figure>
+<aside>
+<p>👇 Memory Retrieval Module</p>
+</aside>
+<p>The fixed memory-size of <strong>CMB</strong> in one GPU is 65536
+key-value pairs of tokens.</p>
+<blockquote>
+<p>We enable each GPU to construct and update their own memory retrieval
+module for efficiency.</p>
+<p>The capacity of CMB (M) is not unlimited.</p>
+</blockquote>
+<p>The retrieval takes about 15ms per 1k tokens, which is 55% timecost
+of LLM forwarding pass.</p>
+<p>Use <a href="https://arxiv.org/pdf/1702.08734.pdf">faiss</a> to store
+the mean-pooled attention keys of <span
+class="math inline">\(M/csz\)</span> chunks and perform efficient
+retrieval.</p>
+<aside>
+<p>👇 Baselines</p>
+</aside>
+<p>Adopt reproduced GPT-2* and <a
+href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as two baseline
+under same pre-training setting.</p>
+<p>We insert the knn-augmented layer proposed by <a
+href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as the same 18-th
+layer in the LLM decoder.</p>
+<h3 id="long-context-language-modeling">Long-Context Language
+Modeling</h3>
+<aside>
+<p>👇 Zero-Shot Evaluation Setting(3 long-context modeling datasets)</p>
+</aside>
+<p>The majority of included books or papers in these datasets have the
+length of at least 16k tokens.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-6.png"
+alt="Dataset Statistics of five splits of PG-22 based on length range and ArXiv." />
+<figcaption aria-hidden="true">Dataset Statistics of five splits of
+PG-22 based on length range and ArXiv.</figcaption>
+</figure>
+<p><strong>PG-22(Project Gutenberg 2020-2022 Language
+Modeling):</strong> We crawled and cleaned the books published between
+2020 and 2022 under <a href="https://www.gutenberg.org/">Project
+Gutenberg Library</a>.</p>
+<blockquote>
+<p>Our training subset PG-19 only contains books published before
+1919.</p>
+</blockquote>
+<p><strong>ArXiv:</strong> We select a val split of ArXiv paper subset
+in the <a href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a> corpus.
+The val split does not exist in our training corpus.</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</strong>
+We select the Archive of Our Own (AO3) subset. Use its splits of 4k, 6k,
+and 8k prefix.</p>
+<p><strong><em>Details of <a
+href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</em></strong></p>
+<ul>
+<li>For LLMs that cannot process over 4k tokens, we abandon the front
+prefix to fulfill the maximum input length of LLMs.</li>
+<li>For <a href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> and
+LongMem model, we firstly load the given 4k/6k/8k prefix contexts into
+the cached memory(while the input length to local context is still 1k
+tokens) and then do the scoring.</li>
+<li>We use the perplexity as the scorer for each candidate suffix
+segment in zero-shot evaluation manner.</li>
+<li>Then the suffix segment with lower perplexity is selected as the
+label.</li>
+<li>The suffix identification accuracy is used as the evaluation
+metric.</li>
+</ul>
+<aside>
+<p>👇 Results</p>
+</aside>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-7.png"
+alt="Evaluation results on long-context language modeling datasets. We report token-level perplexity (PPL) (lower the better) on all datasets." />
+<figcaption aria-hidden="true">Evaluation results on long-context
+language modeling datasets. We report token-level perplexity (PPL)
+(lower the better) on all datasets.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-8.png"
+alt="Zero-shot Suffix Identification Accuracy on AO3 subset of ChapterBreak. Baselines marked with † are directly cited from ChapterBreak." />
+<figcaption aria-hidden="true">Zero-shot Suffix Identification Accuracy
+on AO3 subset of ChapterBreak. Baselines marked with † are directly
+cited from <a
+href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>.</figcaption>
+</figure>
+<h3 id="memory-augmented-in-context-learning">Memory-Augmented
+In-Context Learning</h3>
+<blockquote>
+<p>Conventional ICL is heavily restricted by input context length.</p>
+</blockquote>
+<p>LongMem: <strong>Infinite-length ICL when loading large number of
+demonstration examples into cached memory.</strong></p>
+<aside>
+<p>👇 Evaluation Setting</p>
+</aside>
+<ul>
+<li>NLU datasets, 4/20-shot: <a
+href="https://aclanthology.org/D13-1170.pdf">SST-2</a>, <a
+href="https://www.cs.cornell.edu/home/cardie/papers/lre05withappendix.pdf">MPQA</a>,
+<a
+href="http://richard.cyganiak.de/2008/papers/dbpedia-iswc2007.pdf">MR</a>,
+<a href="https://aclanthology.org/P04-1035.pdf">Subj</a>, <a
+href="https://aclanthology.org/D13-1170.pdf">SST-5</a></li>
+<li>QA dataset, open-ended generation, 3-shot(about 1k tokens): <a
+href="https://arxiv.org/pdf/1606.05250.pdf">SQuAD</a></li>
+</ul>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-9.png"
+alt="The hand-crafted ICL prompt templates. We concatenate the demonstration examples with newlines to delimit them." />
+<figcaption aria-hidden="true">The hand-crafted <strong>ICL prompt
+templates</strong>. We concatenate the demonstration examples with
+newlines to delimit them.</figcaption>
+</figure>
+<p>The prediction label is directly generated using greedy decoding.</p>
+<p>Chunk size <span class="math inline">\(csz=2\)</span></p>
+<aside>
+<p>👇 Results</p>
+</aside>
+<p>We report the mean and standard deviation of 6 runs with different
+random seeds to overcome the randomness in selecting k-shot
+demonstration examples.</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-10.png"
+alt="Accuracy [%] on 5 NLU tasks. We sample 2000 extra demonstration examples and load them into cached memory." />
+<figcaption aria-hidden="true">Accuracy [%] on 5 NLU tasks. We sample
+2000 extra demonstration examples and load them into cached
+memory.</figcaption>
+</figure>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-11.png"
+alt="Exact match (EM) and F1 scores on SQuAD. LongMem loads 200 extra demonstration examples into cached memory." />
+<figcaption aria-hidden="true">Exact match (EM) and F1 scores on SQuAD.
+LongMem loads 200 extra demonstration examples into cached
+memory.</figcaption>
+</figure>
+<h3 id="ablation-studies">Ablation Studies</h3>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-12.png"
+alt="(a) Effects of chunk size on ICL; (b) Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice msz=16k)." />
+<figcaption aria-hidden="true">(a) Effects of chunk size on ICL; (b)
+Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice
+msz=16k).</figcaption>
+</figure>
+<p>In general, the memory size should be compatible with the average
+length of documents or contexts, i.e., a set of books with average 16k
+tokens should deploy the memory size of 16k tokens in cached memory.</p>
+<h2 id="related-work">Related Work</h2>
+<p><strong>(1) Large Language Models</strong></p>
+<p><strong>(2) x-formers</strong></p>
+<p>x-former enables transformers to attend on longer context. However,
+existing x-formers is <strong>not efficient</strong> and their
+<strong>upper-bound seq_len</strong> is only 16k tokens.</p>
+<p><a href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL</a>
+proposes to cache attention keys and values of past segment and reuse
+them in recurrent manner.</p>
+<p><a href="https://arxiv.org/pdf/2006.04768.pdf">LinFormer</a>, <a
+href="https://arxiv.org/pdf/2004.05150.pdf">LongFormer</a>, <a
+href="https://arxiv.org/pdf/2003.05997.pdf">Routing Transformer</a>
+propose various sparse attention mechanisms for decreasing <span
+class="math inline">\(O(n^2)\)</span> complexity to <span
+class="math inline">\(O(n log n)\)</span> or even <span
+class="math inline">\(O(n)\)</span>.</p>
+<p><a href="https://arxiv.org/pdf/2007.14062.pdf">BigBird</a> achieves a
+4k sequence length via attending on a subset of context tokens.</p>
+<p><strong>(3) Side-Tuning (<a
+href="https://arxiv.org/pdf/1912.13503.pdf">paper1</a>, <a
+href="https://arxiv.org/pdf/2206.06522.pdf">paper2</a>)</strong></p>
+<p>Side-Tuning is a <strong>task-specific</strong> tuning method for
+pre-trained models via training a lightweight side-network that is fused
+with the fixed pre-trained network via summation.</p>
+<blockquote>
+<p>In constrast, LongMem has well zero-shot performance.</p>
+</blockquote>
+<p>Our method distinguishes the side-tuning method in terms of
+<strong>learning objective</strong> and <strong>cross-network fusion
+ways</strong>.</p>
+<p>LongMem proposes to augment LLMs with decoupled memory for memorizing
+long past inputs, which does not involve any task-specific tuning.</p>
+<p>The cross-network residual connections proposed by LongMem is novel
+and distincts from the vanilla summation of Side-Tuning.</p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Side-Tuning</tag>
+        <tag>X-Formers</tag>
+        <tag>PEFT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>(LENS)Towards Language Models That Can See: Computer Vision Through the LENS🔍 of Natural Language</title>
     <url>/2023/07/03/LENS/</url>
     <content><![CDATA[<p><img
@@ -779,859 +1263,6 @@ restrictions(e.g., ethical, political, and racism issues).</li>
       </tags>
   </entry>
   <entry>
-    <title>(LongMem)Augmenting Language Models with Long-Term Memory</title>
-    <url>/2023/07/01/LongMem/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-0.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2306.07174.pdf">https://arxiv.org/pdf/2306.07174.pdf</a></p>
-<p>Code: <a
-href="https://github.com/Victorwz/LongMem">https://github.com/Victorwz/LongMem</a></p>
-<p>Bilibili: <a
-href="https://www.bilibili.com/video/BV17M4y177WG/?share_source=copy_web">Augmenting
-Language Models with Long-Term Memory （UCSB， Microsoft 2023）</a></p>
-<aside>
-<p>👇 <strong>Problems</strong></p>
-</aside>
-<ul>
-<li>LLMs can <strong>only afford fix-sized inputs</strong> due to the
-input length limit, preventing them from utilizing rich long-context
-information from past inputs.</li>
-</ul>
-<p><strong><em>Two existing ways addressing the length limit
-issue:</em></strong></p>
-<ul>
-<li>Directly increasing the input length of LLM will cause <strong>huge
-computation complexity</strong>.</li>
-<li>Developing sparse attention reduces the computation cost, but still
-requires <strong>training from scratch</strong>.</li>
-</ul>
-<aside>
-<p>👇 <strong>Contributions</strong></p>
-</aside>
-<ul>
-<li><strong>LongMem</strong> enables LLMs to memorize long history,
-which benefits various downstream tasks.</li>
-</ul>
-<blockquote>
-<p>The idea behind this is very similar to LoRA's, creating a small
-network next to the backbone.</p>
-</blockquote>
-<p><strong><em>Two Benefits of LongMem:</em></strong></p>
-<ul>
-<li>Decouples the process of encoding memory and the process of memory
-retrieval and fusion, via decoupling LLM and SideNet, which effectively
-<strong>resolves the issue of memory staleness</strong>.</li>
-<li>The SideNet with frozen LLM is <strong>parameter-efficient</strong>
-can avoid catastrophic forgetting.</li>
-</ul>
-<blockquote>
-<p><strong>Remaining Questions</strong>: What is the ablation study of
-<span class="math inline">\(m\)</span> and <span
-class="math inline">\(m_s\)</span>? What are limitation of LongMem and
-its future work?</p>
-</blockquote>
-<hr />
-<h2 id="methods">Methods</h2>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-1.png"
-alt="Overview of the memory caching and retrieval flow of LongMem." />
-<figcaption aria-hidden="true">Overview of the memory caching and
-retrieval flow of LongMem.</figcaption>
-</figure>
-<p>Three key components of LongMem: <strong>frozen LLM, Cache Memory
-Bank(CMB), Residual SideNet(RS).</strong></p>
-<p><strong>CMB</strong> is a cached head-wise vector queue that stores
-the memory.</p>
-<p><strong>RS</strong> is efficiently trained to fuse the memory context
-information.</p>
-<h3 id="encoding-and-storing-memory">Encoding and Storing Memory</h3>
-<p>Most LLMs process a fixed-sized input. Therefore, split a long
-sequence into fix-length segments.</p>
-<blockquote>
-<p>Each segment has several sequences.</p>
-</blockquote>
-<ul>
-<li><strong>Previous segments</strong>: key-value pairs of
-self-attention at m-th layer(<span
-class="math inline">\(\mathcal{Z}_k,\mathcal{Z}_v\in\mathbb{R}^{H\times
-M\times d}\)</span>) are stored in <strong>CMB</strong>
-<ul>
-<li><span class="math inline">\(H\)</span> is the attention heads num,
-<span class="math inline">\(d\)</span> is per-head dimension, <span
-class="math inline">\(M\)</span> indicates the capacity of
-<strong>CMB</strong></li>
-</ul></li>
-<li><strong>Current segment <span
-class="math inline">\(\{x_i\}_{i=1}^{|x|}:\)</span></strong> hidden
-states(of each layer) are retained and transfered to <strong>RS</strong>
-<ul>
-<li><span
-class="math inline">\(\mathbf{H}_{LLM}^0\in\mathbb{R}^{|x|\times
-E}\)</span> is the initial hidden states of <span
-class="math inline">\(\{x_i\}_{i=1}^{|x|}\)</span>, <span
-class="math inline">\(E\)</span> is the hidden dimension</li>
-<li><span
-class="math inline">\(\mathbf{H}_{LLM}^{l&#39;}=f_{\theta_{LLM}^{l&#39;}}(\mathbf{H}_{LLM}^{l&#39;-1}),\forall
-l&#39;\in[1,L&#39;]\)</span> is the successive hidden states, <span
-class="math inline">\(L&#39;\)</span> is the total layer num of LLM</li>
-</ul></li>
-<li><strong>Current token</strong>: top-K relevant key-value pairs are
-retrieved and fused into language modeling</li>
-</ul>
-<p><strong>CMB Update Mechanism</strong>: after memory retrieval and
-fusion, the oldest sequences are removed, the current sequences are
-appended.</p>
-<h3 id="memory-retrieval">Memory Retrieval</h3>
-<p><strong>Text-chunk</strong>: an n-gram structure of
-<strong>chunk-size</strong> <span class="math inline">\(csz\)</span>
-number of contiguous tokens.</p>
-<p>The hyperparameter <span class="math inline">\(csz\)</span> controls
-<strong>the granularity of retrieved contexts</strong>, which can be
-empirically adjusted based on downstream tasks.</p>
-<blockquote>
-<p>For instance, In-Context Learning requires more fine-grained label
-tokens from demostration examples cached in memory, where a smaller
-<span class="math inline">\(csz\)</span> is helpful.</p>
-</blockquote>
-<p><strong>Advantages of Token-to-Chunk Retrieval</strong>(compared with
-token-to-token):</p>
-<ul>
-<li>reduce the size of the retrieval index and
-<strong>accelerate</strong> the process</li>
-<li>further improve the retrieval <strong>accuracy</strong> (not always,
-when <span class="math inline">\(csz\)</span> is too large)</li>
-</ul>
-<p><strong>Three steps of retrieval:</strong></p>
-<ol type="1">
-<li>The <strong>CMB</strong> has <span
-class="math inline">\(M/csz\)</span> chunks. We use the
-<strong>mean-pooled vector</strong> on the chunk-size dimension to get
-the key vector for retrieval.</li>
-<li>Then we retrieve the top-(<span
-class="math inline">\(K/csz\)</span>) chunks w.r.t(with respect to) the
-dot product between the <strong>attention query</strong> of current
-token <span class="math inline">\(\mathbf{x}_i\)</span> and the
-<strong>mean-pooled attention key</strong> of a candidate chunk.</li>
-<li>Finally, by squeezing and flatterning, we get <span
-class="math inline">\(K\)</span> key-valus pairs <span
-class="math inline">\(\{\widetilde{\mathbf{K}}_j,\widetilde{\mathbf{V}}_j\}_{j=1}^K\)</span>
-at token-level.</li>
-</ol>
-<h3 id="memory-fusion">Memory Fusion</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-2.png"
-alt="Overview of LongMem architecture. “MemAug” represents Memory-Augmented Layer for memory retrieval and fusion." />
-<figcaption aria-hidden="true">Overview of LongMem architecture.
-“<strong>MemAug</strong>” represents <strong>Memory-Augmented
-Layer</strong> for memory retrieval and fusion.</figcaption>
-</figure>
-<aside>
-<p>👇 <strong>Residual</strong> <strong>SideNet</strong> Architecture
-and Initialization</p>
-</aside>
-<p>SideNet consists of (L-1) normal Transformer decoder layers and one
-special <strong>MemAug</strong>.</p>
-<p><span class="math inline">\(L\)</span> is the total layer num of
-<strong>SideNet</strong>, <span class="math inline">\(L&#39;=\alpha L,
-\alpha\in\{2,3,4,...\}\)</span>, <span
-class="math inline">\(L&lt;L&#39;\)</span> for efficiency.</p>
-<p><strong>Weight Initialization</strong>: <span
-class="math inline">\(\mathcal{\Theta}_{Side}^{\frac{l&#39;}{\alpha}}=\mathcal{\Theta}_{LLM}^{l&#39;}\)</span></p>
-<p><strong>Cross-Network Residual Connections</strong>:</p>
-<p><span
-class="math inline">\(\mathbf{H}_{Side}^l=f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})+(\mathbf{H}_{LLM}^{\alpha
-l}-\mathbf{H}_{LLM}^{\alpha(l-1)}),\forall l\in[1,L]\)</span></p>
-<blockquote>
-<p>The residual connections after the SA and FFN of a decoder layer will
-be performed as normal in <span
-class="math inline">\(f_{\mathcal{\Theta}_{Side}^l}(\mathbf{H}_{Side}^{l-1})\)</span>
-and parallel to the proposed cross-network residual connections. SA is
-self-attention. FFN is feed-forward network.</p>
-</blockquote>
-<aside>
-<p>👇 <strong>MemAug:</strong> Each token attends on both local contexts
-and retrieved memory contexts.</p>
-</aside>
-<p><span class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V},
-\mathbf{A},\mathbf{M}\in\mathbb{R}^{|x|\times d}\)</span>, <span
-class="math inline">\(g\)</span> is a <strong>trainable</strong>
-<strong>head-wise</strong> gating factor, <span
-class="math inline">\(m_s\)</span> is the layer index of
-<strong>MemAug.</strong></p>
-<blockquote>
-<p>The initialization of gating factor g:
-Parameter(torch.zeros(self.num_heads))</p>
-</blockquote>
-<p>The hidden state output from previous layer (<span
-class="math inline">\(\mathbf{H}^{(m_s-1)}_{Side}\in\mathbb{R}^{|x|\times
-d}\)</span>) is linearly projected into <span
-class="math inline">\(\mathbf{Q}, \mathbf{K}, \mathbf{V}\)</span> via
-three matrices <span
-class="math inline">\(W^Q,W^K,W^V\in\mathbb{R}^{d\times d}\)</span>.</p>
-<p><span
-class="math inline">\(\{\widetilde{\mathbf{K}}_i,\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\in\mathbb{R}^{|x|\times
-K\times d}\)</span> is the retrieved contexts. Each token has distinct
-contexts.</p>
-<p><span
-class="math inline">\(\mathbf{A}=softmax(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d}})\mathbf{V},\mathbf{M}=Concat\{softmax(\frac{\mathbf{Q}_i\widetilde{\mathbf{K}}_i^T}{\sqrt{d}})\widetilde{\mathbf{V}}_i\}_{i=1}^{|x|}\)</span></p>
-<p><span
-class="math inline">\(\mathbf{H}^{m_s}_{Side}=sigmoid(g)·\mathbf{A}+(1-sigmoid(g))·\mathbf{M}:\)</span>
-the output of <strong>MemAug</strong></p>
-<h3 id="training-objective">Training Objective</h3>
-<ul>
-<li><span
-class="math inline">\(P(\mathbf{x}_i|\mathbf{x}_1,...,\mathbf{x}_{i-1})=softmax(W\mathbf{H}^{L}_{Side}):\)</span>
-the token probability is computed using the last SideNet hidden states
-<ul>
-<li><span class="math inline">\(W:\)</span> the frozen output embedding
-weight shared by LLM and SideNet</li>
-</ul></li>
-<li><span
-class="math inline">\(\max\sum_{x\in\mathcal{D}}\sum_{i=1}^{|x|}\log
-P(\mathbf{x}_i|\mathbf{x}_1, ..., \mathbf{x}_{i-1}):\)</span> the
-training objective of <strong>LongMem</strong>
-<ul>
-<li><span class="math inline">\(x\)</span> is a randomly sampled
-sentence from the pre-training text corpus <span
-class="math inline">\(\mathcal{D}\)</span></li>
-</ul></li>
-</ul>
-<h2 id="experiments">Experiments</h2>
-<h3 id="training-setup">Training Setup</h3>
-<aside>
-<p>👇 Batchfying the training corpora (document-level shuffling within
-each group)</p>
-</aside>
-<blockquote>
-<p>The conventional process truncates the corpora without padding and
-conduct a segment-level shuffling.</p>
-</blockquote>
-<p>Doc Group Num = Batch Size</p>
-<p>Segment num is same for each group.</p>
-<blockquote>
-<p>Maybe need padding. Seg num is unlimited.</p>
-</blockquote>
-<p>In a mini-batch, we select a segment from each group and get total
-batch-size num of segments.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-3.png"
-alt="Batchfying the large text corpora into batches to ensure that each consecutive segments within each document is distributed in consecutive batches." />
-<figcaption aria-hidden="true"><strong>Batchfying the large text
-corpora</strong> into batches to ensure that each consecutive segments
-within each document is distributed in consecutive batches.</figcaption>
-</figure>
-<aside>
-<p>👇 Training Corpus and Hyperparameters</p>
-</aside>
-<p><strong>Corpus</strong>: sample a subset of the <a
-href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a>.</p>
-<p>The pre-training of reproduced GPT-2* iterates on 117B tokens in
-total, with 512 batch-size and 1024-token fixed segment-length.</p>
-<blockquote>
-<p>Original GPT-2 adopts absolute position embedding, which is found to
-perform poorly to enable LLM to learn long-distance dependencies.</p>
-</blockquote>
-<p><strong>MemAug</strong> is the 9-th layer of SideNet.</p>
-<p><span
-class="math inline">\(L&#39;=24,L=12,\alpha=\frac{L&#39;}{L}=2,H=16,d=64,\)</span>
-<span class="math inline">\(csz=4,K=64,m=18\)</span></p>
-<blockquote>
-<p>The attention keys and values from m=18-th layer of backbone LLM is
-cached into CMB.</p>
-</blockquote>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-4.png"
-alt="Memory-Augmented Adaptation and Architectural Hyperparameters." />
-<figcaption aria-hidden="true">Memory-Augmented Adaptation and
-Architectural Hyperparameters.</figcaption>
-</figure>
-<p>The pre-training and adaptation are trained on <strong>16
-32GB-Tesla-V100 GPUs</strong>.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-5.png"
-alt="The superiority of our method over fully dense self-attention (GPT-2*) in terms of inference speed and GPU-memory utilization." />
-<figcaption aria-hidden="true">The superiority of our method over fully
-dense self-attention (GPT-2*) in terms of <strong>inference speed and
-GPU-memory utilization</strong>.</figcaption>
-</figure>
-<aside>
-<p>👇 Memory Retrieval Module</p>
-</aside>
-<p>The fixed memory-size of <strong>CMB</strong> in one GPU is 65536
-key-value pairs of tokens.</p>
-<blockquote>
-<p>We enable each GPU to construct and update their own memory retrieval
-module for efficiency.</p>
-<p>The capacity of CMB (M) is not unlimited.</p>
-</blockquote>
-<p>The retrieval takes about 15ms per 1k tokens, which is 55% timecost
-of LLM forwarding pass.</p>
-<p>Use <a href="https://arxiv.org/pdf/1702.08734.pdf">faiss</a> to store
-the mean-pooled attention keys of <span
-class="math inline">\(M/csz\)</span> chunks and perform efficient
-retrieval.</p>
-<aside>
-<p>👇 Baselines</p>
-</aside>
-<p>Adopt reproduced GPT-2* and <a
-href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as two baseline
-under same pre-training setting.</p>
-<p>We insert the knn-augmented layer proposed by <a
-href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> as the same 18-th
-layer in the LLM decoder.</p>
-<h3 id="long-context-language-modeling">Long-Context Language
-Modeling</h3>
-<aside>
-<p>👇 Zero-Shot Evaluation Setting(3 long-context modeling datasets)</p>
-</aside>
-<p>The majority of included books or papers in these datasets have the
-length of at least 16k tokens.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-6.png"
-alt="Dataset Statistics of five splits of PG-22 based on length range and ArXiv." />
-<figcaption aria-hidden="true">Dataset Statistics of five splits of
-PG-22 based on length range and ArXiv.</figcaption>
-</figure>
-<p><strong>PG-22(Project Gutenberg 2020-2022 Language
-Modeling):</strong> We crawled and cleaned the books published between
-2020 and 2022 under <a href="https://www.gutenberg.org/">Project
-Gutenberg Library</a>.</p>
-<blockquote>
-<p>Our training subset PG-19 only contains books published before
-1919.</p>
-</blockquote>
-<p><strong>ArXiv:</strong> We select a val split of ArXiv paper subset
-in the <a href="https://arxiv.org/pdf/2101.00027.pdf">Pile</a> corpus.
-The val split does not exist in our training corpus.</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</strong>
-We select the Archive of Our Own (AO3) subset. Use its splits of 4k, 6k,
-and 8k prefix.</p>
-<p><strong><em>Details of <a
-href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>:</em></strong></p>
-<ul>
-<li>For LLMs that cannot process over 4k tokens, we abandon the front
-prefix to fulfill the maximum input length of LLMs.</li>
-<li>For <a href="https://arxiv.org/pdf/2203.08913.pdf">MemTRM</a> and
-LongMem model, we firstly load the given 4k/6k/8k prefix contexts into
-the cached memory(while the input length to local context is still 1k
-tokens) and then do the scoring.</li>
-<li>We use the perplexity as the scorer for each candidate suffix
-segment in zero-shot evaluation manner.</li>
-<li>Then the suffix segment with lower perplexity is selected as the
-label.</li>
-<li>The suffix identification accuracy is used as the evaluation
-metric.</li>
-</ul>
-<aside>
-<p>👇 Results</p>
-</aside>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-7.png"
-alt="Evaluation results on long-context language modeling datasets. We report token-level perplexity (PPL) (lower the better) on all datasets." />
-<figcaption aria-hidden="true">Evaluation results on long-context
-language modeling datasets. We report token-level perplexity (PPL)
-(lower the better) on all datasets.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-8.png"
-alt="Zero-shot Suffix Identification Accuracy on AO3 subset of ChapterBreak. Baselines marked with † are directly cited from ChapterBreak." />
-<figcaption aria-hidden="true">Zero-shot Suffix Identification Accuracy
-on AO3 subset of ChapterBreak. Baselines marked with † are directly
-cited from <a
-href="https://arxiv.org/pdf/2204.10878.pdf">ChapterBreak</a>.</figcaption>
-</figure>
-<h3 id="memory-augmented-in-context-learning">Memory-Augmented
-In-Context Learning</h3>
-<blockquote>
-<p>Conventional ICL is heavily restricted by input context length.</p>
-</blockquote>
-<p>LongMem: <strong>Infinite-length ICL when loading large number of
-demonstration examples into cached memory.</strong></p>
-<aside>
-<p>👇 Evaluation Setting</p>
-</aside>
-<ul>
-<li>NLU datasets, 4/20-shot: <a
-href="https://aclanthology.org/D13-1170.pdf">SST-2</a>, <a
-href="https://www.cs.cornell.edu/home/cardie/papers/lre05withappendix.pdf">MPQA</a>,
-<a
-href="http://richard.cyganiak.de/2008/papers/dbpedia-iswc2007.pdf">MR</a>,
-<a href="https://aclanthology.org/P04-1035.pdf">Subj</a>, <a
-href="https://aclanthology.org/D13-1170.pdf">SST-5</a></li>
-<li>QA dataset, open-ended generation, 3-shot(about 1k tokens): <a
-href="https://arxiv.org/pdf/1606.05250.pdf">SQuAD</a></li>
-</ul>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-9.png"
-alt="The hand-crafted ICL prompt templates. We concatenate the demonstration examples with newlines to delimit them." />
-<figcaption aria-hidden="true">The hand-crafted <strong>ICL prompt
-templates</strong>. We concatenate the demonstration examples with
-newlines to delimit them.</figcaption>
-</figure>
-<p>The prediction label is directly generated using greedy decoding.</p>
-<p>Chunk size <span class="math inline">\(csz=2\)</span></p>
-<aside>
-<p>👇 Results</p>
-</aside>
-<p>We report the mean and standard deviation of 6 runs with different
-random seeds to overcome the randomness in selecting k-shot
-demonstration examples.</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-10.png"
-alt="Accuracy [%] on 5 NLU tasks. We sample 2000 extra demonstration examples and load them into cached memory." />
-<figcaption aria-hidden="true">Accuracy [%] on 5 NLU tasks. We sample
-2000 extra demonstration examples and load them into cached
-memory.</figcaption>
-</figure>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-11.png"
-alt="Exact match (EM) and F1 scores on SQuAD. LongMem loads 200 extra demonstration examples into cached memory." />
-<figcaption aria-hidden="true">Exact match (EM) and F1 scores on SQuAD.
-LongMem loads 200 extra demonstration examples into cached
-memory.</figcaption>
-</figure>
-<h3 id="ablation-studies">Ablation Studies</h3>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/longmem-12.png"
-alt="(a) Effects of chunk size on ICL; (b) Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice msz=16k)." />
-<figcaption aria-hidden="true">(a) Effects of chunk size on ICL; (b)
-Effects of memory size, ∆Perplexity on 4 splits of PG-22 (notice
-msz=16k).</figcaption>
-</figure>
-<p>In general, the memory size should be compatible with the average
-length of documents or contexts, i.e., a set of books with average 16k
-tokens should deploy the memory size of 16k tokens in cached memory.</p>
-<h2 id="related-work">Related Work</h2>
-<p><strong>(1) Large Language Models</strong></p>
-<p><strong>(2) x-formers</strong></p>
-<p>x-former enables transformers to attend on longer context. However,
-existing x-formers is <strong>not efficient</strong> and their
-<strong>upper-bound seq_len</strong> is only 16k tokens.</p>
-<p><a href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL</a>
-proposes to cache attention keys and values of past segment and reuse
-them in recurrent manner.</p>
-<p><a href="https://arxiv.org/pdf/2006.04768.pdf">LinFormer</a>, <a
-href="https://arxiv.org/pdf/2004.05150.pdf">LongFormer</a>, <a
-href="https://arxiv.org/pdf/2003.05997.pdf">Routing Transformer</a>
-propose various sparse attention mechanisms for decreasing <span
-class="math inline">\(O(n^2)\)</span> complexity to <span
-class="math inline">\(O(n log n)\)</span> or even <span
-class="math inline">\(O(n)\)</span>.</p>
-<p><a href="https://arxiv.org/pdf/2007.14062.pdf">BigBird</a> achieves a
-4k sequence length via attending on a subset of context tokens.</p>
-<p><strong>(3) Side-Tuning (<a
-href="https://arxiv.org/pdf/1912.13503.pdf">paper1</a>, <a
-href="https://arxiv.org/pdf/2206.06522.pdf">paper2</a>)</strong></p>
-<p>Side-Tuning is a <strong>task-specific</strong> tuning method for
-pre-trained models via training a lightweight side-network that is fused
-with the fixed pre-trained network via summation.</p>
-<blockquote>
-<p>In constrast, LongMem has well zero-shot performance.</p>
-</blockquote>
-<p>Our method distinguishes the side-tuning method in terms of
-<strong>learning objective</strong> and <strong>cross-network fusion
-ways</strong>.</p>
-<p>LongMem proposes to augment LLMs with decoupled memory for memorizing
-long past inputs, which does not involve any task-specific tuning.</p>
-<p>The cross-network residual connections proposed by LongMem is novel
-and distincts from the vanilla summation of Side-Tuning.</p>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Side-Tuning</tag>
-        <tag>X-Formers</tag>
-        <tag>PEFT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A Survey on Multimodal Large Language Models</title>
-    <url>/2023/06/30/MLLM/</url>
-    <content><![CDATA[<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
-<p>Paper: <a
-href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
-<p>Code: <a
-href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
-<aside>
-<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
-</aside>
-<p><strong>MLLM</strong>: the LLM-based model with the ability to
-receive and reason with multimodal information</p>
-<p><strong>Three Advantages</strong>: (1) more in line with human
-perception (2) more user-friendly interface (3) more well-rounded
-task-solver</p>
-<p><strong>Three Example Capabilities</strong>: (1) write website codes
-based on images (2) understand deep meaning of memes (3) OCR-free math
-reasoning</p>
-<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
-<hr />
-<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
-Tuning</h2>
-<h3 id="preliminaries">Preliminaries</h3>
-<p><strong>Instruction</strong>: the description of tasks</p>
-<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
-on instruction-formatted datasets</p>
-<p><strong>Instruction Tuning 3 Advantages:</strong></p>
-<ol type="1">
-<li><p>better understand and respond to various human requests</p></li>
-<li><p>zero-shot generalization to new tasks</p></li>
-<li><p>non-experts can use natural language to interact with LLMs</p>
-<blockquote>
-<p><em>The most popular programming language in the future will be
-English.</em></p>
-</blockquote></li>
-</ol>
-<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
-A: large-scale task-specific training data; B: zero-shot performance is
-still quite average</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
-<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
-the next token of the response. The instruction template is flexible and
-subject to manual designs. It can also be generalized to multi-round
-instructions.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
-<h3 id="data">Data</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
-<aside>
-<p>👉 <strong>Benchmark Adaptation</strong></p>
-</aside>
-<p><strong>Instruction templates for VQA datasets</strong>.
-&lt;image&gt; and {Question} are the image and the question in the
-original VQA datasets, respectively. Utilize existing benchmark datasets
-to construct instruction-formatted datasets.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
-<p><strong>Directly using concise answers may limit the output length of
-MLLM</strong>.</p>
-<ul>
-<li>Modify Instructions: ChatBridge, InstructBLIP</li>
-<li>Extend the length of existing answers: <span
-class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
-<aside>
-<p>👉 <strong>Self-Instruction</strong></p>
-</aside>
-<p><strong>Self-Instruction</strong>: To meet real-world human needs,
-such as multiple rounds of conversations.</p>
-<ul>
-<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
-<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
-different M-IT datasets catering for different needs</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
-<aside>
-<p>👉 <strong>Hybrid Composition</strong></p>
-</aside>
-<p>M-IT data + language-only user-assistant conversation data.</p>
-<p><strong>Adavantage</strong>: conversational proficiencies,
-instruction-following abilities</p>
-<p><strong>Representative work</strong>:</p>
-<ul>
-<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
-sampling from both data</li>
-<li><strong>MultiInstruct</strong>: two transfer learning strategies
-<ul>
-<li>Mixed instruction tuning: combine both types of data and randomly
-shuffle. (The empirical results show that mixed instruction tuning is at
-least not worse than solely tuning on multimodal data.)</li>
-<li>Sequential instruction tuning: text data followed by multimodal
-data</li>
-</ul></li>
-</ul>
-<h3 id="modality-bridging">Modality Bridging</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
-<aside>
-<p>👉 <strong>Learnable Interface</strong></p>
-</aside>
-<p><strong>Adavantages</strong>: little cost, avoid catastrophic
-forgetting</p>
-<p><strong>Three manners</strong>:</p>
-<ol type="1">
-<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
-BLIP-2</li>
-<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
-<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
-LaVIN</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
-<aside>
-<p>👉 <strong>Expert Model</strong></p>
-</aside>
-<p><strong>Advantage</strong>: Via expert models, convert multimodal
-inputs into languages without training.</p>
-<p><strong>Disadvantage</strong>: less flexible, info loss</p>
-<p><a
-href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
-transforming videos into textual descriptions distorts spatial-temporal
-relationships.</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
-<h3 id="evaluation">Evaluation</h3>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
-<aside>
-<p>👉 <strong>Closed-set</strong></p>
-</aside>
-<p><strong>Closed-set questions</strong>: its possible answer options
-are predefined and limited</p>
-<p><strong>Two evaluation types</strong>:</p>
-<ol type="1">
-<li><strong>leverage existing datasets</strong>: limited to a small
-range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
-evaluation settings:
-<ol type="1">
-<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
-<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
-</ol></li>
-<li><strong>develop new benchmarks specially designed for
-MLLMs</strong>: more comprehensive
-<ol type="1">
-<li><a
-href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
-perception and cognition tasks, manually design instruction-answer pairs
-to avoid data leakage</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
-various 2D/3D vision tasks</li>
-<li><strong><a
-href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
-(1) video-based generative performance (2) zero-shot QA</li>
-</ol></li>
-</ol>
-<aside>
-<p>👉 <strong>Open-set</strong></p>
-</aside>
-<p><strong>Open-set questions</strong>: its possible answer options are
-open and flexible.</p>
-<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
-<ol type="1">
-<li><strong>Manual scoring</strong>: require humans to assess specific
-dimensions</li>
-<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
-(LLaVA)
-<ul>
-<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
-setting GPT-4 as the performance upper bound is not perfect.</li>
-</ul></li>
-<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
-</ol>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
-<aside>
-<p>👉 <strong>Others</strong></p>
-</aside>
-<p><strong><a
-href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
-sensitivity metric, model’s robustness to varied instructions</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
-into the object hallucination problem</p>
-<p><strong><a
-href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
-(safety) the robustness of MLLMs to adversarial attacks</p>
-<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
-In-Context Learning</h2>
-<p><strong>ICL</strong>: few-shot, training-free</p>
-<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
-a demonstration set (i.e., a set of in-context samples), to the original
-sample.</p>
-<p><strong>Template example of an M-ICL query</strong>:</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
-<aside>
-<p>👉 <strong>Two Scenarios</strong></p>
-</aside>
-<p><strong>Scenario 1: solving various visual reasoning
-tasks</strong></p>
-<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
-href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
-href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
-href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
-href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
-<ul>
-<li>Via demonstrations, LLMs get a sense of what the task is doing and
-what the output template is.</li>
-<li>Thus LLMs learn from a few task-specific examples and generalize to
-a new but similar question.</li>
-</ul>
-<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
-<p>(<strong><a
-href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
-href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
-href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
-<ul>
-<li>Demonstrations are often text-only and more fine-grained.</li>
-<li>They typically comprise a chain of steps that could be sequentially
-executed to fulfill the task. (related to CoT)</li>
-</ul>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
-<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
-Thought</h2>
-<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
-<p><strong>CoT Scenario</strong>: complex reasoning</p>
-<p><strong>CoT Main Idea</strong>: output both reasoning process and
-final answer</p>
-<p><strong>M-CoT</strong> (<strong><a
-href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
-href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
-href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
-<p><strong>Modality Bridging</strong></p>
-<ul>
-<li><p><strong>Expert Model</strong>: transforming visual input into
-textual descriptions (<a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
-image captions and original textual imput to LLMs)</p></li>
-<li><p><strong>Learnable Interface</strong>: feature fusion (<a
-href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
-two-stage framework)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
-</ul>
-<p><strong>Learning Paradigms</strong></p>
-<ul>
-<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
-href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
-<li><strong>Few-shot</strong>: requires hand-crafting some in-context
-examples</li>
-<li><strong>Zero-shot</strong>: require no specific example</li>
-</ul>
-<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
-<ul>
-<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
-reasoning chains</li>
-<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
-length</li>
-</ul>
-<p><strong>Generation Pattens——</strong>(How the chain is
-constructed?)</p>
-<p>The generated steps should be consistent and correct.</p>
-<ul>
-<li><p><strong>Predicting</strong>: extending the reasoning chains given
-conditions such as instructions and previous reasoning history</p></li>
-<li><p><strong>Infilling</strong>: deducing steps between surrounding
-context (previous and following steps) to fill the logical gaps
-(VideoCoT)</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
-</ul>
-<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
-Reasoning</h2>
-<p><strong>LAVR</strong>: use external tools or visual foundation
-models.</p>
-<p><strong>Three advantages</strong> compared with conventional visual
-reasoning models: <strong>Strong generalization, Emergent abilities,
-Better interactivity and control</strong></p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
-<aside>
-<p>👉 <strong>Training Paradigms</strong></p>
-</aside>
-<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
-generate a new tool-related instruction dataset</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
-<aside>
-<p>👉 <strong>Functions</strong></p>
-</aside>
-<p><em>The primary roles that LLMs play in LAVR.</em></p>
-<ul>
-<li><strong>Controller</strong>: (single-round) breaks down a complex
-task [via CoT], assign subtasks to right tools/modules</li>
-<li><strong>Decision Maker</strong>: (multi-round) summarize history and
-current info, decide whether the info is sufficient to finish the task,
-friendly present answer</li>
-<li><strong>Semantics Refiner</strong>: integrate info into fluent
-scentences, generate texts according to different specific needs</li>
-</ul>
-<h2 id="challenges-and-future-directions">Challenges and Future
-Directions</h2>
-<ol type="1">
-<li><p><strong>Perception Capabilities</strong>: compromise between info
-capacity and computation burden</p></li>
-<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
-chain delivers right answer</p></li>
-<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
-type)</p></li>
-<li><p><strong>Object Hallucination</strong>: more fine-grained modality
-alignment</p>
-<p><img
-src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
-<p>(The object does not appear in the image)</p></li>
-<li><p><strong>Parameter-Efficient Training</strong></p></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Paper</category>
-        <category>2023</category>
-        <category>06</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-        <tag>Multi-modal</tag>
-        <tag>Instruction-Following</tag>
-        <tag>In-Context Learning</tag>
-        <tag>Chain of Thought</tag>
-        <tag>Tool Learning</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MIMIC-IT: Multi-Modal In-Context Instruction Tuning</title>
     <url>/2023/07/04/MIMIC-IT/</url>
     <content><![CDATA[<p><img
@@ -2099,6 +1730,375 @@ hallucination issue</li>
         <tag>Dataset</tag>
         <tag>Instrcution-Following</tag>
         <tag>In-Context Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Survey on Multimodal Large Language Models</title>
+    <url>/2023/06/30/MLLM/</url>
+    <content><![CDATA[<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-author.png" /></p>
+<p>Paper: <a
+href="https://arxiv.org/pdf/2306.13549.pdf">https://arxiv.org/pdf/2306.13394.pdf</a></p>
+<p>Code: <a
+href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models</a></p>
+<aside>
+<p>💡 <strong><em>Why we need MLLM?</em></strong></p>
+</aside>
+<p><strong>MLLM</strong>: the LLM-based model with the ability to
+receive and reason with multimodal information</p>
+<p><strong>Three Advantages</strong>: (1) more in line with human
+perception (2) more user-friendly interface (3) more well-rounded
+task-solver</p>
+<p><strong>Three Example Capabilities</strong>: (1) write website codes
+based on images (2) understand deep meaning of memes (3) OCR-free math
+reasoning</p>
+<p><strong>Four Key Techniques</strong>: M-IT, M-ICL, M-CoT, LAVR</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-1.png" /></p>
+<hr />
+<h2 id="m-it-multimodal-instruction-tuning">M-IT: Multimodal Instruction
+Tuning</h2>
+<h3 id="preliminaries">Preliminaries</h3>
+<p><strong>Instruction</strong>: the description of tasks</p>
+<p><strong>Instruction Tuning</strong>: a technique of finetuning LLMs
+on instruction-formatted datasets</p>
+<p><strong>Instruction Tuning 3 Advantages:</strong></p>
+<ol type="1">
+<li><p>better understand and respond to various human requests</p></li>
+<li><p>zero-shot generalization to new tasks</p></li>
+<li><p>non-experts can use natural language to interact with LLMs</p>
+<blockquote>
+<p><em>The most popular programming language in the future will be
+English.</em></p>
+</blockquote></li>
+</ol>
+<p><strong>Instruction Tuning &amp; typical learning paradigms.</strong>
+A: large-scale task-specific training data; B: zero-shot performance is
+still quite average</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-2.png" /></p>
+<p><strong>Extend from Unimodality to Multimodality</strong>. Predict
+the next token of the response. The instruction template is flexible and
+subject to manual designs. It can also be generalized to multi-round
+instructions.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-3.png" /></p>
+<h3 id="data">Data</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-4.png" /></p>
+<aside>
+<p>👉 <strong>Benchmark Adaptation</strong></p>
+</aside>
+<p><strong>Instruction templates for VQA datasets</strong>.
+&lt;image&gt; and {Question} are the image and the question in the
+original VQA datasets, respectively. Utilize existing benchmark datasets
+to construct instruction-formatted datasets.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-5.png" /></p>
+<p><strong>Directly using concise answers may limit the output length of
+MLLM</strong>.</p>
+<ul>
+<li>Modify Instructions: ChatBridge, InstructBLIP</li>
+<li>Extend the length of existing answers: <span
+class="math inline">\(𝑀^3 𝐼𝑇\)</span></li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-6.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-7.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-8.png" /></p>
+<aside>
+<p>👉 <strong>Self-Instruction</strong></p>
+</aside>
+<p><strong>Self-Instruction</strong>: To meet real-world human needs,
+such as multiple rounds of conversations.</p>
+<ul>
+<li><strong>LLaVA-Instruct-150k</strong>: an M-IT dataset</li>
+<li><strong>MiniGPT-4, ChatBridge, GPT4Tools, DetGPT</strong>: develop
+different M-IT datasets catering for different needs</li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-9.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-10.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-11.png" /></p>
+<aside>
+<p>👉 <strong>Hybrid Composition</strong></p>
+</aside>
+<p>M-IT data + language-only user-assistant conversation data.</p>
+<p><strong>Adavantage</strong>: conversational proficiencies,
+instruction-following abilities</p>
+<p><strong>Representative work</strong>:</p>
+<ul>
+<li><strong>LaVIN</strong>: directly constructs a minibatch by randomly
+sampling from both data</li>
+<li><strong>MultiInstruct</strong>: two transfer learning strategies
+<ul>
+<li>Mixed instruction tuning: combine both types of data and randomly
+shuffle. (The empirical results show that mixed instruction tuning is at
+least not worse than solely tuning on multimodal data.)</li>
+<li>Sequential instruction tuning: text data followed by multimodal
+data</li>
+</ul></li>
+</ul>
+<h3 id="modality-bridging">Modality Bridging</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-12.png" /></p>
+<aside>
+<p>👉 <strong>Learnable Interface</strong></p>
+</aside>
+<p><strong>Adavantages</strong>: little cost, avoid catastrophic
+forgetting</p>
+<p><strong>Three manners</strong>:</p>
+<ol type="1">
+<li><strong>Query-Based</strong>: (learnable query tokens) Flamingo,
+BLIP-2</li>
+<li><strong>Projection-Based</strong>: LLaVA, MedVInTTE</li>
+<li><strong>Parameter-Efficient Tuning</strong>: LLaMA-Adapter,
+LaVIN</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-13.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-14.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-15.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-16.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-17.png" /></p>
+<aside>
+<p>👉 <strong>Expert Model</strong></p>
+</aside>
+<p><strong>Advantage</strong>: Via expert models, convert multimodal
+inputs into languages without training.</p>
+<p><strong>Disadvantage</strong>: less flexible, info loss</p>
+<p><a
+href="https://arxiv.org/pdf/2305.06355.pdf">**VideoChat-Text</a>:**
+transforming videos into textual descriptions distorts spatial-temporal
+relationships.</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-18.png" /></p>
+<h3 id="evaluation">Evaluation</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-19.png" /></p>
+<aside>
+<p>👉 <strong>Closed-set</strong></p>
+</aside>
+<p><strong>Closed-set questions</strong>: its possible answer options
+are predefined and limited</p>
+<p><strong>Two evaluation types</strong>:</p>
+<ol type="1">
+<li><strong>leverage existing datasets</strong>: limited to a small
+range of tasks (e.g., acc for VQA, CIDEr score for text2caption). Two
+evaluation settings:
+<ol type="1">
+<li><strong>Zero-shot</strong>: split into held-in/held-out parts</li>
+<li><strong>Finetuning</strong>: domain-specific downstream tasks</li>
+</ol></li>
+<li><strong>develop new benchmarks specially designed for
+MLLMs</strong>: more comprehensive
+<ol type="1">
+<li><a
+href="https://arxiv.org/pdf/2306.13394.pdf"><strong>MME</strong></a>: 14
+perception and cognition tasks, manually design instruction-answer pairs
+to avoid data leakage</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.06687.pdf">LAMM-Benchmark</a></strong>:
+various 2D/3D vision tasks</li>
+<li><strong><a
+href="https://arxiv.org/pdf/2306.05424.pdf">Video-ChatGPT</a></strong>:
+(1) video-based generative performance (2) zero-shot QA</li>
+</ol></li>
+</ol>
+<aside>
+<p>👉 <strong>Open-set</strong></p>
+</aside>
+<p><strong>Open-set questions</strong>: its possible answer options are
+open and flexible.</p>
+<p>MLLMs act as chatbots and the chat content can be arbitrary.</p>
+<ol type="1">
+<li><strong>Manual scoring</strong>: require humans to assess specific
+dimensions</li>
+<li><strong>GPT scoring</strong>: rate with GPT, reduce human labour
+(LLaVA)
+<ul>
+<li>Multimodal interface of GPT-4 is not publicly available. Therefore,
+setting GPT-4 as the performance upper bound is not perfect.</li>
+</ul></li>
+<li><strong>Case study</strong>: (mPLUG-Owl, Video-LLaMA)</li>
+</ol>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-20.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-21.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-22.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-23.png" /></p>
+<aside>
+<p>👉 <strong>Others</strong></p>
+</aside>
+<p><strong><a
+href="https://arxiv.org/pdf/2212.10773.pdf">MultiInstruct</a></strong>:
+sensitivity metric, model’s robustness to varied instructions</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.10355.pdf">POPE</a></strong>: delve
+into the object hallucination problem</p>
+<p><strong><a
+href="https://arxiv.org/pdf/2305.16934.pdf">AttackVLM</a></strong>:
+(safety) the robustness of MLLMs to adversarial attacks</p>
+<h2 id="m-icl-multimodal-in-context-learning">M-ICL: Multimodal
+In-Context Learning</h2>
+<p><strong>ICL</strong>: few-shot, training-free</p>
+<p><strong>M-ICL</strong>: Based on M-IT, at inference time, M-ICL adds
+a demonstration set (i.e., a set of in-context samples), to the original
+sample.</p>
+<p><strong>Template example of an M-ICL query</strong>:</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-24.png" /></p>
+<aside>
+<p>👉 <strong>Two Scenarios</strong></p>
+</aside>
+<p><strong>Scenario 1: solving various visual reasoning
+tasks</strong></p>
+<p>(<a href="https://arxiv.org/pdf/2303.11381.pdf">**MM-React</a>, <a
+href="https://arxiv.org/pdf/2305.03726.pdf">Otter</a>, <a
+href="https://arxiv.org/pdf/2204.14198.pdf">Flamingo</a>, <a
+href="https://arxiv.org/pdf/2109.05014.pdf">PICa</a>, <a
+href="https://arxiv.org/pdf/2106.13884.pdf">Frozen</a>**)</p>
+<ul>
+<li>Via demonstrations, LLMs get a sense of what the task is doing and
+what the output template is.</li>
+<li>Thus LLMs learn from a few task-specific examples and generalize to
+a new but similar question.</li>
+</ul>
+<p><strong>Scenario 2: teaching LLMs to use external tools</strong></p>
+<p>(<strong><a
+href="https://arxiv.org/pdf/2304.09842.pdf">Chameleon</a>, <a
+href="https://arxiv.org/pdf/2211.11559.pdf">Visual programming</a>, <a
+href="https://arxiv.org/pdf/2303.17580.pdf">HuggingGPT</a></strong>)</p>
+<ul>
+<li>Demonstrations are often text-only and more fine-grained.</li>
+<li>They typically comprise a chain of steps that could be sequentially
+executed to fulfill the task. (related to CoT)</li>
+</ul>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-25.png" /></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-26.png" /></p>
+<h2 id="m-cot-multimodal-chain-of-thought">M-CoT: Multimodal Chain of
+Thought</h2>
+<p><strong>CoT</strong>: a series of intermediate reasoning steps</p>
+<p><strong>CoT Scenario</strong>: complex reasoning</p>
+<p><strong>CoT Main Idea</strong>: output both reasoning process and
+final answer</p>
+<p><strong>M-CoT</strong> (<strong><a
+href="https://arxiv.org/pdf/2201.11903.pdf">CoT-PT</a>, <a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>, <a
+href="https://arxiv.org/pdf/2305.02317.pdf">VCoT</a>, <a
+href="https://arxiv.org/pdf/2305.13903.pdf">VideoCoT</a></strong>)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-27.png" /></p>
+<p><strong>Modality Bridging</strong></p>
+<ul>
+<li><p><strong>Expert Model</strong>: transforming visual input into
+textual descriptions (<a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>: concatenate
+image captions and original textual imput to LLMs)</p></li>
+<li><p><strong>Learnable Interface</strong>: feature fusion (<a
+href="https://arxiv.org/pdf/2302.00923.pdf">MM-CoT</a>: adopts a
+two-stage framework)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-28.png" /></p></li>
+</ul>
+<p><strong>Learning Paradigms</strong></p>
+<ul>
+<li><strong>Finetuning</strong>: often for specific datasets(e.g., <a
+href="https://arxiv.org/pdf/2209.09513.pdf">ScienceQA</a>)</li>
+<li><strong>Few-shot</strong>: requires hand-crafting some in-context
+examples</li>
+<li><strong>Zero-shot</strong>: require no specific example</li>
+</ul>
+<p><strong>Chain Config——</strong>(When to stop the chains?)</p>
+<ul>
+<li><strong>Adaptive</strong>: requires LLMs to decide when to halt the
+reasoning chains</li>
+<li><strong>Pre-defined</strong>: stops the chains with a pre-defined
+length</li>
+</ul>
+<p><strong>Generation Pattens——</strong>(How the chain is
+constructed?)</p>
+<p>The generated steps should be consistent and correct.</p>
+<ul>
+<li><p><strong>Predicting</strong>: extending the reasoning chains given
+conditions such as instructions and previous reasoning history</p></li>
+<li><p><strong>Infilling</strong>: deducing steps between surrounding
+context (previous and following steps) to fill the logical gaps
+(VideoCoT)</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-29.png" /></p></li>
+</ul>
+<h2 id="lavr-llm-aided-visual-reasoning">LAVR: LLM-Aided Visual
+Reasoning</h2>
+<p><strong>LAVR</strong>: use external tools or visual foundation
+models.</p>
+<p><strong>Three advantages</strong> compared with conventional visual
+reasoning models: <strong>Strong generalization, Emergent abilities,
+Better interactivity and control</strong></p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-30.png" /></p>
+<aside>
+<p>👉 <strong>Training Paradigms</strong></p>
+</aside>
+<p><a href="https://arxiv.org/pdf/2305.18752.pdf">GPT4Tools</a>:
+generate a new tool-related instruction dataset</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-31.png" /></p>
+<aside>
+<p>👉 <strong>Functions</strong></p>
+</aside>
+<p><em>The primary roles that LLMs play in LAVR.</em></p>
+<ul>
+<li><strong>Controller</strong>: (single-round) breaks down a complex
+task [via CoT], assign subtasks to right tools/modules</li>
+<li><strong>Decision Maker</strong>: (multi-round) summarize history and
+current info, decide whether the info is sufficient to finish the task,
+friendly present answer</li>
+<li><strong>Semantics Refiner</strong>: integrate info into fluent
+scentences, generate texts according to different specific needs</li>
+</ul>
+<h2 id="challenges-and-future-directions">Challenges and Future
+Directions</h2>
+<ol type="1">
+<li><p><strong>Perception Capabilities</strong>: compromise between info
+capacity and computation burden</p></li>
+<li><p><strong>Consistent Reasoning Chain</strong>: right reasoning
+chain delivers right answer</p></li>
+<li><p><strong>Instruction-following Abilities</strong>: (e.g., yes/no
+type)</p></li>
+<li><p><strong>Object Hallucination</strong>: more fine-grained modality
+alignment</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/ifshinelx/blogimage@main/img/mllm-32.png" /></p>
+<p>(The object does not appear in the image)</p></li>
+<li><p><strong>Parameter-Efficient Training</strong></p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Paper</category>
+        <category>2023</category>
+        <category>06</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+        <tag>Multi-modal</tag>
+        <tag>In-Context Learning</tag>
+        <tag>Instruction-Following</tag>
+        <tag>Chain of Thought</tag>
+        <tag>Tool Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -2887,9 +2887,9 @@ href="https://theme-next.js.org/docs/third-party-services/search-services.html#A
 href="https://github.com/next-theme/hexo-generator-searchdb">Searchdb</a>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure> Hexo config: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># search hexo-generator-searchdb</span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: true</span><br><span class="line">  format: html</span><br><span class="line">  limit: 100</span><br></pre></td></tr></table></figure> Next config:
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure></p>
-<p>###<a
+<h3 id="comment-systemsgitalk"><a
 href="https://theme-next.js.org/docs/third-party-services/comments.html">Comment
-Systems(Gitalk)</a></p>
+Systems(Gitalk)</a></h3>
 <p>Click here to sign up for a <a
 href="https://github.com/settings/applications/new">new OAuth
 Application</a>. Other content can be filled in at will, but be sure to
@@ -3436,10 +3436,10 @@ pre-trained image encoders and LLMs with a Q-Former</li>
       </categories>
       <tags>
         <tag>LLM</tag>
+        <tag>PEFT</tag>
         <tag>Multi-modal</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
-        <tag>PEFT</tag>
         <tag>Instruction-Following</tag>
       </tags>
   </entry>
@@ -3748,11 +3748,11 @@ Experts. The example and OCR context are from DocVQA.</figcaption>
       </categories>
       <tags>
         <tag>LLM</tag>
+        <tag>PEFT</tag>
         <tag>Multi-modal</tag>
         <tag>Expert Integration</tag>
         <tag>Prefix-Tuning</tag>
         <tag>Adapter</tag>
-        <tag>PEFT</tag>
         <tag>Instruction-Following</tag>
       </tags>
   </entry>
